@@ -1,7 +1,7 @@
 <!--Include with php in futur-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-orange">
             
-    <a class="navbar-brand ml-5" href="#"><img src="img/logo.jpg"></a>
+    <a class="navbar-brand ml-5" href="#"><img src="http://localhost/LE-FIL-ROUGE/code/img/logo.jpg"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
