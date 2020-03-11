@@ -1,0 +1,163 @@
+.dropdown-toggle::after {
+    color: white;
+}
+
+li a {background-color:transparent !important;}
+
+
+
+/*__________Page_accueil_____________*/
+.bg-orange{
+    background-color: #FFA500;
+}
+.btn-orange{
+    background-color: #FFA500;
+}
+
+.bg-orangelg{
+    background-color: #ffc14d;
+}
+
+
+.w-15{
+    width: 15%;
+}
+.w-20{
+    width: 15%;
+}
+
+.bg-1{background-color: rgb(243, 243, 243);}
+.bg-2{background-color: #C94747;}
+.bg-11{background-color: rgb(216, 216, 216);}
+
+.bg-3{background-color: #000068;}
+.bg-4{background-color: #4D3C2E;}
+.bg-5{background-color: #145250;}
+.bg-6{background-color: #0F001A;}
+.bg-7{background-color: #91A3A1;}
+.bg-8{background-color: #111888;}
+.bg-9{background-color: #261930;}
+
+
+
+.rounded-valid{
+    border-radius: 23px;
+}
+
+.form-elegant .font-small {
+    font-size: 0.8rem; }
+
+.form-elegant .z-depth-1a {
+    -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+    box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25); }
+
+.form-elegant .z-depth-1-half,
+.form-elegant .btn:hover {
+    -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+    box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15); }
+
+.form-elegant .modal-header {
+    border-bottom: none; }
+
+.modal-dialog .form-elegant .btn .fab {
+    color: #2196f3!important; }
+
+.form-elegant .modal-body, .form-elegant .modal-footer {
+    font-weight: 400; }
+
+
+
+    .funkyradio div {
+        clear: both;
+        overflow: hidden;
+      }
+      
+      .funkyradio label {
+        width: 100%;
+        border-radius: 3px;
+        border: 1px solid #D1D3D4;
+        font-weight: normal;
+      }
+      
+      .funkyradio input[type="checkbox"]:empty {
+        display: none;
+      }
+      
+      .funkyradio input[type="checkbox"]:empty ~ label {
+        position: relative;
+        line-height: 2.5em;
+        text-indent: 3.25em;
+        margin-top: 2em;
+        cursor: pointer;
+        -webkit-user-select: none;
+           -moz-user-select: none;
+            -ms-user-select: none;
+                user-select: none;
+      }
+      
+      .funkyradio input[type="checkbox"]:empty ~ label:before {
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 2.5em;
+        background: #D1D3D4;
+        border-radius: 3px 0 0 3px;
+      }
+      
+      .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+        color: #888;
+      }
+      
+      .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #C2C2C2;
+      }
+      
+      .funkyradio input[type="checkbox"]:checked ~ label {
+        color: #777;
+      }
+      
+      .funkyradio input[type="checkbox"]:checked ~ label:before {
+        content: '\2714';
+        text-indent: .9em;
+        color: #333;
+        background-color: #ccc;
+      }
+      
+      .funkyradio input[type="checkbox"]:focus ~ label:before {
+        box-shadow: 0 0 0 3px #999;
+      }
+      
+      .funkyradio-default input[type="checkbox"]:checked ~ label:before {
+        color: #333;
+        background-color: #ccc;
+      }
+      
+      .funkyradio-primary input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #337ab7;
+      }
+      
+      .funkyradio-success input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #5cb85c;
+      }
+      
+      .funkyradio-danger input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #d9534f;
+      }
+      
+      .funkyradio-warning input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #f0ad4e;
+      }
+      
+      .funkyradio-info input[type="checkbox"]:checked ~ label:before {
+        color: #fff;
+        background-color: #5bc0de;
+      }
