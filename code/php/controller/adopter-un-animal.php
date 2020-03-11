@@ -1,3 +1,6 @@
+<?php
+    include_once('../service/EspeceService.php');
+?>
 <!DOCTYPE html>
 
 <html>
@@ -17,7 +20,7 @@
      <!--Inclure avec php plus tard-->
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             
-        <a class="navbar-brand ml-5" href="#"><img src="logo.jpg"></a>
+        <a class="navbar-brand ml-5" href="#"><img src="../../img/logo.jpg"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -56,11 +59,11 @@
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
             
             <a class="d-flex mr-3" href="#">
-                <img class="mr-1" src="mesAnimaux.png" alt="">
+                <img class="mr-1" src="../../img/mesAnimaux.png" alt="">
                 <p class="navbar-nav text-light">Mes animaux</p>
             </a>
             <a class="d-flex mr-3" href="#">
-                <img class="mr-1" src="account.png" alt="">
+                <img class="mr-1" src="../../img/account.png" alt="">
                 <p class="navbar-nav text-light">Mon compte</p>
             </a>
         </div>
@@ -76,73 +79,68 @@
 
 <!--Menu critères de recherche, affichage avec requetes sql vers la base de données-->
                 <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
-                <div class="row text-center">                    
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle w-75" type="submit" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Type
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Chien</a>
-                            <a class="dropdown-item" href="#">Chat</a>
-                            <a class="dropdown-item" href="#">Lapin</a>
+                <form method="post" action="adopter-un-animal.php"> 
+                    <div class="row mt-3">
+                        <div class=col-lg-12>
+                            <select name="type" class="custom-select custom-select-lg">
+                                <option value="" selected>Type</option>
+                                <?php
+                                $especeService = new EspeceService();
+                                $data = $especeService->afficherType();
+                                foreach($data as $key =>$value){
+                                    foreach($value as $key2 => $value2){
+                                        echo '<option>' . $value2 . '</option>';
+                                    }
+                                }
+                                ?>
+                                
+                            </select>
                         </div>
-                    </div>                       
-                </div>
-                <div class="row text-center mt-3">                    
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle w-75" type="submit" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Race
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">----</a>
-                            <a class="dropdown-item" href="#">----</a>
-                            <a class="dropdown-item" href="#">----</a>
+                    </div>
+                    <div class="row mt-3">
+                        <div class=col-lg-12>
+                            <select name="race" class="custom-select custom-select-lg">
+                                <option value="" selected>Race</option>
+                                <option>Labrador</option>
+                                <option>Labrador</option>
+                                <option>Labrador</option>
+                            </select>
                         </div>
-                    </div>                       
-                </div>
-                <div class="row text-center mt-3">                   
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle w-75" type="submit" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Couleur
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">----</a>
-                            <a class="dropdown-item" href="#">----</a>
-                            <a class="dropdown-item" href="#">----</a>
+                    </div>
+                    <div class="row mt-3">
+                        <div class=col-lg-12>
+                            <select name="couleur" class="custom-select custom-select-lg">
+                                <option value="" selected>Couleur</option>
+                                <option>Blanc</option>
+                                <option>Noir</option>
+                                <option>Gris</option>
+                                <option>Roux</option>
+                            </select>
                         </div>
-                    </div>                       
-                </div>
-                <div class="row text-center mt-3">                    
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle w-75" type="submit" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Age
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Chien</a>
-                            <a class="dropdown-item" href="#">Chat</a>
-                            <a class="dropdown-item" href="#">Lapin</a>
+                    </div>
+                    <div class="row mt-3">
+                        <div class=col-lg-12>
+                            <select name="ville" class="custom-select custom-select-lg">
+                                <option value="" selected>Ville</option>
+                                <option>Paris</option>
+                                <option>Lille</option>
+                                <option>Marseille</option>
+                                <option>Bordeaux</option>
+                            </select>
                         </div>
-                    </div>                       
-                </div>                
-                <div class="row text-center mt-3">                    
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle w-75" type="submit" id="dropdownMenuButton5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Ville
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Lille</a>
-                            <a class="dropdown-item" href="#">Paris</a>
-                            <a class="dropdown-item" href="#">Marseille</a>
-                        </div>
-                    </div>                       
-                </div>                
+                    </div>
+                    <div class="row justify-content-center mt-3">
+                        <button class="btn btn-primary" name="recherche" type="submit">Valider</button>
+                    </div>
+                </form>
             </div>
+
 <!--Fiches animaux, générées en php grâce à la base de données-->
             <div class="col-lg-8">
                 <div class="row">
                     <div class="col-lg-3 mb-4">
                         <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
+                            <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
                             </div>                   
