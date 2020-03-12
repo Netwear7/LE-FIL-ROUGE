@@ -75,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-5 mt-5">
                     <div class="row">
                         <div class="col-lg-12 text-center mt-2">
                             <h3>Présentation de la "LPA"</h3>
@@ -98,7 +98,7 @@
                             </p>
                         </div>
                         <div class="col-lg-12 my-3 text-center">
-                            <a class="btn bg-orange" href="#" role="button">Soutenez les refuges ! ʕ•ᴥ•ʔ </a>
+                            <a class="btn bg-orange" href="don.php" role="button">Soutenez les refuges ! ʕ•ᴥ•ʔ </a>
                         </div>
                     </div>
                 </div>
