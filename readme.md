@@ -6,3 +6,5 @@
 #### Pour push, utiliser cette synthaxe :
  Etre sûr avant de le faire.
  > Git push origin master
+
+Eviter au maximum les merges
