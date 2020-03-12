@@ -4,9 +4,14 @@
 
     class CouleurAnimalService{
 
+        private $couleurAnimalDataAccess;
+
+        public function __construct(){
+            $this->couleurAnimalDataAccess = new CouleurAnimalDataAccess();
+        }
+
         public function afficherCouleur(){
-            $couleurAnimalDataAccess = new CouleurAnimalDataAccess();
-            $data = $couleurAnimalDataAccess->afficherCouleur();
+            $data = $this->couleurAnimalDataAccess->afficherCouleur();
             return $data;            
         }
 

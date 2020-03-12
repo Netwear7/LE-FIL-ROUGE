@@ -4,9 +4,14 @@
 
     class RaceService{
 
+        private $raceDataAccess;
+
+        public function __construct(){
+            $this->raceDataAccess = new RaceDataAccess();
+        }
+
         public function afficherRace(){
-            $raceDataAccess = new RaceDataAccess();
-            $data = $raceDataAccess->afficherRace();
+            $data = $this->raceDataAccess->afficherRace();
             return $data;            
         }
 
