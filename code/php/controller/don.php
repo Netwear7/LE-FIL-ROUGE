@@ -9,67 +9,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+        <link rel="stylesheet" href="../../css/header-and-color-test.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
+        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/i18n/defaults-*.min.js"></script>
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
-                            <!--Include with php in futur-->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            
-            <a class="navbar-brand ml-5" href="#"><img src="img/logo.jpg"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- ACCUEIL-->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Accueil</a>
-                        </li>
-                    
-                    <!-- DROPDOWN ADOPTER UN ANIMAL-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Adopter un animal
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Les animaux</a>
-                                <a class="dropdown-item" href="#">Accompagnement pour l'adoption</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Conditions d'adoption</a>
-                            </div>
-                        </li>
-                    
-                    <!-- DROPDOWN ANIMAUX PERDU-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Animaux perdus
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Envoyer la fiche animal</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <!-- BOUTON MES ANIMAUX ET COMPTES-->
-                    <a class="mr-3" href="#"><img class="mx-auto " src="img/mesAnimaux.png" alt="">
-                    <p class="mx-auto d-block navbar-nav text-light">Mes animaux</p></a>
-                    <a class="mr-5"href="#"><img class="mx-auto " src="img/account.png" alt="">
-                    <p class="mx-auto d-block navbar-nav text-light">Mon compte</p></a>
-                </div>
-            </nav>
-        </div>
+        <?php
+            include_once("header.php");
+        ?>
         <div class="container">
             <div class="row mt-5">
                 <div class="col text-center">
@@ -171,5 +127,8 @@
                 <p>Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions  Conditions Conditions Conditions </p>
             </div>
         </div>
+        <?php
+            include_once("footer.php");
+        ?>
     </body>
 </html>
