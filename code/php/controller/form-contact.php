@@ -32,9 +32,7 @@
                     <div class="row">
                         <div class="col-lg-10 bg-1">
                             <div class="row" style="height: 350px;">
-                                <div class="col-lg-10 offset-lg-1 bg-2 mt-4" style="height: 250px;">
-
-                                </div>
+                                <img class="img-fluid" src="../../img/dog-on-the-phone.png" alt="chien standardiste">
                             </div>
                             <div class="row">
                                 <h3 class="ml-4">Contactez-nous</h3>
@@ -58,20 +56,20 @@
                         <h1 class="mt-4">Formulaire de contact :</h1>
                     </div>
 
-                    <form action="">
+                    <form action="" method="POST">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
-                                <input type="text" placeholder="Nom" class="form-control" aria-label="Text input with dropdown button">
+                                <input type="text" placeholder="Nom" name="name" class="form-control" aria-label="Text input with dropdown button">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
-                                <input type="text" placeholder="Prénom" class="form-control" aria-label="Text input with dropdown button">
+                                <input type="text" placeholder="Prénom" name="fname" class="form-control" aria-label="Text input with dropdown button">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
-                                <input type="text" placeholder="Adresse Email" class="form-control" aria-label="Text input with dropdown button">
+                                <input type="text" placeholder="Adresse Email" name="email" class="form-control" aria-label="Text input with dropdown button">
                             </div>
                         </div>
                         <div class="row">
