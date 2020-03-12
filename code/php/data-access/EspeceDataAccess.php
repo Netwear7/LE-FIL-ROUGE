@@ -1,12 +1,22 @@
 <?php
     class EspeceDataAccess{
+        public function connexion(){
+            $db = new mysqli('localhost','root','','bddanimaux');
+            return $db;    
+        }
+
+        public function deconnexion($db){
+            $db -> close();
+        }
 
         public function afficherType(){
-            $db= mysqli_init();
-            mysqli_real_connect($db, 'localhost','root','','bddanimaux');
-            $rs= mysqli_query($db, "SELECT nom_espece FROM espece");
-            $data=mysqli_fetch_all($rs, MYSQLI_ASSOC);
-            mysqli_close($db);
+            $db=$this->connexion();
+            $stmt = $db -> prepare("SELECT nom_espece FROM espece");
+            $stmt -> execute();  
+            $rs = $stmt -> get_result();          
+            $data= $rs -> fetch_all(MYSQLI_ASSOC);
+            $rs -> free();
+            $this->deconnexion($db);  
             return $data;
         }
 

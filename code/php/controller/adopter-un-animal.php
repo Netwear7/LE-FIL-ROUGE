@@ -2,6 +2,26 @@
     include_once('../service/EspeceService.php');
     include_once('../service/RaceService.php');
     include_once('../service/CouleurAnimalService.php');
+    include_once('../service/AnimauxService.php');
+
+    function affichage($data){
+        foreach($data as $key => $value){
+            echo '<div class="col-lg-3 mb-4">
+                    <div class="card">
+                        <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap">
+                        <div class="card-body">
+                            <div class="row justify-content-center">
+                                <p class="card-text ">' . $value["nom"] . '</p>
+                            </div>
+                            <div class="row justify-content-center">
+                                <p class="card-text">' . $value["nom_race"] . '</p>
+                            </div>
+                        </div>                   
+                    </div>
+                    </div>';
+        
+        }
+    }
 ?>
 <!DOCTYPE html>
 
@@ -35,7 +55,7 @@
                 <form method="post" action="adopter-un-animal.php"> 
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="type" class="custom-select custom-select-lg">
+                            <select name="nom_espece" class="custom-select custom-select-lg">
                                 <option value="" selected>Type</option>
                                 <?php
                                 $especeService = new EspeceService();
@@ -52,7 +72,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="race" class="custom-select custom-select-lg">
+                            <select name="nom_race" class="custom-select custom-select-lg">
                                 <option value="" selected>Race</option>
                                 <?php
                                 $raceService = new raceService();
@@ -93,7 +113,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row justify-content-center mt-3">
+                    <div class="row justify-content-center my-3">
                         <button class="btn btn-primary" name="recherche" type="submit">Valider</button>
                     </div>
                 </form>
@@ -102,123 +122,49 @@
 <!--Fiches animaux, générées en php grâce à la base de données-->
             <div class="col-lg-8">
                 <div class="row">
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>                   
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis ictum sepum.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        $animauxService = new AnimauxService();
+                        if(!isset($_POST["recherche"])){
+                            $data=$animauxService->selectAll();
+                            affichage($data);
+                        }
+
+                        if(isset($_POST["recherche"])){
+                            $data=$animauxService->selectRecherche($_POST);
+                            if(count($data)>0){
+                                affichage($data);
+                            }
+                            else{
+                                echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
+                            }
+                        }
+                    ?>
+
+                    
                 </div>
-<!--navigation vers les pages de recherche, à inclure avec php, les numéros de page doivent se générer avec la création des pages-->
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">4</a></li>
-                      <li class="page-item"><a class="page-link" href="#">5</a></li>
-                      <li class="page-item"><a class="page-link" href="#">6</a></li>
-                      <li class="page-item"><a class="page-link" href="#">7</a></li>
-                      <li class="page-item"><a class="page-link" href="#">8</a></li>
-                      <li class="page-item"><a class="page-link" href="#">9</a></li>
-                      <li class="page-item"><a class="page-link" href="#">10</a></li>
-                      <li class="page-item"><a class="page-link" href="#">suivant</a></li>
-                    </ul>
-                </nav>
+
 
             </div>
         </div>
+        <!--navigation vers les pages de recherche, à inclure avec php, les numéros de page doivent se générer avec la création des pages-->
+        <nav aria-label="Page navigation">
+            <div class="col-lg-8 offset-lg-3 justify-content-center">
+                <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                <li class="page-item"><a class="page-link" href="#">9</a></li>
+                <li class="page-item"><a class="page-link" href="#">10</a></li>
+                <li class="page-item"><a class="page-link" href="#">suivant</a></li>
+                </ul>
+            </div>
+         </nav>
     </div>
 
     <?php
