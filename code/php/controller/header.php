@@ -39,7 +39,7 @@
         </ul>
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
         
-        <a class="d-flex mr-3 mt-1" href="#">
+        <a class="d-flex mr-3 mt-1" href="compte.php">
             <img class="mr-1" src="img/mesAnimaux.png" alt="">
             <p class="navbar-nav text-light">Mes animaux</p>
         </a>
