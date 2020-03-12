@@ -1,5 +1,7 @@
 <?php
     include_once('../service/EspeceService.php');
+    include_once('../service/RaceService.php');
+    include_once('../service/CouleurAnimalService.php');
 ?>
 <!DOCTYPE html>
 
@@ -101,9 +103,15 @@
                         <div class=col-lg-12>
                             <select name="race" class="custom-select custom-select-lg">
                                 <option value="" selected>Race</option>
-                                <option>Labrador</option>
-                                <option>Labrador</option>
-                                <option>Labrador</option>
+                                <?php
+                                $raceService = new raceService();
+                                $data = $raceService->afficherRace();
+                                foreach($data as $key =>$value){
+                                    foreach($value as $key2 => $value2){
+                                        echo '<option>' . $value2 . '</option>';
+                                    }
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -111,10 +119,15 @@
                         <div class=col-lg-12>
                             <select name="couleur" class="custom-select custom-select-lg">
                                 <option value="" selected>Couleur</option>
-                                <option>Blanc</option>
-                                <option>Noir</option>
-                                <option>Gris</option>
-                                <option>Roux</option>
+                                <?php
+                                $couleurAnimalService = new CouleurAnimalService();
+                                $data = $couleurAnimalService->afficherCouleur();
+                                foreach($data as $key =>$value){
+                                    foreach($value as $key2 => $value2){
+                                        echo '<option>' . $value2 . '</option>';
+                                    }
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
