@@ -8,6 +8,8 @@
 
 include_once '../service/UtilisateurService.php';
 include_once '../data-access/UtilisateurDataAccess.php';
+include_once '../service/AnimauxService.php';
+include_once '../data-access/AnimauxDataAccess.php';
 
 $nom = "STOEV";
 $id = '1';
@@ -85,7 +87,7 @@ if (isset($_POST["modifierMdp"])){
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                            <a type="button" class="btn btn-outline-danger" href="accueil.html">Déconnexion</a>
+                                            <a type="button" class="btn btn-outline-danger" href="accueil.php">Déconnexion</a>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +133,7 @@ if (isset($_POST["modifierMdp"])){
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-12 ">
                                             <div class="row justify-content-center">
-                                                <button class="btn btn-outline-danger" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
+                                                <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
                                                     Supprimer mon Compte
                                                 </button>
                                             
@@ -190,12 +192,12 @@ if (isset($_POST["modifierMdp"])){
                                                 <div class="row">
                                                     <div class="col-lg-6 col-sm-12 ">
                                                         <div class="row justify-content-center">
-                                                            <button type="button submit" class="btn btn-outline-danger" name="modification">Valider les modifications</button>
+                                                            <button type="button submit" class="btn btn-outline-primary" name="modification">Valider les modifications</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-sm-12">
                                                         <div class="row justify-content-center">
-                                                            <button type="button submit" class="btn btn-outline-info">Annuler les modifications</button>
+                                                            <button type="button submit" class="btn btn-outline-secondary">Annuler les modifications</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -216,6 +218,12 @@ if (isset($_POST["modifierMdp"])){
                             <div class="row mt-2">
                                 <div class="col-8 offset-2 text-center border rounded border-black text-center">
                                     <div class="row m-3 ">
+                                        <?php
+                                        if (isset($id)){
+                                            $daoAnimaux = new AnimauxDataAccess();
+                                            $serviceAnimaux = new AnimauxService($daoAnimaux);
+                                        }
+                                        ?>
                                         <div class="col-12 text-center">
                                             <h5>Vous n'avez pas encore ajouté votre Compagnon ?</h5>
                                             <p> Pour ajouter votre compagnon à la liste, cliquez sur le bouton suivant : </p>

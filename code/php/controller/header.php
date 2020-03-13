@@ -1,5 +1,5 @@
 <!--Include with php in futur-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-orange">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             
     <a class="navbar-brand ml-5" href="#"><img src="http://localhost/LE-FIL-ROUGE/code/img/logo.jpg"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@
         </ul>
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
         
-        <a class="d-flex mr-3 mt-1" href="compte.php">
+        <a class="d-flex mr-3 mt-1" href="compte.php#list-compagnons">
             <img class="mr-1" src="img/mesAnimaux.png" alt="">
             <p class="navbar-nav text-light">Mes animaux</p>
         </a>

@@ -60,16 +60,88 @@
             $num = '1';
             $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
 
-            $sql = !empty($parametres['nom']) ? "UPDATE utilisateur set NOM = '".$_POST['nom']."' where ID_UTILISATEUR = ".$num."; " : false;
-            $sql .= !empty($parametres['prénom']) ? "UPDATE utilisateur set PRENOM = '".$parametres['prénom']."' where ID_UTILISATEUR = ".$num.";" : false;
-            $sql .= !empty($parametres['tel']) ? "UPDATE utilisateur set NUM = '".$parametres['tel']."' where ID_UTILISATEUR = ".$num.";" : false;
-            $sql .= !empty($parametres['mail']) ? "UPDATE utilisateur set ADRESSE_EMAIL = '".$parametres['mail']."' where ID_UTILISATEUR = ".$num.";" : false;
-            $sql .= !empty($parametres['numero']) ? "UPDATE adresse set NUMERO = '".$parametres['numero']."' where ID_ADRESSE = ".$num.";" : false;
-            $sql .= !empty($parametres['rue']) ? "UPDATE adresse set RUE = '".$parametres['rue']."' where ID_ADRESSE = ".$num.";" : false;
-            $sql .= !empty($parametres['CP']) ? "UPDATE adresse set CODE_POSTAL = '".$parametres['CP']."' where ID_ADRESSE = ".$num.";" : false;
-            $sql .= !empty($_POST['Ville']) ? "UPDATE adresse set VILLE = '".$parametres['Ville']."' where ID_ADRESSE = ".$num.";" : false;
+
+            if (!empty($parametres['nom'])) {
+                $stmt = $mysqli->prepare("UPDATE utilisateur set NOM = ? where ID_UTILISATEUR = ?");
+                $stmt->bind_param('ss',$parametres['nom'],$num);
+                $stmt->execute();
+            } else {
+                false;
+            }
+
+            if (!empty($parametres['prénom'])) {
+                $stmt = $mysqli->prepare("UPDATE utilisateur set PRENOM = ? where ID_UTILISATEUR = ?");
+                $stmt->bind_param('ss',$parametres['prénom'],$num);
+                $stmt->execute();
+            } else {
+                false;
+            }
+
+            if (!empty($parametres['tel'])) {
+                $stmt = $mysqli->prepare("UPDATE utilisateur set NUM = ? where ID_UTILISATEUR = ?");
+                $stmt->bind_param('ss',$parametres['tel'],$num);
+                $stmt->execute();
+            } else {
+                false;
+            }
+
+            if (!empty($parametres['mail'])) {
+                $stmt = $mysqli->prepare("UPDATE utilisateur set ADRESSE_EMAIL = ? where ID_UTILISATEUR = ?");
+                $stmt->bind_param('ss',$parametres['mail'],$num);
+                $stmt->execute();
+            } else {
+                false;
+            }
+
+            if (!empty($parametres['numero'])) {
+                $stmt = $mysqli->prepare("UPDATE adresse set NUMERO = ? where ID_ADRESSE = ?");
+                $stmt->bind_param('ss',$parametres['numero'],$num);
+                $stmt->execute();
+
+            }else {
+                false;
+            }
+
+            if (!empty($parametres['rue'])) {
+                $stmt = $mysqli->prepare("UPDATE adresse set RUE = ? where ID_ADRESSE = ?");
+                $stmt->bind_param('ss',$parametres['rue'],$num);
+                $stmt->execute();
+            } else {
+                false;
+            }
+
+            if (!empty($parametres['CP'])) {
+                $stmt = $mysqli->prepare("UPDATE adresse set CODE_POSTAL = ? where ID_ADRESSE = ? " );
+                $stmt->bind_param('ss',$parametres['CP'],$num);
+                $stmt->execute();
+            } else {
+                false;
+            }
+
+            if (!empty($_POST['Ville'])) {
+                $stmt = $mysqli->prepare("UPDATE adresse set VILLE = ? where ID_ADRESSE = ? " );
+                $stmt->bind_param('ss',$parametres['Ville'],$num);
+                $stmt->execute();
+            } else {
+                false;
+            }
+
             
-            return $result = $mysqli->multi_query($sql) === TRUE ? "Modification bien effectuées !" : "Erreur lors de l'ajout des informations :  " . $sql . "<br>"; 
+            $mysqli->close();
+
+
+
+
+         //   $sql = !empty($parametres['nom']) ? "UPDATE utilisateur set NOM = '".$_POST['nom']."' where ID_UTILISATEUR = ".$num."; " : false;
+        //    $sql .= !empty($parametres['prénom']) ? "UPDATE utilisateur set PRENOM = '".$parametres['prénom']."' where ID_UTILISATEUR = ".$num.";" : false;
+           // $sql .= !empty($parametres['tel']) ? "UPDATE utilisateur set NUM = '".$parametres['tel']."' where ID_UTILISATEUR = ".$num.";" : false;
+           // $sql .= !empty($parametres['mail']) ? "UPDATE utilisateur set ADRESSE_EMAIL = '".$parametres['mail']."' where ID_UTILISATEUR = ".$num.";" : false;
+           // $sql .= !empty($parametres['numero']) ? "UPDATE adresse set NUMERO = '".$parametres['numero']."' where ID_ADRESSE = ".$num.";" : false;
+           // $sql .= !empty($parametres['rue']) ? "UPDATE adresse set RUE = '".$parametres['rue']."' where ID_ADRESSE = ".$num.";" : false;
+           // $sql .= !empty($parametres['CP']) ? "UPDATE adresse set CODE_POSTAL = '".$parametres['CP']."' where ID_ADRESSE = ".$num.";" : false;
+           // $sql .= !empty($_POST['Ville']) ? "UPDATE adresse set VILLE = '".$parametres['Ville']."' where ID_ADRESSE = ".$num.";" : false;
+            
+           // return $result = $mysqli->multi_query($sql) === TRUE ? "Modification bien effectuées !" : "Erreur lors de l'ajout des informations :  " . $sql . "<br>"; 
 
         }
 

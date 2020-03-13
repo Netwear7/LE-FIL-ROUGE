@@ -102,7 +102,6 @@
 
         public function utilisateurServiceAffichageinfos(){
             $data = $this->serviceSelect(); 
-            $adresse = $data[0]["NUMERO"]." ".$data[0]["RUE"]  ;
             echo
             '
             <div class="row">
@@ -139,7 +138,6 @@
         }
         public function utilisateurServicePanneauModification(){
             $data = $this->serviceSelect();
-            $adresse = $data[0]["NUMERO"]." ".$data[0]["RUE"]  ;
             echo 
             '
                 <div class="row">
@@ -147,19 +145,19 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <label for="userName">Nom :</label>
-                            <input type="text" maxlength="50" class="form-control" name="nom"  placeholder="'. $data[0]["NOM"].'" aria-describedby="UserName">
+                            <input type="text" maxlength="50" class="form-control" name="nom"  value="'. $data[0]["NOM"].'" aria-describedby="UserName">
                         </li>
                         <li class="list-group-item">
                             <label for="userNickName">Prénom :</label>
-                            <input type="text" maxlength="50" class="form-control" name="prénom"  placeholder="'. $data[0]["PRENOM"].'" aria-describedby="UserNickName">
+                            <input type="text" maxlength="50" class="form-control" name="prénom"  value="'. $data[0]["PRENOM"].'" aria-describedby="UserNickName">
                         </li>
                         <li class="list-group-item">
                             <label for="userPhone">Tel :</label>
-                            <input type="text" maxlength="50" class="form-control" name="tel"  placeholder="'. $data[0]["NUM"].'" aria-describedby="UserPhone">
+                            <input type="text" maxlength="50" class="form-control" name="tel"  value="'. $data[0]["NUM"].'" aria-describedby="UserPhone">
                         </li>
                         <li class="list-group-item">
                             <label for="userMail">Adresse mail : </label>
-                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="mail" placeholder="'. $data[0]["ADRESSE_EMAIL"].'">
+                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="mail" value="'. $data[0]["ADRESSE_EMAIL"].'">
                             <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse mail</small>
                         </li>
                     </ul>
@@ -168,19 +166,19 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <label for="userAdress">Numero :</label>
-                            <input type="text" maxlength="50" class="form-control" name="numero" placeholder="'. $data[0]["NUMERO"].'" aria-describedby="UserAdressNumber">
+                            <input type="text" maxlength="50" class="form-control" name="numero" value="'. $data[0]["NUMERO"].'" aria-describedby="UserAdressNumber">
                         </li>
                         <li class="list-group-item">
                             <label for="userAdress">Rue :</label>
-                            <input type="text" maxlength="50" class="form-control" name="rue" placeholder="'. $data[0]["RUE"].'" aria-describedby="UserRue">
+                            <input type="text" maxlength="50" class="form-control" name="rue" value="'. $data[0]["RUE"].'" aria-describedby="UserRue">
                          </li>
                         <li class="list-group-item">
                             <label for="userCP">Code Postal : </label>
-                            <input type="number" maxlength="50" class="form-control" name="CP" placeholder="'. $data[0]["CODE_POSTAL"].'" aria-describedby="UserName">
+                            <input type="number" maxlength="50" class="form-control" name="CP" value="'. $data[0]["CODE_POSTAL"].'" aria-describedby="UserName">
                         </li>
                         <li class="list-group-item">
                             <label for="userTown">Ville : </label>
-                            <input type="text" maxlength="50" class="form-control" name="Ville" placeholder="'. $data[0]["VILLE"].'" aria-describedby="UserName">
+                            <input type="text" maxlength="50" class="form-control" name="Ville" value="'. $data[0]["VILLE"].'" aria-describedby="UserName">
                         </li>
                     </ul>
                 </div>
