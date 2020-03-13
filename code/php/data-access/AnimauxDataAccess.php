@@ -10,10 +10,10 @@ include_once '../Interfaces/InterfaceDao.php';
             return $db;    
         }
 
-
+        public function daoModificationMdp($a,$b){}
         public function daoSelectAll()
         {
-            
+
         }
         public function daoSelect($id){}
         public function daoCount(){}

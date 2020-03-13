@@ -1,10 +1,12 @@
 <?php
 
+include_once '../Interfaces/InterfaceDao.php';
+
 
 class ServiceCommun{
     private $dataAccessObject;
 
-    public function __construct( $dao){
+    public function __construct(InterfaceDao $dao){
         $this->dataAccessObject = $dao;
 
     }
