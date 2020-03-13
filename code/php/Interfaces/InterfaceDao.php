@@ -8,6 +8,5 @@
         public function daoRecherche();
         public function daoModification(array $parametres);
         public function daoSuppression(string $nom);
-        public function daoModificationMdp($a,$b);
     }
 ?>
