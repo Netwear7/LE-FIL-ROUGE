@@ -17,7 +17,7 @@
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Adopter un animal</a>
-                    <div class="dropdown-menu bg-orange border-0" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu bg-grey border-0" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-white" href="adopter-un-animal.php">Les animaux</a>
                         <a class="dropdown-item text-white" href="#">Accompagnement pour l'adoption</a>
                         <div class="dropdown-divider"></div>
@@ -29,7 +29,7 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Animaux perdus</a>
-                <div class="dropdown-menu bg-orange border-0" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu bg-grey border-0" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item text-white" href="#">Action</a>
                     <a class="dropdown-item text-white" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
