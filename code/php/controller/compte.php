@@ -4,6 +4,38 @@
 -->
 
 
+<?php
+
+include_once '../service/UtilisateurService.php';
+include_once '../data-access/UtilisateurDataAccess.php';
+
+$nom = "STOEV";
+$id = '1';
+
+
+$daoUtilisateur = new UtilisateurDataAccess();
+$serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+
+if (isset($_POST["suppression"])){
+
+    $daoUtilisateur = new UtilisateurDataAccess();
+    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+    $serviceUtilisateur->serviceSuppression($nom);
+
+
+}
+
+if (isset($_POST["modifierMdp"])){
+    $daoUtilisateur = new UtilisateurDataAccess();
+    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+    $serviceUtilisateur->serviceModificationMdp($_POST);
+
+}
+
+
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -84,41 +116,18 @@
                             </div>
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-2">
-                                    <div class="row">
-                                        <div class="col-lg-6 mt-3">
-                                            <div class="row">
-                                                <div class="col-lg-10 offset-lg-2 pb-2">
-                                                    <div class="row">
-                                                        <ul class="list-group list-group-flush">
-                                                            <li class="list-group-item">Nom :</li>
-                                                            <li class="list-group-item">Prénom : </li>
-                                                            <li class="list-group-item">Tel :</li>
-                                                            <li class="list-group-item">Email : </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 mt-3">
-                                            <div class="row">
-                                                <div class="col-lg-10 offset-lg-2 pb-2 ">
-                                                    <div class="row">
-                                                        <ul class="list-group list-group-flush">
-                                                            <li class="list-group-item">Adresse : </li>
-                                                            <li class="list-group-item">Ville : </li>
-                                                            <li class="list-group-item">Code Postal : </li>
-                                                            <li class="list-group-item">Pays : </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <?php $serviceUtilisateur->utilisateurServiceAffichageinfos(); 
+                                        if (isset($_POST["modification"])){
+                                            
+                                            echo $serviceUtilisateur->serviceModification($_POST);
+                                         }
+                                        ?>
+                                        
                                 </div>
                             </div>
                             <!--PARTIE OU IL Y A LES BOUTONS SUPP ET MOD MDP-->
                             <div class="row">
-                                <div class="col-8 offset-2 borber rounded border-black mt-2">
+                                <div class="col-8 offset-2 rounded border-black mt-2">
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-12 ">
                                             <div class="row justify-content-center">
@@ -137,25 +146,28 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-lg-6 col-sm-12">
+                                        
+                                        <div class="col-lg-6 col-sm-12 ">
                                             <div class="row justify-content-center">
-                                                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseMdP" aria-expanded="false" aria-controls="collapseExample">
-                                                    Modifier mon MdP
+                                                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseMdp" aria-expanded="false" aria-controls="collapseExample">
+                                                    Modifier mon MDP
                                                 </button>
-                                                <div class="collapse mt-2" id="collapseMdP">
+                                            
+                                                <div class="collapse mt-2" id="collapseMdp">
                                                     <div class="card card-body">
-                                                        <form method="post" action="test.php">
+                                                        <form method="post" action="compte.php">
                                                             <label for="inputPassword2" class="sr-only">Mot de Passe Actuel</label>
-                                                            <input type="password" class="form-control" id="inputPassword2" placeholder="MdP Actuel" name="oldMdp">
-                                                            <label for="inputPassword2" class="sr-only">Nouveau Mot de Passe</label>
-                                                            <input type="password" class="form-control" id="inputPassword2" placeholder="Nouveau MdP" name="newMdp">
-                                                            <label for="inputPassword2" class="sr-only">Confirmation MdP</label>
-                                                            <input type="password" class="form-control" id="inputPassword2" placeholder="Confirmation MdP" name="confirmNewMdp">   
-                                                            <button type="submit" class="btn btn-outline-info mb-2" name="Modif">Confirmer la modification</button>
+                                                            <input type="password" class="form-control mt-2" id="inputPassword2" placeholder="MdP Actuel" name="oldMdp">
+                                                            <label for="inputPassword2" class="sr-only mt-2">Nouveau Mot de Passe</label>
+                                                            <input type="password" class="form-control mt-2" id="inputPassword3" placeholder="Nouveau MdP" name="newMdp">
+                                                            <label for="inputPassword2" class="sr-only mt-2">Confirmation MdP</label>
+                                                            <input type="password" class="form-control mt-2" id="inputPassword4" placeholder="Confirmation MdP" name="confirmNewMdp">   
+                                                            <button type="submit" class="btn btn-outline-info mb-2 mt-2" name="modifierMdp">Confirmer la modification</button>
                                                         </form>
                                                     </div>
-                                                </div>                                         
+                                                </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -170,70 +182,15 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-8 offset-2 border rounded border-black ">
-                                    <form method="POST" action="test.PHP">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-sm-12">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">
-                                                        <label for="userName">Nom :</label>
-                                                        <input type="text" maxlength="50" class="form-control" name="nom" id="userName" aria-describedby="UserName">
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <label for="userNickName">Prénom :</label>
-                                                        <input type="text" maxlength="50" class="form-control" name="prénom" id="userNickName" aria-describedby="UserNickName">
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <label for="userPhone">Tel :</label>
-                                                        <input type="number" maxlength="50" class="form-control" name="tel" id="userPhone" aria-describedby="UserPhone">
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <label for="userMail">Adresse mail : </label>
-                                                        <input type="email" class="form-control" id="userMail" aria-describedby="emailHelp" name="mail">
-                                                        <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse mail</small>
-                                                        <?php
-
-                                                        function valid_email($str) {
-                                                        return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $_POST["mail"])) ? FALSE : TRUE;
-                                                        }
-
-                                                        if(!valid_email($_POST["mail"])){
-                                                        echo "Adresse mail Invalide";
-                                                        }else{
-                                                        echo "Adresse mail Valide";
-                                                        }
-
-                                                        ?>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-lg-6 col-sm-12">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">
-                                                        <label for="userAdress">Adresse :</label>
-                                                        <input type="text" maxlength="50" class="form-control" name="adresse" id="userAdress" aria-describedby="UserAdress">
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <label for="userCP">Code Postal : </label>
-                                                        <input type="number" maxlength="50" class="form-control" name="CP" id="userCP" aria-describedby="UserName">
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <label for="userTown">Ville : </label>
-                                                        <input type="text" maxlength="50" class="form-control" name="Ville" id="userTown" aria-describedby="UserName">
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <label for="userCountry">Pays : </label>
-                                                        <input type="text" maxlength="50" class="form-control" name="Country" id="userCountry" aria-describedby="UserName">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                    <form method="POST" action="compte.php">
+                                        <?php echo $serviceUtilisateur->utilisateurServicePanneauModification(); ?>
                 <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
                                         <div class="row">
                                             <div class="col-8 offset-2 borber rounded border-black mt-2">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-sm-12 ">
                                                         <div class="row justify-content-center">
-                                                            <button type="button submit" class="btn btn-outline-danger">Valider les modifications</button>
+                                                            <button type="button submit" class="btn btn-outline-danger" name="modification">Valider les modifications</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-sm-12">
