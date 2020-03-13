@@ -1,11 +1,26 @@
 <?php
-    class AnimauxDataAccess{
+
+include_once '../Interfaces/InterfaceDao.php';
+
+    class AnimauxDataAccess implements InterfaceDao{
 
 
         public function connexion(){
             $db = new mysqli('localhost','root','','bddanimaux');
             return $db;    
         }
+
+
+        public function daoSelectAll()
+        {
+            
+        }
+        public function daoSelect($id){}
+        public function daoCount(){}
+        public function daoAjout(){}
+        public function daoRecherche(){}
+        public function daoModification( $parametres){}
+        public function daoSuppression($nom){}
 
         public function deconnexion($db){
             $db -> close();

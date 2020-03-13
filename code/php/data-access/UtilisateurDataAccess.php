@@ -1,5 +1,8 @@
 <?php
-    class UtilisateurDataAccess{
+
+    include_once '../Interfaces/InterfaceDao.php';
+    
+    class UtilisateurDataAccess implements InterfaceDao{
 
         public function __construct()
         {

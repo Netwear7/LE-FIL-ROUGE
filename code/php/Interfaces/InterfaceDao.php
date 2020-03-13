@@ -2,11 +2,11 @@
     interface InterfaceDao{
 
         public function daoSelectAll();
-        public function daoSelect();
+        public function daoSelect(string $id);
         public function daoCount();
         public function daoAjout();
         public function daoRecherche();
-        public function daoModification();
-        public function daoSuppression();
+        public function daoModification(array $parametres);
+        public function daoSuppression(string $nom);
     }
 ?>
