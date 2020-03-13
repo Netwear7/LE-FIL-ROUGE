@@ -1,16 +1,41 @@
 <?php
 
-    include_once('../data-access/AnimauxDataAccess.php');
+include_once '../service/ServiceCommun.php';
+include_once '../Interfaces/InterfaceService.php';
 
-    class AnimauxService{
+    class AnimauxService extends ServiceCommun implements InterfaceService {
 
-        public function __construct(){
-            $this->animauxDataAccess = new AnimauxDataAccess();
+
+
+
+        public function serviceSelectAll()
+        {
+
         }
+        public function serviceSelect()
+        {
+            $data = $this->getDataAccessObject()->daoSelect($this->id);
+            return $data;
+        }
+        public function serviceCount() 
+        {
 
-        public function selectAll(){
-            $data = $this->animauxDataAccess->selectAll();
-            return $data;            
+        }
+        public function serviceAjout()
+        {
+
+        }
+        public function serviceRecherche()
+        {
+
+        }
+        public function serviceModification(array $post)
+        {
+
+        }
+        public function serviceSuppression($nom)
+        {
+            
         }
 
         public function selectRecherche($tab){
