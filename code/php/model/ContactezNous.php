@@ -3,7 +3,13 @@
         private $idMessage;
         private $message;
         private $motif;
+        private static $increment = 0;
 
+        function __construct(string $message, string $motif){
+            $this->increment = ++self::$increment;
+            $this->message = $message;
+            $this->motif = $motif;
+        }
         /**
          * Getter for IdMessage
          *
@@ -13,7 +19,6 @@
         {
             return $this->idMessage;
         }
-
         /**
          * Setter for IdMessage
          * @var [type] idMessage
@@ -25,8 +30,6 @@
             $this->idMessage = $idMessage;
             return $this;
         }
-
-
         /**
          * Getter for Message
          *
@@ -36,7 +39,6 @@
         {
             return $this->message;
         }
-
         /**
          * Setter for Message
          * @var [type] message
@@ -48,8 +50,6 @@
             $this->message = $message;
             return $this;
         }
-
-
         /**
          * Getter for Motif
          *
@@ -59,7 +59,6 @@
         {
             return $this->motif;
         }
-
         /**
          * Setter for Motif
          * @var [type] motif
@@ -71,6 +70,5 @@
             $this->motif = $motif;
             return $this;
         }
-
     }
 ?>

@@ -36,6 +36,10 @@
                     <a class="dropdown-item text-white" href="#">Envoyer la fiche animal</a>
                 </div>
             </li>
+            <li>
+            <a class="nav-link" href="form-contact.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
+                Contactez-nous</a>
+            </li>
         </ul>
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
         

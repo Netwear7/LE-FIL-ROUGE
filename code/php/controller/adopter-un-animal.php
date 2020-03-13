@@ -49,13 +49,14 @@
         </div>
 
         <div class="row mt-5">
-            <div class="col-lg-2 offset-lg-1 bg-dark">
+            <div class="col-lg-2 offset-lg-1 bg-orange">
 <!--Menu critères de recherche, affichage avec requetes sql vers la base de données-->
                 <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
+                <hr>
                 <form method="post" action="adopter-un-animal.php"> 
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="nom_espece" class="custom-select custom-select-lg">
+                            <select name="nom_espece" class="custom-select custom-select-md">
                                 <option value="" selected>Type</option>
                                 <?php
                                 $especeService = new EspeceService();
@@ -72,7 +73,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="nom_race" class="custom-select custom-select-lg">
+                            <select name="nom_race" class="custom-select custom-select-md">
                                 <option value="" selected>Race</option>
                                 <?php
                                 $raceService = new raceService();
@@ -88,7 +89,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="couleur" class="custom-select custom-select-lg">
+                            <select name="couleur" class="custom-select custom-select-md">
                                 <option value="" selected>Couleur</option>
                                 <?php
                                 $couleurAnimalService = new CouleurAnimalService();
@@ -104,7 +105,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="ville" class="custom-select custom-select-lg">
+                            <select name="ville" class="custom-select custom-select-md">
                                 <option value="" selected>Ville</option>
                                 <option>Paris</option>
                                 <option>Lille</option>

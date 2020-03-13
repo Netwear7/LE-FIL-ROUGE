@@ -1,3 +1,11 @@
+<?php
+    include_once("../model/ContactezNous.php");
+
+    if(isset($_POST["action"]) && $_POST["action"] == "InsertMessage"){
+        
+    }
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -30,12 +38,12 @@
             <div class="row mt-5">
                 <div class="col-lg-4 offset-lg-1">
                     <div class="row">
-                        <div class="col-lg-10 bg-1">
+                        <div class="col-lg-10">
                             <div class="row" style="height: 350px;">
-                                <img class="img-fluid" src="../../img/dog-on-the-phone.png" alt="chien standardiste">
+                                <img class="img-fluid w-100" src="../../img/dog-on-the-phone.png" alt="chien standardiste">
                             </div>
                             <div class="row">
-                                <h3 class="ml-4">Contactez-nous</h3>
+                                <h3 class="ml-4 my-5">Contactez-nous</h3>
                             </div>
                             <div class="row">
                                 <p class="mx-4">Avoir une communication ouverte est l’une des valeurs principales de notre marque.</p>
@@ -57,6 +65,7 @@
                     </div>
 
                     <form action="" method="POST">
+                        <input type="hidden" name="action" value="InsertMessage">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
                                 <input type="text" placeholder="Nom" name="name" class="form-control" aria-label="Text input with dropdown button">
@@ -75,24 +84,14 @@
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1">
                                 <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                    <button class="btn bg-11 dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Motif : </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Motif 1</a>
-                                        <a class="dropdown-item" href="#">Motif 2</a>
-                                        <a class="dropdown-item" href="#">Motif 3</a>
-                                        <div role="separator" class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Autre</a>
-                                    </div>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Précision" aria-label="Text input with dropdown button">
+                                    <input type="text" class="form-control" name="motif" placeholder="Motif" aria-label="Text input with dropdown button">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Message" id="exampleFormControlTextarea3" rows="8"></textarea>
+                                    <textarea class="form-control" name="message" placeholder="Message" id="exampleFormControlTextarea3" rows="8"></textarea>
                                   </div>
                             </div>
                         </div>

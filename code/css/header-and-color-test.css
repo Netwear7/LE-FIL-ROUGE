@@ -1,5 +1,5 @@
-.dropdown-toggle::after {
-    color: white;
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: rgb(143, 143, 143);
 }
 
 
@@ -8,14 +8,14 @@
 
 /*__________Page_accueil_____________*/
 .bg-orange{
-    background-color: #FFA500;
+    background-color: rgb(143, 143, 143);
 }
 .btn-orange{
     background-color: #FFA500;
 }
 
 .bg-orangelg{
-    background-color: #ffc14d;
+    background-color: #e4e4e4;
 }
 
 .w-15{
