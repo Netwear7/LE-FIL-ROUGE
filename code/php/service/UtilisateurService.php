@@ -78,7 +78,7 @@
             $nouveauMdp = $infos["newMdp"];
             $confirm = $infos["confirmNewMdp"] == $infos["newMdp"] ? True : False;
             $this->serviceVerificationMdpActuel($this->id,$mdpActuel);
-            return $confirm ? $this->getDataAccessObject()->daoModificationMDP($this->id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
+            return $confirm ? $this->getDataAccessObject()->daoModificationMdp($this->id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
         }
 
         public function serviceVerificationMdpActuel($nom, $mdpActuel)

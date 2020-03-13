@@ -4,7 +4,7 @@
 class ServiceCommun{
     private $dataAccessObject;
 
-    public function __construct(UtilisateurDataAccess $dao){
+    public function __construct( $dao){
         $this->dataAccessObject = $dao;
 
     }
