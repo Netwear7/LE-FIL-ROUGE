@@ -1,4 +1,6 @@
 <?php
+    include_once("../model/ContactezNous.php");
+
     class ContactezNousDataAccess{
 
         public function connexion(){
@@ -10,9 +12,10 @@
         }
         public function InsertMessage($insert){
             $db = $this->connexion();
-            $db->query("INSERT INTO contactez-nous(message, motif, 1)
-            VALUES($insert);");
-            //mysqli_free_result($rs);
+            $message = $insert->getMessage();
+            $motif = $insert->getMotif();
+            $db->query("INSERT INTO contactez_nous(msg, motif, id_utilisateur)
+            VALUES('$message', '$motif', 2)");
             $this->deconnexion($db);
         }
     }

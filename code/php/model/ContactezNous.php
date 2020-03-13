@@ -1,12 +1,13 @@
 <?php
     class ContactezNous{
+        private $idUtilisateur;
         private $idMessage;
         private $message;
         private $motif;
         private static $increment = 0;
 
         function __construct(string $message, string $motif){
-            $this->increment = ++self::$increment;
+            $this->idUtilisateur = ++self::$increment;
             $this->message = $message;
             $this->motif = $motif;
         }

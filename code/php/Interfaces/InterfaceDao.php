@@ -1,17 +1,12 @@
 <?php
+    interface InterfaceDao{
 
-interface InterfaceDao{
-
-    
-    public function daoSelectAll();
-    public function daoSelect();
-    public function daoCount();
-    public function daoAjout();
-    public function daoRecherche();
-    public function daoModification();
-    public function daoSuppression();
-
-
-}
-
+        public function daoSelectAll();
+        public function daoSelect();
+        public function daoCount();
+        public function daoAjout();
+        public function daoRecherche();
+        public function daoModification();
+        public function daoSuppression();
+    }
 ?>

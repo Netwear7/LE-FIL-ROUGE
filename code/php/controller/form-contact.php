@@ -1,8 +1,10 @@
 <?php
-    include_once("../model/ContactezNous.php");
+    include_once("../service/ContactezNousService.php");
+
+    $contact = new ContactezNousService();
 
     if(isset($_POST["action"]) && $_POST["action"] == "InsertMessage"){
-        
+        $contact->InsertMessage($_POST);
     }
 ?>
 
