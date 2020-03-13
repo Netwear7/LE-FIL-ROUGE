@@ -4,7 +4,13 @@
     $contact = new ContactezNousService();
 
     if(isset($_POST["action"]) && $_POST["action"] == "InsertMessage"){
-        $contact->InsertMessage($_POST);
+        if(isset($_POST["message"]) && isset($_POST["motif"])
+            && is_string($_POST["message"]) 
+            && is_string($_POST["motif"]) 
+            && preg_match("/^[a-zA-Z.0-9!?,]+$/", $_POST["message"])
+            && preg_match("/^[a-zA-Z.0-9!?,]+$/", $_POST["motif"])){
+            $contact->InsertMessage($_POST);
+        }
     }
 ?>
 
