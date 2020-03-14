@@ -14,4 +14,4 @@
 > Git fetch = récuperer
 
 > Git rebase = mettre dans la branche actuelle les pushs des autres. (les commits).
-
+Ne plus utiliser GIT PULL
