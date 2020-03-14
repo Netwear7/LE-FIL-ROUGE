@@ -12,5 +12,6 @@
 ## Récuperer du repositorie :
 
 > Git fetch = récuperer
+
 > Git rebase = mettre dans la branche actuelle les pushs des autres. (les commits).
 
