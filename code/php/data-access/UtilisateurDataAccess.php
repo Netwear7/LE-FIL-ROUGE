@@ -19,7 +19,7 @@
         public function daoSelect($id)
 
         {
-            $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $idUtilisateur = $id;
             $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$idUtilisateur);
@@ -61,7 +61,7 @@
         {
             $sql ="";
             $num = '1';
-            $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
 
 
             if (!empty($parametres['nom'])) {
@@ -151,7 +151,7 @@
         public function daoUpdatePassword($id,$mdpHash)
         
         {
-            $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $stmt = $mysqli->prepare('UPDATE utilisateur SET MDP = ? where ID_UTILISATEUR = ?');
             $stmt->bind_param('ss',$mdpHash,$id);
             $stmt->execute();
@@ -171,7 +171,7 @@
         public function daoDelete($nom)
 
         {
-            $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $stmt = $mysqli->prepare('DELETE FROM utilisateurs where nom = ?');
             $stmt->bind_param('s',$nom);
             $stmt->execute();

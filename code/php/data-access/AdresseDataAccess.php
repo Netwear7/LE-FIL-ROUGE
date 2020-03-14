@@ -5,7 +5,7 @@ include_once 'InterfaceDao.php';
         public function daoSelectAll()
         {
             
-                $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
+                $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
                 $stmt = $mysqli->prepare('SELECT * from adresse');
                 $stmt->execute();
                 $rs = $stmt->get_result();
@@ -18,7 +18,7 @@ include_once 'InterfaceDao.php';
 
         public function daoSelect(string $id)
         {
-            $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from adresse  where ID_ADRESSE = ?');
             $stmt->bind_param('i',$idAdresse);
             $stmt->execute();
@@ -33,14 +33,17 @@ include_once 'InterfaceDao.php';
         {
 
         }
-        public function daoAjout(){}
+        public function daoAjout()
+        {
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+        }
         public function daoRecherche(){}
         public function daoModification(array $parametres){}
 
 
         public function daoDelete(string $idadresse)
         {
-                $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
+                $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
                 $stmt = $mysqli->prepare('DELETE FROM adresse where ID_ADRESSE = ?');
                 $stmt->bind_param('s',$idadresse);
                 $stmt->execute();
