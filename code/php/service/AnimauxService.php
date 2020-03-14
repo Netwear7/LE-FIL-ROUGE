@@ -21,24 +21,24 @@ include_once '../Interfaces/InterfaceService.php';
         {
 
         }
-        public function serviceAjout()
+        public function serviceAdd()
         {
 
         }
-        public function serviceRecherche()
+        public function serviceSearch()
         {
 
         }
-        public function serviceModification(array $post)
+        public function serviceUpdate(array $post)
         {
 
         }
-        public function serviceSuppression($nom)
+        public function serviceDelete($nom)
         {
             
         }
 
-        public function selectRecherche($tab){
+        public function selectDelete($tab){
             $nomRace=$tab["nom_race"];
             $couleur=$tab["couleur"];
             $s_nomRace="B.nom_race LIKE ('$nomRace%')";

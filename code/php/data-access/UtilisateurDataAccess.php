@@ -40,14 +40,14 @@
 
         // fonction pour l'ajout
 
-        public function daoAjout()
+        public function daoAdd()
 
         {
 
         }
 
         // fonction pour la recherche
-        public function daoRecherche()
+        public function daoSearch()
 
         {
 
@@ -56,7 +56,7 @@
         
 
         //fonction pour la modification PRENDS EN PARAMETRE LE POST
-        public function daoModification($parametres)
+        public function daoUpdate($parametres)
 
         {
             $sql ="";
@@ -148,7 +148,7 @@
 
         }
 
-        public function daoModificationMdp($id,$mdpHash)
+        public function daoUpdatePassword($id,$mdpHash)
         
         {
             $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');
@@ -160,7 +160,7 @@
 
         }
 
-        public function daoVerificationMdpActuel()
+        public function daoVerifyActualPassword()
 
         {
 
@@ -168,7 +168,7 @@
 
 
         // Fonction pour la suppression
-        public function daoSuppression($nom)
+        public function daoDelete($nom)
 
         {
             $mysqli = new mysqli('localhost', 'Shakka', 'Shakkabdd62', 'projetfilrouge');

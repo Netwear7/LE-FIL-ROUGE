@@ -18,19 +18,19 @@ $id = '1';
 $daoUtilisateur = new UtilisateurDataAccess();
 $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
 
-if (isset($_POST["suppression"])){
+if (isset($_POST["delete"])){
 
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-    $serviceUtilisateur->serviceSuppression($nom);
+    $serviceUtilisateur->serviceDelete($nom);
 
 
 }
 
-if (isset($_POST["modifierMdp"])){
+if (isset($_POST["updatePassword"])){
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-    $serviceUtilisateur->serviceModificationMdp($_POST);
+    $serviceUtilisateur->serviceUpdatePassword($_POST);
 
 }
 
@@ -107,21 +107,21 @@ if (isset($_POST["modifierMdp"])){
                                             <h3>Mes Informations Personnelles</h3>
                                         </div>
                                         <div class="col-2">
-                                            <form method="POST">
-                                                <div class="row d-flex justify-content-end">
-                                                    <button  type="button" name="modifier" class="btn btn-outline-info" id="updateInfo-list" data-toggle="list" href="#list-updateInfo" role="tab" aria-controls="updatemyInfos">Modifier</button>
-                                                </div>
-                                            </form>
+                                            
+                                            <div class="row d-flex justify-content-end">
+                                                <button  type="button" name="modifier" class="btn btn-outline-info" id="updateInfo-list" data-toggle="list" href="#list-updateInfo" role="tab" aria-controls="updatemyInfos">Modifier</button>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-2">
-                                        <?php $serviceUtilisateur->utilisateurServiceAffichageinfos(); 
-                                        if (isset($_POST["modification"])){
+                                        <?php $serviceUtilisateur->utilisateurServiceDisplayinfos(); 
+                                        if (isset($_POST["updateInfos"])){
                                             
-                                            echo $serviceUtilisateur->serviceModification($_POST);
+                                            echo $serviceUtilisateur->serviceUpdate($_POST);
                                          }
                                         ?>
                                         
@@ -140,8 +140,8 @@ if (isset($_POST["modifierMdp"])){
                                                 <div class="collapse mt-2" id="collapseSuppression">
                                                     <div class="card card-body">
                                                         <p>En cliquant sur le bouton ci-dessous vous confirmez accepter la suppression de votre compte ainsi que de toutes vos données personnelles enregistrées dans nos bases de données, une fois la suppression de votre compte effectuée, vous n'aurez plus accès à votre espace personnel. Pour confirmer, cliquez sur le bouton ci-dessous.</p>
-                                                        <form method="post" action="test.php">
-                                                            <button class="btn btn-outline-danger btn-lg btn-block" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="Suppression" value="delete" >Confirmer la suppression</button>
+                                                        <form method="post" action="compte.php">
+                                                            <button class="btn btn-outline-danger btn-lg btn-block" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="delete">Confirmer la suppression</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -164,7 +164,7 @@ if (isset($_POST["modifierMdp"])){
                                                             <input type="password" class="form-control mt-2" id="inputPassword3" placeholder="Nouveau MdP" name="newMdp">
                                                             <label for="inputPassword2" class="sr-only mt-2">Confirmation MdP</label>
                                                             <input type="password" class="form-control mt-2" id="inputPassword4" placeholder="Confirmation MdP" name="confirmNewMdp">   
-                                                            <button type="submit" class="btn btn-outline-info mb-2 mt-2" name="modifierMdp">Confirmer la modification</button>
+                                                            <button type="submit" class="btn btn-outline-info mb-2 mt-2" name="updatePassword">Confirmer la modification</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -185,14 +185,14 @@ if (isset($_POST["modifierMdp"])){
                             <div class="row mt-2">
                                 <div class="col-8 offset-2 border rounded border-black ">
                                     <form method="POST" action="compte.php">
-                                        <?php echo $serviceUtilisateur->utilisateurServicePanneauModification(); ?>
+                                        <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel(); ?>
                 <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
                                         <div class="row">
                                             <div class="col-8 offset-2 borber rounded border-black mt-2">
                                                 <div class="row">
                                                     <div class="col-lg-6 col-sm-12 ">
                                                         <div class="row justify-content-center">
-                                                            <button type="button submit" class="btn btn-outline-primary" name="modification">Valider les modifications</button>
+                                                            <button type="button submit" class="btn btn-outline-primary" name="updateInfos">Valider les modifications</button>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-sm-12">

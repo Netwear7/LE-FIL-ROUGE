@@ -17,10 +17,10 @@ include_once '../Interfaces/InterfaceDao.php';
         }
         public function daoSelect($id){}
         public function daoCount(){}
-        public function daoAjout(){}
-        public function daoRecherche(){}
-        public function daoModification( $parametres){}
-        public function daoSuppression($nom){}
+        public function daoAdd(){}
+        public function daoSearch(){}
+        public function daoUpdate( $parametres){}
+        public function daoDelete($nom){}
 
         public function deconnexion($db){
             $db -> close();

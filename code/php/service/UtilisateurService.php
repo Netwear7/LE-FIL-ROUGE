@@ -27,7 +27,7 @@
             return $data;
         }
 
-        public function serviceVerificationMDP()
+        public function serviceVerifyPassword()
         
         {
 
@@ -46,42 +46,41 @@
 
 
         // function pour l'ajout Utilisateur
-        public function serviceAjout()
+        public function serviceAdd()
 
         {
-            $this->getDataAccessObject()->daoAjout();
+            $this->getDataAccessObject()->daoAdd();
         }
 
 
 
         //function pour la recherche Utilisateur
-        public function serviceRecherche()
+        public function serviceSearch()
 
         {
-            $this->getDataAccessObject()->daoRecherche();
+            $this->getDataAccessObject()->daoSearch();
         }
 
 
 
 
         //Fonction de modification des données utilisateur, prends comme parametre le post avec tout les inputs a modifier
-        public function serviceModification($parametres)
+        public function serviceUpdate($parametres)
         
         {
-            $this->getDataAccessObject()->daoModification($parametres);
+            $this->getDataAccessObject()->daoUpdate($parametres);
         }
 
-        public function serviceModificationMdp($infos)
+        public function serviceUpdatePassword($infos)
         
         {
             $mdpActuel = $infos["oldMdp"];
-            $nouveauMdp = $infos["newMdp"];
             $confirm = $infos["confirmNewMdp"] == $infos["newMdp"] ? True : False;
-            $this->serviceVerificationMdpActuel($this->id,$mdpActuel);
-            return $confirm ? $this->getDataAccessObject()->daoModificationMdp($this->id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
+            $this->serviceVerifyActualPassword($this->id,$mdpActuel);
+            return $confirm ? $this->getDataAccessObject()->daoUpdatePassword($this->id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
         }
 
-        public function serviceVerificationMdpActuel($nom, $mdpActuel)
+        public function serviceVerifyActualPassword($nom, $mdpActuel)
         
         {
             $data = $this->serviceSelect($nom);
@@ -91,8 +90,8 @@
 
 
         // fonction de Suppression Utilisateur
-        public function serviceSuppression($nom){
-            $this->getDataAccessObject()->daoSuppression($nom);
+        public function serviceDelete($nom){
+            $this->getDataAccessObject()->daoDelete($nom);
             return "Suppression réussie";
         }
 
@@ -100,7 +99,7 @@
 
 
 
-        public function utilisateurServiceAffichageinfos(){
+        public function utilisateurServiceDisplayinfos(){
             $data = $this->serviceSelect(); 
             echo
             '
@@ -136,7 +135,7 @@
         </div>
             ';
         }
-        public function utilisateurServicePanneauModification(){
+        public function utilisateurServiceUpdatePanel(){
             $data = $this->serviceSelect();
             echo 
             '
