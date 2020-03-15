@@ -59,78 +59,27 @@
         public function daoUpdate($parametres)
 
         {
-            $sql ="";
-            $num = '1';
-            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+                foreach ($parametres as $key => $value2){
+
+                    $num ="1";
+                    if ($key =="updateInfos"){
+                        $mysqli->close();
+                        return $result = "Modification effectuées !";
+                    }
+                    if ($key == "NOM" or $key == "PRENOM" or $key =="NUM" or $key == "ADRESSE_EMAIL"){
+                        $stmt = $mysqli->prepare("UPDATE utilisateur SET ".$key." = ? where ID_UTILISATEUR = ?");
+                    } else{
+                        $stmt = $mysqli->prepare("UPDATE adresse SET ".$key." = ? where ID_ADRESSE = ?");
+
+                    }
+                    $stmt->bind_param("ss",$value2,$num);
+                    $stmt->execute();
+                }            
+                
 
 
-            if (!empty($parametres['nom'])) {
-                $stmt = $mysqli->prepare("UPDATE utilisateur set NOM = ? where ID_UTILISATEUR = ?");
-                $stmt->bind_param('ss',$parametres['nom'],$num);
-                $stmt->execute();
-            } else {
-                false;
-            }
-
-            if (!empty($parametres['prénom'])) {
-                $stmt = $mysqli->prepare("UPDATE utilisateur set PRENOM = ? where ID_UTILISATEUR = ?");
-                $stmt->bind_param('ss',$parametres['prénom'],$num);
-                $stmt->execute();
-            } else {
-                false;
-            }
-
-            if (!empty($parametres['tel'])) {
-                $stmt = $mysqli->prepare("UPDATE utilisateur set NUM = ? where ID_UTILISATEUR = ?");
-                $stmt->bind_param('ss',$parametres['tel'],$num);
-                $stmt->execute();
-            } else {
-                false;
-            }
-
-            if (!empty($parametres['mail'])) {
-                $stmt = $mysqli->prepare("UPDATE utilisateur set ADRESSE_EMAIL = ? where ID_UTILISATEUR = ?");
-                $stmt->bind_param('ss',$parametres['mail'],$num);
-                $stmt->execute();
-            } else {
-                false;
-            }
-
-            if (!empty($parametres['numero'])) {
-                $stmt = $mysqli->prepare("UPDATE adresse set NUMERO = ? where ID_ADRESSE = ?");
-                $stmt->bind_param('ss',$parametres['numero'],$num);
-                $stmt->execute();
-
-            }else {
-                false;
-            }
-
-            if (!empty($parametres['rue'])) {
-                $stmt = $mysqli->prepare("UPDATE adresse set RUE = ? where ID_ADRESSE = ?");
-                $stmt->bind_param('ss',$parametres['rue'],$num);
-                $stmt->execute();
-            } else {
-                false;
-            }
-
-            if (!empty($parametres['CP'])) {
-                $stmt = $mysqli->prepare("UPDATE adresse set CODE_POSTAL = ? where ID_ADRESSE = ? " );
-                $stmt->bind_param('ss',$parametres['CP'],$num);
-                $stmt->execute();
-            } else {
-                false;
-            }
-
-            if (!empty($_POST['Ville'])) {
-                $stmt = $mysqli->prepare("UPDATE adresse set VILLE = ? where ID_ADRESSE = ? " );
-                $stmt->bind_param('ss',$parametres['Ville'],$num);
-                $stmt->execute();
-            } else {
-                false;
-            }
-
-            
-            $mysqli->close();
 
 
 
