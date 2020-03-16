@@ -186,7 +186,7 @@
                                     </div> 
 
                                     <div class="input-group mt-5 mb-5 d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-primary w-75 rounded-valid text-center">S'inscrire</button>
+                                        <button type="submit" class="btn btn-primary w-75 rounded-valid text-center" name="inscription">S'inscrire</button>
                                     </div>
                                 </div>
                             

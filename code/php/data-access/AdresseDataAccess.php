@@ -1,6 +1,10 @@
 <?php
-include_once 'InterfaceDao.php';
+include_once '../Interfaces/InterfaceDao.php';
+
     class AdresseDataAccess implements InterfaceDao{
+
+
+
 
         public function daoSelectAll()
         {
@@ -16,7 +20,7 @@ include_once 'InterfaceDao.php';
         }
 
 
-        public function daoSelect(string $id)
+        public function daoSelect($id)
         {
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from adresse  where ID_ADRESSE = ?');
@@ -29,19 +33,50 @@ include_once 'InterfaceDao.php';
             return $data;
         }
 
+
+        // count des adresses dans la bdd
         public function daoCount()
         {
 
         }
-        public function daoAjout()
-        {
+
+        // ajout des adresses dans la bdd
+        public function daoAdd($adresse)
+        {   
+            $num = $adresse->getNumero();
+            $rue = $adresse->getRue();
+            $ville = $adresse->getVille();
+            $cp = $adresse->getCodePostal();
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare('INSERT INTO adresse (NUMERO,RUE,VILLE,CODE_POSTAL) VALUES (?,?,?,?) ');
+            $stmt->bind_param('ssss',$num,$rue,$ville,$cp);
+            $stmt->execute();
+            $mysqli->close();
+            return $result = $stmt ? "l'adresse a bien été ajoutée" : "L'ajout de l'adresse a échoué";
         }
-        public function daoRecherche(){}
-        public function daoModification(array $parametres){}
+        // fonction pour récup l'id Adresse directement après l'ajout afin de récupérer l'id pour pouvoir créer l'utilisateur totalement
+        public function daoTakeId($adresse)
+        {   
+            $num = $adresse->getNumero();
+            $rue = $adresse->getRue();
+            $ville = $adresse->getVille();
+            $cp = $adresse->getCodePostal();
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare('SELECT ID_ADRESSE from adresse where NUMERO = ? AND RUE = ? and VILLE = ? and CODE_POSTAL = ?');
+            $stmt->bind_param('ssss',$num,$rue,$ville,$cp);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $id = $rs->fetch_all(MYSQLI_ASSOC);
+            $mysqli->close();
+            return $id;
+        }
+
+        //
+        public function daoSearch(){}
+        public function daoUpdate($parametres){}
 
 
-        public function daoDelete(string $idadresse)
+        public function daoDelete($idadresse)
         {
                 $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
                 $stmt = $mysqli->prepare('DELETE FROM adresse where ID_ADRESSE = ?');

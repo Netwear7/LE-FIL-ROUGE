@@ -13,11 +13,33 @@ include_once '../Interfaces/InterfaceDao.php';
 
         public function daoSelectAll()
         {
+            $db=$this->connexion();
+            $stmt = $db -> prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
+            $stmt -> execute();  
+            $rs = $stmt -> get_result();          
+            $data= $rs -> fetch_all(MYSQLI_ASSOC);
+            $rs -> free();
+            $this->deconnexion($db);  
+            return $data;
+        }
+        public function daoSelectAllUserAnimals($id)
+        {
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare('SELECT * from animaux  where ID_UTILISATEUR = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $mysqli->close();
+            return $data;
+        }
+        public function daoSelect($id)
+        {
 
         }
-        public function daoSelect($id){}
         public function daoCount(){}
-        public function daoAdd(){}
+        public function daoAdd($objet){}
         public function daoSearch(){}
         public function daoUpdate( $parametres){}
         public function daoDelete($nom){}

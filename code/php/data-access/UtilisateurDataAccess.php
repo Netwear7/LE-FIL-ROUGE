@@ -20,9 +20,8 @@
 
         {
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
-            $idUtilisateur = $id;
             $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where ID_UTILISATEUR = ?');
-            $stmt->bind_param('s',$idUtilisateur);
+            $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_all(MYSQLI_ASSOC);
@@ -38,12 +37,23 @@
 
         }
 
-        // fonction pour l'ajout
+        // fonction pour l'ajout de l'utilisateur
 
-        public function daoAdd()
+        public function daoAdd($user)
 
         {
-
+            $nom = $user->getNom();
+            $prenom = $user->getPrenom();
+            $pseudo = $user->getPseudo();
+            $mdp = $user->getPassword();
+            $mail = $user->getEmail();
+            $num = $user->getNum();
+            $idAdresse = $user->getIdAdresse();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $stmt = $mysqli->prepare('INSERT INTO utilisateur (NOM, PRENOM, PSEUDO,MDP,ADRESSE_EMAIL,NUM,ID_ADRESSE) VALUES (?,?,?,?,?,?,?) ');
+            $stmt-> bind_param('sssssss',$nom, $prenom, $pseudo, $mdp, $mail, $num, $idAdresse);
+            $stmt->execute();
+            return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
         }
 
         // fonction pour la recherche
@@ -64,7 +74,7 @@
                 foreach ($parametres as $key => $value2){
 
                     $num ="1";
-                    if ($key =="updateInfos"){
+                    if ($key =="updateUserInfos"){
                         $mysqli->close();
                         return $result = "Modification effectuées !";
                     }
@@ -121,7 +131,7 @@
 
         {
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
-            $stmt = $mysqli->prepare('DELETE FROM utilisateurs where nom = ?');
+            $stmt = $mysqli->prepare('DELETE FROM utilisateur where nom = ?');
             $stmt->bind_param('s',$nom);
             $stmt->execute();
             $mysqli->close();

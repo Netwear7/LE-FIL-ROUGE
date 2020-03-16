@@ -4,7 +4,16 @@
         private $numero;
         private $rue;
         private $ville;
-        private $codePostale;
+        private $codePostal;
+
+        public function __construct($infos)
+        {
+            $this->setNumero($infos["NUMERO"]);
+            $this->setRue($infos["RUE"]);
+            $this->setVille($infos["VILLE"]);
+            $this->setCodePostal($infos["CODE_POSTAL"]);
+            
+        }
 
         /**
          * Getter for IdAdresse
@@ -103,9 +112,9 @@
          *
          * @return [type]
          */
-        public function getCodePostale()
+        public function getCodePostal()
         {
-            return $this->codePostale;
+            return $this->codePostal;
         }
 
         /**
@@ -114,9 +123,9 @@
          *
          * @return self
          */
-        public function setCodePostale($codePostale)
+        public function setCodePostal($codePostal)
         {
-            $this->codePostale = $codePostale;
+            $this->codePostal = $codePostal;
             return $this;
         }
 

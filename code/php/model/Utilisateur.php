@@ -7,6 +7,17 @@
         private $password;
         private $email;
         private $num;
+        private $idAdresse;
+
+        public function __construct($infos){
+            $this->setNom($infos["NOM"]);
+            $this->setPrenom($infos["PRENOM"]);
+            $this->setPseudo($infos["PSEUDO"]);
+            $this->setPassword(PASSWORD_HASH($infos["inscriptionPassword"],PASSWORD_DEFAULT));
+            $this->setEmail($infos["ADRESSE_EMAIL"]);
+            $this->setNum($infos["NUM"]);
+
+        }
 
         /**
          * Getter for IdUtilisateur
@@ -168,5 +179,25 @@
             return $this;
         }
 
+
+        /**
+         * Get the value of idAdresse
+         */ 
+        public function getIdAdresse()
+        {
+                return $this->idAdresse;
+        }
+
+        /**
+         * Set the value of idAdresse
+         *
+         * @return  self
+         */ 
+        public function setIdAdresse($idAdresse)
+        {
+                $this->idAdresse = $idAdresse;
+
+                return $this;
+        }
     }
 ?>

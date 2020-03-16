@@ -13,7 +13,7 @@
 
         
         // fonction pour select tout les utilisateurs
-        public function serviceSelectAll()
+        public function serviceSelectAll($id)
         {
             // if admin ok sinon non // 
         }
@@ -46,10 +46,10 @@
 
 
         // function pour l'ajout Utilisateur
-        public function serviceAdd()
+        public function serviceAdd($user)
 
         {
-            $this->getDataAccessObject()->daoAdd();
+            $this->getDataAccessObject()->daoAdd($user);
         }
 
 
@@ -180,6 +180,23 @@
                             <input type="text" maxlength="50" class="form-control" name="VILLE" value="'. $data[0]["VILLE"].'" aria-describedby="UserName">
                         </li>
                     </ul>
+                </div>
+            </div>
+            <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
+            <div class="row">
+                <div class="col-8 offset-2 borber rounded border-black mt-2">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12 ">
+                            <div class="row justify-content-center">
+                                <button type="button submit" class="btn btn-outline-primary" name="updateUserInfos">Valider les modifications</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="row justify-content-center">
+                                <button type="button submit" class="btn btn-outline-secondary">Annuler les modifications</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             ';

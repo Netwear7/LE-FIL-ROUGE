@@ -10,6 +10,10 @@ include_once '../service/UtilisateurService.php';
 include_once '../data-access/UtilisateurDataAccess.php';
 include_once '../service/AnimauxService.php';
 include_once '../data-access/AnimauxDataAccess.php';
+include_once '../model/Utilisateur.php';
+include_once '../model/Adresse.php';
+include_once '../service/AdresseService.php';
+include_once '../data-access/AdresseDataAccess.php';
 
 $nom = "STOEV";
 $id = '1';
@@ -23,6 +27,8 @@ if (isset($_POST["delete"])){
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
     $serviceUtilisateur->serviceDelete($nom);
+    header('Location: accueil.php');
+    exit;
 
 
 }
@@ -31,6 +37,36 @@ if (isset($_POST["updatePassword"])){
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
     $serviceUtilisateur->serviceUpdatePassword($_POST);
+
+}
+
+if (isset($_POST["inscription"])){
+    if (empty($_POST["NOM"]) || empty($_POST["PRENOM"]) || empty($_POST["PSEUDO"]) || empty($_POST["inscriptionPassword"]) || empty($_POST["confirmInscriptionPassword"]) || empty($_POST["ADRESSE_EMAIL"]) || empty($_POST["confirmADRESSE_EMAIL"]) ||  empty($_POST["NUMERO"]) || empty($_POST["RUE"]) || empty($_POST["VILLE"]) || empty($_POST["CODE_POSTAL"])) {
+        echo "Tout les champs sont obligatoires !";
+    } else {
+        if ($_POST["inscriptionPassword"] <> $_POST["confirmInscriptionPassword"]) {
+            $error = "Les mots de passes ne sont pas identiques !";
+        } else {
+            if ($_POST["ADRESSE_EMAIL"] <> $_POST["confirmADRESSE_EMAIL"]) {
+                $error =" Les adresses mail ne sont pas identiques ! ";
+            } else {
+                // dans un premier temps ajout de l'adresse car besoin de l'id adresse pour créer l'utilisateur ou le refuge
+                $adresse = new Adresse($_POST);
+                $daoAdresse = new AdresseDataAccess();
+                $serviceAdresse = new AdresseService($daoAdresse);
+                $idAdresse = $serviceAdresse->serviceAdd($adresse);
+                $adresse->setIdAdresse($idAdresse[0]["ID_ADRESSE"]);
+    
+                // dans un second temps création de l'utilisateur 
+                $utilisateur = new Utilisateur($_POST);
+                // ajout de l'adresse dans l'utilisateur
+                $utilisateur->setIdAdresse($adresse->getIdAdresse());
+                $daoUtilisateur = new UtilisateurDataAccess();
+                $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                $serviceUtilisateur->serviceAdd($utilisateur);
+            }
+        }
+    }
 
 }
 
@@ -75,6 +111,7 @@ if (isset($_POST["updatePassword"])){
                             <a class="list-group-item list-group-item-action" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
                             <a class="list-group-item list-group-item-action" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
                             <a class="list-group-item list-group-item-action mt-auto" data-toggle="modal" data-target="#modalLogout">Se Déconnecter</a>
+                            <a class="list-group-item list-group-item-action mt-auto" data-toggle="modal" data-target="#modalInscription">S'inscrire</a>
                             <!-- Modal se déconnecter -->
                             <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="modalLogoutTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -92,9 +129,109 @@ if (isset($_POST["updatePassword"])){
                                     </div>
                                 </div>
                             </div>
-                        </div>  
-                    </div>
+                            <!--Modal s'inscrire -->
+
+                            <div class="modal fade bd-example-modal-lg" tabindex="-1" id="modalInscription" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                                    <div class="modal-content">
+                                    <form method="POST" action="compte.php">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalRetraitCenterTitle">Inscrivez-vous</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-sm-12">
+                                                        <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">
+                                                            <label for="userPseudo">Pseudo :</label>
+                                                            <input type="text" maxlength="50" class="form-control" name="PSEUDO"  aria-describedby="UserName">
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="userName">Nom :</label>
+                                                            <input type="text" maxlength="50" class="form-control" name="NOM"  aria-describedby="UserName">
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="userNickName">Prénom :</label>
+                                                            <input type="text" maxlength="50" class="form-control" name="PRENOM"   aria-describedby="UserNickName">
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="userPhone">Tel :</label>
+                                                            <input type="text" maxlength="50" class="form-control" name="NUM"   aria-describedby="UserPhone">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-12">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">
+                                                            <label for="userAdress">Numero :</label>
+                                                            <input type="text" maxlength="50" class="form-control" name="NUMERO"  aria-describedby="UserAdressNumber">
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="userAdress">Rue :</label>
+                                                            <input type="text" maxlength="50" class="form-control" name="RUE"  aria-describedby="UserRue">
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="userTown">Ville : </label>
+                                                            <input type="text" maxlength="50" class="form-control" name="VILLE"  aria-describedby="UserName">
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="userCP">Code Postal : </label>
+                                                            <input type="text" maxlength="50" class="form-control" name="CODE_POSTAL"  aria-describedby="UserName">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-sm-12">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">
+                                                            <label for="Mot de passe : ">Mot de Passe :</label>
+                                                            <input type="password" class="form-control mt-2" id="inputPassword3" placeholder="Mot de Passe" name="inscriptionPassword">
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="Confirmation Mot de Passe" >Confirmation Mot de Passe : </label>
+                                                            <input type="password" class="form-control mt-2" id="inputPassword3" placeholder="Mot de Passe" name="confirmInscriptionPassword">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-12">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">
+                                                            <label for="userMail">Adresse mail : </label>
+                                                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="ADRESSE_EMAIL">
+                                                            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse mail</small>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            <label for="userMail">Confirmation Adresse mail : </label>
+                                                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="confirmADRESSE_EMAIL">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                                            <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <button type="button submit" class="btn btn-outline-primary" name="inscription">S'inscrire</button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <button type="button submit" class="btn btn-outline-secondary">Annuler</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  
                 </div>
+            </div>
                 <!--PARTIE CENTRALE-->
                 <div class="col-lg-10 col-sm-12">
                     <div class="tab-content" id="nav-tabContent">
@@ -119,9 +256,9 @@ if (isset($_POST["updatePassword"])){
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-2">
                                         <?php $serviceUtilisateur->utilisateurServiceDisplayinfos(); 
-                                        if (isset($_POST["updateInfos"])){
+                                        if (isset($_POST["updateUserInfos"])){
                                             
-                                            echo $serviceUtilisateur->serviceUpdate($_POST);
+                                            $serviceUtilisateur->serviceUpdate($_POST);
                                          }
                                         ?>
                                         
@@ -169,7 +306,6 @@ if (isset($_POST["updatePassword"])){
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -186,23 +322,7 @@ if (isset($_POST["updatePassword"])){
                                 <div class="col-8 offset-2 border rounded border-black ">
                                     <form method="POST" action="compte.php">
                                         <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel(); ?>
-                <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
-                                        <div class="row">
-                                            <div class="col-8 offset-2 borber rounded border-black mt-2">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-sm-12 ">
-                                                        <div class="row justify-content-center">
-                                                            <button type="button submit" class="btn btn-outline-primary" name="updateInfos">Valider les modifications</button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-sm-12">
-                                                        <div class="row justify-content-center">
-                                                            <button type="button submit" class="btn btn-outline-secondary">Annuler les modifications</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </form>    
                                 </div>
                             </div>
@@ -215,273 +335,23 @@ if (isset($_POST["updatePassword"])){
                                         <h3>Mes Compagnons</h3>
                                 </div>
                             </div>
-                            <div class="row mt-2">
-                                <div class="col-8 offset-2 text-center border rounded border-black text-center">
-                                    <div class="row m-3 ">
-                                        <?php
-                                        if (isset($id)){
-                                            $daoAnimaux = new AnimauxDataAccess();
-                                            $serviceAnimaux = new AnimauxService($daoAnimaux);
-                                        }
-                                        ?>
-                                        <div class="col-12 text-center">
-                                            <h5>Vous n'avez pas encore ajouté votre Compagnon ?</h5>
-                                            <p> Pour ajouter votre compagnon à la liste, cliquez sur le bouton suivant : </p>
-                                            <button type="button" class="btn btn-outline-info" id="addAnimal-list" data-toggle="list" href="#list-addAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-8 offset-2 border rounded border-black">
-                                    <div class="row">
-                                        <div class="card w-100">
-                                            <div class="row ">
-                                                <div class="col-md-4">
-                                                    <!--image-->
-                                                    <img src="Koala.jpg" class="rounded w-100" alt="img-profil-5">
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <!--informations sur l'animal-->
-                                                    <div class="card-block text-center">
-                                                        <h4 class="card-title"> Pepito</h4>
-                                                        <h5 class="card-title">Main Coon</h5>
-                                                        <p class="card-text">Age : 42 ans </p>
-                                                        <!--Bouton pour le modal signaler perdu-->
-                                                        <a href="#lost" data-toggle="modal" data-target="#modalPerdu">Signaler perdu</a>                                                        
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="modalPerdu" tabindex="-1" role="dialog" aria-labelledby="modalPerduTitle" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <label for="textAreaperte">Quelques précisions concernant le lieu ? l'heure ?</label>
-                                                                        <textarea class="form-control" id="textareaperte" name="précisionsPerte" rows="3"></textarea>
-                                                                        <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant ici : <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                                        <button type="button" class="btn btn-primary">Signaler Perdu</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--signaler retrouvé ?-->
-                                                        <a href="#lost" data-toggle="modal" data-target="#modalRetrouvé">Signaler Retrouvé</a>                                                        
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="modalRetrouvé" tabindex="-1" role="dialog" aria-labelledby="modalRetrouvéTitle" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalRetrouvéTitle1">Confirmez vous avoir Retrouvé votre animal?</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <small id="emailHelp" class="form-text text-muted">Si c'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                                        <button type="button" class="btn btn-primary">Confirmer</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!--bouton modifier-->
-                                                        <button type="button" class="btn btn-outline-info" id="modAnimal-list" data-toggle="list" href="#list-modAnimal" role="tab" aria-controls="modAnimal">Modifier</button>
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-outline-info mb-2 " data-toggle="modal" data-target="#modalRetrait">
-                                                            retirer la fiche
-                                                        </button>
-                                                            
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="modalRetrait" tabindex="-1" role="dialog" aria-labelledby="modalRetraitTitle" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir retirer la fiche?</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>En cliquant sur le bouton ci-dessous vous confirmez le retrait de la fiche animale de vos fiches. Une fois l'action validée, la fiche ne sera plus disponible</p>
-                                                                        <p class="mt-2">Confirmer le retrait ?</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <form method="post" action="test.php">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                                            <button type="button submit"  class="btn btn-outline-info" name="confirmRetrait" value="true">Confirmer le retrait</button>
-                                                                        </form>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--COL INFORMATIONS-->
-                                                <div class="col-md-6">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="card-block">
-                                                                <p class="card-text">
-                                                                    <ul class="list-group list-group-flush">
-                                                                        <li >Genre :</li>
-                                                                        <li >Race :</li>
-                                                                        <li >Robe :</li>
-                                                                        <li >Couleur :</li>
-                                                                    </ul>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="card-block">
-                                                                <p class="card-text">
-                                                                    <ul class="list-group list-group-flush">
-                                                                        <li >Caractère : </li>
-                                                                        <li >Poids :</li>
-                                                                        <li >Taille :</li>
-                                                                    </ul>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--row spécificités-->
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p>Spécificités : </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--PANEL 3 ANIMAUX FAVORIS-->
+                            <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
+                            <?php
+                            $daoAnimaux = new AnimauxDataAccess();
+                            $serviceAnimaux = new AnimauxService($daoAnimaux);
+                            $data = $serviceAnimaux->serviceSelectAllUserAnimals($id);
+                            empty($data) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($id);
+                            ?>
+                       </div>
 
 
+                        
 
-
-                        <div class="tab-pane fade" id="list-favourites" role="tabpanel" aria-labelledby="list-favourites-list">
-                            <div class="row">
-                                <div class="col-8 offset-2 text-center border rounded border-black mt-5">
-                                    <h3>Mes Animaux Favoris</h3>
-                                </div>
-                            </div>
-                            <!--Si pas d'animaux en favoris-->
-                            <div class="row mt-2">
-                                <div class="col-8 offset-2 text-center border rounded border-black text-center">
-                                    <div class="row m-3 ">
-                                        <div class="col-12 text-center">
-                                            <h5>Pas encore d'animaux Coup de coeur ?</h5>
-                                            <p> Pour en ajouter, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page D'adoption</p>
-                                            <button type="button" class="btn btn-outline-info">Ajoutez un Compagnon dans vos coups de coeur</button>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-    
-                            <!--Si animaux en favoris-->
-    
-                            <div class="row mt-2">
-                                <div class="col-8 offset-2 border rounded border-black">
-                                    <div class="row">
-                                        <div class="card w-100">
-                                            <div class="row ">
-                                                <div class="col-md-4">
-                                                    <!--image-->
-                                                    <img src="Koala.jpg" class="rounded w-100" alt="img-profil-5">
-                                                </div>
-                                                <div class="col-md-2">
-                                                <!--informations sur l'animal-->
-                                                    <div class="card-block text-center">
-                                                        <h4 class="card-title"> Pepito</h4>
-                                                        <h5 class="card-title">Main Coon</h5>
-                                                        <p class="card-text">Age : 42 ans </p>
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-outline-info mb-2 mt-2" data-toggle="modal" data-target="#modalRetraitfavoris">
-                                                            Retirer des favoris
-                                                        </button>
-                                                                
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="modalRetraitfavoris" tabindex="-1" role="dialog" aria-labelledby="modalRetraitfavorites" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir retirer la fiche de vos favoris?</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>En cliquant sur le bouton ci-dessous vous confirmez le retrait de la fiche animale de vos favoris. Une fois l'action validée, la fiche ne sera plus présente dans vos favoris mais toujours disponible sur le site.</p>
-                                                                        <p class="mt-2">Confirmer le retrait ?</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                                        <button type="button" class="btn btn-outline-info">Confirmer le retrait</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--COL INFORMATIONS-->
-                                                <div class="col-md-6">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="card-block">
-                                                                <p class="card-text">
-                                                                    <ul class="list-group list-group-flush">
-                                                                        <li >Genre :</li>
-                                                                        <li >Race :</li>
-                                                                        <li >Robe :</li>
-                                                                        <li >Couleur :</li>
-                                                                    </ul>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="card-block">
-                                                                <p class="card-text">
-                                                                    <ul class="list-group list-group-flush">
-                                                                        <li >Caractère : </li>
-                                                                        <li >Poids :</li>
-                                                                        <li >Taille :</li>
-                                                                    </ul>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--row spécificités-->
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p>Spécificités : </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                        
-
-
-                        <!--PARTIE POUR ADD LA FICHE ANIMALE /)-->
+                        <!--PARTIE POUR ADD un compagnon /)-->
                         <div class="tab-pane fade" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
                             <div class="row vh-100">
                                 <div class="col-12 border rounded border-black">
-                                    <form method="POST" action="test.php">
+                                    <form method="POST" action="compte.php">
                                         <div class="row mt-3">
                                             <div class="col-lg-12 text-center">
                                                 <h3>Ajouter un compagnon</h3>
@@ -705,6 +575,116 @@ if (isset($_POST["updatePassword"])){
                                 </div>
                             </div>
                         </div>
+
+                        <!--PANEL 3 ANIMAUX FAVORIS-->
+
+
+
+
+                        <div class="tab-pane fade" id="list-favourites" role="tabpanel" aria-labelledby="list-favourites-list">
+                            <div class="row">
+                                <div class="col-8 offset-2 text-center border rounded border-black mt-5">
+                                    <h3>Mes Animaux Favoris</h3>
+                                </div>
+                            </div>
+                            <!--Si pas d'animaux en favoris-->
+                            <div class="row mt-2">
+                                <div class="col-8 offset-2 text-center border rounded border-black text-center">
+                                    <div class="row m-3 ">
+                                        <div class="col-12 text-center">
+                                            <h5>Pas encore d'animaux Coup de coeur ?</h5>
+                                            <p> Pour en ajouter, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page D'adoption</p>
+                                            <button type="button" class="btn btn-outline-info">Ajoutez un Compagnon dans vos coups de coeur</button>
+                                        </div>
+                                    </div>
+                                </div>                                
+                            </div>
+    
+                            <!--Si animaux en favoris-->
+    
+                            <div class="row mt-2">
+                                <div class="col-8 offset-2 border rounded border-black">
+                                    <div class="row">
+                                        <div class="card w-100">
+                                            <div class="row ">
+                                                <div class="col-md-4">
+                                                    <!--image-->
+                                                    <img src="Koala.jpg" class="rounded w-100" alt="img-profil-5">
+                                                </div>
+                                                <div class="col-md-2">
+                                                <!--informations sur l'animal-->
+                                                    <div class="card-block text-center">
+                                                        <h4 class="card-title"> Pepito</h4>
+                                                        <h5 class="card-title">Main Coon</h5>
+                                                        <p class="card-text">Age : 42 ans </p>
+                                                        <!-- Button trigger modal -->
+                                                        <button type="button" class="btn btn-outline-info mb-2 mt-2" data-toggle="modal" data-target="#modalRetraitfavoris">
+                                                            Retirer des favoris
+                                                        </button>
+                                                                
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="modalRetraitfavoris" tabindex="-1" role="dialog" aria-labelledby="modalRetraitfavorites" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir retirer la fiche de vos favoris?</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>En cliquant sur le bouton ci-dessous vous confirmez le retrait de la fiche animale de vos favoris. Une fois l'action validée, la fiche ne sera plus présente dans vos favoris mais toujours disponible sur le site.</p>
+                                                                        <p class="mt-2">Confirmer le retrait ?</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                                        <button type="button" class="btn btn-outline-info">Confirmer le retrait</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--COL INFORMATIONS-->
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <div class="card-block">
+                                                                <p class="card-text">
+                                                                    <ul class="list-group list-group-flush">
+                                                                        <li >Genre :</li>
+                                                                        <li >Race :</li>
+                                                                        <li >Robe :</li>
+                                                                        <li >Couleur :</li>
+                                                                    </ul>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="card-block">
+                                                                <p class="card-text">
+                                                                    <ul class="list-group list-group-flush">
+                                                                        <li >Caractère : </li>
+                                                                        <li >Poids :</li>
+                                                                        <li >Taille :</li>
+                                                                    </ul>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--row spécificités-->
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <p>Spécificités : </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>                
             </div>
