@@ -7,12 +7,12 @@
         public function serviceUpdate(array $post){}
         public function serviceDelete($nom){}
         // fonction pour select toutes les adresses
-        public function serviceSelectAll($id){
+        public function serviceSelectAll(){
             // if admin ok sinon non // 
         }
 
         //Select Adresses
-        public function serviceSelect(){
+        public function serviceSelect($id){
             $data = $this->getDataAccessObject()->daoSelect($this->id);
             return $data;
         }

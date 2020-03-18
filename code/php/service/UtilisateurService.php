@@ -5,16 +5,16 @@
 
 
     class UtilisateurService extends ServiceCommun implements InterfaceService {
-        private $nom="STOEV";
-        private $id = '1';
+        private $nom;
+        private $id;
 
         // fonction pour select tout les utilisateurs
-        public function serviceSelectAll($id){
+        public function serviceSelectAll(){
             // if admin ok sinon non
         }
 
         //Select Utilisateur
-        public function serviceSelect(){
+        public function serviceSelect($id){
             $data = $this->getDataAccessObject()->daoSelect($this->id);
             return $data;
         }
@@ -98,8 +98,8 @@
         </div>
             ';
         }
-        public function utilisateurServiceUpdatePanel(){
-            $data = $this->serviceSelect();
+        public function utilisateurServiceUpdatePanel($id){
+            $data = $this->serviceSelect($id);
             echo 
             '
                 <div class="row">

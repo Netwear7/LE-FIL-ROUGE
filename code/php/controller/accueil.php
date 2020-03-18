@@ -1,3 +1,9 @@
+<?php 
+    include_once("../model/PhotoAnimal.php");
+    include_once("../data-access/PhotoAnimalDataAccess.php");
+    include_once("../service/PhotoAnimalService.php");
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -29,14 +35,15 @@
         <div class="container-fluid">
             <div class="row">
                 <!---------------test carrousel---------------->
-                <div id="carouselExampleControls" class="carousel slide col-lg-12 bg-dark py-3" data-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide col-lg-12 bg-light py-3" data-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item active text-center">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                        </div>
+                        <?php 
+                            $photoAnimal = new PhotoAnimal();
+                            $photoAnimalDao = new PhotoAnimalDataAccess();
+                            $photoAnimalService =  new PhotoAnimalService($photoAnimalDao);
+                            $data = $photoAnimalService->serviceSelect(1);
+                            $table = $photoAnimalService->carrousselTest($data);
+                        ?>
                         <div class="carousel-item text-center">
                             <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
                             <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
@@ -50,10 +57,6 @@
                             <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
                         </div>
                     </div>
-
-
-
-
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
@@ -79,7 +82,6 @@
                         <div class="col-lg-12 text-center mt-2">
                             <h3>Présentation de la "LPA"</h3>
                         </div>
-
                         <div class="col-lg-12 mt-2">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate diam volutpat velit cursus, 
@@ -90,10 +92,7 @@
                                 Cras ultrices velit tortor, ac maximus est malesuada quis. Quisque eleifend iaculis augue eget imperdiet. 
                                 Fusce ac felis ac ligula tincidunt ultrices vitae non felis. Fusce magna felis, luctus eget leo ut, 
                                 efficitur porttitor erat.</br></br>
-
-                                
                                 Phasellus volutpat, quam in tincidunt posuere, mi est interdum dolor, eget mollis nulla sapien nec dolor.
-
                             </p>
                         </div>
                         <div class="col-lg-12 my-3 text-center">
@@ -106,7 +105,6 @@
                 <div class="col-lg-10 offset-lg-1 mb-4">
                     <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
                 </div>
-
             </div>
             <div class="row mt-1 mb-5">
                 <div class="col-lg-3 offset-lg-1 bg-1">
@@ -155,7 +153,6 @@
             </div>
         </div>
 <!--###############  FIN CODE PRINCIPALE  ##############-->
-
         <?php
             include_once("footer.php");
         ?>
