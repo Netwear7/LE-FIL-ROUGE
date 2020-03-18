@@ -10,13 +10,16 @@ include_once '../data-access/UtilisateurDataAccess.php';
 if (isset($_POST["inscription"])){
     if (empty($_POST["NOM"]) || empty($_POST["PRENOM"]) || empty($_POST["PSEUDO"]) || empty($_POST["inscriptionPassword"]) || empty($_POST["confirmInscriptionPassword"]) || empty($_POST["ADRESSE_EMAIL"]) || empty($_POST["confirmADRESSE_EMAIL"]) ||  empty($_POST["NUMERO"]) || empty($_POST["RUE"]) || empty($_POST["VILLE"]) || empty($_POST["CODE_POSTAL"])) {
         echo "Tout les champs sont obligatoires !";
-    } else {
-        if ($_POST["inscriptionPassword"] <> $_POST["confirmInscriptionPassword"]) {
+    } 
+    else {
+        if ($_POST["inscriptionPassword"] <> $_POST["confirmInscriptionPassword"]){
             $error = "Les mots de passes ne sont pas identiques !";
-        } else {
+        } 
+        else {
             if ($_POST["ADRESSE_EMAIL"] <> $_POST["confirmADRESSE_EMAIL"]) {
                 $error =" Les adresses mail ne sont pas identiques ! ";
-            } else {
+            } 
+            else {
                 // dans un premier temps ajout de l'adresse car besoin de l'id adresse pour créer l'utilisateur ou le refuge
                 $adresse = new Adresse($_POST);
                 $daoAdresse = new AdresseDataAccess();
@@ -32,15 +35,15 @@ if (isset($_POST["inscription"])){
                 $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
                 $serviceUtilisateur->serviceAdd($utilisateur);
                 session_start();
-                $_SESSION["user_id"]=$utilisateur->getIdUtilisateur();
+                $_SESSION["user_id"] = $utilisateur->getIdUtilisateur();
                 header('Location: accueil.php');
                 exit;
             }
         }
     }
-
 }
 
+// ajouter [et si input MDP = input MPD confirmation]
 if (isset($_POST["connexion"])){
     if (!empty($_POST["ADRESSE_EMAIL"]) && !empty($_POST["connexionPassword"])) {
         $daoUtilisateur = new UtilisateurDataAccess();
@@ -56,19 +59,12 @@ if (isset($_POST["connexion"])){
     }         
 }
 
-
-
 if (isset($_POST["logout"])){
     session_destroy();
     header('location: accueil.php');
     exit;
 }
-
-
 ?>
-
-
-
 
 <!--Include with php in futur-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-grey">
@@ -126,7 +122,16 @@ if (isset($_POST["logout"])){
 
         <form action="accueil.php" method="POST">
             <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#staticBackdrop">
-                <p class="navbar-nav text-light">Se connecter/S'inscrire</p>
+                <p class="navbar-nav text-light">
+                    <?php
+                        if(!isset($_SESSION["user_id"])){
+                            echo "Se connecter/S'inscrire";
+                        }
+                        else{
+                            echo "fefefee";
+                        }
+                    ?>
+                </p>
             </button>
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
