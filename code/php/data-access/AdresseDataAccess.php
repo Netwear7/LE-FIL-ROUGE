@@ -72,7 +72,7 @@ include_once '../Interfaces/InterfaceDao.php';
         }
 
         //
-        public function daoSearch(){}
+        public function daoSearch($search){}
         public function daoUpdate($parametres){}
 
 

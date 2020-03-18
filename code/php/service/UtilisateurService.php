@@ -55,10 +55,11 @@
 
 
         //function pour la recherche Utilisateur
-        public function serviceSearch()
+        public function serviceSearch($search)
 
         {
-            $this->getDataAccessObject()->daoSearch();
+            $data = $this->getDataAccessObject()->daoSearch($search);
+            return $data;
         }
 
 

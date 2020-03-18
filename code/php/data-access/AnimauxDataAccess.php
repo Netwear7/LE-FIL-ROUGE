@@ -40,7 +40,7 @@ include_once '../Interfaces/InterfaceDao.php';
         }
         public function daoCount(){}
         public function daoAdd($objet){}
-        public function daoSearch(){}
+        public function daoSearch($search){}
         public function daoUpdate( $parametres){}
         public function daoDelete($nom){}
 
@@ -48,6 +48,14 @@ include_once '../Interfaces/InterfaceDao.php';
             $db -> close();
         }
 
+
+
+
+
+
+
+
+        
         public function selectAll(){
             $db=$this->connexion();
             $stmt = $db -> prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");

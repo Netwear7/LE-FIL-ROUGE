@@ -34,7 +34,7 @@ include_once '../Interfaces/InterfaceService.php';
         {
 
         }
-        public function serviceSearch()
+        public function serviceSearch($search)
         {
 
         }

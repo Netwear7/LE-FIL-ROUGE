@@ -30,7 +30,6 @@ if (isset($_POST["delete"])){
     header('Location: accueil.php');
     exit;
 
-
 }
 
 if (isset($_POST["updatePassword"])){
@@ -40,35 +39,8 @@ if (isset($_POST["updatePassword"])){
 
 }
 
-if (isset($_POST["inscription"])){
-    if (empty($_POST["NOM"]) || empty($_POST["PRENOM"]) || empty($_POST["PSEUDO"]) || empty($_POST["inscriptionPassword"]) || empty($_POST["confirmInscriptionPassword"]) || empty($_POST["ADRESSE_EMAIL"]) || empty($_POST["confirmADRESSE_EMAIL"]) ||  empty($_POST["NUMERO"]) || empty($_POST["RUE"]) || empty($_POST["VILLE"]) || empty($_POST["CODE_POSTAL"])) {
-        echo "Tout les champs sont obligatoires !";
-    } else {
-        if ($_POST["inscriptionPassword"] <> $_POST["confirmInscriptionPassword"]) {
-            $error = "Les mots de passes ne sont pas identiques !";
-        } else {
-            if ($_POST["ADRESSE_EMAIL"] <> $_POST["confirmADRESSE_EMAIL"]) {
-                $error =" Les adresses mail ne sont pas identiques ! ";
-            } else {
-                // dans un premier temps ajout de l'adresse car besoin de l'id adresse pour créer l'utilisateur ou le refuge
-                $adresse = new Adresse($_POST);
-                $daoAdresse = new AdresseDataAccess();
-                $serviceAdresse = new AdresseService($daoAdresse);
-                $idAdresse = $serviceAdresse->serviceAdd($adresse);
-                $adresse->setIdAdresse($idAdresse[0]["ID_ADRESSE"]);
-    
-                // dans un second temps création de l'utilisateur 
-                $utilisateur = new Utilisateur($_POST);
-                // ajout de l'adresse dans l'utilisateur
-                $utilisateur->setIdAdresse($adresse->getIdAdresse());
-                $daoUtilisateur = new UtilisateurDataAccess();
-                $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-                $serviceUtilisateur->serviceAdd($utilisateur);
-            }
-        }
-    }
 
-}
+
 
 
 
@@ -111,7 +83,6 @@ if (isset($_POST["inscription"])){
                             <a class="list-group-item list-group-item-action" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
                             <a class="list-group-item list-group-item-action" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
                             <a class="list-group-item list-group-item-action mt-auto" data-toggle="modal" data-target="#modalLogout">Se Déconnecter</a>
-                            <a class="list-group-item list-group-item-action mt-auto" data-toggle="modal" data-target="#modalInscription">S'inscrire</a>
                             <!-- Modal se déconnecter -->
                             <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="modalLogoutTitle" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -123,115 +94,17 @@ if (isset($_POST["inscription"])){
                                             </button>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                            <a type="button" class="btn btn-outline-danger" href="accueil.php">Déconnexion</a>
+                                            <form method="POST" action="">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                                <button type="button submit" class="btn btn-outline-info" name="logout">Déconnexion</a>
+                                            </form>                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!--Modal s'inscrire -->
-
-                            <div class="modal fade bd-example-modal-lg" tabindex="-1" id="modalInscription" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-                                    <div class="modal-content">
-                                    <form method="POST" action="compte.php">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalRetraitCenterTitle">Inscrivez-vous</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-sm-12">
-                                                        <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">
-                                                            <label for="userPseudo">Pseudo :</label>
-                                                            <input type="text" maxlength="50" class="form-control" name="PSEUDO"  aria-describedby="UserName">
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="userName">Nom :</label>
-                                                            <input type="text" maxlength="50" class="form-control" name="NOM"  aria-describedby="UserName">
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="userNickName">Prénom :</label>
-                                                            <input type="text" maxlength="50" class="form-control" name="PRENOM"   aria-describedby="UserNickName">
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="userPhone">Tel :</label>
-                                                            <input type="text" maxlength="50" class="form-control" name="NUM"   aria-describedby="UserPhone">
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6 col-sm-12">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">
-                                                            <label for="userAdress">Numero :</label>
-                                                            <input type="text" maxlength="50" class="form-control" name="NUMERO"  aria-describedby="UserAdressNumber">
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="userAdress">Rue :</label>
-                                                            <input type="text" maxlength="50" class="form-control" name="RUE"  aria-describedby="UserRue">
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="userTown">Ville : </label>
-                                                            <input type="text" maxlength="50" class="form-control" name="VILLE"  aria-describedby="UserName">
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="userCP">Code Postal : </label>
-                                                            <input type="text" maxlength="50" class="form-control" name="CODE_POSTAL"  aria-describedby="UserName">
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-sm-12">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">
-                                                            <label for="Mot de passe : ">Mot de Passe :</label>
-                                                            <input type="password" class="form-control mt-2" id="inputPassword3" placeholder="Mot de Passe" name="inscriptionPassword">
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="Confirmation Mot de Passe" >Confirmation Mot de Passe : </label>
-                                                            <input type="password" class="form-control mt-2" id="inputPassword3" placeholder="Mot de Passe" name="confirmInscriptionPassword">
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-6 col-sm-12">
-                                                    <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">
-                                                            <label for="userMail">Adresse mail : </label>
-                                                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="ADRESSE_EMAIL">
-                                                            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse mail</small>
-                                                        </li>
-                                                        <li class="list-group-item">
-                                                            <label for="userMail">Confirmation Adresse mail : </label>
-                                                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="confirmADRESSE_EMAIL">
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                                            <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <button type="button submit" class="btn btn-outline-primary" name="inscription">S'inscrire</button>
-                                                </div>
-                                                <div class="col-6">
-                                                    <button type="button submit" class="btn btn-outline-secondary">Annuler</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>  
+                        </div>  
+                    </div>
                 </div>
-            </div>
                 <!--PARTIE CENTRALE-->
                 <div class="col-lg-10 col-sm-12">
                     <div class="tab-content" id="nav-tabContent">

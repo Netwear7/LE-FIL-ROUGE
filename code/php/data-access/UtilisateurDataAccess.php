@@ -20,7 +20,7 @@
 
         {
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
-            $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where ID_UTILISATEUR = ?');
+            $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where A.ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
@@ -57,10 +57,19 @@
         }
 
         // fonction pour la recherche
-        public function daoSearch()
+        public function daoSearch($search)
 
         {
-
+            $searchValue = $search["ADRESSE_EMAIL"];
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare('SELECT * from utilisateur where ADRESSE_EMAIL = ?');
+            $stmt->bind_param('s', $searchValue);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $mysqli->close();
+            return $data;
         }
 
         
