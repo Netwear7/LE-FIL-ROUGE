@@ -2,13 +2,7 @@
 include_once '../Interfaces/InterfaceDao.php';
 
     class AdresseDataAccess implements InterfaceDao{
-
-
-
-
-        public function daoSelectAll()
-        {
-            
+        public function daoSelectAll(){
                 $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
                 $stmt = $mysqli->prepare('SELECT * from adresse');
                 $stmt->execute();
@@ -19,9 +13,7 @@ include_once '../Interfaces/InterfaceDao.php';
                 return $data;
         }
 
-
-        public function daoSelect($id)
-        {
+        public function daoSelect($id){
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from adresse  where ID_ADRESSE = ?');
             $stmt->bind_param('i',$idAdresse);
@@ -33,16 +25,11 @@ include_once '../Interfaces/InterfaceDao.php';
             return $data;
         }
 
-
         // count des adresses dans la bdd
-        public function daoCount()
-        {
-
-        }
+        public function daoCount(){}
 
         // ajout des adresses dans la bdd
-        public function daoAdd($adresse)
-        {   
+        public function daoAdd($adresse){   
             $num = $adresse->getNumero();
             $rue = $adresse->getRue();
             $ville = $adresse->getVille();
@@ -54,9 +41,9 @@ include_once '../Interfaces/InterfaceDao.php';
             $mysqli->close();
             return $result = $stmt ? "l'adresse a bien été ajoutée" : "L'ajout de l'adresse a échoué";
         }
+
         // fonction pour récup l'id Adresse directement après l'ajout afin de récupérer l'id pour pouvoir créer l'utilisateur totalement
-        public function daoTakeId($adresse)
-        {   
+        public function daoTakeId($adresse){   
             $num = $adresse->getNumero();
             $rue = $adresse->getRue();
             $ville = $adresse->getVille();
@@ -70,14 +57,9 @@ include_once '../Interfaces/InterfaceDao.php';
             $mysqli->close();
             return $id;
         }
-
-        //
         public function daoSearch($search){}
         public function daoUpdate($parametres){}
-
-
-        public function daoDelete($idadresse)
-        {
+        public function daoDelete($idadresse){
                 $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
                 $stmt = $mysqli->prepare('DELETE FROM adresse where ID_ADRESSE = ?');
                 $stmt->bind_param('s',$idadresse);
@@ -86,6 +68,5 @@ include_once '../Interfaces/InterfaceDao.php';
                 return   $result = $stmt ? "La suppression a bien été effectuée " : "La suppression a échouée ";
     
         }
-
     }
 ?>

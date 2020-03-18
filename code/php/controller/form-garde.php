@@ -93,7 +93,6 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
-
                                     <div class="form-check p-1">
                                         <input class="form-check-input ml-1" type="checkbox" value="" id="defaultCheck1">
                                         <label class="form-check-label ml-4" for="defaultCheck1">

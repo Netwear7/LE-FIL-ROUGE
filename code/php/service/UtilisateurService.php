@@ -5,100 +5,62 @@
 
 
     class UtilisateurService extends ServiceCommun implements InterfaceService {
-
         private $nom="STOEV";
         private $id = '1';
 
-
-
-        
         // fonction pour select tout les utilisateurs
-        public function serviceSelectAll($id)
-        {
-            // if admin ok sinon non // 
+        public function serviceSelectAll($id){
+            // if admin ok sinon non
         }
 
-        
         //Select Utilisateur
-        public function serviceSelect()
-
-        {
+        public function serviceSelect(){
             $data = $this->getDataAccessObject()->daoSelect($this->id);
             return $data;
         }
 
-        public function serviceVerifyPassword()
-        
-        {
+        public function serviceVerifyPassword(){
 
         }
 
-
-
-
         // Function pour le count Utilisateur
-        public function serviceCount()
-
-        {
+        public function serviceCount(){
             $this->getDataAccessObject()->daoCount();
         }
 
-
-
         // function pour l'ajout Utilisateur
-        public function serviceAdd($user)
-
-        {
+        public function serviceAdd($user){
             $this->getDataAccessObject()->daoAdd($user);
         }
 
-
-
         //function pour la recherche Utilisateur
-        public function serviceSearch($search)
-
-        {
+        public function serviceSearch($search){
             $data = $this->getDataAccessObject()->daoSearch($search);
             return $data;
         }
 
-
-
-
         //Fonction de modification des données utilisateur, prends comme parametre le post avec tout les inputs a modifier
-        public function serviceUpdate($parametres)
-        
-        {
+        public function serviceUpdate($parametres){
             $this->getDataAccessObject()->daoUpdate($parametres);
         }
 
-        public function serviceUpdatePassword($infos)
-        
-        {
+        public function serviceUpdatePassword($infos){
             $mdpActuel = $infos["oldMdp"];
             $confirm = $infos["confirmNewMdp"] == $infos["newMdp"] ? True : False;
             $this->serviceVerifyActualPassword($this->id,$mdpActuel);
             return $confirm ? $this->getDataAccessObject()->daoUpdatePassword($this->id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
         }
 
-        public function serviceVerifyActualPassword($nom, $mdpActuel)
-        
-        {
+        public function serviceVerifyActualPassword($nom, $mdpActuel){
             $data = $this->serviceSelect($nom);
             password_verify($mdpActuel,$data[0]["MDP"]);
         }
-
-
 
         // fonction de Suppression Utilisateur
         public function serviceDelete($nom){
             $this->getDataAccessObject()->daoDelete($nom);
             return "Suppression réussie";
         }
-
-
-
-
 
         public function utilisateurServiceDisplayinfos(){
             $data = $this->serviceSelect(); 
