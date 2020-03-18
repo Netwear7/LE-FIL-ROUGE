@@ -192,73 +192,20 @@ if (isset($_POST["logout"])){
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-6 col-sm-12">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <label for="userPseudo">Pseudo :</label>
-                                            <input type="text" maxlength="50" class="form-control" name="PSEUDO"  aria-describedby="UserName">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="userName">Nom :</label>
-                                            <input type="text" maxlength="50" class="form-control" name="NOM"  aria-describedby="UserName">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="userNickName">Prénom :</label>
-                                            <input type="text" maxlength="50" class="form-control" name="PRENOM"   aria-describedby="UserNickName">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="userPhone">Tel :</label>
-                                            <input type="text" maxlength="50" class="form-control" name="NUM"   aria-describedby="UserPhone">
-                                        </li>
-                                    </ul>
+                                    <input type="text" class="form-control w-100 mb-2" name="PSEUDO" placeholder="Pseudo" aria-describedby="UserName">
+                                    <input type="text" class="form-control w-100 mb-2" name="NOM" placeholder="Nom" aria-describedby="UserName">
+                                    <input type="text" class="form-control w-100 mb-2" name="PRENOM" placeholder="Prénom" aria-describedby="UserNickName">
+                                    <input type="text" class="form-control w-100 mb-2" name="NUM" placeholder="Téléphone" aria-describedby="UserPhone">
+                                    <input type="password" class="form-control w-100 mt-5 mb-2" placeholder="Mot de Passe" name="inscriptionPassword">
+                                    <input type="email" class="form-control w-100 " placeholder="Adresse mail" aria-describedby="emailHelp" name="ADRESSE_EMAIL">
                                 </div>
                                 <div class="col-lg-6 col-sm-12">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <label for="userAdress">Numero :</label>
-                                            <input type="text" maxlength="50" class="form-control" name="NUMERO"  aria-describedby="UserAdressNumber">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="userAdress">Rue :</label>
-                                            <input type="text" maxlength="50" class="form-control" name="RUE"  aria-describedby="UserRue">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="userTown">Ville : </label>
-                                            <input type="text" maxlength="50" class="form-control" name="VILLE"  aria-describedby="UserName">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="userCP">Code Postal : </label>
-                                            <input type="text" maxlength="50" class="form-control" name="CODE_POSTAL"  aria-describedby="UserName">
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-6 col-sm-12">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <label for="Mot de passe : ">Mot de Passe :</label>
-                                            <input type="password" class="form-control mt-2"  placeholder="Mot de Passe" name="inscriptionPassword">
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="Confirmation Mot de Passe" >Confirmation Mot de Passe : </label>
-                                            <input type="password" class="form-control mt-2" placeholder="Mot de Passe" name="confirmInscriptionPassword">
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">
-                                            <label for="userMail">Adresse mail : </label>
-                                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="ADRESSE_EMAIL">
-                                            <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse mail</small>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <label for="userMail">Confirmation Adresse mail : </label>
-                                            <input type="email" class="form-control"  aria-describedby="emailHelp" name="confirmADRESSE_EMAIL">
-                                        </li>
-                                    </ul>
+                                    <input type="text" class="form-control w-100 mb-2" name="NUMERO" placeholder="Numero" aria-describedby="UserAdressNumber">
+                                    <input type="text" class="form-control w-100 mb-2" name="RUE" placeholder="Rue" aria-describedby="UserRue">
+                                    <input type="text" class="form-control w-100 mb-2" name="VILLE" placeholder="Ville" aria-describedby="UserName">
+                                    <input type="text" class="form-control w-100 mb-2" name="CODE_POSTAL" placeholder="Code Postal" aria-describedby="UserName">
+                                    <input type="password" class="form-control w-100 mt-5 mb-2" name="confirmInscriptionPassword" placeholder="Mot de passe" >
+                                    <input type="email" class="form-control w-100 " placeholder="Confirmation Adresse mail" aria-describedby="emailHelp" name="confirmADRESSE_EMAIL">
                                 </div>
                             </div>
                         </div>
