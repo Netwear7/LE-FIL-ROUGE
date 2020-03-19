@@ -13,7 +13,6 @@
             $this->setNom($infos["NOM"]);
             $this->setPrenom($infos["PRENOM"]);
             $this->setPseudo($infos["PSEUDO"]);
-            $this->setPassword(PASSWORD_HASH($infos["inscriptionPassword"],PASSWORD_DEFAULT));
             $this->setEmail($infos["ADRESSE_EMAIL"]);
             $this->setNum($infos["NUM"]);
 
