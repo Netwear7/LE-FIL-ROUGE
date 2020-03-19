@@ -27,7 +27,7 @@ include_once '../Interfaces/InterfaceDao.php';
         public function daoSelectAllUserAnimals($id)
         {
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
-            $stmt = $mysqli->prepare('SELECT * from animaux as A INNER JOIN race as B on A.id_race = B.id_race  where ID_UTILISATEUR = ?');
+            $stmt = $mysqli->prepare('SELECT * from animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN avoir_couleur as C on A.ID_ANIMAL=C.ID_ANIMAL INNER JOIN couleur_animal as D on C.ID_COULEUR=D.ID_COULEUR  where ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
@@ -36,6 +36,8 @@ include_once '../Interfaces/InterfaceDao.php';
             $mysqli->close();
             return $data;
         }
+
+
         public function daoSelect($id)
         {
 

@@ -67,6 +67,7 @@ include_once '../Interfaces/InterfaceService.php';
             for ($i = 0; $i < $count[0]["count(ID_ANIMAL)"] ; $i++) 
             
             {
+                
                 echo 
                 '
                 <div class="row mt-2">
@@ -83,7 +84,7 @@ include_once '../Interfaces/InterfaceService.php';
                                         <div class="card-block text-center">
                                             <h4 class="card-title mt-3"> '.$data[$i]["NOM"].'</h4>
                                             <h5 class=" mt-3">'.$data[$i]["NOM_RACE"].'</h5>
-                                            <p class="card-text">Age : 42 ans </p>
+                                            <p class="card-text"><strong>Né le  : </strong><br/>'.$data[$i]["DATE_NAISSANCE"].'  </p>
                                             <!--Bouton pour le modal signaler perdu-->
                                             <a href="#lost" data-toggle="modal" data-target="#modalPerdu">Signaler perdu</a>  
                                             <!--signaler retrouvé ?-->
