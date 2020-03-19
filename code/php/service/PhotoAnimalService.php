@@ -3,7 +3,7 @@
     include_once("../service/ServiceCommun.php");
 
     class PhotoAnimalService extends ServiceCommun implements InterfaceService{
-        public function serviceSelectAll($id){}
+        public function serviceSelectAll(){}
         public function serviceSelect($id){
             $data = $this->getDataAccessObject()->daoSelect($id);
             return $data;

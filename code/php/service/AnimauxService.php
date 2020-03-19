@@ -8,9 +8,9 @@ include_once '../Interfaces/InterfaceService.php';
 
 
 
-        public function serviceSelectAll($id)
+        public function serviceSelectAll()
         {
-            $data = $this->getDataAccessObject()->daoSelectAllAnimals($id);
+            $data = $this->getDataAccessObject()->daoSelectAllAnimals();
             return $data;
         }
 

@@ -7,7 +7,7 @@
         public function serviceUpdate(array $post){}
         public function serviceDelete($nom){}
         // fonction pour select toutes les adresses
-        public function serviceSelectAll($id){
+        public function serviceSelectAll(){
             // if admin ok sinon non // 
         }
 

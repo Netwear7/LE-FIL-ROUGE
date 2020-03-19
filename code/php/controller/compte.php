@@ -6,6 +6,9 @@
 
 <?php
 
+
+session_start();
+
 include_once '../service/UtilisateurService.php';
 include_once '../data-access/UtilisateurDataAccess.php';
 include_once '../service/AnimauxService.php';
@@ -15,12 +18,15 @@ include_once '../model/Adresse.php';
 include_once '../service/AdresseService.php';
 include_once '../data-access/AdresseDataAccess.php';
 
-$nom = "STOEV";
-$id = '1';
 
 
-$daoUtilisateur = new UtilisateurDataAccess();
-$serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+if(isset($_SESSION["user_id"])){
+
+    $daoUtilisateur = new UtilisateurDataAccess();
+    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+}
+
+
 
 if (isset($_POST["delete"])){
 
@@ -128,7 +134,7 @@ if (isset($_POST["updatePassword"])){
                             </div>
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-2">
-                                        <?php $serviceUtilisateur->utilisateurServiceDisplayinfos(); 
+                                        <?php $serviceUtilisateur->utilisateurServiceDisplayinfos($_SESSION["user_id"]); 
                                         if (isset($_POST["updateUserInfos"])){
                                             
                                             $serviceUtilisateur->serviceUpdate($_POST);
@@ -194,7 +200,7 @@ if (isset($_POST["updatePassword"])){
                             <div class="row mt-2">
                                 <div class="col-8 offset-2 border rounded border-black ">
                                     <form method="POST" action="compte.php">
-                                        <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel(); ?>
+                                        <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel($_SESSION["user_id"]); ?>
 
                                     </form>    
                                 </div>
@@ -212,8 +218,8 @@ if (isset($_POST["updatePassword"])){
                             <?php
                             $daoAnimaux = new AnimauxDataAccess();
                             $serviceAnimaux = new AnimauxService($daoAnimaux);
-                            $data = $serviceAnimaux->serviceSelectAllUserAnimals($id);
-                            empty($data) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($id);
+                            $data = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                            empty($data) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($_SESSION["user_id"]);
                             ?>
                        </div>
 

@@ -53,7 +53,7 @@ if (isset($_POST["connexion"])){
             $_SESSION["user_id"] = $data[0]["ID_UTILISATEUR"];
             header('Location: accueil.php');
             exit;
-        } else {
+        } else {    
             return $error="Identifiants incorrects";
         }
     }         
