@@ -133,7 +133,7 @@ if (isset($_POST["updatePassword"])){
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-8 offset-2 border rounded border-black mt-2">
+
                                         <?php $serviceUtilisateur->utilisateurServiceDisplayinfos($_SESSION["user_id"]); 
                                         if (isset($_POST["updateUserInfos"])){
                                             
@@ -141,7 +141,7 @@ if (isset($_POST["updatePassword"])){
                                          }
                                         ?>
                                         
-                                </div>
+
                             </div>
                             <!--PARTIE OU IL Y A LES BOUTONS SUPP ET MOD MDP-->
                             <div class="row">
@@ -201,8 +201,8 @@ if (isset($_POST["updatePassword"])){
                                 <div class="col-8 offset-2 border rounded border-black ">
                                     <form method="POST" action="compte.php">
                                         <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel($_SESSION["user_id"]); ?>
-
-                                    </form>    
+                                         
+                                    </form>  
                                 </div>
                             </div>
                         </div>
