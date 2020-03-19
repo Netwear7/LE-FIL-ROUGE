@@ -32,6 +32,8 @@ if (isset($_POST["inscription"])){
                 $utilisateur->setIdAdresse($adresse->getIdAdresse());
                 $daoUtilisateur = new UtilisateurDataAccess();
                 $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                //Set ici et non plus dans le construct, car bug :
+                $utilisateur->setPassword(PASSWORD_HASH($infos["inscriptionPassword"],PASSWORD_DEFAULT));
                 $serviceUtilisateur->serviceAdd($utilisateur);
                 session_start();
                 $_SESSION["user_id"] = $utilisateur->getIdUtilisateur();
@@ -110,29 +112,28 @@ if (isset($_POST["logout"])){
             </li>
         </ul>
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
-        
-        <a class="d-flex mr-3 mt-1" href="compte.php#list-compagnons">
-            <img class="mr-1" src="img/mesAnimaux.png" alt="">
-            <p class="navbar-nav text-light">Mes animaux</p>
-        </a>
+        <div class="navbar-item">
+            <a class="nav-link text-white" href="compte.php#list-compagnons">Mes animaux</a>
+        </div>
         <!--<a class="d-flex mr-3" href="#" data-toggle="modal" data-target="#exampleModal">
             <img class="mr-1" src="img/account.png" alt="">
             <p class="navbar-nav text-light">Mon compte</p>
         </a>-->
 
         <form action="accueil.php" method="POST">
-            <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#staticBackdrop">
-                <p class="navbar-nav text-light">
+           
                     <?php
                         if(!isset($_SESSION["user_id"])){
-                            echo "Se connecter/S'inscrire";
+                            echo "<button type='button' class='btn btn-orange' data-toggle='modal' data-target='#staticBackdrop'>Se connecter/S'inscrire</button>";
                         }
                         else{
-                            echo "fefefee";
+                            $daoUtilisateur = new UtilisateurDataAccess();
+                            $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                            $data = $serviceUtilisateur->serviceSelect($_SESSION["user_id"]);
+                            $utilisateur = new Utilisateur($data);
+                            echo "Bonjour ". $utilisateur->getPrenom();
                         }
                     ?>
-                </p>
-            </button>
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
