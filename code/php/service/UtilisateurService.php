@@ -6,10 +6,10 @@
 
     class UtilisateurService extends ServiceCommun implements InterfaceService {
         private $nom;
-        private $id;
+        private $id = "1";
 
         // fonction pour select tout les utilisateurs
-        public function serviceSelectAll(){
+        public function serviceSelectAll($id){
             // if admin ok sinon non
         }
 
@@ -31,6 +31,8 @@
         // function pour l'ajout Utilisateur
         public function serviceAdd($user){
             $this->getDataAccessObject()->daoAdd($user);
+            $id = $this->getDataAccessObject()->daoTakeId($user);
+            $user->setIdUtilisateur($id[0]["ID_UTILISATEUR"]);
         }
 
         //function pour la recherche Utilisateur
@@ -63,7 +65,7 @@
         }
 
         public function utilisateurServiceDisplayinfos(){
-            $data = $this->serviceSelect(); 
+            $data = $this->serviceSelect($this->getId()); 
             echo
             '
             <div class="row">
@@ -169,5 +171,25 @@
 
 
 
+
+        /**
+         * Get the value of id
+         */ 
+        public function getId()
+        {
+                return $this->id;
+        }
+
+        /**
+         * Set the value of id
+         *
+         * @return  self
+         */ 
+        public function setId($id)
+        {
+                $this->id = $id;
+
+                return $this;
+        }
     }
 ?> 

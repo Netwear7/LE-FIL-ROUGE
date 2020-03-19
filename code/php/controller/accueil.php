@@ -2,6 +2,8 @@
     include_once("../model/PhotoAnimal.php");
     include_once("../data-access/PhotoAnimalDataAccess.php");
     include_once("../service/PhotoAnimalService.php");
+
+    session_start();
 ?>
 
 <!doctype html>

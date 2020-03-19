@@ -46,6 +46,19 @@
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
         }
 
+        public function daoTakeId($user){   
+            $mail = $user->getEmail();
+            $mdp = $user->getPassword();
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare('SELECT ID_UTILISATEUR from utilisateur where ADRESSE_EMAIL = ? AND MDP = ?');
+            $stmt->bind_param('ss',$mail,$mdp);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $id = $rs->fetch_all(MYSQLI_ASSOC);
+            $mysqli->close();
+            return $id;
+        }
+
         // fonction pour la recherche
         public function daoSearch($search){
             $searchValue = $search["ADRESSE_EMAIL"];

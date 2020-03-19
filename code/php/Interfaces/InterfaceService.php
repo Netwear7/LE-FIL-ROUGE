@@ -1,7 +1,7 @@
 <?php
     Interface InterfaceService{
 
-        public function serviceSelectAll();
+        public function serviceSelectAll($id);
         public function serviceSelect($id);
         public function serviceCount();
         public function serviceAdd(object $var);

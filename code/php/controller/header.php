@@ -24,8 +24,7 @@ if (isset($_POST["inscription"])){
                 $adresse = new Adresse($_POST);
                 $daoAdresse = new AdresseDataAccess();
                 $serviceAdresse = new AdresseService($daoAdresse);
-                $idAdresse = $serviceAdresse->serviceAdd($adresse);
-                $adresse->setIdAdresse($idAdresse[0]["ID_ADRESSE"]);
+                $serviceAdresse->serviceAdd($adresse);
     
                 // dans un second temps création de l'utilisateur 
                 $utilisateur = new Utilisateur($_POST);
@@ -43,7 +42,7 @@ if (isset($_POST["inscription"])){
     }
 }
 
-// ajouter [et si input MDP = input MPD confirmation]
+
 if (isset($_POST["connexion"])){
     if (!empty($_POST["ADRESSE_EMAIL"]) && !empty($_POST["connexionPassword"])) {
         $daoUtilisateur = new UtilisateurDataAccess();
@@ -51,6 +50,7 @@ if (isset($_POST["connexion"])){
         $data = $serviceUtilisateur->serviceSearch($_POST);
         if (password_verify($_POST["connexionPassword"], $data[0]["MDP"]) === true) {
             session_start();
+            $_SESSION["user_id"] = $data[0]["ID_UTILISATEUR"];
             header('Location: accueil.php');
             exit;
         } else {

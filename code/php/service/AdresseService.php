@@ -7,7 +7,7 @@
         public function serviceUpdate(array $post){}
         public function serviceDelete($nom){}
         // fonction pour select toutes les adresses
-        public function serviceSelectAll(){
+        public function serviceSelectAll($id){
             // if admin ok sinon non // 
         }
 
@@ -30,7 +30,7 @@
         public function serviceAdd($adresse){
             $this->getDataAccessObject()->daoAdd($adresse);
             $id = $this->getDataAccessObject()->daoTakeId($adresse);
-            return $id;
+            $adresse->setIdAdresse($id[0]["ID_ADRESSE"]);
         }
 
         //function pour la recherche Utilisateur

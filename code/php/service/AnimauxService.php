@@ -21,7 +21,7 @@ include_once '../Interfaces/InterfaceService.php';
         }
 
 
-        public function serviceSelect()
+        public function serviceSelect($id)
         {
             $data = $this->getDataAccessObject()->daoSelect($this->id);
             return $data;
