@@ -13,19 +13,21 @@ include_once '../Interfaces/InterfaceDao.php';
 
         public function daoSelectAll()
         {
-            $db=$this->connexion();
-            $stmt = $db -> prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
             $stmt -> execute();  
             $rs = $stmt -> get_result();          
             $data= $rs -> fetch_all(MYSQLI_ASSOC);
             $rs -> free();
-            $this->deconnexion($db);  
+            $mysqli->close();
             return $data;
         }
+
+
         public function daoSelectAllUserAnimals($id)
         {
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
-            $stmt = $mysqli->prepare('SELECT * from animaux  where ID_UTILISATEUR = ?');
+            $stmt = $mysqli->prepare('SELECT * from animaux as A INNER JOIN race as B on A.id_race = B.id_race  where ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
@@ -38,7 +40,29 @@ include_once '../Interfaces/InterfaceDao.php';
         {
 
         }
-        public function daoCount(){}
+
+
+        public function daoCount()
+        {
+
+        }
+
+
+        public function daoCountUserAnimal($id)
+        {
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare('SELECT count(ID_ANIMAL) from animaux  where ID_UTILISATEUR = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $count = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $mysqli->close();
+            return $count;
+        }
+
+
+
         public function daoAdd($objet){}
         public function daoSearch($search){}
         public function daoUpdate( $parametres){}
@@ -47,13 +71,6 @@ include_once '../Interfaces/InterfaceDao.php';
         public function deconnexion($db){
             $db -> close();
         }
-
-
-
-
-
-
-
 
         
         public function selectAll(){
@@ -66,6 +83,12 @@ include_once '../Interfaces/InterfaceDao.php';
             $this->deconnexion($db);  
             return $data;
         }
+
+
+
+
+
+
 
         public function selectRecherche($s_nomRace, $s_couleur){
             $db=$this->connexion();
