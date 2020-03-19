@@ -19,7 +19,7 @@
             $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
-            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
             $rs->free();
             $mysqli->close();
             return $data;
