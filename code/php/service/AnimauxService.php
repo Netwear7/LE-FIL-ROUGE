@@ -174,7 +174,7 @@ include_once '../Interfaces/InterfaceService.php';
                             </button>
                             </div>
                             <div class="modal-body">
-                                <small id="emailHelp" class="form-text text-muted">Si cest bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
+                                <small id="lostAnimal" class="form-text text-muted">Si cest bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

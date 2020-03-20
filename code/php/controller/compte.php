@@ -20,10 +20,14 @@ include_once '../data-access/AdresseDataAccess.php';
 
 
 
-if(isset($_SESSION["user_id"])){
+if(isset($_SESSION["user_id"]))
+{
 
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+} else {
+    header('Location: accueil.php');
+    exit;
 }
 
 
@@ -212,6 +216,12 @@ if (isset($_POST["updatePassword"])){
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5 text-center">
                                         <h3>Mes Compagnons</h3>
+                                        
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 offset-2">
+                                    <button type="button" class ="btn btn-outline-info">Ajoutez votre compagnon</button>
                                 </div>
                             </div>
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
