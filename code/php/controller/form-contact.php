@@ -2,6 +2,7 @@
     include_once("../service/ContactezNousService.php");
 
     $contact = new ContactezNousService();
+    session_start();
 
     if(isset($_POST["action"]) && $_POST["action"] == "InsertMessage"){
         if(isset($_POST["message"]) && isset($_POST["motif"])
@@ -76,17 +77,50 @@
                         <input type="hidden" name="action" value="InsertMessage">
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
-                                <input type="text" placeholder="Nom" name="name" class="form-control" aria-label="Text input with dropdown button">
+                                <input type="text" placeholder="Nom" name="name" class="form-control" <?php 
+                                    if(!isset($_SESSION["user_id"])){
+                                        echo "value=''";
+                                    }
+                                    else{
+                                        $daoUtilisateur = new UtilisateurDataAccess();
+                                        $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                                        $data = $serviceUtilisateur->serviceSelect($_SESSION["user_id"]);
+                                        $utilisateur = new Utilisateur($data);
+                                        echo "value='".$utilisateur->getNom()."'";
+                                    }
+                                ?> aria-label="Text input with dropdown button">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
-                                <input type="text" placeholder="Prénom" name="fname" class="form-control" aria-label="Text input with dropdown button">
+                                <input type="text" placeholder="Prénom" name="fname" class="form-control" <?php 
+                                    if(!isset($_SESSION["user_id"])){
+                                        echo "value=''";
+                                    }
+                                    else{
+                                        $daoUtilisateur = new UtilisateurDataAccess();
+                                        $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                                        $data = $serviceUtilisateur->serviceSelect($_SESSION["user_id"]);
+                                        $utilisateur = new Utilisateur($data);
+                                        echo "value='".$utilisateur->getPrenom()."'";
+                                    }
+                                ?> aria-label="Text input with dropdown button">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
-                                <input type="text" placeholder="Adresse Email" name="email" class="form-control" aria-label="Text input with dropdown button">
+                                <input type="text" placeholder="Adresse Email" name="email" class="form-control" <?php 
+                                    if(!isset($_SESSION["user_id"])){
+                                        echo "value=''";
+                                    }
+                                    else{
+                                        $daoUtilisateur = new UtilisateurDataAccess();
+                                        $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                                        $data = $serviceUtilisateur->serviceSelect($_SESSION["user_id"]);
+                                        $utilisateur = new Utilisateur($data);
+                                        echo "value='".$utilisateur->getEmail()."'";
+                                    }
+                                ?> aria-label="Text input with dropdown button">
                             </div>
                         </div>
                         <div class="row">
