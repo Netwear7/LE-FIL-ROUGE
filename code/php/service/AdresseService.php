@@ -29,7 +29,7 @@
         // function pour l'ajout Adresses
         public function serviceAdd($adresse){
             $this->getDataAccessObject()->daoAdd($adresse);
-            $id = $this->getDataAccessObject()->daoTakeId($adresse);
+            $id = $this->getDataAccessObject()->daoGetId($adresse);
             $adresse->setIdAdresse($id[0]["ID_ADRESSE"]);
         }
 

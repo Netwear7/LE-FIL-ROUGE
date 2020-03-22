@@ -9,14 +9,19 @@
 
 session_start();
 
+
+include_once '../model/Utilisateur.php';
 include_once '../service/UtilisateurService.php';
 include_once '../data-access/UtilisateurDataAccess.php';
+include_once '../model/Animaux.php';
 include_once '../service/AnimauxService.php';
 include_once '../data-access/AnimauxDataAccess.php';
-include_once '../model/Utilisateur.php';
 include_once '../model/Adresse.php';
 include_once '../service/AdresseService.php';
 include_once '../data-access/AdresseDataAccess.php';
+include_once '../model/AnimauxFavoris.php';
+include_once '../service/AnimauxFavorisService.php';
+include_once '../data-access/AnimauxFavorisDataAccess.php';
 
 
 
@@ -80,8 +85,13 @@ if (isset($_POST["updatePassword"])){
         ?>
 
         <!--PARTIE PRINCIPALE-->
+
+
         <div class="container-fluid">
             <div class="row vh-100">
+
+
+
                 <!--NAVBAR COTE GAUCHE-->
                 <div class="col-lg-2 col-sm-12 border border-black">
                     <div class="row">
@@ -93,31 +103,40 @@ if (isset($_POST["updatePassword"])){
                             <a class="list-group-item list-group-item-action" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
                             <a class="list-group-item list-group-item-action" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
                             <a class="list-group-item list-group-item-action mt-auto" data-toggle="modal" data-target="#modalLogout">Se Déconnecter</a>
-                            <!-- Modal se déconnecter -->
-                            <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="modalLogoutTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir vous déconnecter?</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <form method="POST" action="">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                <button type="button submit" class="btn btn-outline-info" name="logout">Déconnexion</a>
-                                            </form>                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
+                        </div> 
                     </div>
                 </div>
+
+
+
+                <!-- Modal se déconnecter -->
+                <div class="modal fade" id="modalLogout" tabindex="-1" role="dialog" aria-labelledby="modalLogoutTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir vous déconnecter?</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <form method="POST" action="">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <button type="button submit" class="btn btn-outline-info" name="logout">Déconnexion</a>
+                                </form>                                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!--PARTIE CENTRALE-->
+
+
                 <div class="col-lg-10 col-sm-12">
                     <div class="tab-content" id="nav-tabContent">
+
+
                         <!--PREMIER SLIDE DANS MES INFOS PERSONNELLES-->
                         <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                             <div class="row">
@@ -144,14 +163,15 @@ if (isset($_POST["updatePassword"])){
                                             $serviceUtilisateur->serviceUpdate($_POST);
                                          }
                                         ?>
-                                        
-
                             </div>
+
+
                             <!--PARTIE OU IL Y A LES BOUTONS SUPP ET MOD MDP-->
                             <div class="row">
                                 <div class="col-8 offset-2 rounded border-black mt-2">
                                     <div class="row">
                                         <div class="col-lg-6 col-sm-12 ">
+                                            <!--Supprimer mon compte -->
                                             <div class="row justify-content-center">
                                                 <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
                                                     Supprimer mon Compte
@@ -166,11 +186,11 @@ if (isset($_POST["updatePassword"])){
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                        
+                                        <!--modifier mon mdp-->
                                         <div class="col-lg-6 col-sm-12 ">
                                             <div class="row justify-content-center">
+
                                                 <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseMdp" aria-expanded="false" aria-controls="collapseExample">
                                                     Modifier mon MDP
                                                 </button>
@@ -188,13 +208,16 @@ if (isset($_POST["updatePassword"])){
                                                         </form>
                                                     </div>
                                                 </div>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--PARTIE MODIFIER DU PREMIER SLIDE-->
+
+
+                        <!--PARTIE MODIFIER DU PREMIER SLIDE infos personnelles-->
                         <div class="tab-pane fade " id="list-updateInfo" role="tabpanel" aria-labelledby="list-updateInfo-list">
                             <div class="row">
                                 <div class="col-8 offset-2 text-center border rounded border-black mt-5">
@@ -213,17 +236,16 @@ if (isset($_POST["updatePassword"])){
 
                         <!--SECOND PANEL MES COMPAGNONS-->
                         <div class="tab-pane fade" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">
+
+                        <!--titre-->
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5 text-center">
                                         <h3>Mes Compagnons</h3>
                                         
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-8 offset-2">
-                                    <button type="button" class ="btn btn-outline-info">Ajoutez votre compagnon</button>
-                                </div>
-                            </div>
+
+
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
                             <?php
                             $daoAnimaux = new AnimauxDataAccess();
@@ -231,6 +253,8 @@ if (isset($_POST["updatePassword"])){
                             $data = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
                             empty($data) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($_SESSION["user_id"]);
                             ?>
+
+
                        </div>
 
 
@@ -242,11 +266,14 @@ if (isset($_POST["updatePassword"])){
                                 <div class="col-12 border rounded border-black">
                                     <form method="POST" action="compte.php">
                                         <div class="row mt-3">
+                                            <!--titre-->
                                             <div class="col-lg-12 text-center">
                                                 <h3>Ajouter un compagnon</h3>
                                             </div>
                                         </div>
-                                
+                                         
+
+                                        <!--fiche ajouter un animal -->
                                         <div class="row mt-5">
                                             <div class="col-lg-12">
                                                 <div class="row">
@@ -472,107 +499,20 @@ if (isset($_POST["updatePassword"])){
 
                         <div class="tab-pane fade" id="list-favourites" role="tabpanel" aria-labelledby="list-favourites-list">
                             <div class="row">
+
+                            <!--titre-->
                                 <div class="col-8 offset-2 text-center border rounded border-black mt-5">
                                     <h3>Mes Animaux Favoris</h3>
                                 </div>
                             </div>
-                            <!--Si pas d'animaux en favoris-->
-                            <div class="row mt-2">
-                                <div class="col-8 offset-2 text-center border rounded border-black text-center">
-                                    <div class="row m-3 ">
-                                        <div class="col-12 text-center">
-                                            <h5>Pas encore d'animaux Coup de coeur ?</h5>
-                                            <p> Pour en ajouter, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page D'adoption</p>
-                                            <button type="button" class="btn btn-outline-info">Ajoutez un Compagnon dans vos coups de coeur</button>
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-    
-                            <!--Si animaux en favoris-->
-    
-                            <div class="row mt-2">
-                                <div class="col-8 offset-2 border rounded border-black">
-                                    <div class="row">
-                                        <div class="card w-100">
-                                            <div class="row ">
-                                                <div class="col-md-4">
-                                                    <!--image-->
-                                                    <img src="Koala.jpg" class="rounded w-100" alt="img-profil-5">
-                                                </div>
-                                                <div class="col-md-2">
-                                                <!--informations sur l'animal-->
-                                                    <div class="card-block text-center">
-                                                        <h4 class="card-title"> Pepito</h4>
-                                                        <h5 class="card-title">Main Coon</h5>
-                                                        <p class="card-text">Age : 42 ans </p>
-                                                        <!-- Button trigger modal -->
-                                                        <button type="button" class="btn btn-outline-info mb-2 mt-2" data-toggle="modal" data-target="#modalRetraitfavoris">
-                                                            Retirer des favoris
-                                                        </button>
-                                                                
-                                                        <!-- Modal -->
-                                                        <div class="modal fade" id="modalRetraitfavoris" tabindex="-1" role="dialog" aria-labelledby="modalRetraitfavorites" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir retirer la fiche de vos favoris?</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p>En cliquant sur le bouton ci-dessous vous confirmez le retrait de la fiche animale de vos favoris. Une fois l'action validée, la fiche ne sera plus présente dans vos favoris mais toujours disponible sur le site.</p>
-                                                                        <p class="mt-2">Confirmer le retrait ?</p>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                                                        <button type="button" class="btn btn-outline-info">Confirmer le retrait</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!--COL INFORMATIONS-->
-                                                <div class="col-md-6">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <div class="card-block">
-                                                                <p class="card-text">
-                                                                    <ul class="list-group list-group-flush">
-                                                                        <li >Genre :</li>
-                                                                        <li >Race :</li>
-                                                                        <li >Robe :</li>
-                                                                        <li >Couleur :</li>
-                                                                    </ul>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <div class="card-block">
-                                                                <p class="card-text">
-                                                                    <ul class="list-group list-group-flush">
-                                                                        <li >Caractère : </li>
-                                                                        <li >Poids :</li>
-                                                                        <li >Taille :</li>
-                                                                    </ul>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!--row spécificités-->
-                                                    <div class="row">
-                                                        <div class="col-12">
-                                                            <p>Spécificités : </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+                            <!--si pas d'animaux en favoris affichage de la div ajouter un animal en favoris sinon affichage des animaux en favoris-->
+                            <?php
+                            $daoAnimauxFavoris = new AnimauxFavorisDataAcces();
+                            $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
+                            $data = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
+                            empty($data) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
+                            ?>
                         </div>                        
                     </div>
                 </div>                

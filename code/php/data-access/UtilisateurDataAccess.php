@@ -46,7 +46,7 @@
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
         }
 
-        public function daoTakeId($user){   
+        public function daoGetId($user){   
             $mail = $user->getEmail();
             $mdp = $user->getPassword();
             $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');

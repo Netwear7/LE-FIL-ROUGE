@@ -45,8 +45,7 @@ include_once '../Interfaces/InterfaceDao.php';
 
 
         public function daoCount()
-        {
-
+        { 
         }
 
 

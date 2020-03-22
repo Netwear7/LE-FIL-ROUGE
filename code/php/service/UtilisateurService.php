@@ -30,7 +30,7 @@
         // function pour l'ajout Utilisateur
         public function serviceAdd($user){
             $this->getDataAccessObject()->daoAdd($user);
-            $id = $this->getDataAccessObject()->daoTakeId($user);
+            $id = $this->getDataAccessObject()->daoGetId($user);
             $user->setIdUtilisateur($id[0]["ID_UTILISATEUR"]);
         }
 
@@ -167,10 +167,6 @@
                 </div>  
             ';
         }
-
-
-
-
 
 
         /**

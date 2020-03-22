@@ -43,7 +43,7 @@ include_once '../Interfaces/InterfaceDao.php';
         }
 
         // fonction pour récup l'id Adresse directement après l'ajout afin de récupérer l'id pour pouvoir créer l'utilisateur totalement
-        public function daoTakeId($adresse){   
+        public function daoGetId($adresse){   
             $num = $adresse->getNumero();
             $rue = $adresse->getRue();
             $ville = $adresse->getVille();
