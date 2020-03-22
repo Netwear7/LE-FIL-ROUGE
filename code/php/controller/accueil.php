@@ -37,7 +37,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!---------------test carrousel---------------->
-                <div id="carouselExampleControls" class="carousel slide col-lg-12 bg-light py-3" data-ride="carousel">
+                <div id="carouselExampleControls" class="carousel slide col-lg-12 bg-dark py-3" data-ride="carousel">
                     <div class="carousel-inner">
                         <?php 
                             $photoAnimal = new PhotoAnimal();
