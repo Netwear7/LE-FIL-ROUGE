@@ -9,23 +9,22 @@
     include_once("../model/ContactezNous.php");
 
     class ContactezNousDataAccess{
-
         public function connexion(){
-            $db = new mysqli('localhost','root','','bddanimaux');
-            return $db;    
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            return $mysqli;    
         }
-        public function deconnexion($db){
-            $db -> close();
+        public function deconnexion($mysqli){
+            $mysqli->close();
         }
         public function InsertMessage($insert){
-            $db = $this->connexion();
+            $mysqli = $this->connexion();
             $message = $insert->getMessage();
             $motif = $insert->getMotif();
-            $stmt = $db->prepare("INSERT INTO contactez_nous(msg, motif, id_utilisateur)
+            $stmt = $mysqli->prepare("INSERT INTO contactez_nous(msg, motif, id_utilisateur)
             VALUES(?, ?, 2)");
             $stmt->bind_param("ss", $message, $motif);
             $stmt->execute();
-            $this->deconnexion($db);
+            $this->deconnexion($mysqli);
         }
     }
 ?>

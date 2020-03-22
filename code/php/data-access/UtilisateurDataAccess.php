@@ -3,6 +3,13 @@
     include_once '../Interfaces/InterfaceDao.php';
 
     class UtilisateurDataAccess implements InterfaceDao{
+        public function connexion(){
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            return $mysqli;    
+        }
+        public function deconnexion($mysqli){
+            $mysqli->close();
+        }
         public function __construct(){
 
         }
@@ -14,14 +21,14 @@
         
         // fonction pour le select d'un seul utilisateur
         public function daoSelect($id){
-            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where A.ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_array(MYSQLI_ASSOC);
             $rs->free();
-            $mysqli->close();
+            $this->deconnexion($mysqli);
             return $data;
         }
 
@@ -32,6 +39,7 @@
 
         // fonction pour l'ajout de l'utilisateur
         public function daoAdd($user){
+            $mysqli = $this->connexion();
             $nom = $user->getNom();
             $prenom = $user->getPrenom();
             $pseudo = $user->getPseudo();
@@ -39,45 +47,55 @@
             $mail = $user->getEmail();
             $num = $user->getNum();
             $idAdresse = $user->getIdAdresse();
-            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('INSERT INTO utilisateur (NOM, PRENOM, PSEUDO,MDP,ADRESSE_EMAIL,NUM,ID_ADRESSE) VALUES (?,?,?,?,?,?,?) ');
             $stmt-> bind_param('sssssss',$nom, $prenom, $pseudo, $mdp, $mail, $num, $idAdresse);
             $stmt->execute();
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
+            /* 
+                /!\/!\/!\/!\/!\/!\/!\
+                Il y a pas
+                de $rs = 
+                et de $mysqli close ??
+                /!\/!\/!\/!\/!\/!\/!\
+            */
         }
 
-        public function daoGetId($user){   
+        public function daoGetId($user){
+            $mysqli = $this->connexion();   
             $mail = $user->getEmail();
             $mdp = $user->getPassword();
-            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $stmt = $mysqli->prepare('SELECT ID_UTILISATEUR from utilisateur where ADRESSE_EMAIL = ? AND MDP = ?');
             $stmt->bind_param('ss',$mail,$mdp);
             $stmt->execute();
             $rs = $stmt->get_result();
             $id = $rs->fetch_all(MYSQLI_ASSOC);
-            $mysqli->close();
+            $this->deconnexion($mysqli);
             return $id;
         }
 
         // fonction pour la recherche
         public function daoSearch($search){
+            $mysqli = $this->connexion();
             $searchValue = $search["ADRESSE_EMAIL"];
-            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from utilisateur where ADRESSE_EMAIL = ?');
             $stmt->bind_param('s', $searchValue);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
-            $mysqli->close();
+            $this->deconnexion($mysqli);
             return $data;
         }
-
-        
-
         //fonction pour la modification PRENDS EN PARAMETRE LE POST
         public function daoUpdate($parametres){
-            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            /* 
+                /!\/!\/!\/!\/!\/!\/!\
+                Pareil qu'au dessus, 
+                Il y a pas de $rs = 
+                et de $mysqli close ??
+                /!\/!\/!\/!\/!\/!\/!\
+            */
+            $mysqli = $this->connexion();
                 foreach ($parametres as $key => $value2){
                     $num ="1";
                     if ($key =="updateUserInfos"){
@@ -93,9 +111,8 @@
                     $stmt->bind_param("ss",$value2,$num);
                     $stmt->execute();
                 }            
-                
-            //$sql = !empty($parametres['nom']) ? "UPDATE utilisateur set NOM = '".$_POST['nom']."' where ID_UTILISATEUR = ".$num."; " : false;
-            //$sql .= !empty($parametres['prénom']) ? "UPDATE utilisateur set PRENOM = '".$parametres['prénom']."' where ID_UTILISATEUR = ".$num.";" : false;
+            // $sql  = !empty($parametres['nom']) ? "UPDATE utilisateur set NOM = '".$_POST['nom']."' where ID_UTILISATEUR = ".$num."; " : false;
+            // $sql .= !empty($parametres['prénom']) ? "UPDATE utilisateur set PRENOM = '".$parametres['prénom']."' where ID_UTILISATEUR = ".$num.";" : false;
             // $sql .= !empty($parametres['tel']) ? "UPDATE utilisateur set NUM = '".$parametres['tel']."' where ID_UTILISATEUR = ".$num.";" : false;
             // $sql .= !empty($parametres['mail']) ? "UPDATE utilisateur set ADRESSE_EMAIL = '".$parametres['mail']."' where ID_UTILISATEUR = ".$num.";" : false;
             // $sql .= !empty($parametres['numero']) ? "UPDATE adresse set NUMERO = '".$parametres['numero']."' where ID_ADRESSE = ".$num.";" : false;
@@ -104,28 +121,24 @@
             // $sql .= !empty($_POST['Ville']) ? "UPDATE adresse set VILLE = '".$parametres['Ville']."' where ID_ADRESSE = ".$num.";" : false;
             // return $result = $mysqli->multi_query($sql) === TRUE ? "Modification bien effectuées !" : "Erreur lors de l'ajout des informations :  " . $sql . "<br>"; 
         }
-
         public function daoUpdatePassword($id,$mdpHash){
-            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('UPDATE utilisateur SET MDP = ? where ID_UTILISATEUR = ?');
             $stmt->bind_param('ss',$mdpHash,$id);
             $stmt->execute();
-            $mysqli->close();
+            $this->deconnexion($mysqli);
             return $result = $stmt ? "La modification a bien été effectuée " : "La modification a échouée ";
         }
-
         public function daoVerifyActualPassword(){
 
         }
-
-
         // Fonction pour la suppression
         public function daoDelete($nom){
-            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM utilisateur where nom = ?');
             $stmt->bind_param('s',$nom);
             $stmt->execute();
-            $mysqli->close();
+            $this->deconnexion($mysqli);
             return   $result = $stmt ? "La suppression a bien été effectuée " : "La suppression a échouée ";
         }
     }

@@ -1,5 +1,5 @@
 <?php
-
+// je comprends pas trop cette page, tu pourras m'expliquer ?
 include_once '../service/ServiceCommun.php';
 include_once '../Interfaces/InterfaceService.php';
 
