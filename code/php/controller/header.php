@@ -88,10 +88,17 @@ if (isset($_POST["logout"])){
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Adopter un animal</a>
                     <div class="dropdown-menu bg-grey border-0" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-white" href="adopter-un-animal.php">Les animaux</a>
-                        <a class="dropdown-item text-white" href="#">Accompagnement pour l'adoption</a>
+                        <a class="dropdown-item text-white" href="adopter-un-animal.php">Adopter un animal</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-white" href="#">Conditions d'adoption</a>
+
+                        <!-- dans le formulaire de filtre mettre :
+                            
+                            >If(isset Get chien et un autre if isset get chat) : selected option
+                            Pour Pierre
+                    
+                        -->
+                        <a class="dropdown-item text-white" href="adopter-un-animal.php?select=chien">- Chien</a>
+                        <a class="dropdown-item text-white" href="adopter-un-animal.php?select=chat">- Chat</a>
                     </div>
             </li>
 
