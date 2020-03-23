@@ -3,6 +3,7 @@
     include_once('../service/RaceService.php');
     include_once('../service/CouleurAnimalService.php');
     include_once('../service/AnimauxService.php');
+    session_start();
 
     function affichage($data){
         foreach($data as $key => $value){
@@ -18,7 +19,7 @@
                             </div>
                         </div>                   
                     </div>
-                    </div>';
+                </div>';
         
         }
     }

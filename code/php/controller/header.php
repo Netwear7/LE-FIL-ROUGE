@@ -1,71 +1,71 @@
 <?php
 
-include_once '../model/Adresse.php';
-include_once '../model/Utilisateur.php';
-include_once '../service/AdresseService.php';
-include_once '../service/UtilisateurService.php';
-include_once '../data-access/AdresseDataAccess.php';
-include_once '../data-access/UtilisateurDataAccess.php';
+    include_once '../model/Adresse.php';
+    include_once '../model/Utilisateur.php';
+    include_once '../service/AdresseService.php';
+    include_once '../service/UtilisateurService.php';
+    include_once '../data-access/AdresseDataAccess.php';
+    include_once '../data-access/UtilisateurDataAccess.php';
 
-if (isset($_POST["inscription"])){
-    if (empty($_POST["NOM"]) || empty($_POST["PRENOM"]) || empty($_POST["PSEUDO"]) || empty($_POST["inscriptionPassword"]) || empty($_POST["confirmInscriptionPassword"]) || empty($_POST["ADRESSE_EMAIL"]) || empty($_POST["confirmADRESSE_EMAIL"]) ||  empty($_POST["NUMERO"]) || empty($_POST["RUE"]) || empty($_POST["VILLE"]) || empty($_POST["CODE_POSTAL"])) {
-        echo "Tout les champs sont obligatoires !";
-    } 
-    else {
-        if ($_POST["inscriptionPassword"] <> $_POST["confirmInscriptionPassword"]){
-            $error = "Les mots de passes ne sont pas identiques !";
+    if (isset($_POST["inscription"])){
+        if (empty($_POST["NOM"]) || empty($_POST["PRENOM"]) || empty($_POST["PSEUDO"]) || empty($_POST["inscriptionPassword"]) || empty($_POST["confirmInscriptionPassword"]) || empty($_POST["ADRESSE_EMAIL"]) || empty($_POST["confirmADRESSE_EMAIL"]) ||  empty($_POST["NUMERO"]) || empty($_POST["RUE"]) || empty($_POST["VILLE"]) || empty($_POST["CODE_POSTAL"])) {
+            echo "Tout les champs sont obligatoires !";
         } 
         else {
-            if ($_POST["ADRESSE_EMAIL"] <> $_POST["confirmADRESSE_EMAIL"]) {
-                $error =" Les adresses mail ne sont pas identiques ! ";
+            if ($_POST["inscriptionPassword"] <> $_POST["confirmInscriptionPassword"]){
+                $error = "Les mots de passes ne sont pas identiques !";
             } 
             else {
-                // dans un premier temps ajout de l'adresse car besoin de l'id adresse pour créer l'utilisateur ou le refuge
-                $adresse = new Adresse($_POST);
-                $daoAdresse = new AdresseDataAccess();
-                $serviceAdresse = new AdresseService($daoAdresse);
-                $serviceAdresse->serviceAdd($adresse);
-    
-                // dans un second temps création de l'utilisateur 
-                $utilisateur = new Utilisateur($_POST);
-                // ajout de l'adresse dans l'utilisateur
-                $utilisateur->setIdAdresse($adresse->getIdAdresse());
-                $daoUtilisateur = new UtilisateurDataAccess();
-                $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-                //Set ici et non plus dans le construct, car bug :
-                $utilisateur->setPassword(PASSWORD_HASH($infos["inscriptionPassword"],PASSWORD_DEFAULT));
-                $serviceUtilisateur->serviceAdd($utilisateur);
-                session_start();
-                $_SESSION["user_id"] = $utilisateur->getIdUtilisateur();
-                header('Location: accueil.php');
-                exit;
+                if ($_POST["ADRESSE_EMAIL"] <> $_POST["confirmADRESSE_EMAIL"]) {
+                    $error =" Les adresses mail ne sont pas identiques ! ";
+                } 
+                else {
+                    // dans un premier temps ajout de l'adresse car besoin de l'id adresse pour créer l'utilisateur ou le refuge
+                    $adresse = new Adresse($_POST);
+                    $daoAdresse = new AdresseDataAccess();
+                    $serviceAdresse = new AdresseService($daoAdresse);
+                    $serviceAdresse->serviceAdd($adresse);
+        
+                    // dans un second temps création de l'utilisateur 
+                    $utilisateur = new Utilisateur($_POST);
+                    // ajout de l'adresse dans l'utilisateur
+                    $utilisateur->setIdAdresse($adresse->getIdAdresse());
+                    $daoUtilisateur = new UtilisateurDataAccess();
+                    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                    //Set ici et non plus dans le construct, car bug :
+                    $utilisateur->setPassword(PASSWORD_HASH($infos["inscriptionPassword"],PASSWORD_DEFAULT));
+                    $serviceUtilisateur->serviceAdd($utilisateur);
+                    session_start();
+                    $_SESSION["user_id"] = $utilisateur->getIdUtilisateur();
+                    header('Location: accueil.php');
+                    exit;
+                }
             }
         }
     }
-}
 
 
-if (isset($_POST["connexion"])){
-    if (!empty($_POST["ADRESSE_EMAIL"]) && !empty($_POST["connexionPassword"])) {
-        $daoUtilisateur = new UtilisateurDataAccess();
-        $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-        $data = $serviceUtilisateur->serviceSearch($_POST);
-        if (password_verify($_POST["connexionPassword"], $data[0]["MDP"]) === true) {
-            session_start();
-            $_SESSION["user_id"] = $data[0]["ID_UTILISATEUR"];
-            header('Location: accueil.php');
-            exit;
-        } else {    
-            return $error="Identifiants incorrects";
-        }
-    }         
-}
+    if (isset($_POST["connexion"])){
+        if (!empty($_POST["ADRESSE_EMAIL"]) && !empty($_POST["connexionPassword"])) {
+            $daoUtilisateur = new UtilisateurDataAccess();
+            $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+            $data = $serviceUtilisateur->serviceSearch($_POST);
+            if (password_verify($_POST["connexionPassword"], $data[0]["MDP"]) === true) {
+                session_start();
+                $_SESSION["user_id"] = $data[0]["ID_UTILISATEUR"];
+                header('Location: accueil.php');
+                exit;
+            } else {    
+                return $error="Identifiants incorrects";
+            }
+        }         
+    }
 
-if (isset($_POST["logout"])){
-    session_destroy();
-    header('location: accueil.php');
-    exit;
-}
+    if (isset($_POST["logout"])){
+        session_destroy();
+        header('location: accueil.php');
+        exit;
+    }
 ?>
 
 <!--Include with php in futur-->
@@ -107,7 +107,7 @@ if (isset($_POST["logout"])){
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Animaux perdus</a>
                 <div class="dropdown-menu bg-grey border-0" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-white" href="#">Action</a>
+                    <a class="dropdown-item text-white" href="animaux-perdus.php">Action</a>
                     <a class="dropdown-item text-white" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-white" href="#">Envoyer la fiche animal</a>
