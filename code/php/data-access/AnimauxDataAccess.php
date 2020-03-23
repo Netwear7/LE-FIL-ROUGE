@@ -60,11 +60,6 @@ include_once '../Interfaces/InterfaceDao.php';
             $mysqli->close();
             return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
         }
-<<<<<<< HEAD
-
-=======
-        
->>>>>>> changements sur animaux favoris dao
         public function selectAll(){
             $db=$this->connexion();
             $stmt = $db->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");

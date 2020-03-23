@@ -1,6 +1,8 @@
 <?php
 
-class AnimauxFavorisDataAcces implements InterfaceDao {
+    include_once('../Interfaces/InterfaceDao.php');
+
+class AnimauxFavorisDataAccess implements InterfaceDao {
 
     public function daoSelectAll(){}
     public function daoSelectAllUserFavouritesAnimals(){}
@@ -11,6 +13,4 @@ class AnimauxFavorisDataAcces implements InterfaceDao {
     public function daoUpdate($parametres){}
     public function daoDelete($nom){}
 }
-
-
 ?>
