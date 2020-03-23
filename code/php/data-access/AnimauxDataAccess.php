@@ -50,7 +50,22 @@ include_once '../Interfaces/InterfaceDao.php';
         public function daoAdd($objet){}
         public function daoSearch($search){}
         public function daoUpdate( $parametres){}
-        public function daoDelete($nom){}
+
+        public function daoDelete($id)
+        {
+            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $stmt = $mysqli->prepare('DELETE * FROM animaux where ID_ANIMAL = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $mysqli->close();
+            return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
+        }
+
+        public function deconnexion($db){
+            $db -> close();
+        }
+
+        
         public function selectAll(){
             $db=$this->connexion();
             $stmt = $db->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");

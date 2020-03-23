@@ -88,10 +88,10 @@
                             <div class="col-lg-6 offset-lg-3 pb-2 ">
                                 <div class="row">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Numero :</strong> '. $data["NUMERO"].'  </li>
-                                        <li class="list-group-item"><strong>Rue :</strong> '. $data["RUE"].'  </li>
+                                        <li class="list-group-item"><strong>Adresse : </strong> '. $data["NUMERO"]." ".$data["RUE"]. '  </li>
                                         <li class="list-group-item"><strong>Ville :</strong> '. $data["VILLE"].' </li>
                                         <li class="list-group-item"><strong>Code Postal : </strong>'. $data["CODE_POSTAL"].' </li>
+                                        <li class="list-group-item"><strong>Pays : </strong> France </li>
                                     </ul>
                                 </div>
                             </div>
@@ -169,24 +169,5 @@
         }
 
 
-        /**
-         * Get the value of id
-         */ 
-        public function getId()
-        {
-                return $this->id;
-        }
-
-        /**
-         * Set the value of id
-         *
-         * @return  self
-         */ 
-        public function setId($id)
-        {
-                $this->id = $id;
-
-                return $this;
-        }
     }
 ?> 

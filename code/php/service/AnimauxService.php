@@ -54,9 +54,9 @@ include_once '../Interfaces/InterfaceService.php';
         {
 
         }
-        public function serviceDelete($nom)
+        public function serviceDelete($id)
         {
-            
+            $result = $this->getDataAccessObject()->daoDelete($id);
         }
 
         public function serviceDisplayUserAnimals($id)
@@ -83,7 +83,8 @@ include_once '../Interfaces/InterfaceService.php';
                                         <!--informations sur lanimal-->
                                         <div class="card-block text-center">
                                             <h4 class="card-title mt-3"> '.$data[$i]["NOM"].'</h4>
-                                            <h5 class=" mt-3">'.$data[$i]["NOM_RACE"].'</h5>
+                                            <h5 class=" mt-3"> Race/Apparence</h5>
+                                            <p>'.$data[$i]["NOM_RACE"].'</p>
                                             <p class="card-text"><strong>Né le  : </strong><br/>'.$data[$i]["DATE_NAISSANCE"].'  </p>
                                             <!--Bouton pour le modal signaler perdu-->
                                             <a href="#lost" data-toggle="modal" data-target="#modalPerdu">Signaler perdu</a>  
@@ -104,6 +105,7 @@ include_once '../Interfaces/InterfaceService.php';
                                                 <div class="card-block">
                                                     <p class="card-text">
                                                         <ul class="list-group list-group-flush">
+                                                            <li >Robe : '.$data[$i]["ROBE"].'</li>
                                                             <li >Couleur : '.$data[$i]["COULEUR"].'</li>
                                                             <li >Caractère : '.$data[$i]["CARACTERE"].' </li>
                                                         </ul>
@@ -114,6 +116,7 @@ include_once '../Interfaces/InterfaceService.php';
                                             <div class="card-block">
                                                 <p class="card-text">
                                                     <ul class="list-group list-group-flush">
+                                                        <li> Sexe : '.$data[$i]["SEXE"].'</li>
                                                         <li >Poids : '.$data[$i]["POIDS"].' kg</li>
                                                         <li >Taille : '.$data[$i]["TAILLE"].' cm</li>
                                                     </ul>
@@ -143,23 +146,28 @@ include_once '../Interfaces/InterfaceService.php';
                 <!-- Modal signaler perdu -->
                 <div class="modal fade" id="modalPerdu" tabindex="-1" role="dialog" aria-labelledby="modalPerduTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
+                        <form method="POST" action="">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Date de la disparition ?</p>
+                                    <input type="date" name="DATE_PERTE"/>
+                                    <label for="textAreaperte">Quelques précisions concernant le lieu ? lheure ?</label>
+                                    <textarea class="form-control" id="textareaperte" name="précisionsPerte" rows="3"></textarea>
+                                    <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant ici : <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <input type="hidden" name="ID_ANIMAL" value="'.$data[$i]["ID_ANIMAL"].'"></input>
+                                    <button type="button submit" class="btn btn-primary" name="perte">Signaler Perdu</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                <label for="textAreaperte">Quelques précisions concernant le lieu ? lheure ?</label>
-                                <textarea class="form-control" id="textareaperte" name="précisionsPerte" rows="3"></textarea>
-                                <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant ici : <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-primary">Signaler Perdu</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
                         
@@ -178,7 +186,7 @@ include_once '../Interfaces/InterfaceService.php';
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-primary">Confirmer</button>
+                                <button type="button submit" class="btn btn-primary" name="confirmationAnimalRetrouvé">Confirmer</button>
                             </div>
                         </div>
                     </div>
@@ -199,7 +207,8 @@ include_once '../Interfaces/InterfaceService.php';
                                 <p class="mt-2">Confirmer le retrait ?</p>
                             </div>
                             <div class="modal-footer">
-                                <form method="post" action="test.php">
+                                <form method="POST" action="">
+                                    <input type="hidden" name="ID_ANIMAL" value="'.$data[$i]["ID_ANIMAL"].'"></input>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                     <button type="button submit"  class="btn btn-outline-info" name="confirmRetrait" value="true">Confirmer le retrait</button>
                                 </form>

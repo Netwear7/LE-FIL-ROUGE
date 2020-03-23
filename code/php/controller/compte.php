@@ -22,7 +22,8 @@ include_once '../data-access/AdresseDataAccess.php';
 include_once '../model/AnimauxFavoris.php';
 include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
-
+include_once '../service/PerteService.php';
+include_once '../data-access/PerteDataAccess.php';
 
 
 if(isset($_SESSION["user_id"]))
@@ -52,6 +53,12 @@ if (isset($_POST["updatePassword"])){
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
     $serviceUtilisateur->serviceUpdatePassword($_POST);
 
+}
+
+if (isset($_POST["confirmRetrait"])) {
+    $daoAnimaux = new AnimauxDataAccess();
+    $serviceAnimaux = new AnimauxService($daoAnimaux);
+    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
 }
 
 
@@ -87,13 +94,13 @@ if (isset($_POST["updatePassword"])){
         <!--PARTIE PRINCIPALE-->
 
 
-        <div class="container-fluid">
-            <div class="row vh-100">
+        <div class="container-fluid ">
+            <div class="row vh-100  ">
 
 
 
                 <!--NAVBAR COTE GAUCHE-->
-                <div class="col-lg-2 col-sm-12 border border-black">
+                <div class="col-lg-2 col-sm-12 border border-black ">
                     <div class="row">
                         <h3>Mon Compte</h3>
                     </div>
