@@ -30,8 +30,8 @@
         }
         public function daoSelect($idAnimal){
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('SELECT * from photo_animal where ID_ANIMAL = ?');
-            $stmt->bind_param('ii', $id, $idAnimal);
+            $stmt = $mysqli->prepare('SELECT * from photo_animal where ID_PHOTO_ANIMAL = 3 and ID_ANIMAL = ?');
+            $stmt->bind_param('i', $idAnimal);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_array(MYSQLI_ASSOC);
