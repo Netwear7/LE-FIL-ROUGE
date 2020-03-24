@@ -19,11 +19,8 @@
         //Comprendre select all du tableau photoanimal mais que les photos de profil :
         public function daoSelectAllProfil(){
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('SELECT * from photo_animal where PHOTO_PROFIL = ?');
-            $stmt->bind_param('i', $idPhoto);
-            $stmt->execute();
-            $rs = $stmt->get_result();
-            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs = $mysqli->query('SELECT DISTINCT * from photo_animal where PHOTO_PROFIL = true');
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
             $this->deconnexion($mysqli);
             return $data;

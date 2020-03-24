@@ -39,25 +39,18 @@
                 <!---------------test carrousel---------------->
                 <div id="carouselExampleControls" class="carousel slide col-lg-12 bg-dark py-3" data-ride="carousel">
                     <div class="carousel-inner">
-                        <?php 
+                        <?php
                             $photoAnimal = new PhotoAnimal();
-                            $photoAnimalDao = new PhotoAnimalDataAccess();
-                            $photoAnimalService =  new PhotoAnimalService($photoAnimalDao);
-                            $data = $photoAnimalService->serviceSelect(5);
-                            $table = $photoAnimalService->carrousselTest($data);
+                            $photoAnimalService =  new PhotoAnimalService();
+                            $data = $photoAnimalService->serviceSelectAllProfil();
+                            $photoAnimalService->carrousselTest($data);
                         ?>
-                        <div class="carousel-item text-center">
+                        <!-- <div class="carousel-item text-center">
                             <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
                             <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
                             <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
                             <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item text-center">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-                        </div>
+                        </div> -->
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
