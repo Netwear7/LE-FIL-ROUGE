@@ -24,7 +24,7 @@ include_once '../Interfaces/InterfaceDao.php';
         public function daoSelectAllUserAnimals($id)
         {
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('SELECT * from animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN avoir_couleur as C on A.ID_ANIMAL=C.ID_ANIMAL INNER JOIN couleur_animal as D on C.ID_COULEUR=D.ID_COULEUR  where ID_UTILISATEUR = ?');
+            $stmt = $mysqli->prepare('SELECT * from animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN appartenir_espece as C on A.id_race = C.id_race INNER JOIN espece as D on C.ID_ESPECE = D.ID_ESPECE INNER JOIN avoir_couleur as E on A.ID_ANIMAL=E.ID_ANIMAL INNER JOIN couleur_animal as F on E.ID_COULEUR=F.ID_COULEUR  where ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
@@ -48,6 +48,35 @@ include_once '../Interfaces/InterfaceDao.php';
             return $count;
         }
         public function daoAdd($objet){}
+
+        
+        public function daoAddUserAnimal($infos)
+        {
+            $nomAnimal = $infos["nomAnimal"];
+            $dateNaissance= $infos["dateNaissance"];
+            $especeAnimal = $infos["especeAnimale"];
+            $raceAnimal = $infos["raceAnimale"];
+            $sexeAnimal = $infos["sexeAnimal"];
+            $numeroPuce = $infos["numeroPuce"];
+            $caractere= $infos["caractere"];
+            $robe = $infos["robe"];
+            $couleur = $infos["couleur"];
+            $taille = $infos["taille"];
+            $poids = $infos["poids"];
+            $specificites = $infos["specificites"];
+            $raceAnimal == "MAIN COON" ? $raceAnimal = "1" : false;
+                $mysqli = $this->connexion();
+                $stmt = $mysqli->prepare('INSERT INTO animaux VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,?,NULL,NULL,?)');
+                $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe);
+                $stmt->execute();
+                $rs = $stmt->get_result();
+                $count = $rs->fetch_all(MYSQLI_ASSOC);
+                $rs->free();
+                $this->deconnexion($mysqli);
+                return $count;
+
+
+        }
         public function daoSearch($search){}
         public function daoUpdate( $parametres){}
 

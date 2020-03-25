@@ -74,9 +74,7 @@ if (isset($_POST["confirmRetrait"])) {
 <html lang=fr>
     <head>
         <!-- script Javascript-->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
         <title>Mon compte</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -95,7 +93,7 @@ if (isset($_POST["confirmRetrait"])) {
 
 
         <div class="container-fluid ">
-            <div class="row vh-100  ">
+            <div class="row   ">
 
 
 
@@ -247,18 +245,27 @@ if (isset($_POST["confirmRetrait"])) {
                         <!--titre-->
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5 text-center">
-                                        <h3>Mes Compagnons</h3>
-                                        
+                                        <h3>Mes Compagnons</h3>                                        
+                                </div>
+                                <div class="col-2">
+                                <button type="button" class="btn btn-outline-info" id="addAnimal-list" data-toggle="list" href="#list-addAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
                                 </div>
                             </div>
 
 
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
                             <?php
-                            $daoAnimaux = new AnimauxDataAccess();
-                            $serviceAnimaux = new AnimauxService($daoAnimaux);
-                            $data = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                            empty($data) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($_SESSION["user_id"]);
+                            if (isset($_POST["ajoutAnimal"])){
+                                $daoAnimaux = new AnimauxDataAccess();
+                                $serviceAnimaux = new AnimauxService($daoAnimaux);
+                                $serviceAnimaux->serviceAddUserAnimal($_POST);
+                            } else {
+                                $daoAnimaux = new AnimauxDataAccess();
+                                $serviceAnimaux = new AnimauxService($daoAnimaux);
+                                $data = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                                empty($data) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($_SESSION["user_id"]);
+                            }
+
                             ?>
 
 
@@ -269,116 +276,111 @@ if (isset($_POST["confirmRetrait"])) {
 
                         <!--PARTIE POUR ADD un compagnon /)-->
                         <div class="tab-pane fade" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
-                            <div class="row vh-100">
-                                <div class="col-12 border rounded border-black">
+                            <div class="row">
+                                <div class="col-12 ">
                                     <form method="POST" action="compte.php">
                                         <div class="row mt-3">
                                             <!--titre-->
                                             <div class="col-lg-12 text-center">
-                                                <h3>Ajouter un compagnon</h3>
+                                                <h3>Ajoutez votre compagnon</h3>                                                
                                             </div>
                                         </div>
                                          
-
-                                        <!--fiche ajouter un animal -->
-                                        <div class="row mt-5">
-                                            <div class="col-lg-12">
+                                        <div class="row mt-3 ">
+                                            <div class="col-12 ">
+                                            <div class="row mt-3">
+                                            <div class="col-12  text-center">
+                                                <h3>Nom :</h3>
                                                 <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-5">
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-4">
-                                                            </div>
-                                                            <div class="col-lg-6 my-2">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-3">
-                                                            </div>
-                                                            <div class="col-lg-6 my-2">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-2">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <div class="col-lg-12">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-1">
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-4 offset-4">
+                                                        <input type="text" class="form-control" name="nomAnimal">
                                                     </div>
-                                                    <div class="col-lg-8 mt-2">
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-row text-center">
-                                                                    <label for="type"></label><div class="col-lg-12"><h4>Choisir l'espèce :</h4></div></label>                                                                    
-                                                                    <div class="col-lg-12 form-group mt-4">
-                                                                        <input type="text" name="nom" class="form-control" placeholder="Nom">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="date" name="age" class="form-control" placeholder="Age">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="text" name="poil" class="form-control" placeholder="Poil">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <select id="type" name="race" class="form-control">
-                                                                            <option selected>Race</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="number" name="taille" class="form-control" placeholder="Taille">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="number" name="poid" class="form-control" placeholder="Poids">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-5">
-                                                                        <button type="button" href="#" class="btn btn-secondary btn-lg" style="width:100%">Annuler</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div class="form-row text-center">
-                                                                    <div class="form-group col-lg-12">
-                                                                        <select id="type" class="form-control">
-                                                                            <option selected>Animal</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-check col-lg-6 mt-2">
-                                                                        <input class="form-check-input" type="radio" name="radio-male" id="radio-male" value="male" checked>
-                                                                        <label class="form-check-label" for="radio-male">
-                                                                        Mâle
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="form-check col-lg-6 mt-2">
-                                                                        <input class="form-check-input" type="radio" name="radio-femelle" id="radio-femelle" value="femelle">
-                                                                        <label class="form-check-label" for="radio-femelle">
-                                                                        Femelle
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-3">
-                                                                        <input type="number" id="numero-puce" name="numeropuce" class="form-control" placeholder="N° de la puce">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <textarea rows="4" id="comportement" name="comportement" class="form-control" placeholder="Comportement :"></textarea>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <textarea rows="4" id="Particularités" name="spécificités" class="form-control" placeholder="Particularités : Dîtes nous-en un peu plus ..."></textarea>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-5">
-                                                                        <button type="button submit" href="#" class="btn btn-primary btn-lg" style="width:100%">valider</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>                          
+                                                    <div class="col-2 offset-5">
+                                                    <label for="inputDateNaissance" class="mt-2">Date de naissance : </label>
+                                                <input type="date" class="form-control" name="dateNaissance">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="row mt-5 ">
+                                            <div class="col-3"><input type="file"  id="photo1" name="photo1" accept="image/png, image/jpeg"></div>
+                                            <div class="col-3"><input type="file" id="photo2" name="photo1" accept="image/png, image/jpeg"></div>
+                                            <div class="col-3"><input type="file" id="photo3" name="photo1" accept="image/png, image/jpeg"></div>
+                                            <div class="col-3"><input type="file" id="photo4" name="photo1" accept="image/png, image/jpeg"></div>
+                                        </div>
+
+                                        <div class="row mt-3 ">
+                                            <div class="col-6">
+                                                <label for="inputEspece" class="mt-2">Espece : </label>
+                                                    <select class="form-control" id="selectEspece" name="especeAnimale">
+                                                        <option>Chat</option>
+                                                        <option>Chien</option>
+                                                    </select>
+                                                <label for="inputRace" class="mt-2">Race :</label>
+                                                    <select class="form-control" id="selectRace" name="raceAnimale">
+                                                        <option>Main coon</option>
+                                                        <option>Angora</option>
+                                                    </select>
+                                                <label for="inputSexe" class="mt-2">Sexe : </label>
+                                                <select class="form-control" id="selectSexe" name="sexeAnimal">
+                                                        <option>Mâle</option>
+                                                        <option>Femelle</option>
+                                                    </select>
+                                                <label for="inputNumeroPuce" class="mt-2" >Numéro d'identification : </label>
+                                                <input type="text" class="form-control" name="numeroPuce">
+
+                                                
+
+
+
+                                                <label for="textAreaSpécificités" class="mt-2">Caractère :</label>
+                                                <textarea class="form-control " id="textAreaSpécificités" name="caractere" rows="3"></textarea>                          
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="inputRobe" class="mt-2">Robe :</label>
+                                                    <select class="form-control " id="selectRobe" name="robe">
+                                                        <option>Brown Tabby</option>
+                                                        <option>Gris</option>
+                                                        <option>Noir</option>
+                                                        <option>Blanc</option>
+                                                        <option>Marron</option>
+                                                    </select>
+                                                    <label for="inputCouleur" class="mt-2">Couleur :</label>
+                                                    <select class="form-control" id="selectCouleur" name="couleur">
+                                                        <option>Roux</option>
+                                                        <option>Gris</option>
+                                                        <option>Noir</option>
+                                                        <option>Blanc</option>
+                                                        <option>Marron</option>
+                                                    </select>
+                                                    <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
+                                                    <input class="form-control " type="number" placeholder="100" name="taille">
+                                                    <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
+                                                    <input class="form-control " type="float" placeholder="1.3" name="poids">
+                                                    <label for="textAreaSpécificités" class="mt-2">Spécificités :</label>
+                                                    <textarea class="form-control " id="textAreaSpécificités" name="specificites" rows="3"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+
+
+                                        <div class="row mt-3 ">
+                                            <div class="col-3 offset-3">
+                                                <button type="button submit" name="ajoutAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
+                                            </div>
+                                            <div class="col-3">
+                                                <button type="button submit" name="valider" class="btn btn-block btn-outline-info">Annuler</button>
+                                            </div>                                            
+                                        </div>
+                                            </div>
+                                        </div>
+
+
+
                                     </form>
                                 </div>
                             </div>
@@ -515,7 +517,7 @@ if (isset($_POST["confirmRetrait"])) {
 
                             <!--si pas d'animaux en favoris affichage de la div ajouter un animal en favoris sinon affichage des animaux en favoris-->
                             <?php
-                            $daoAnimauxFavoris = new AnimauxFavorisDataAcces();
+                            $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
                             $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
                             $data = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
                             empty($data) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
@@ -529,6 +531,11 @@ if (isset($_POST["confirmRetrait"])) {
             include_once 'footer.php';
         ?>
     </body>
+    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="script.js"></script>
 </html>
 
 

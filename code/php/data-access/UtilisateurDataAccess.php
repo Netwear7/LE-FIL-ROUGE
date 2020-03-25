@@ -110,7 +110,9 @@
                     }
                     $stmt->bind_param("ss",$value2,$num);
                     $stmt->execute();
-                }            
+
+                }      
+                $mysqli->close();      
             // $sql  = !empty($parametres['nom']) ? "UPDATE utilisateur set NOM = '".$_POST['nom']."' where ID_UTILISATEUR = ".$num."; " : false;
             // $sql .= !empty($parametres['prénom']) ? "UPDATE utilisateur set PRENOM = '".$parametres['prénom']."' where ID_UTILISATEUR = ".$num.";" : false;
             // $sql .= !empty($parametres['tel']) ? "UPDATE utilisateur set NUM = '".$parametres['tel']."' where ID_UTILISATEUR = ".$num.";" : false;

@@ -42,10 +42,17 @@ include_once '../Interfaces/InterfaceService.php';
         }
 
 
+
         public function serviceAdd(object $animal)
         {
 
         }
+
+        public function serviceAddUserAnimal($infos)
+        {
+            return $rs = $this->getDataAccessObject()->daoAddUserAnimal($infos);
+        }
+
         public function serviceSearch($search)
         {
 
