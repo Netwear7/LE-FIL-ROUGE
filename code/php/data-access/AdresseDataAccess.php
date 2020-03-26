@@ -9,6 +9,9 @@
         public function deconnexion($mysqli){
             $mysqli->close();
         }
+        
+
+
         public function daoSelectAll(){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from adresse');
@@ -19,6 +22,8 @@
             $mysqli->close();
             return $data;
         }
+
+
 
         public function daoSelect($id){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
@@ -32,8 +37,12 @@
             return $data;
         }
 
+
+
         // count des adresses dans la bdd
         public function daoCount(){}
+
+
 
         // ajout des adresses dans la bdd
         public function daoAdd($adresse)
@@ -49,6 +58,8 @@
             $mysqli->close();
             return $result = $stmt ? "l'adresse a bien été ajoutée" : "L'ajout de l'adresse a échoué";
         }
+
+
 
         //fonction pour récup l'id Adresse directement après l'ajout afin de récupérer 
         //l'id pour pouvoir créer l'utilisateur totalement
@@ -68,8 +79,12 @@
             return $id;
         }
 
+
+
         public function daoSearch($search){}
         public function daoUpdate($parametres){}
+
+
         public function daoDelete($idadresse){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('DELETE FROM adresse where ID_ADRESSE = ?');

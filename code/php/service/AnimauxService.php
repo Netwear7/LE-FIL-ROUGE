@@ -14,6 +14,8 @@ include_once '../Interfaces/InterfaceService.php';
             return $data;
         }
 
+
+
         public function serviceSelectAllUserAnimals($id)
         {
             $data = $this->getDataAccessObject()->daoSelectAllUserAnimals($id);
@@ -21,20 +23,28 @@ include_once '../Interfaces/InterfaceService.php';
         }
 
 
+
+
         public function serviceSelect($id)
         {
             $data = $this->getDataAccessObject()->daoSelect($this->id);
             return $data;
         }
+
+
         public function serviceCount() 
         {
 
         }
 
+
+
         public function serviceCountAll() 
         {
 
         }
+
+
 
         public function serviceCountUserAnimals($id) 
         {
@@ -48,6 +58,8 @@ include_once '../Interfaces/InterfaceService.php';
 
         }
 
+
+
         public function serviceAddUserAnimal($animal)
         {
 
@@ -58,6 +70,8 @@ include_once '../Interfaces/InterfaceService.php';
             
         }
 
+
+
         public function serviceSearchAnimals($search)
         {
             $nomRace=$search["nom_race"];
@@ -67,20 +81,28 @@ include_once '../Interfaces/InterfaceService.php';
             return $data = $this->getDataAccessObject()->daoSearchAnimals($s_nomRace,$s_couleur);    
         }
 
+
+
         public function serviceUpdate(array $post)
         {
 
         }
+
+
 
         public function serviceSearch($search)
         {
 
         }
 
+
+
         public function serviceDelete($id)
         {
             $result = $this->getDataAccessObject()->daoDelete($id);
         }
+
+        
 
         public function serviceDisplayUserAnimals($dataAnimaux)
         {

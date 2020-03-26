@@ -20,10 +20,15 @@
 
 
 
+        
+
         // fonction pour le select de tout les utilisateurs
         public function daoSelectAll(){
 
         }
+
+
+
         
         // fonction pour le select d'un seul utilisateur
         public function daoSelect($id)
@@ -39,11 +44,17 @@
             return $data;
         }
 
+
+
+
         // fonction pour le count
         public function daoCount()
         {
 
         }
+
+
+
 
         // fonction pour l'ajout de l'utilisateur
         public function daoAdd($user)
@@ -63,6 +74,8 @@
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
         }
 
+
+
         public function daoGetId($user)
         {
             $mysqli = new mysqli('localhost','root','','bddanimaux');   
@@ -77,6 +90,8 @@
             return $id;
         }
 
+
+
         // fonction pour la recherche
         public function daoSearch($search){
             $mysqli = $this->connexion();
@@ -90,6 +105,9 @@
             $this->deconnexion($mysqli);
             return $data;
         }
+
+
+
         //fonction pour la modification PRENDS EN PARAMETRE LE POST
         public function daoUpdate($parametres)
         {
@@ -114,6 +132,9 @@
                 }      
                 $mysqli->close();      
         }
+
+
+
         
         public function daoUpdatePassword($id,$mdpHash)
         {
@@ -128,6 +149,9 @@
         {
 
         }
+
+
+
         // Fonction pour la suppression
         public function daoDelete($nom){
             $mysqli = new mysqli('localhost','root','','bddanimaux'); 
