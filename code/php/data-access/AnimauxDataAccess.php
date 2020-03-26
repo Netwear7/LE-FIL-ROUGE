@@ -82,31 +82,31 @@ include_once '../Interfaces/InterfaceDao.php';
 
         public function daoDelete($id)
         {
-            $mysqli = new mysqli('localhost', 'root', '', 'bddanimaux');
+            $mysqli=$this->connexion();
             $stmt = $mysqli->prepare('DELETE * FROM animaux where ID_ANIMAL = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
-            $mysqli->close();
+            $this->deconnexion($mysqli); 
             return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
         }
         public function selectAll(){
-            $db=$this->connexion();
-            $stmt = $db->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
+            $mysqli=$this->connexion();
+            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
             $stmt->execute();  
             $rs = $stmt->get_result();          
             $data= $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
-            $this->deconnexion($db);  
+            $this->deconnexion($mysqli);  
             return $data;
         }
-        public function selectRecherche($s_nomRace, $s_couleur){
-            $db=$this->connexion();
-            $stmt = $db->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur WHERE $s_nomRace AND $s_couleur");
+        public function daoSearchAnimals($s_nomRace, $s_couleur){
+            $mysqli=$this->connexion();
+            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur WHERE $s_nomRace AND $s_couleur");
             $stmt->execute();  
             $rs = $stmt->get_result();          
             $data= $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
-            $this->deconnexion($db);  
+            $this->deconnexion($mysqli);  
             return $data;
         }
     }

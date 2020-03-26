@@ -10,7 +10,7 @@ include_once '../Interfaces/InterfaceService.php';
 
         public function serviceSelectAll()
         {
-            $data = $this->getDataAccessObject()->daoSelectAllAnimals();
+            $data = $this->getDataAccessObject()->daoSelectAll();
             return $data;
         }
 
@@ -53,14 +53,25 @@ include_once '../Interfaces/InterfaceService.php';
             return $rs = $this->getDataAccessObject()->daoAddUserAnimal($infos);
         }
 
-        public function serviceSearch($search)
+        public function serviceSearchAnimals($search)
         {
-
+            $nomRace=$search["nom_race"];
+            $couleur=$search["couleur"];
+            $s_nomRace="B.nom_race LIKE ('$nomRace%')";
+            $s_couleur="D.couleur LIKE ('$couleur%')";
+            return $data = $this->getDataAccessObject()->daoSearchAnimals($s_nomRace,$s_couleur);    
         }
+
         public function serviceUpdate(array $post)
         {
 
         }
+
+        public function serviceSearch($search)
+        {
+
+        }
+
         public function serviceDelete($id)
         {
             $result = $this->getDataAccessObject()->daoDelete($id);

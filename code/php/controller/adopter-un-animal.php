@@ -3,6 +3,7 @@
     include_once('../service/RaceService.php');
     include_once('../service/CouleurAnimalService.php');
     include_once('../service/AnimauxService.php');
+    include_once('../data-access/AnimauxDataAccess.php');
     session_start();
 
     function affichage($data){
@@ -125,14 +126,15 @@
             <div class="col-lg-8">
                 <div class="row">
                     <?php
-                        $animauxService = new AnimauxService();
+                        $daoAnimaux = new AnimauxDataAccess();
+                        $animauxService = new AnimauxService($daoAnimaux);
                         if(!isset($_POST["recherche"])){
-                            $data=$animauxService->selectAll();
+                            $data=$animauxService->serviceSelectAll();
                             affichage($data);
                         }
 
                         if(isset($_POST["recherche"])){
-                            $data=$animauxService->selectRecherche($_POST);
+                            $data=$animauxService->serviceSearchAnimals($_POST);
                             if(count($data)>0){
                                 affichage($data);
                             }
