@@ -110,6 +110,8 @@
             </div>
             ';
         }
+
+        
         public function utilisateurServiceUpdatePanel($id)
         {
             $data = $this->serviceSelect($id);

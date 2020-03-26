@@ -26,7 +26,8 @@
         }
         
         // fonction pour le select d'un seul utilisateur
-        public function daoSelect($id){
+        public function daoSelect($id)
+        {
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where A.ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
@@ -39,7 +40,8 @@
         }
 
         // fonction pour le count
-        public function daoCount(){
+        public function daoCount()
+        {
 
         }
 
@@ -89,14 +91,10 @@
             return $data;
         }
         //fonction pour la modification PRENDS EN PARAMETRE LE POST
-        public function daoUpdate($parametres){
-            /* 
-                /!\/!\/!\/!\/!\/!\/!\
-                Pareil qu'au dessus, 
-                Il y a pas de $rs = 
-                et de $mysqli close ??
-                /!\/!\/!\/!\/!\/!\/!\
-            */
+        public function daoUpdate($parametres)
+        {
+
+            
                 $mysqli = new mysqli('localhost','root','','bddanimaux'); 
                 foreach ($parametres as $key => $value2){
                     $num ="1";
@@ -117,7 +115,8 @@
                 $mysqli->close();      
         }
         
-        public function daoUpdatePassword($id,$mdpHash){
+        public function daoUpdatePassword($id,$mdpHash)
+        {
             $mysqli = new mysqli('localhost','root','','bddanimaux'); 
             $stmt = $mysqli->prepare('UPDATE utilisateur SET MDP = ? where ID_UTILISATEUR = ?');
             $stmt->bind_param('ss',$mdpHash,$id);
@@ -125,7 +124,8 @@
             $mysqli->close();
             return $result = $stmt ? "La modification a bien été effectuée " : "La modification a échouée ";
         }
-        public function daoVerifyActualPassword(){
+        public function daoVerifyActualPassword()
+        {
 
         }
         // Fonction pour la suppression

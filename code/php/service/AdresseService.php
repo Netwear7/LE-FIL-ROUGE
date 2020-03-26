@@ -12,7 +12,8 @@
         }
 
         //Select Adresses
-        public function serviceSelect($id){
+        public function serviceSelect($id)
+        {
             $data = $this->getDataAccessObject()->daoSelect($this->id);
             return $data;
         }
@@ -27,7 +28,8 @@
         }
 
         // function pour l'ajout Adresses
-        public function serviceAdd($adresse){
+        public function serviceAdd($adresse)
+        {
             $this->getDataAccessObject()->daoAdd($adresse);
             $id = $this->getDataAccessObject()->daoGetId($adresse);
             $adresse->setIdAdresse($id[0]["ID_ADRESSE"]);

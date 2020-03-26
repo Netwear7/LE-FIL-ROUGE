@@ -10,6 +10,8 @@ include_once '../Interfaces/InterfaceDao.php';
         public function deconnexion($mysqli){
             $mysqli->close();
         }
+
+
         public function daoSelectAll()
         {
             $mysqli = $this->connexion();
@@ -35,7 +37,11 @@ include_once '../Interfaces/InterfaceDao.php';
             $mysqli->close();
             return $data;
         }
+
+
         public function daoSelect($id){}
+
+
         public function daoCount(){}
 
         
@@ -53,7 +59,10 @@ include_once '../Interfaces/InterfaceDao.php';
         }
 
 
-        public function daoAdd($objet){}
+        public function daoAdd($objet)
+        {
+            
+        }
 
         
         public function daoAddUserAnimal($animal)
@@ -81,7 +90,8 @@ include_once '../Interfaces/InterfaceDao.php';
                 $mysqli->close();
         }
 
-        public function daoGetId($animal){
+        public function daoGetId($animal)
+        {
             $mysqli = new mysqli('localhost','root','','bddanimaux');   
             $nom = $animal->getNomAnimal();
             $id = $animal->getIdUtilisateurAnimal();
