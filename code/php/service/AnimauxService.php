@@ -51,7 +51,11 @@ include_once '../Interfaces/InterfaceService.php';
         public function serviceAddUserAnimal($animal)
         {
 
-            return $rs = $this->getDataAccessObject()->daoAddUserAnimal($animal);
+            $rs = $this->getDataAccessObject()->daoAddUserAnimal($animal);
+            $id = $this->getDataAccessObject()->daoGetId($animal);
+            $animal->setIdAnimal($id[0]["ID_ANIMAL"]);
+            return $rs;
+            
         }
 
         public function serviceSearchAnimals($search)

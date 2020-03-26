@@ -24,6 +24,9 @@ include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
 include_once '../service/PerteService.php';
 include_once '../data-access/PerteDataAccess.php';
+include_once '../model/AvoirCouleur.php';
+include_once '../service/AvoirCouleurService.php';
+include_once '../data-access/AvoirCouleurDataAccess.php';
 
 
 if(isset($_SESSION["user_id"]))
@@ -257,13 +260,22 @@ if (isset($_POST["confirmRetrait"])) {
                                 $serviceAnimaux = new AnimauxService($daoAnimaux);
                                 $animal = new Animaux($_POST);
                                 $serviceAnimaux->serviceAddUserAnimal($animal);
+                                $avoirCouleurDao = new AvoirCouleurDataAccess();
+                                $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
+                                $avoirCouleur = new AvoirCouleur($animal);
+                                $avoirCouleurService->serviceAdd($avoirCouleur);
+                                $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                                empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux);
                             } else {
                                 
                                 $daoAnimaux = new AnimauxDataAccess();
                                 $serviceAnimaux = new AnimauxService($daoAnimaux);
                                 $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
                                 empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux);
-                            }
+                                
+                            } 
+                            
+                            
 
                             ?>
 
@@ -297,7 +309,7 @@ if (isset($_POST["confirmRetrait"])) {
                                                     <div class="col-2 offset-5">
                                                     <label for="inputDateNaissance" class="mt-2">Date de naissance : </label>
                                                 <input type="date" class="form-control" name="dateNaissance">
-                                                    </div>
+                                                    </div >
                                                 </div>
                                             </div>
                                         </div>
@@ -387,7 +399,7 @@ if (isset($_POST["confirmRetrait"])) {
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
                         <?php
-                             $serviceAnimaux->serviceUpdatePanelAnimals($dataAnimaux);
+                            $serviceAnimaux->serviceUpdatePanelAnimals($dataAnimaux);
                         ?>
                         
                        

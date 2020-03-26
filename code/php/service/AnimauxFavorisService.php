@@ -3,9 +3,10 @@
 class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
 
     public function serviceSelectAll(){}
-    public function serviceSelectAllUserFavouriteAnimals()
+    public function serviceSelectAllUserFavouriteAnimals($id)
     {
-
+        $data = $this->getDataAccessObject()->daoSelectAllUserFavouritesAnimals($id);
+        return $data;
     }
     public function serviceSelect($id){}
     public function serviceCount(){}
@@ -15,7 +16,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
     public function serviceDelete($nom){}
     public function serviceCountUserFavouriteAnimals($id){}
 
-    public function serviceDisplayUserFavouriteAnimals()
+    public function serviceDisplayUserFavouriteAnimals($id)
     {
 
             $data = $this->getDataAccessObject()->daoSelectAllUserFavouritesAnimals($id);

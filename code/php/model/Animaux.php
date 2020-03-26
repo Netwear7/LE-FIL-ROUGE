@@ -157,7 +157,7 @@
          */ 
         public function setCaractereAnimal($caractereAnimal)
         {
-                $this->caractereAnimal = $caractereAnimal;
+                 $this->caractereAnimal = $caractereAnimal;
 
                 return $this;
         }
