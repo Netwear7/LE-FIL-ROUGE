@@ -5,13 +5,7 @@
 class AnimauxFavorisDataAccess implements InterfaceDao {
 
 
-    public function connexion(){
-        $mysqli = new mysqli('localhost','root','','bddanimaux');
-        return $mysqli;    
-    }
-    public function deconnexion($mysqli){
-        $mysqli->close();
-    }
+
     public function daoSelectAll(){}
 
 

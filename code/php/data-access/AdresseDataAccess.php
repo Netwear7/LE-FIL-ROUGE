@@ -10,25 +10,25 @@
             $mysqli->close();
         }
         public function daoSelectAll(){
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from adresse');
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
-            $$this->deconnexion($mysqli);
+            $mysqli->close();
             return $data;
         }
 
         public function daoSelect($id){
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from adresse  where ID_ADRESSE = ?');
             $stmt->bind_param('i',$idAdresse);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return $data;
         }
 
@@ -37,7 +37,7 @@
 
         // ajout des adresses dans la bdd
         public function daoAdd($adresse){   
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $num = $adresse->getNumero();
             $rue = $adresse->getRue();
             $ville = $adresse->getVille();
@@ -45,14 +45,14 @@
             $stmt = $mysqli->prepare('INSERT INTO adresse (NUMERO,RUE,VILLE,CODE_POSTAL) VALUES (?,?,?,?) ');
             $stmt->bind_param('ssss',$num,$rue,$ville,$cp);
             $stmt->execute();
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return $result = $stmt ? "l'adresse a bien été ajoutée" : "L'ajout de l'adresse a échoué";
         }
 
         //fonction pour récup l'id Adresse directement après l'ajout afin de récupérer 
         //l'id pour pouvoir créer l'utilisateur totalement
-        public function daoTakeId($adresse){
-            $mysqli = $this->connexion();
+        public function daoGetId($adresse){
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $num = $adresse->getNumero();
             $rue = $adresse->getRue();
             $ville = $adresse->getVille();
@@ -62,18 +62,18 @@
             $stmt->execute();
             $rs = $stmt->get_result();
             $id = $rs->fetch_all(MYSQLI_ASSOC);
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return $id;
         }
 
         public function daoSearch($search){}
         public function daoUpdate($parametres){}
         public function daoDelete($idadresse){
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('DELETE FROM adresse where ID_ADRESSE = ?');
             $stmt->bind_param('s', $idadresse);
             $stmt->execute();
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return   $result = $stmt ? "La suppression a bien été effectuée " : "La suppression a échouée ";
         }
     }

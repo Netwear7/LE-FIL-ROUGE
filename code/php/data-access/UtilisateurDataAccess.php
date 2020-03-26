@@ -27,14 +27,14 @@
         
         // fonction pour le select d'un seul utilisateur
         public function daoSelect($id){
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where A.ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_array(MYSQLI_ASSOC);
             $rs->free();
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return $data;
         }
 
@@ -45,7 +45,7 @@
 
         // fonction pour l'ajout de l'utilisateur
         public function daoAdd($user){
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
             $nom = $user->getNom();
             $prenom = $user->getPrenom();
             $pseudo = $user->getPseudo();
@@ -56,12 +56,12 @@
             $stmt = $mysqli->prepare('INSERT INTO utilisateur (NOM, PRENOM, PSEUDO,MDP,ADRESSE_EMAIL,NUM,ID_ADRESSE) VALUES (?,?,?,?,?,?,?) ');
             $stmt-> bind_param('sssssss',$nom, $prenom, $pseudo, $mdp, $mail, $num, $idAdresse);
             $stmt->execute();
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
         }
 
         public function daoGetId($user){
-            $mysqli = $this->connexion();   
+            $mysqli = new mysqli('localhost','root','','bddanimaux');   
             $mail = $user->getEmail();
             $mdp = $user->getPassword();
             $stmt = $mysqli->prepare('SELECT ID_UTILISATEUR from utilisateur where ADRESSE_EMAIL = ? AND MDP = ?');
@@ -69,7 +69,7 @@
             $stmt->execute();
             $rs = $stmt->get_result();
             $id = $rs->fetch_all(MYSQLI_ASSOC);
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return $id;
         }
 

@@ -19,8 +19,22 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
     public function serviceDisplayUserFavouriteAnimals($id)
     {
 
-            $data = $this->getDataAccessObject()->daoSelectAllUserFavouritesAnimals($id);
-            $count = count($data);
+            $dataAnimaux = $this->getDataAccessObject()->daoSelectAllUserFavouritesAnimals($id);
+            $count = count($dataAnimaux);
+
+            echo 
+            '
+                <div class="row mt-2">
+                    <div class="col-8 offset-2 text-center border rounded border-black text-center">
+                        <div class="row m-3 ">
+                            <div class="col-12 text-center">
+                                <p> Pour ajouter d\'autres animaux dans vos coups de coeur, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page d\'adoption</p>
+                                <a href="adopter-un-animal.php"><button type="button" class="btn btn-outline-info">Ajoutez d\'autres compagnons dans vos coups de coeur</button></a>
+                            </div>
+                        </div>
+                    </div>                                
+                </div>
+            ';
 
             for ($i = 0; $i < $count ; $i++) 
             
@@ -40,18 +54,11 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                     <div class="col-md-2">
                                         <!--informations sur lanimal-->
                                         <div class="card-block text-center">
-                                            <h4 class="card-title mt-3"> '.$data[$i]["NOM"].'</h4>
-                                            <h5 class=" mt-3">'.$data[$i]["NOM_RACE"].'</h5>
-                                            <p class="card-text"><strong>Né le  : </strong><br/>'.$data[$i]["DATE_NAISSANCE"].'  </p>
-                                            <!--Bouton pour le modal signaler perdu-->
-                                            <a href="#lost" data-toggle="modal" data-target="#modalPerdu">Signaler perdu</a>  
-                                            <!--signaler retrouvé ?-->
-                                            <a href="#lost" data-toggle="modal" data-target="#modalRetrouvé">Signaler Retrouvé</a>                                                          
-                                            <!--bouton modifier-->
-                                            <button type="button" class="btn btn-outline-info" id="modAnimal-list" data-toggle="list" href="#list-modAnimal" role="tab" aria-controls="modAnimal">Modifier</button>
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-outline-info mb-2 " data-toggle="modal" data-target="#modalRetrait">
-                                                retirer la fiche
+                                            <h4 class="card-title mt-3"> '.$dataAnimaux[$i]["NOM"].'</h4>
+                                            <h5 class=" mt-3">'.$dataAnimaux[$i]["NOM_RACE"].'</h5>
+                                            <p class="card-text"><strong>Né le  : </strong><br/>'.$dataAnimaux[$i]["DATE_NAISSANCE"].'  </p>
+                                            <button type="button" class="btn btn-outline-info mb-2 ">
+                                                Retirer des favoris
                                             </button>
                                         </div>
                                     </div>
@@ -62,8 +69,9 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                                 <div class="card-block">
                                                     <p class="card-text">
                                                         <ul class="list-group list-group-flush">
-                                                            <li >Couleur : '.$data[$i]["COULEUR"].'</li>
-                                                            <li >Caractère : '.$data[$i]["CARACTERE"].' </li>
+                                                            <li >Robe : '.$dataAnimaux[$i]["ROBE"].'</li>
+                                                            <li >Couleur : '.$dataAnimaux[$i]["COULEUR"].'</li>
+                                                            <li >Caractère : '.$dataAnimaux[$i]["CARACTERE"].' </li>
                                                         </ul>
                                                     </p>
                                                 </div>
@@ -72,8 +80,9 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                             <div class="card-block">
                                                 <p class="card-text">
                                                     <ul class="list-group list-group-flush">
-                                                        <li >Poids : '.$data[$i]["POIDS"].' kg</li>
-                                                        <li >Taille : '.$data[$i]["TAILLE"].' cm</li>
+                                                        <li> Sexe : '.$dataAnimaux[$i]["SEXE"].'</li>
+                                                        <li >Poids : '.$dataAnimaux[$i]["POIDS"].' kg</li>
+                                                        <li >Taille : '.$dataAnimaux[$i]["TAILLE"].' cm</li>
                                                     </ul>
                                                 </p>
                                             </div>
@@ -85,7 +94,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                                 <div class="card-block">
                                                     <p class="card-text">
                                                         <ul class="list-group list-group-flush">
-                                                            <li >Spécificités : <br/>'.$data[$i]["SPECIFICITE"].'</li>
+                                                            <li >Spécificités : <br/>'.$dataAnimaux[$i]["SPECIFICITE"].'</li>
                                                         </ul>
                                                     </p>
                                                 </div>
@@ -98,73 +107,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                     </div>
                 </div>
 
-                <!-- Modal signaler perdu -->
-                <div class="modal fade" id="modalPerdu" tabindex="-1" role="dialog" aria-labelledby="modalPerduTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <label for="textAreaperte">Quelques précisions concernant le lieu ? lheure ?</label>
-                                <textarea class="form-control" id="textareaperte" name="précisionsPerte" rows="3"></textarea>
-                                <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant ici : <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-primary">Signaler Perdu</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                         
-                <!-- Modal signaler retrouvé -->
-                <div class="modal fade" id="modalRetrouvé" tabindex="-1" role="dialog" aria-labelledby="modalRetrouvéTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalRetrouvéTitle1">Confirmez vous avoir Retrouvé votre animal?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                                <small id="lostAnimal" class="form-text text-muted">Si cest bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                <button type="button" class="btn btn-primary">Confirmer</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    
-                <!-- Modal -->
-                <div class="modal fade" id="modalRetrait" tabindex="-1" role="dialog" aria-labelledby="modalRetraitTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir retirer la fiche?</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <p>En cliquant sur le bouton ci-dessous vous confirmez le retrait de la fiche animale de vos fiches. Une fois laction validée, la fiche ne sera plus disponible</p>
-                                <p class="mt-2">Confirmer le retrait ?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <form method="post" action="test.php">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                                    <button type="button submit"  class="btn btn-outline-info" name="confirmRetrait" value="true">Confirmer le retrait</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 ';
             }
         }
@@ -177,9 +120,9 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                 <div class="col-8 offset-2 text-center border rounded border-black text-center">
                     <div class="row m-3 ">
                         <div class="col-12 text-center">
-                            <h5>Pas encore danimaux Coup de coeur ?</h5>
-                            <p> Pour en ajouter, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page Dadoption</p>
-                            <button type="button" class="btn btn-outline-info">Ajoutez un Compagnon dans vos coups de coeur</button>
+                            <h5>Pas encore d\'animaux Coup de coeur ?</h5>
+                            <p> Pour en ajouter un, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page d\'adoption</p>
+                            <a href="adopter-un-animal.php"><button type="button" class="btn btn-outline-info">Ajoutez un Compagnon dans vos coups de coeur</button></a>
                         </div>
                     </div>
                 </div>                                
