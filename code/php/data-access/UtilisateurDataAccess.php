@@ -3,19 +3,15 @@
     include_once '../Interfaces/InterfaceDao.php';
 
     class UtilisateurDataAccess implements InterfaceDao{
-
-
+        public function __construct(){
+    
+        }
         public function connexion(){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             return $mysqli;    
         }
         public function deconnexion($mysqli){
             $mysqli->close();
-        }
-
-
-        public function __construct(){
-
         }
 
 
@@ -48,10 +44,7 @@
 
 
         // fonction pour le count
-        public function daoCount()
-        {
-
-        }
+        public function daoCount(){}
 
 
 
