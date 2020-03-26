@@ -35,6 +35,8 @@ include_once '../Interfaces/InterfaceDao.php';
         }
         public function daoSelect($id){}
         public function daoCount(){}
+
+        
         public function daoCountUserAnimal($id)
         {
             $mysqli = $this->connexion();
@@ -47,36 +49,36 @@ include_once '../Interfaces/InterfaceDao.php';
             $this->deconnexion($mysqli);
             return $count;
         }
+
+
         public function daoAdd($objet){}
 
         
-        public function daoAddUserAnimal($infos)
+        public function daoAddUserAnimal($animal)
         {
-            $nomAnimal = $infos["nomAnimal"];
-            $dateNaissance= $infos["dateNaissance"];
-            $especeAnimal = $infos["especeAnimale"];
-            $raceAnimal = $infos["raceAnimale"];
-            $sexeAnimal = $infos["sexeAnimal"];
-            $numeroPuce = $infos["numeroPuce"];
-            $caractere= $infos["caractere"];
-            $robe = $infos["robe"];
-            $couleur = $infos["couleur"];
-            $taille = $infos["taille"];
-            $poids = $infos["poids"];
-            $specificites = $infos["specificites"];
-            $raceAnimal == "MAIN COON" ? $raceAnimal = "1" : false;
+            
+            $idUtilisateur = $animal->getIdUtilisateurAnimal();
+            $nomAnimal = $animal->getNomAnimal();
+            $dateNaissance= $animal->getDateNaissanceAnimal();
+            $especeAnimal = $animal->getEspeceAnimal();
+            $raceAnimal = $animal->getRaceAnimal();
+            $sexeAnimal = $animal->getSexeAnimal();
+            $numeroPuce = $animal->getNoPuce();
+            $caractere= $animal->getCaractereAnimal();
+            $robe = $animal->getRobeAnimal();
+            $couleur = $animal->getCouleurAnimal();
+            $taille = $animal->getTailleAnimal();
+            $poids = $animal->getPoidsAnimal();
+            $specificites = $animal->getSpecificiteAnimal();
+            $raceAnimal == "Main coon" ? $raceAnimal = "1" : false;
                 $mysqli = $this->connexion();
-                $stmt = $mysqli->prepare('INSERT INTO animaux VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,?,NULL,NULL,?)');
-                $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe);
+                $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, ID_GARDERIE, SEXE) VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,?,NULL,NULL,?)');
+                $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe,$raceAnimal,$idUtilisateur, $sexeAnimal);
                 $stmt->execute();
-                $rs = $stmt->get_result();
-                $count = $rs->fetch_all(MYSQLI_ASSOC);
-                $rs->free();
+                
                 $this->deconnexion($mysqli);
-                return $count;
-
-
         }
+
         public function daoSearch($search){}
         public function daoUpdate( $parametres){}
 

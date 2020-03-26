@@ -2,267 +2,384 @@
     class Animaux{
         private $idAnimal;
         private $nomAnimal;
-        private $DateNaissanceAnimal;
-        private $PoidsAnimal;
+        private $dateNaissanceAnimal;
+        private $poidsAnimal;
         private $noPuce;
         private $caractereAnimal;
         private $specificiteAnimal;
         private $tailleAnimal;
         private $robeAnimal;
+        private $especeAnimal;
+        private $raceAnimal;
+        private $idUtilisateurAnimal;
+        private $sexeAnimal;
+        private $couleurAnimal;
         private $dateArrivee;
         private $dateSortie;
+        private $idRefuge;
+
+
+        public function __construct($infos)
+        {
+            $this->setNomAnimal($infos["nomAnimal"]);
+            $this->setDateNaissanceAnimal($infos["dateNaissance"]);
+            $this->setNoPuce($infos["numeroPuce"]);
+            $this->setPoidsAnimal($infos["poids"]);
+            $this->setCaractereAnimal($infos["caractere"]);
+            $this->setSpecificiteAnimal($infos["specificites"]);
+            $this->setTailleAnimal($infos["taille"]);
+            $this->setRobeAnimal($infos["robe"]);
+            $this->setEspeceAnimal($infos["especeAnimale"]);
+            $this->setRaceAnimal($infos["raceAnimale"]);
+            $this->setIdUtilisateurAnimal($infos["idUtilisateur"]);
+            $this->setSexeAnimal($infos["sexeAnimal"]);
+            $this->setCouleurAnimal($infos["couleur"]);
+        }
+
+
+
+
+
+
 
         /**
-         * Getter for IdAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of idAnimal
+         */ 
         public function getIdAnimal()
         {
-            return $this->idAnimal;
+                return $this->idAnimal;
         }
 
         /**
-         * Setter for IdAnimal
-         * @var [type] idAnimal
+         * Set the value of idAnimal
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setIdAnimal($idAnimal)
         {
-            $this->idAnimal = $idAnimal;
-            return $this;
+                $this->idAnimal = $idAnimal;
+
+                return $this;
         }
 
-
         /**
-         * Getter for NomAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of nomAnimal
+         */ 
         public function getNomAnimal()
         {
-            return $this->nomAnimal;
+                return $this->nomAnimal;
         }
 
         /**
-         * Setter for NomAnimal
-         * @var [type] nomAnimal
+         * Set the value of nomAnimal
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setNomAnimal($nomAnimal)
         {
-            $this->nomAnimal = $nomAnimal;
-            return $this;
+                $this->nomAnimal = $nomAnimal;
+
+                return $this;
         }
 
-
         /**
-         * Getter for DateNaissanceAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of dateNaissanceAnimal
+         */ 
         public function getDateNaissanceAnimal()
         {
-            return $this->DateNaissanceAnimal;
+                return $this->dateNaissanceAnimal;
         }
 
         /**
-         * Setter for DateNaissanceAnimal
-         * @var [type] DateNaissanceAnimal
+         * Set the value of dateNaissanceAnimal
          *
-         * @return self
-         */
-        public function setDateNaissanceAnimal($DateNaissanceAnimal)
+         * @return  self
+         */ 
+        public function setDateNaissanceAnimal($dateNaissanceAnimal)
         {
-            $this->DateNaissanceAnimal = $DateNaissanceAnimal;
-            return $this;
+                $this->dateNaissanceAnimal = $dateNaissanceAnimal;
+
+                return $this;
         }
 
-
         /**
-         * Getter for PoidsAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of poidsAnimal
+         */ 
         public function getPoidsAnimal()
         {
-            return $this->PoidsAnimal;
+                return $this->poidsAnimal;
         }
 
         /**
-         * Setter for PoidsAnimal
-         * @var [type] PoidsAnimal
+         * Set the value of poidsAnimal
          *
-         * @return self
-         */
-        public function setPoidsAnimal($PoidsAnimal)
+         * @return  self
+         */ 
+        public function setPoidsAnimal($poidsAnimal)
         {
-            $this->PoidsAnimal = $PoidsAnimal;
-            return $this;
+                $this->poidsAnimal = $poidsAnimal;
+
+                return $this;
         }
 
-
         /**
-         * Getter for NoPuce
-         *
-         * @return [type]
-         */
+         * Get the value of noPuce
+         */ 
         public function getNoPuce()
         {
-            return $this->noPuce;
+                return $this->noPuce;
         }
 
         /**
-         * Setter for NoPuce
-         * @var [type] noPuce
+         * Set the value of noPuce
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setNoPuce($noPuce)
         {
-            $this->noPuce = $noPuce;
-            return $this;
+                $this->noPuce = $noPuce;
+
+                return $this;
         }
 
-
         /**
-         * Getter for CaractereAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of caractereAnimal
+         */ 
         public function getCaractereAnimal()
         {
-            return $this->caractereAnimal;
+                return $this->caractereAnimal;
         }
 
         /**
-         * Setter for CaractereAnimal
-         * @var [type] caractereAnimal
+         * Set the value of caractereAnimal
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setCaractereAnimal($caractereAnimal)
         {
-            $this->caractereAnimal = $caractereAnimal;
-            return $this;
+                $this->caractereAnimal = $caractereAnimal;
+
+                return $this;
         }
 
-
         /**
-         * Getter for SpecificiteAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of specificiteAnimal
+         */ 
         public function getSpecificiteAnimal()
         {
-            return $this->specificiteAnimal;
+                return $this->specificiteAnimal;
         }
 
         /**
-         * Setter for SpecificiteAnimal
-         * @var [type] specificiteAnimal
+         * Set the value of specificiteAnimal
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setSpecificiteAnimal($specificiteAnimal)
         {
-            $this->specificiteAnimal = $specificiteAnimal;
-            return $this;
+                $this->specificiteAnimal = $specificiteAnimal;
+
+                return $this;
         }
 
-
         /**
-         * Getter for TailleAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of tailleAnimal
+         */ 
         public function getTailleAnimal()
         {
-            return $this->tailleAnimal;
+                return $this->tailleAnimal;
         }
 
         /**
-         * Setter for TailleAnimal
-         * @var [type] tailleAnimal
+         * Set the value of tailleAnimal
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setTailleAnimal($tailleAnimal)
         {
-            $this->tailleAnimal = $tailleAnimal;
-            return $this;
+                $this->tailleAnimal = $tailleAnimal;
+
+                return $this;
         }
 
-
         /**
-         * Getter for RobeAnimal
-         *
-         * @return [type]
-         */
+         * Get the value of robeAnimal
+         */ 
         public function getRobeAnimal()
         {
-            return $this->robeAnimal;
+                return $this->robeAnimal;
         }
 
         /**
-         * Setter for RobeAnimal
-         * @var [type] robeAnimal
+         * Set the value of robeAnimal
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setRobeAnimal($robeAnimal)
         {
-            $this->robeAnimal = $robeAnimal;
-            return $this;
+                $this->robeAnimal = $robeAnimal;
+
+                return $this;
         }
 
+        /**
+         * Get the value of raceAnimal
+         */ 
+        public function getRaceAnimal()
+        {
+                return $this->raceAnimal;
+        }
 
         /**
-         * Getter for DateArrivee
+         * Set the value of raceAnimal
          *
-         * @return [type]
-         */
+         * @return  self
+         */ 
+        public function setRaceAnimal($raceAnimal)
+        {
+                $this->raceAnimal = $raceAnimal;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of idUtilisateurAnimal
+         */ 
+        public function getIdUtilisateurAnimal()
+        {
+                return $this->idUtilisateurAnimal;
+        }
+
+        /**
+         * Set the value of idUtilisateurAnimal
+         *
+         * @return  self
+         */ 
+        public function setIdUtilisateurAnimal($idUtilisateurAnimal)
+        {
+                $this->idUtilisateurAnimal = $idUtilisateurAnimal;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of sexeAnimal
+         */ 
+        public function getSexeAnimal()
+        {
+                return $this->sexeAnimal;
+        }
+
+        /**
+         * Set the value of sexeAnimal
+         *
+         * @return  self
+         */ 
+        public function setSexeAnimal($sexeAnimal)
+        {
+                $this->sexeAnimal = $sexeAnimal;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of couleurAnimal
+         */ 
+        public function getCouleurAnimal()
+        {
+                return $this->couleurAnimal;
+        }
+
+        /**
+         * Set the value of couleurAnimal
+         *
+         * @return  self
+         */ 
+        public function setCouleurAnimal($couleurAnimal)
+        {
+                $this->couleurAnimal = $couleurAnimal;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of dateArrivee
+         */ 
         public function getDateArrivee()
         {
-            return $this->dateArrivee;
+                return $this->dateArrivee;
         }
 
         /**
-         * Setter for DateArrivee
-         * @var [type] dateArrivee
+         * Set the value of dateArrivee
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setDateArrivee($dateArrivee)
         {
-            $this->dateArrivee = $dateArrivee;
-            return $this;
+                $this->dateArrivee = $dateArrivee;
+
+                return $this;
         }
 
-
         /**
-         * Getter for DateSortie
-         *
-         * @return [type]
-         */
+         * Get the value of dateSortie
+         */ 
         public function getDateSortie()
         {
-            return $this->dateSortie;
+                return $this->dateSortie;
         }
 
         /**
-         * Setter for DateSortie
-         * @var [type] dateSortie
+         * Set the value of dateSortie
          *
-         * @return self
-         */
+         * @return  self
+         */ 
         public function setDateSortie($dateSortie)
         {
-            $this->dateSortie = $dateSortie;
-            return $this;
+                $this->dateSortie = $dateSortie;
+
+                return $this;
         }
 
+        /**
+         * Get the value of idRefuge
+         */ 
+        public function getIdRefuge()
+        {
+                return $this->idRefuge;
+        }
+
+        /**
+         * Set the value of idRefuge
+         *
+         * @return  self
+         */ 
+        public function setIdRefuge($idRefuge)
+        {
+                $this->idRefuge = $idRefuge;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of especeAnimal
+         */ 
+        public function getEspeceAnimal()
+        {
+                return $this->especeAnimal;
+        }
+
+        /**
+         * Set the value of especeAnimal
+         *
+         * @return  self
+         */ 
+        public function setEspeceAnimal($especeAnimal)
+        {
+                $this->especeAnimal = $especeAnimal;
+
+                return $this;
+        }
     }
 ?>

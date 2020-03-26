@@ -5,7 +5,9 @@
 class AnimauxFavorisDataAccess implements InterfaceDao {
 
     public function daoSelectAll(){}
-    public function daoSelectAllUserFavouritesAnimals(){}
+    public function daoSelectAllUserFavouritesAnimals($id){
+
+    }
     public function daoSelect(int $id){}
     public function daoCount(){}
     public function daoAdd($object){}

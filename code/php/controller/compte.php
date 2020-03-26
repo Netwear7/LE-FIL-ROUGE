@@ -51,7 +51,7 @@ if (isset($_POST["delete"])){
 if (isset($_POST["updatePassword"])){
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-    $serviceUtilisateur->serviceUpdatePassword($_POST);
+    $serviceUtilisateur->serviceUpdatePassword($_SESSION["user_id"],$_POST);
 
 }
 
@@ -247,9 +247,6 @@ if (isset($_POST["confirmRetrait"])) {
                                 <div class="col-8 offset-2 border rounded border-black mt-5 text-center">
                                         <h3>Mes Compagnons</h3>                                        
                                 </div>
-                                <div class="col-2">
-                                <button type="button" class="btn btn-outline-info" id="addAnimal-list" data-toggle="list" href="#list-addAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
-                                </div>
                             </div>
 
 
@@ -258,12 +255,14 @@ if (isset($_POST["confirmRetrait"])) {
                             if (isset($_POST["ajoutAnimal"])){
                                 $daoAnimaux = new AnimauxDataAccess();
                                 $serviceAnimaux = new AnimauxService($daoAnimaux);
-                                $serviceAnimaux->serviceAddUserAnimal($_POST);
+                                $animal = new Animaux($_POST);
+                                $serviceAnimaux->serviceAddUserAnimal($animal);
                             } else {
+                                
                                 $daoAnimaux = new AnimauxDataAccess();
                                 $serviceAnimaux = new AnimauxService($daoAnimaux);
-                                $data = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                                empty($data) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($_SESSION["user_id"]);
+                                $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                                empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux);
                             }
 
                             ?>
@@ -328,7 +327,7 @@ if (isset($_POST["confirmRetrait"])) {
                                                         <option>Femelle</option>
                                                     </select>
                                                 <label for="inputNumeroPuce" class="mt-2" >Numéro d'identification : </label>
-                                                <input type="text" class="form-control" name="numeroPuce">
+                                                <input type="text" class="form-control" name="numeroPuce" placeholder="Numéro de Puce Electronique">
 
                                                 
 
@@ -361,12 +360,12 @@ if (isset($_POST["confirmRetrait"])) {
                                                     <input class="form-control " type="float" placeholder="1.3" name="poids">
                                                     <label for="textAreaSpécificités" class="mt-2">Spécificités :</label>
                                                     <textarea class="form-control " id="textAreaSpécificités" name="specificites" rows="3"></textarea>
+                                                    <input type="hidden" name="idUtilisateur" value="<?php echo $_SESSION["user_id"];?>"></input>
                                                 </div>
                                             </div>
                                         </div>
 
                                         
-
 
                                         <div class="row mt-3 ">
                                             <div class="col-3 offset-3">
@@ -386,120 +385,12 @@ if (isset($_POST["confirmRetrait"])) {
                             </div>
                         </div>
 
-
-                        <!--PARTIE POUR MODIFIER LA FICHE ANIMALE /)-->
-                        <div class="tab-pane fade" id="list-modAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">
-                            <div class="row vh-100">
-                                <div class="col-12 border rounded border-black">
-                                    <form>
-                                        <div class="row mt-3">
-                                            <div class="col-lg-12 text-center">
-                                                <h3>Modifier une fiche compagnon</h3>
-                                            </div>
-                                        </div>
-                                
-                                        <div class="row mt-5">
-                                            <div class="col-lg-12">
-                                                <div class="row">
-                                                    <div class="col-lg-4">
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-5">
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-4">
-                                                            </div>
-                                                            <div class="col-lg-6 my-2">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-3">
-                                                            </div>
-                                                            <div class="col-lg-6 my-2">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-2">
-                                                            </div>
-                                                        </div>
-                                                        <div class="row mb-3">
-                                                            <div class="col-lg-12">
-                                                                <img src="Koala.jpg" class="rounded w-100" alt="img-profil-1">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-8 mt-2">
-                                                        <div class="row">
-                                                            <div class="col-lg-6">
-                                                                <div class="form-row text-center">
-                                                                    <label for="type"></label><div class="col-lg-12"><h4>Espèce :</h4></div></label>                                                                    
-                                                                    <div class="col-lg-12 form-group mt-4">
-                                                                        <input type="text" class="form-control" placeholder="Nom">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="text" class="form-control" placeholder="Age">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="text" class="form-control" placeholder="Poil">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <select id="type" class="form-control">
-                                                                            <option selected>Race</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="text" class="form-control" placeholder="Taille">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <input type="text" class="form-control" placeholder="Poids">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-5">
-                                                                        <button type="button" href="#" class="btn btn-secondary btn-lg" style="width:100%">Annuler</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div class="form-row text-center">
-                                                                    <div class="form-group col-lg-12">
-                                                                        <select id="type" class="form-control">
-                                                                            <option selected>Animal</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                            <option>...</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-check col-lg-6 mt-2">
-                                                                        <input class="form-check-input" type="radio" name="radio-male" id="radio-male" value="male" checked>
-                                                                        <label class="form-check-label" for="radio-male">
-                                                                        Mâle
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="form-check col-lg-6 mt-2">
-                                                                        <input class="form-check-input" type="radio" name="radio-femelle" id="radio-femelle" value="femelle">
-                                                                        <label class="form-check-label" for="radio-femelle">
-                                                                        Femelle
-                                                                        </label>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-3">
-                                                                        <input type="text" id="numero-puce" class="form-control" placeholder="N° de la puce">
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <textarea rows="4" id="comportement" class="form-control" placeholder="Comportement :"></textarea>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-2">
-                                                                        <textarea rows="4" id="Particularités" class="form-control" placeholder="Particularités : Dîtes nous-en un peu plus ..."></textarea>
-                                                                    </div>
-                                                                    <div class="col-lg-12 form-group mt-5">
-                                                                        <button type="button" href="#" class="btn btn-primary btn-lg" style="width:100%">valider</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>                          
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
+                        <?php
+                             $serviceAnimaux->serviceUpdatePanelAnimals($dataAnimaux);
+                        ?>
+                        
+                       
 
                         <!--PANEL 3 ANIMAUX FAVORIS-->
 

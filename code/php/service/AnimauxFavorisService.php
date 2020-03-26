@@ -19,9 +19,9 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
     {
 
             $data = $this->getDataAccessObject()->daoSelectAllUserFavouritesAnimals($id);
-            $count = $this->serviceCountUserFavouriteAnimals($id);
+            $count = count($data);
 
-            for ($i = 0; $i < $count[0]["count(ID_ANIMAL)"] ; $i++) 
+            for ($i = 0; $i < $count ; $i++) 
             
             {
                 

@@ -3,6 +3,8 @@
     include_once '../Interfaces/InterfaceDao.php';
 
     class UtilisateurDataAccess implements InterfaceDao{
+
+
         public function connexion(){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             return $mysqli;    
@@ -10,9 +12,13 @@
         public function deconnexion($mysqli){
             $mysqli->close();
         }
+
+
         public function __construct(){
 
         }
+
+
 
         // fonction pour le select de tout les utilisateurs
         public function daoSelectAll(){
@@ -50,14 +56,8 @@
             $stmt = $mysqli->prepare('INSERT INTO utilisateur (NOM, PRENOM, PSEUDO,MDP,ADRESSE_EMAIL,NUM,ID_ADRESSE) VALUES (?,?,?,?,?,?,?) ');
             $stmt-> bind_param('sssssss',$nom, $prenom, $pseudo, $mdp, $mail, $num, $idAdresse);
             $stmt->execute();
+            $this->deconnexion($mysqli);
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
-            /* 
-                /!\/!\/!\/!\/!\/!\/!\
-                Il y a pas
-                de $rs = 
-                et de $mysqli close ??
-                /!\/!\/!\/!\/!\/!\/!\
-            */
         }
 
         public function daoGetId($user){
@@ -113,16 +113,8 @@
 
                 }      
                 $mysqli->close();      
-            // $sql  = !empty($parametres['nom']) ? "UPDATE utilisateur set NOM = '".$_POST['nom']."' where ID_UTILISATEUR = ".$num."; " : false;
-            // $sql .= !empty($parametres['prénom']) ? "UPDATE utilisateur set PRENOM = '".$parametres['prénom']."' where ID_UTILISATEUR = ".$num.";" : false;
-            // $sql .= !empty($parametres['tel']) ? "UPDATE utilisateur set NUM = '".$parametres['tel']."' where ID_UTILISATEUR = ".$num.";" : false;
-            // $sql .= !empty($parametres['mail']) ? "UPDATE utilisateur set ADRESSE_EMAIL = '".$parametres['mail']."' where ID_UTILISATEUR = ".$num.";" : false;
-            // $sql .= !empty($parametres['numero']) ? "UPDATE adresse set NUMERO = '".$parametres['numero']."' where ID_ADRESSE = ".$num.";" : false;
-            // $sql .= !empty($parametres['rue']) ? "UPDATE adresse set RUE = '".$parametres['rue']."' where ID_ADRESSE = ".$num.";" : false;
-            // $sql .= !empty($parametres['CP']) ? "UPDATE adresse set CODE_POSTAL = '".$parametres['CP']."' where ID_ADRESSE = ".$num.";" : false;
-            // $sql .= !empty($_POST['Ville']) ? "UPDATE adresse set VILLE = '".$parametres['Ville']."' where ID_ADRESSE = ".$num.";" : false;
-            // return $result = $mysqli->multi_query($sql) === TRUE ? "Modification bien effectuées !" : "Erreur lors de l'ajout des informations :  " . $sql . "<br>"; 
         }
+        
         public function daoUpdatePassword($id,$mdpHash){
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('UPDATE utilisateur SET MDP = ? where ID_UTILISATEUR = ?');

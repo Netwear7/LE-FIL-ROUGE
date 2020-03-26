@@ -45,16 +45,16 @@
             $this->getDataAccessObject()->daoUpdate($parametres);
         }
 
-        public function serviceUpdatePassword($infos){
+        public function serviceUpdatePassword($id,$infos){
             $mdpActuel = $infos["oldMdp"];
             $confirm = $infos["confirmNewMdp"] == $infos["newMdp"] ? True : False;
-            $this->serviceVerifyActualPassword($this->id,$mdpActuel);
-            return $confirm ? $this->getDataAccessObject()->daoUpdatePassword($this->id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
+            $this->serviceVerifyActualPassword($id,$mdpActuel);
+            return $confirm ? $this->getDataAccessObject()->daoUpdatePassword($id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
         }
 
         public function serviceVerifyActualPassword($nom, $mdpActuel){
             $data = $this->serviceSelect($nom);
-            password_verify($mdpActuel,$data[0]["MDP"]);
+            password_verify($mdpActuel,$data["MDP"]);
         }
 
         // fonction de Suppression Utilisateur
