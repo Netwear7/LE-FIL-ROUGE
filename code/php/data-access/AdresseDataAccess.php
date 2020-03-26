@@ -36,7 +36,8 @@
         public function daoCount(){}
 
         // ajout des adresses dans la bdd
-        public function daoAdd($adresse){   
+        public function daoAdd($adresse)
+        {   
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $num = $adresse->getNumero();
             $rue = $adresse->getRue();
@@ -51,7 +52,8 @@
 
         //fonction pour récup l'id Adresse directement après l'ajout afin de récupérer 
         //l'id pour pouvoir créer l'utilisateur totalement
-        public function daoGetId($adresse){
+        public function daoGetId($adresse)
+        {
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $num = $adresse->getNumero();
             $rue = $adresse->getRue();

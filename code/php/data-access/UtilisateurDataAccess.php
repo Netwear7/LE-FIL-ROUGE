@@ -44,7 +44,8 @@
         }
 
         // fonction pour l'ajout de l'utilisateur
-        public function daoAdd($user){
+        public function daoAdd($user)
+        {
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $nom = $user->getNom();
             $prenom = $user->getPrenom();
@@ -60,7 +61,8 @@
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
         }
 
-        public function daoGetId($user){
+        public function daoGetId($user)
+        {
             $mysqli = new mysqli('localhost','root','','bddanimaux');   
             $mail = $user->getEmail();
             $mdp = $user->getPassword();
@@ -95,7 +97,7 @@
                 et de $mysqli close ??
                 /!\/!\/!\/!\/!\/!\/!\
             */
-            $mysqli = $this->connexion();
+                $mysqli = new mysqli('localhost','root','','bddanimaux'); 
                 foreach ($parametres as $key => $value2){
                     $num ="1";
                     if ($key =="updateUserInfos"){
@@ -116,11 +118,11 @@
         }
         
         public function daoUpdatePassword($id,$mdpHash){
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux'); 
             $stmt = $mysqli->prepare('UPDATE utilisateur SET MDP = ? where ID_UTILISATEUR = ?');
             $stmt->bind_param('ss',$mdpHash,$id);
             $stmt->execute();
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return $result = $stmt ? "La modification a bien été effectuée " : "La modification a échouée ";
         }
         public function daoVerifyActualPassword(){
@@ -128,11 +130,11 @@
         }
         // Fonction pour la suppression
         public function daoDelete($nom){
-            $mysqli = $this->connexion();
+            $mysqli = new mysqli('localhost','root','','bddanimaux'); 
             $stmt = $mysqli->prepare('DELETE FROM utilisateur where nom = ?');
             $stmt->bind_param('s',$nom);
             $stmt->execute();
-            $this->deconnexion($mysqli);
+            $mysqli->close();
             return   $result = $stmt ? "La suppression a bien été effectuée " : "La suppression a échouée ";
         }
     }

@@ -3,11 +3,13 @@
 class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
 
     public function serviceSelectAll(){}
+    
     public function serviceSelectAllUserFavouriteAnimals($id)
     {
         $data = $this->getDataAccessObject()->daoSelectAllUserFavouritesAnimals($id);
         return $data;
     }
+
     public function serviceSelect($id){}
     public function serviceCount(){}
     public function serviceAdd(object $var){}
