@@ -34,6 +34,14 @@ if(isset($_SESSION["user_id"]))
 
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+
+    $daoAnimaux = new AnimauxDataAccess();
+    $serviceAnimaux = new AnimauxService($daoAnimaux);
+
+    $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
+    $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
+
+
 } else {
     header('Location: accueil.php');
     exit;
@@ -43,8 +51,6 @@ if(isset($_SESSION["user_id"]))
 
 if (isset($_POST["delete"])){
 
-    $daoUtilisateur = new UtilisateurDataAccess();
-    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
     $serviceUtilisateur->serviceDelete($nom);
     header('Location: accueil.php');
     exit;
@@ -52,17 +58,38 @@ if (isset($_POST["delete"])){
 }
 
 if (isset($_POST["updatePassword"])){
-    $daoUtilisateur = new UtilisateurDataAccess();
-    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+
     $serviceUtilisateur->serviceUpdatePassword($_SESSION["user_id"],$_POST);
 
 }
 
-if (isset($_POST["confirmRetrait"])) {
-    $daoAnimaux = new AnimauxDataAccess();
-    $serviceAnimaux = new AnimauxService($daoAnimaux);
-    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
+if (isset($_POST["updateUserInfos"])){
+                                            
+    $serviceUtilisateur->serviceUpdate($_POST);
+
 }
+
+if (isset($_POST["confirmRetrait"])) {
+
+    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
+}                            
+
+
+
+if (isset($_POST["ajoutAnimal"])){
+    $animal = new Animaux($_POST);
+    $serviceAnimaux->serviceAddUserAnimal($animal);
+    $avoirCouleurDao = new AvoirCouleurDataAccess();
+    $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
+    $avoirCouleur = new AvoirCouleur($animal);
+    $avoirCouleurService->serviceAdd($avoirCouleur);
+        
+} else {
+    $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+} 
+
+
+
 
 
 
@@ -159,10 +186,6 @@ if (isset($_POST["confirmRetrait"])) {
                             <div class="row">
 
                                         <?php $serviceUtilisateur->utilisateurServiceDisplayinfos($_SESSION["user_id"]); 
-                                        if (isset($_POST["updateUserInfos"])){
-                                            
-                                            $serviceUtilisateur->serviceUpdate($_POST);
-                                         }
                                         ?>
                             </div>
 
@@ -232,8 +255,7 @@ if (isset($_POST["confirmRetrait"])) {
                             <div class="row mt-2">
                                 <div class="col-8 offset-2 border rounded border-black ">
                                     <form method="POST" action="compte.php">
-                                        <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel($_SESSION["user_id"]); ?>
-                                         
+                                        <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel($_SESSION["user_id"]); ?>                                        
                                     </form>  
                                 </div>
                             </div>
@@ -241,42 +263,14 @@ if (isset($_POST["confirmRetrait"])) {
 
                         <!--SECOND PANEL MES COMPAGNONS-->
                         <div class="tab-pane fade" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">
-
-                        <!--titre-->
+                            <!--titre-->
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5 mb-3 text-center">
                                         <h3>Mes Compagnons</h3>                                        
                                 </div>
                             </div>
-
-
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
-                            <?php
-                            if (isset($_POST["ajoutAnimal"])){
-                                $daoAnimaux = new AnimauxDataAccess();
-                                $serviceAnimaux = new AnimauxService($daoAnimaux);
-                                $animal = new Animaux($_POST);
-                                $serviceAnimaux->serviceAddUserAnimal($animal);
-                                $avoirCouleurDao = new AvoirCouleurDataAccess();
-                                $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
-                                $avoirCouleur = new AvoirCouleur($animal);
-                                $avoirCouleurService->serviceAdd($avoirCouleur);
-                                $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                                empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux);
-                            } else {
-                                
-                                $daoAnimaux = new AnimauxDataAccess();
-                                $serviceAnimaux = new AnimauxService($daoAnimaux);
-                                $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                                empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux);
-                                
-                            } 
-                            
-                            
-
-                            ?>
-
-
+                            <?php empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux); ?>
                        </div>
 
 
@@ -410,8 +404,6 @@ if (isset($_POST["confirmRetrait"])) {
 
                             <!--si pas d'animaux en favoris affichage de la div ajouter un animal en favoris sinon affichage des animaux en favoris-->
                             <?php
-                            $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
-                            $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
                             $data = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
                             empty($data) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
                             ?>

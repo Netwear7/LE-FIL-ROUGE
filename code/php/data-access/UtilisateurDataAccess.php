@@ -16,7 +16,7 @@
 
 
 
-        
+
 
         // fonction pour le select de tout les utilisateurs
         public function daoSelectAll(){
@@ -138,6 +138,8 @@
             $mysqli->close();
             return $result = $stmt ? "La modification a bien été effectuée " : "La modification a échouée ";
         }
+
+        
         public function daoVerifyActualPassword()
         {
 

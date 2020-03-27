@@ -81,8 +81,16 @@
 
 
 
-        public function daoSearch($search){}
-        public function daoUpdate($parametres){}
+        public function daoSearch($search)
+        {
+
+        }
+
+
+        public function daoUpdate($parametres)
+        {
+            
+        }
 
 
         public function daoDelete($idadresse){
