@@ -83,65 +83,62 @@
                             </p>
                         </div>
                         <div class="col-lg-12 my-3 text-center">
-                            <a class="btn bg-orange" href="don.php" role="button">Soutenez les refuges ! ʕ•ᴥ•ʔ </a>
+                            <a class="btn bg-grey" href="don.php" role="button">Soutenez les refuges ! ʕ•ᴥ•ʔ </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-lg-10 offset-lg-1 mb-4">
+                <div class="col-lg-10 offset-lg-1 mb-4 text-center">
                     <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
                 </div>
             </div>
-            <div class="row mt-1 mb-5">
-                <div class="col-lg-3 offset-lg-1 bg-1">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3 class="text-uppercase font-weight-bold text-center mt-4">Name</h3>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>
-                                Description :  dolor sit amet, consectetur adipiscing elit. Nullam vulputate diam volutpat velit cursus, 
-                                eget dictum mauris cursus. In hac habitasse platea dictumst. 
-                                Phasellus vestibulum vestibulum est blandit malesuada. Duis turpis turpis, 
-                                sodales id eleifend vitae, malesuada sit amet nulla. Sed imperdiet pulvinar arcu in lacinia. 
-                                Nam dui enim, pretium sit amet gravida nec, pulvinar eu arcu. Aliquam erat volutpat.
-                            </p>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>Spécificité : </p>
-                        </div>
-                    </div>
+            <div class="row mt-1 mb-5 justify-content-center">
+                <div class="col-lg-3">
+                        <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="photoChat">
+
                 </div>
-                <div class="col-lg-7">
-                    <div class="row"> 
-                        <div class="col-5 offset-1 col-lg-5 offset-lg-1">
-                            <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="">
-                        </div>
-                        <div class="col-5 col-lg-5 offset-lg-1">
-                            <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="">
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col-5 offset-1 col-lg-5 offset-lg-1">
-                            <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="">
-                        </div>
-                        <div class="col-5 col-lg-5 offset-lg-1">
-                            <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="">
-                        </div>
-                    </div>
+                <div class="col-lg-3">
+                        <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="photoChat">
+
+                </div>
+                <div class="col-lg-3">
+                        <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="photoChat">
                 </div>
             </div>
         </div>
-<!--###############  FIN CODE PRINCIPALE  ##############-->
+        <!--###############  FIN CODE PRINCIPALE  ##############-->
         <?php
             include_once("footer.php");
         ?>
     </body>
 </html>
+
+
+
+
+
+
+    <!-- <div class="row">
+            <div class="col-lg-12">
+                <h3 class="text-uppercase font-weight-bold text-center mt-4">Name</h3>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>
+                    Description :  dolor sit amet, consectetur adipiscing elit. Nullam vulputate diam volutpat velit cursus, 
+                    eget dictum mauris cursus. In hac habitasse platea dictumst. 
+                    Phasellus vestibulum vestibulum est blandit malesuada. Duis turpis turpis, 
+                    sodales id eleifend vitae, malesuada sit amet nulla. Sed imperdiet pulvinar arcu in lacinia. 
+                    Nam dui enim, pretium sit amet gravida nec, pulvinar eu arcu. Aliquam erat volutpat.
+                </p>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Spécificité : </p>
+            </div>
+        </div> -->
