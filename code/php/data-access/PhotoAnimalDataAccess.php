@@ -1,13 +1,8 @@
 <?php
     include_once '../Interfaces/InterfaceDao.php';
+    include_once 'LogBdd.php';
 
-    class PhotoAnimalDataAccess implements InterfaceDao{
-        public function connexion(){
-            return new mysqli('localhost', 'root', '', 'bddanimaux');
-        }
-        public function deconnexion($mysqli){
-            $mysqli->close();
-        }
+    class PhotoAnimalDataAccess extends LogBdd implements InterfaceDao{
         public function daoSelectAll(){
             $mysqli = $this->connexion();
             $rs = $mysqli->query('SELECT * from photo_animal');
