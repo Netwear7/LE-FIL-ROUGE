@@ -5,22 +5,9 @@
     include_once("../service/ServiceCommun.php");
 
     class PhotoAnimalService extends ServiceCommun implements InterfaceService{
-
-        //##########################################################################//
-        //      Utiliser $data = $this->dataAccess->LaFonction(de dataAccess)       //
-        //          $this->dataAccess = new PhotoAnimalDataAccess(); C'est un objet //
-        //##########################################################################//
-        private $dataAccess;
-        
-        public function __construct(){
-            $this->dataAccess = new PhotoAnimalDataAccess();
-        }
-
-        //##########################################################################//
-
         public function serviceSelectAll(){}
         public function serviceSelectAllProfil(){
-            $data = $this->dataAccess->daoSelectAllProfil();
+            $data = parent::getDataAccessObject()->daoSelectAllProfil();
             return $data;
         }
         public function serviceSelect($id){}
@@ -29,11 +16,8 @@
         public function serviceSearch($search){}
         public function serviceUpdate($post){}
         public function serviceDelete($nom){}
-        public function carrousselTest($data){
-            // var_dump($data);
+        public function carrousselDisplay($data){
             $cpt=0;
-
-
             for($j = 0 ;$j <= intdiv(count($data), 4); $j++ ){
                 $class = $j == 0 ? "active": "";
                 echo "<div class='carousel-item $class text-center'>";
@@ -46,13 +30,6 @@
                 echo "</div>";
             }
         }
-
-        /*<div class="carousel-item active text-center">
-            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-            <img class="d-inline-block w-20 mx-3" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="Second slide">
-        </div>*/
 
     /**
          * Getter for DataAccess
