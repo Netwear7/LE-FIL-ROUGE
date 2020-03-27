@@ -70,19 +70,38 @@ include_once '../Interfaces/InterfaceService.php';
             
         }
 
-
-
-        public function serviceSearchAnimals($search)
-        {
-            $nomRace=$search["nom_race"];
-            $couleur=$search["couleur"];
-            $s_nomRace="B.nom_race LIKE ('$nomRace%')";
-            $s_couleur="D.couleur LIKE ('$couleur%')";
-            return $data = $this->getDataAccessObject()->daoSearchAnimals($s_nomRace,$s_couleur);    
+        public function serviceSearchAnimals($tab) : array {
+            $request="";
+            $type="";
+            $counter=0;
+            $tabLength=count(array_filter($tab));
+            foreach(array_filter($tab) as $key=> $value) {
+                switch ($key) {
+                    case "nom_race" :
+                        if($counter<$tabLength-1) {
+                            $request.="B.nom_race like ? and ";
+                        } else {
+                            $request.= "B.nom_race like ?";
+                        }
+                        $type.="s";                       
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "couleur" : 
+                        if($counter<$tabLength-1) {
+                            $request.="D.couleur like ? and ";
+                        } else {
+                            $request.= "D.couleur like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    }
+            }
+            return $data = $this->getDataAccessObject()->daoSearchAnimals($request,$type,$arrayOfValues);
         }
-
-
-
+                
         public function serviceUpdate(array $post)
         {
 

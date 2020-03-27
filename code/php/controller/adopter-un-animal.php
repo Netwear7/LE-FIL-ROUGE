@@ -51,7 +51,7 @@
         </div>
 
         <div class="row mt-5">
-            <div class="col-lg-2 offset-lg-1 bg-orange">
+            <div class="col-lg-2 offset-lg-1 bg-dark">
 <!--Menu critères de recherche, affichage avec requetes sql vers la base de données-->
                 <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
                 <hr>
@@ -67,7 +67,7 @@
                                     foreach($value as $key2 => $value2){
                                         echo '<option>' . $value2 . '</option>';
                                     }
-                                }
+                                } 
                                 ?>
                                 
                             </select>
