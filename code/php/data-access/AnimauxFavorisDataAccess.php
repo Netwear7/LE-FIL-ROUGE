@@ -28,6 +28,18 @@ class AnimauxFavorisDataAccess implements InterfaceDao {
     public function daoAdd($object){}
     public function daoSearch($search){}
     public function daoUpdate($parametres){}
-    public function daoDelete($nom){}
+    public function daoDelete($id){
+
+        // a finir // 
+        $mysqli = new mysqli('localhost','root','','bddanimaux');
+        $stmt = $mysqli->prepare('');
+        $stmt->bind_param('s',$id);
+        $stmt->execute();
+        $rs = $stmt->get_result();
+        $data = $rs->fetch_all(MYSQLI_ASSOC);
+        $rs->free();
+        $mysqli->close();
+        return $data;
+    }
 }
 ?>

@@ -88,6 +88,10 @@ if (isset($_POST["ajoutAnimal"])){
     $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
 } 
 
+if(isset($_POST["retraitFavoris"])){
+    $idAnimalRetrait = $_POST["retraitFavoris"];
+    $serviceAnimauxFavoris->serviceDelete($idAnimalRetrait);
+}
 
 
 
@@ -404,8 +408,8 @@ if (isset($_POST["ajoutAnimal"])){
 
                             <!--si pas d'animaux en favoris affichage de la div ajouter un animal en favoris sinon affichage des animaux en favoris-->
                             <?php
-                            $data = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
-                            empty($data) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
+                            $dataAnimauxFavoris = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
+                            empty($dataAnimauxFavoris) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
                             ?>
                         </div>                        
                     </div>
