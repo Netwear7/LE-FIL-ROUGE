@@ -240,7 +240,7 @@ include_once '../Interfaces/InterfaceService.php';
                                     <p>Date de la disparition ?</p>
                                     <input type="date" name="DATE_PERTE"/>
                                     <label for="textAreaperte">Quelques précisions concernant le lieu ? l\'heure ?</label>
-                                    <textarea class="form-control" id="textareaperte" name="précisionsPerte" rows="3"></textarea>
+                                    <textarea class="form-control" id="textareaperte" name="precisionPerte" rows="3"></textarea>
                                     <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant ici : <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
                                 </div>
                                 <div class="modal-footer">

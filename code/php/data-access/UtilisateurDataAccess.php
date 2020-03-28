@@ -2,17 +2,13 @@
 
     include_once '../Interfaces/InterfaceDao.php';
 
-    class UtilisateurDataAccess implements InterfaceDao{
+    class UtilisateurDataAccess extends LogBdd implements InterfaceDao{
         public function __construct(){
     
         }
-        public function connexion(){
-            $mysqli = new mysqli('localhost','root','','bddanimaux');
-            return $mysqli;    
-        }
-        public function deconnexion($mysqli){
-            $mysqli->close();
-        }
+
+
+        
 
 
 

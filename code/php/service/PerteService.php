@@ -1,5 +1,5 @@
 <?php
-    class PerteService{
-
+    class PerteService extends ServiceCommun implements InterfaceService{
+        
     }
 ?>

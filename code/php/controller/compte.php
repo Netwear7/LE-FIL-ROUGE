@@ -27,6 +27,8 @@ include_once '../data-access/PerteDataAccess.php';
 include_once '../model/AvoirCouleur.php';
 include_once '../service/AvoirCouleurService.php';
 include_once '../data-access/AvoirCouleurDataAccess.php';
+include_once '../service/PerteService.php';
+include_once '../data-access/PerteDataAccess.php';
 
 
 if(isset($_SESSION["user_id"]))
@@ -41,6 +43,8 @@ if(isset($_SESSION["user_id"]))
     $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
     $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
 
+    $daoPerte = new PerteDataAccess();
+    $servicePerte = new PerteService($daoPerte);
 
 } else {
     header('Location: accueil.php');
@@ -69,13 +73,6 @@ if (isset($_POST["updateUserInfos"])){
 
 }
 
-if (isset($_POST["confirmRetrait"])) {
-
-    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
-}                            
-
-
-
 if (isset($_POST["ajoutAnimal"])){
     $animal = new Animaux($_POST);
     $serviceAnimaux->serviceAddUserAnimal($animal);
@@ -87,6 +84,15 @@ if (isset($_POST["ajoutAnimal"])){
 } else {
     $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
 } 
+
+if (isset($_POST["perte"])){
+    $servicePerte->serviceAdd($_POST);
+}
+
+if (isset($_POST["confirmRetrait"])) {
+
+    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
+}  
 
 if(isset($_POST["retraitFavoris"])){
     $idAnimalRetrait = $_POST["retraitFavoris"];
