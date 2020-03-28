@@ -107,12 +107,35 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
+                            <select name="sexe" class="custom-select custom-select-md">
+                                <option value="" selected>Sexe</option>
+                                <?php
+                                    $daoAnimaux = new AnimauxDataAccess();
+                                    $animauxService = new AnimauxService($daoAnimaux);
+                                    $data = $animauxService->serviceDisplaySelectGender();
+                                    foreach($data as $key =>$value){
+                                        foreach($value as $key2 => $value2){
+                                            echo '<option>' . $value2 . '</option>';
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class=col-lg-12>
                             <select name="ville" class="custom-select custom-select-md">
                                 <option value="" selected>Ville</option>
-                                <option>Paris</option>
-                                <option>Lille</option>
-                                <option>Marseille</option>
-                                <option>Bordeaux</option>
+                                <?php
+                                    $daoAdresse = new AdresseDataAccess();
+                                    $adresseService = new AdresseService($daoAdresse);
+                                    $data = $adresseService->serviceAfficherVille();
+                                    foreach($data as $key =>$value){
+                                        foreach($value as $key2 => $value2){
+                                            echo '<option>' . $value2 . '</option>';
+                                        }
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>

@@ -87,6 +87,16 @@ include_once '../Interfaces/InterfaceService.php';
                         $counter++;
                         $arrayOfValues[$counter-1] = $value . "%";
                         break;
+                    case "nom_espece" :
+                        if($counter<$tabLength-1) {
+                            $request.="F.nom_espece like ? and ";
+                        } else {
+                            $request.= "F.nom_espece like ?";
+                        }
+                        $type.="s";                       
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
                     case "couleur" : 
                         if($counter<$tabLength-1) {
                             $request.="D.couleur like ? and ";
@@ -97,9 +107,36 @@ include_once '../Interfaces/InterfaceService.php';
                         $counter++;
                         $arrayOfValues[$counter-1] = $value . "%";
                         break;
+                    case "ville" : 
+                        if($counter<$tabLength-1) {
+                            $request.="H.ville like ? and ";
+                        } else {
+                            $request.= "H.ville like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "sexe" : 
+                        if($counter<$tabLength-1) {
+                            $request.="A.sexe like ? and ";
+                        } else {
+                            $request.= "A.sexe like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
                     }
             }
             return $data = $this->getDataAccessObject()->daoSearchAnimals($request,$type,$arrayOfValues);
+        }
+
+        public function serviceDisplaySelectGender() {
+
+        $data = $this->getDataAccessObject()->daoDisplaySelectGender();
+        return $data;
+
         }
                 
         public function serviceUpdate(array $post)

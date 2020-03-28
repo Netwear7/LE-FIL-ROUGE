@@ -101,5 +101,15 @@
             $mysqli->close();
             return   $result = $stmt ? "La suppression a bien été effectuée " : "La suppression a échouée ";
         }
+
+        public function daoAfficherVille(){
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $stmt = $mysqli->prepare('SELECT DISTINCT ville FROM adresse');
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $mysqli->close();
+            return $data;            
+        }
     }
 ?>

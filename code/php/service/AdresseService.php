@@ -43,5 +43,10 @@
         public function serviceSearch($search){
             $this->getDataAccessObject()->daoSearch($search);
         }
+
+        public function serviceAfficherVille(){
+            $data = $this->getDataAccessObject()->daoAfficherVille();
+            return $data;            
+        }
     }
 ?>

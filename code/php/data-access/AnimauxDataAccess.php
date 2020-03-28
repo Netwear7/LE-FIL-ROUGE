@@ -4,17 +4,14 @@ include_once '../Interfaces/InterfaceDao.php';
 
     class AnimauxDataAccess implements InterfaceDao{
 
-
         public function connexion(){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             return $mysqli;    
         }
 
-
         public function deconnexion($mysqli){
             $mysqli->close();
         }
-
 
         public function daoSelectAll()
         {
@@ -28,7 +25,6 @@ include_once '../Interfaces/InterfaceDao.php';
             return $data;
         }
 
-
         public function daoSelectAllUserAnimals($id){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('SELECT * from animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN appartenir_espece as C on A.id_race = C.id_race INNER JOIN espece as D on C.ID_ESPECE = D.ID_ESPECE INNER JOIN avoir_couleur as E on A.ID_ANIMAL=E.ID_ANIMAL INNER JOIN couleur_animal as F on E.ID_COULEUR=F.ID_COULEUR  where ID_UTILISATEUR = ?');
@@ -40,7 +36,6 @@ include_once '../Interfaces/InterfaceDao.php';
             $mysqli->close();
             return $data;
         }
-
 
         public function daoSelect($id){}
 
@@ -61,12 +56,10 @@ include_once '../Interfaces/InterfaceDao.php';
             return $count;
         }
 
-
         public function daoAdd($objet)
         {
             
         }
-
         
         public function daoAddUserAnimal($animal)
         {
@@ -126,7 +119,7 @@ include_once '../Interfaces/InterfaceDao.php';
             $mysqli->close();
             return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
         } 
-
+ 
         
         public function selectAll(){
             $mysqli=$this->connexion();
@@ -138,11 +131,19 @@ include_once '../Interfaces/InterfaceDao.php';
             $this->deconnexion($mysqli);  
             return $data;
         }
-
+ 
         
         public function daoSearchAnimals($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur WHERE $request");
+            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A 
+                                      INNER JOIN race as B on A.id_race = B.id_race 
+                                      INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
+                                      INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
+                                      INNER JOIN appartenir_espece as E on B.id_race=E.id_race
+                                      INNER JOIN espece as F on F.id_espece=E.id_espece
+                                      INNER JOIN refuge as G on A.id_refuge=G.id_refuge
+                                      INNER JOIN adresse as H on G.id_adresse=H.id_adresse
+                                      WHERE $request");
             $stmt->bind_param($type, ...$arrayOfValues);
             $stmt->execute();  
             $rs = $stmt->get_result();          
@@ -150,6 +151,19 @@ include_once '../Interfaces/InterfaceDao.php';
             $rs->free();
             $this->deconnexion($mysqli);  
             return $data;
+        }
+
+        public function daoDisplaySelectGender(){
+
+            $mysqli=$this->connexion();
+            $stmt = $mysqli->prepare("SELECT DISTINCT sexe FROM animaux");
+            $stmt->execute();  
+            $rs = $stmt->get_result();          
+            $data= $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);  
+            return $data;
+
         }
     }
 ?>
