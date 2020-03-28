@@ -190,7 +190,7 @@ include_once '../Interfaces/InterfaceService.php';
                         <div class="row">
                             <div class="col-4 ">
                                 <div class="row">
-                                    <img src="../img/Chat/chat1.jpg" class="rounded w-100" alt="img-profil-5">
+                                    <a href="" data-toggle="modal" data-target="#modalPhotos'.$cmpt.'"><img src="../../img/Chat/chat3.jpg" class="rounded w-100"></a>
                                 </div>                            
                                 <div class="row">
                                     <!--Row pour les photos-->
@@ -429,11 +429,11 @@ include_once '../Interfaces/InterfaceService.php';
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>Date de la disparition ?</p>
-                                <input type="date" name="datePerte"/>
-                                <label for="textAreaperte">Quelques précisions concernant le lieu ? l\'heure ?</label>
-                                <textarea class="form-control" id="textareaperte" name="precisionPerte" rows="3"></textarea>
-                                <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant ici : <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
+                                <p>Date de la disparition :</p>
+                                <input type="date" name="datePerte" class="mb-3"/>
+                                <label for="textAreaperte">Quelques précisions concernant le lieu ? L\'heure ?</label>
+                                <textarea class="form-control mb-3" id="textareaperte" name="precisionPerte" rows="3"></textarea>
+                                <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant <a href="animaux-perdus.php">ici</a> , <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -494,6 +494,7 @@ include_once '../Interfaces/InterfaceService.php';
                     </div>
                 </div>
             </div>
+        
             ';
 
         }
