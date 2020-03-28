@@ -1,7 +1,10 @@
 <?php
 
-include_once('../Interfaces/InterfaceDao.php');
-    class AvoirCouleurDataAccess implements InterfaceDao {
+
+include_once '../data-access/LogBdd.php';
+include_once '../Interfaces/InterfaceDao.php';
+
+    class AvoirCouleurDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoSelectAll(){}
         public function daoSelect(int $id){}
@@ -10,18 +13,24 @@ include_once('../Interfaces/InterfaceDao.php');
         {   
             $idCouleur = $object->getCouleur();
             $idAnimal = $object->getIdAnimal();
-            if ($idCouleur == "Roux"){
-                $idCouleur == 1;
-            }
-            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('INSERT INTO avoir_couleur(ID_COULEUR,ID_ANIMAL) VALUES(?,?)');
-            $stmt->bind_param('si',$idCouleur,$idAnimal);
+            $stmt->bind_param('ss',$idCouleur,$idAnimal);
             $stmt->execute();
-            $mysqli->close();
+            $this->deconnexion($mysqli);
         }
         public function daoSearch($search){}
         public function daoUpdate(array $parametres){}
-        public function daoDelete(string $nom){}
+        public function daoDelete($infosAnimal){
+            $idAnimal = $infosAnimal["idAnimalRetrait"];
+            $idCouleur = 1;
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('DELETE * FROM avoir_couleur WHERE ID_COULEUR = ? AND ID_ANIMAL = ?');
+            $stmt->bind_param('is',$idCouleur,$idAnimal);
+            $stmt->execute();
+            $this->deconnexion($mysqli);
+
+        }
 
     }
 ?>

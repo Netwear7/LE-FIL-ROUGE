@@ -25,7 +25,6 @@ include_once '../data-access/AvoirCouleurDataAccess.php';
 include_once '../model/Perte.php';
 include_once '../service/PerteService.php';
 include_once '../data-access/PerteDataAccess.php';
-
 include_once '../model/AnimauxFavoris.php';
 include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
@@ -46,6 +45,9 @@ if(isset($_SESSION["user_id"]))
 
     $daoPerte = new PerteDataAccess();
     $servicePerte = new PerteService($daoPerte);
+
+    $avoirCouleurDao = new AvoirCouleurDataAccess();
+    $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
 
 } else {
     header('Location: accueil.php');
@@ -74,11 +76,9 @@ if (isset($_POST["updateUserInfos"])){
 
 }
 
-if (isset($_POST["ajoutAnimal"])){
+if (isset($_POST["addAnimal"])){
     $animal = new Animaux($_POST);
     $serviceAnimaux->serviceAddUserAnimal($animal);
-    $avoirCouleurDao = new AvoirCouleurDataAccess();
-    $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
     $avoirCouleur = new AvoirCouleur($animal);
     $avoirCouleurService->serviceAdd($avoirCouleur);
         
@@ -90,6 +90,11 @@ if (isset($_POST["updateAnimalInfos"])){
                                             
     $serviceAnimaux->serviceUpdate($_POST);
 
+}
+
+if (isset($_POST["removeUserAnimal"])){
+    $avoirCouleurService->serviceDelete($_POST);
+    $serviceAnimaux->serviceDelete($_POST);
 }
 
 if (isset($_POST["perte"])){
@@ -143,7 +148,7 @@ if(isset($_POST["retraitFavoris"])){
         <!--PARTIE PRINCIPALE-->
 
 
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <div class="row">
 
 
@@ -394,7 +399,7 @@ if(isset($_POST["retraitFavoris"])){
                                                 </div>
                                                 <div class="row mt-3 ">
                                                     <div class="col-3 offset-3">
-                                                        <button type="button submit" name="ajoutAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
+                                                        <button type="button submit" name="addAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
                                                     </div>
                                                     <div class="col-3">
                                                         <button type="button submit" name="valider" class="btn btn-block btn-outline-info">Annuler</button>

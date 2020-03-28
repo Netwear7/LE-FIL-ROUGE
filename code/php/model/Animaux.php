@@ -33,7 +33,7 @@
             $this->setRaceAnimal($infos["raceAnimale"]);
             $this->setIdUtilisateurAnimal($infos["idUtilisateur"]);
             $this->setSexeAnimal($infos["sexeAnimal"]);
-            $this->setCouleurAnimal($infos["couleur"]);
+            $infos["couleur"] == "Roux" ? $this->setCouleurAnimal("1") : false;
         }
 
 
