@@ -27,6 +27,7 @@ include_once '../data-access/PerteDataAccess.php';
 include_once '../model/AvoirCouleur.php';
 include_once '../service/AvoirCouleurService.php';
 include_once '../data-access/AvoirCouleurDataAccess.php';
+include_once '../model/Perte.php';
 include_once '../service/PerteService.php';
 include_once '../data-access/PerteDataAccess.php';
 
@@ -85,8 +86,19 @@ if (isset($_POST["ajoutAnimal"])){
     $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
 } 
 
+if (isset($_POST["updateAnimalInfos"])){
+                                            
+    $serviceAnimaux->serviceUpdate($_POST);
+
+}
+
 if (isset($_POST["perte"])){
-    $servicePerte->serviceAdd($_POST);
+    $perte = new Perte($_POST);
+    $servicePerte->serviceAdd($perte);
+}
+
+if(isset($_POST["idAnimalRetrouve"])){
+    $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
 }
 
 if (isset($_POST["confirmRetrait"])) {
@@ -280,8 +292,13 @@ if(isset($_POST["retraitFavoris"])){
                                 </div>
                             </div>
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
-                            <?php empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux); ?>
+                            <?php 
+                            $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                            empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux);
+                            $serviceAnimaux->serviceCreateModals($dataAnimaux);
+                            ?>
                        </div>
+                    
 
 
                         

@@ -1,8 +1,17 @@
 <?php
     class Perte{
+
         private $idPerte;
         private $datePerte;
         private $descPerte;
+        private $idAnimal;
+
+        public function __construct($infos){
+            $this->setIdAnimal($infos["idAnimalPerdu"]);
+            $this->setDatePerte($infos["datePerte"]);
+            $this->setDescPerte($infos["precisionPerte"]);
+
+        }
 
         /**
          * Getter for IdPerte
@@ -72,5 +81,25 @@
             return $this;
         }
 
+
+        /**
+         * Get the value of idAnimal
+         */ 
+        public function getIdAnimal()
+        {
+                return $this->idAnimal;
+        }
+
+        /**
+         * Set the value of idAnimal
+         *
+         * @return  self
+         */ 
+        public function setIdAnimal($idAnimal)
+        {
+                $this->idAnimal = $idAnimal;
+
+                return $this;
+        }
     }
 ?>

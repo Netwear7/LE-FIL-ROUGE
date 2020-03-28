@@ -6,10 +6,15 @@
         public function serviceSelectAll(){}
         public function serviceSelect($id){}
         public function serviceCount(){}
-        public function serviceAdd($var){}
+        public function serviceAdd($perte){
+            $this->getDataAccessObject()->daoAdd($perte);
+
+        }
         public function serviceSearch($search){}
         public function serviceUpdate($post){}
-        public function serviceDelete($nom){}
+        public function serviceDelete($idAnimalRetrouve){
+            $this->getDataAccessObject()->daoDelete($idAnimalRetrouve);
+        }
         
     }
 ?>
