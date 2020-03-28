@@ -1,5 +1,6 @@
 <?php
 
+    include_once '../data-access/LogBdd.php';
     include_once '../Interfaces/InterfaceDao.php';
 
     class UtilisateurDataAccess extends LogBdd implements InterfaceDao{
@@ -8,7 +9,7 @@
         }
 
 
-        
+
 
 
 
