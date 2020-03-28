@@ -10,6 +10,9 @@ include_once('../Interfaces/InterfaceDao.php');
         {   
             $idCouleur = $object->getCouleur();
             $idAnimal = $object->getIdAnimal();
+            if ($idCouleur == "Roux"){
+                $idCouleur == 1;
+            }
             $mysqli = new mysqli('localhost','root','','bddanimaux');
             $stmt = $mysqli->prepare('INSERT INTO avoir_couleur(ID_COULEUR,ID_ANIMAL) VALUES(?,?)');
             $stmt->bind_param('si',$idCouleur,$idAnimal);

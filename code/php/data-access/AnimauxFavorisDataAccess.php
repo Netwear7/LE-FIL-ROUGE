@@ -1,8 +1,8 @@
 <?php
-
+    include_once('../data-access/LogBdd.php');
     include_once('../Interfaces/InterfaceDao.php');
 
-class AnimauxFavorisDataAccess implements InterfaceDao {
+class AnimauxFavorisDataAccess extends LogBdd implements InterfaceDao{
 
 
 
@@ -28,18 +28,18 @@ class AnimauxFavorisDataAccess implements InterfaceDao {
     public function daoAdd($object){}
     public function daoSearch($search){}
     public function daoUpdate($parametres){}
-    public function daoDelete($id){
 
+
+    public function daoDelete($infosRetraitFavoris){
+
+        $idAnimal = $infosRetraitFavoris["retraitFavoris"];
+        $idUtilisateur = $infosRetraitFavoris["id_utilisateur"];
         // a finir // 
-        $mysqli = new mysqli('localhost','root','','bddanimaux');
-        $stmt = $mysqli->prepare('');
-        $stmt->bind_param('s',$id);
+        $mysqli = $this->connexion();
+        $stmt = $mysqli->prepare('DELETE FROM etre_favoris where ID_ANIMAL = ? and ID_UTILISATEUR = ? ');
+        $stmt->bind_param('ss',$idAnimal, $idUtilisateur);
         $stmt->execute();
-        $rs = $stmt->get_result();
-        $data = $rs->fetch_all(MYSQLI_ASSOC);
-        $rs->free();
-        $mysqli->close();
-        return $data;
+        $this->deconnexion($mysqli);
     }
 }
 ?>

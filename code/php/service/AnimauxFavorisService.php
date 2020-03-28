@@ -16,8 +16,8 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
     public function serviceSearch($search){}
     public function serviceUpdate(array $post){}
 
-    public function serviceDelete($idAnimalRetrait){
-        $this->getDataAccessObject()->daoDelete($idAnimalRetrait);
+    public function serviceDelete($infosRetraitFavoris){
+        $this->getDataAccessObject()->daoDelete($infosRetraitFavoris);
     }
     public function serviceCountUserFavouriteAnimals($id){}
 
@@ -63,6 +63,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                             <h5 class=" mt-3">'.$dataAnimaux[$i]["NOM_RACE"].'</h5>
                                             <p class="card-text"><strong>Né le  : </strong><br/>'.$dataAnimaux[$i]["DATE_NAISSANCE"].'  </p>
                                             <form method="POST" action="">
+                                                <input type="hidden" name="id_utilisateur" value="'.$_SESSION["user_id"].'"/>
                                                 <button type="button submit" class="btn btn-outline-info" name="retraitFavoris" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'">Retirer des favoris</button>
                                             </form>
                                         </div>

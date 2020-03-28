@@ -175,11 +175,9 @@ include_once '../Interfaces/InterfaceService.php';
                                     </div>                                
                                 </div>
                                 ';
-                                $pasPerdu = '<a href="#lost" data-toggle="modal" data-target="#modalPerdu'.$cmpt.'">Signaler perdu</a>';
-                                $signalerRetrouver = '<a href="#lost" data-toggle="modal" data-target="#modalRetrouvé'.$cmpt.'">Signaler Retrouvé</a>';
-                            // echo isset($dataAnimaux[$i]["PERDU"]) ?  
-                                echo $signalerRetrouver;
-                                echo $pasPerdu;
+                                $pasPerdu = '<a href="" data-toggle="modal" data-target="#modalPerdu'.$cmpt.'">Signaler perdu</a>';
+                                $signalerRetrouver = '<a href="" data-toggle="modal" data-target="#modalRetrouvé'.$cmpt.'">Signaler Retrouvé</a>';
+                            echo isset($dataAnimaux[$i]["PERDU"]) ?  $signalerRetrouver : $pasPerdu;                                                                            ;
                             echo '                            
                             </div>
                             <div class="col-5">

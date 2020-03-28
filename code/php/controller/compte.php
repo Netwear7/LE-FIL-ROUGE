@@ -13,23 +13,23 @@ session_start();
 include_once '../model/Utilisateur.php';
 include_once '../service/UtilisateurService.php';
 include_once '../data-access/UtilisateurDataAccess.php';
-include_once '../model/Animaux.php';
-include_once '../service/AnimauxService.php';
-include_once '../data-access/AnimauxDataAccess.php';
 include_once '../model/Adresse.php';
 include_once '../service/AdresseService.php';
 include_once '../data-access/AdresseDataAccess.php';
-include_once '../model/AnimauxFavoris.php';
-include_once '../service/AnimauxFavorisService.php';
-include_once '../data-access/AnimauxFavorisDataAccess.php';
-include_once '../service/PerteService.php';
-include_once '../data-access/PerteDataAccess.php';
+include_once '../model/Animaux.php';
+include_once '../service/AnimauxService.php';
+include_once '../data-access/AnimauxDataAccess.php';
 include_once '../model/AvoirCouleur.php';
 include_once '../service/AvoirCouleurService.php';
 include_once '../data-access/AvoirCouleurDataAccess.php';
 include_once '../model/Perte.php';
 include_once '../service/PerteService.php';
 include_once '../data-access/PerteDataAccess.php';
+
+include_once '../model/AnimauxFavoris.php';
+include_once '../service/AnimauxFavorisService.php';
+include_once '../data-access/AnimauxFavorisDataAccess.php';
+
 
 
 if(isset($_SESSION["user_id"]))
@@ -107,8 +107,7 @@ if (isset($_POST["confirmRetrait"])) {
 }  
 
 if(isset($_POST["retraitFavoris"])){
-    $idAnimalRetrait = $_POST["retraitFavoris"];
-    $serviceAnimauxFavoris->serviceDelete($idAnimalRetrait);
+    $serviceAnimauxFavoris->serviceDelete($_POST);
 }
 
 
