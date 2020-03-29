@@ -6,24 +6,6 @@
     include_once('../data-access/AnimauxDataAccess.php');
     session_start();
 
-    function affichage($data){
-        foreach($data as $key => $value){
-            echo '<div class="col-lg-3 mb-4">
-                    <div class="card">
-                        <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <div class="row justify-content-center">
-                                <p class="card-text ">' . $value["nom"] . '</p>
-                            </div>
-                            <div class="row justify-content-center">
-                                <p class="card-text">' . $value["nom_race"] . '</p>
-                            </div>
-                        </div>                   
-                    </div>
-                </div>';
-        
-        }
-    }
 ?>
 <!DOCTYPE html>
 
@@ -58,7 +40,7 @@
                 <form method="post" action="adopter-un-animal.php"> 
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="nom_espece" class="custom-select custom-select-md">
+                            <select name="nom_espece" id="nom_espece" class="custom-select custom-select-md">
                                 <option value="" selected>Type</option>
                                 <?php
                                 $especeService = new EspeceService();
@@ -75,7 +57,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="nom_race" class="custom-select custom-select-md">
+                            <select name="nom_race" id="nom_race" class="custom-select custom-select-md">
                                 <option value="" selected>Race</option>
                                 <?php
                                 $raceService = new raceService();
@@ -91,7 +73,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="couleur" class="custom-select custom-select-md">
+                            <select name="couleur" id="couleur" class="custom-select custom-select-md">
                                 <option value="" selected>Couleur</option>
                                 <?php
                                 $couleurAnimalService = new CouleurAnimalService();
@@ -107,7 +89,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="sexe" class="custom-select custom-select-md">
+                            <select name="sexe" id="sexe" class="custom-select custom-select-md">
                                 <option value="" selected>Sexe</option>
                                 <?php
                                     $daoAnimaux = new AnimauxDataAccess();
@@ -124,7 +106,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class=col-lg-12>
-                            <select name="ville" class="custom-select custom-select-md">
+                            <select name="ville" id="ville" class="custom-select custom-select-md">
                                 <option value="" selected>Ville</option>
                                 <?php
                                     $daoAdresse = new AdresseDataAccess();
@@ -147,30 +129,7 @@
 
 <!--Fiches animaux, générées en php grâce à la base de données-->
             <div class="col-lg-8">
-                <div class="row">
-                    <?php
-                        $daoAnimaux = new AnimauxDataAccess();
-                        $animauxService = new AnimauxService($daoAnimaux);
-                        if(!isset($_POST["recherche"])){
-                            $data=$animauxService->serviceSelectAll();
-                            affichage($data);
-                        }
-
-                        if(isset($_POST["recherche"])){
-                            $data=$animauxService->serviceSearchAnimals($_POST);
-                            if(count($data)>0){
-                                affichage($data);
-                            }
-                            else{
-                                echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
-                            }
-                        }
-                    ?>
-
-                    
-                </div>
-
-
+                <div class="row" id="display"></div>
             </div>
         </div>
         <!--navigation vers les pages de recherche, à inclure avec php, les numéros de page doivent se générer avec la création des pages-->
@@ -199,5 +158,8 @@
     ?>                             
 
 </body>
+
+<script src="../../javascript/jquery-3.4.1.min.js"></script>
+<script src="../../javascript/scriptDisplaySelection.js"></script>
 
 </html>
