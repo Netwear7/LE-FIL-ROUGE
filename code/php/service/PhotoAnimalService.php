@@ -10,6 +10,10 @@
             $data = parent::getDataAccessObject()->daoSelectAllProfil();
             return $data;
         }
+        public function serviceSelectAllLostProfil(){
+            $data = parent::getDataAccessObject()->daoSelectAllLostProfil();
+            return $data;
+        }
         public function serviceSelectAllProfilMalade(){
             return parent::getDataAccessObject()->daoSelectAllProfilMalade();
         }
@@ -19,7 +23,7 @@
         public function serviceSearch($search){}
         public function serviceUpdate($post){}
         public function serviceDelete($nom){}
-        public function carrousselDisplay($data){
+        public function carrousselDisplayLostAnimal($data){
             $cpt=0;
             for($j = 0 ;$j <= intdiv(count($data), 4); $j++ ){
                 $class = $j == 0 ? "active": "";

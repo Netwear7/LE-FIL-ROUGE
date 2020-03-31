@@ -20,6 +20,17 @@
             $this->deconnexion($mysqli);
             return $data;
         }
+        public function daoSelectAllLostProfil(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT a.* from photo_animal as a
+            INNER JOIN perte as b
+            ON a.ID_ANIMAL = b.ID_ANIMAL
+            where PHOTO_PROFIL = true');
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
         public function daoSelectAllProfilMalade(){
             $mysqli = $this->connexion();
             $rs = $mysqli->query('SELECT * FROM `est_infecte_par` as a 

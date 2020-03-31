@@ -40,8 +40,8 @@
                         <?php
                             $photoAnimalDataAccess =  new PhotoAnimalDataAccess();
                             $photoAnimalService =  new PhotoAnimalService($photoAnimalDataAccess);
-                            $data = $photoAnimalService->serviceSelectAllProfil();
-                            $photoAnimalService->carrousselDisplay($data);
+                            $data = $photoAnimalService->serviceSelectAllLostProfil();
+                            $photoAnimalService->carrousselDisplayLostAnimal($data);
                         ?>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
