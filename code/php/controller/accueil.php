@@ -93,19 +93,12 @@
                     <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
                 </div>
             </div>
-            <div class="row mt-1 mb-5 justify-content-center">
-                <div class="col-lg-3">
-                        <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="photoChat">
-
-                </div>
-                <div class="col-lg-3">
-                        <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="photoChat">
-
-                </div>
-                <div class="col-lg-3">
-                        <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/chat1.jpg" alt="photoChat">
-                </div>
-            </div>
+            <?php
+                $photoAnimalDataAccess =  new PhotoAnimalDataAccess();
+                $photoAnimalService =  new PhotoAnimalService($photoAnimalDataAccess);
+                $data = $photoAnimalService->serviceSelectAllProfilMalade();
+                $photoAnimalService->displayAnimalsMalade($data);
+            ?>
         </div>
         <!--###############  FIN CODE PRINCIPALE  ##############-->
         <?php

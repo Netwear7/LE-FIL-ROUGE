@@ -4,13 +4,18 @@ include_once '../data-access/LogBdd.php';
 include_once '../Interfaces/InterfaceDao.php';
 
 class AnimauxDataAccess extends LogBdd implements InterfaceDao{
-
-
-
-
-        public function daoSelectAll()
-        {
+        public function daoSelectAll(){
             $mysqli = $this->connexion();
+            // Sans info en entrée, on peut utiliser 
+            //$mysqli->query directement, et donc pas besoin de stmt->execute()
+
+            /*
+            $rs = $mysqli->query("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");  
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs -> free();
+            ...
+            */
+
             $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
             $stmt -> execute();  
             $rs = $stmt->get_result();          
@@ -19,6 +24,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $this->deconnexion($mysqli);
             return $data;
         }
+
 
         public function daoSelectAllUserAnimals($id){
             $mysqli = $this->connexion();

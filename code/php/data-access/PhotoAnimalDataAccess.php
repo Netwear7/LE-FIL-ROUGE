@@ -20,6 +20,15 @@
             $this->deconnexion($mysqli);
             return $data;
         }
+        public function daoSelectAllProfilMalade(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * FROM `est_infecte_par` as a 
+            INNER JOIN photo_animal as b ON a.ID_ANIMAL = b.ID_ANIMAL');
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
         public function daoSelect($idAnimal){
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('SELECT * from photo_animal where ID_PHOTO_ANIMAL = 3 and ID_ANIMAL = ?');
