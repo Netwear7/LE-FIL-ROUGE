@@ -20,7 +20,7 @@ include_once '../Interfaces/InterfaceDao.php';
             $this->deconnexion($mysqli);
         }
         public function daoSearch($search){}
-        public function daoUpdate(array $parametres){}
+        public function daoUpdate($parametres){}
         public function daoDelete($infosAnimal){
             $idAnimal = $infosAnimal["idAnimalRetrait"];
             $idCouleur = "1";

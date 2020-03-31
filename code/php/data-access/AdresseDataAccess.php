@@ -89,7 +89,20 @@
 
         public function daoUpdate($parametres)
         {
-            
+            $mysqli = $this->connexion(); 
+            foreach ($parametres as $key => $value2){
+                if ($key =="updateUserInfos"){
+                    $this->deconnexion($mysqli); 
+                    return $result = "Modification effectuées !";
+                }
+                if ($key == "NUMERO" or $key == "RUE" or $key =="CODE_POSTAL" or $key == "VILLE"){
+                    $stmt = $mysqli->prepare("UPDATE utilisateur SET ".$key." = ? where ID_ADRESSE = ?");
+                    $stmt->bind_param("ss",$value2,$num);
+                    $stmt->execute();
+                }
+            }      
+            $this->deconnexion($mysqli); 
+            return $result = "Modification effectuées !";  
         }
 
 

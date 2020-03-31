@@ -74,9 +74,10 @@ if (isset($_POST["updatePassword"])){
 
 if (isset($_POST["updateUserInfos"])){
                                             
-    $serviceUtilisateur->serviceUpdate($_POST);
+    $serviceUtilisateur->serviceUpdate($_POST,$_SESSION["user_id"]);
+    $serviceAdresse->serviceUpdate($_POST,$idAdresse);
 
-}
+} 
 
 if (isset($_POST["addAnimal"])){
     $animal = new Animaux($_POST);
@@ -90,7 +91,7 @@ if (isset($_POST["addAnimal"])){
 
 if (isset($_POST["updateAnimalInfos"])){
                                             
-    $serviceAnimaux->serviceUpdate($_POST);
+    $serviceAnimaux->serviceUpdate($_POST,$idAnimal);
 
 }
 
@@ -131,6 +132,8 @@ if(isset($_POST["retraitFavoris"])){
 <!DOCTYPE html>
 <html lang=fr>
     <head>
+
+    
         <!-- script Javascript-->
 
         <title>Mon compte</title>
@@ -142,6 +145,8 @@ if(isset($_POST["retraitFavoris"])){
         <link rel="stylesheet" href="../../css/header-and-color-test.css">
         <link rel="stylesheet" href="../../css/csstest.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
     </head>
     <body>
 

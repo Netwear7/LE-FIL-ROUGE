@@ -4,7 +4,10 @@
     include_once '../Interfaces/InterfaceService.php';
 
     class AdresseService extends ServiceCommun implements InterfaceService{
-        public function serviceUpdate(array $post){}
+        public function serviceUpdate($parametres){
+            $this->getDataAccessObject()->daoUpdate($parametres);
+
+        }
         public function serviceDelete($nom){}
         // fonction pour select toutes les adresses
         public function serviceSelectAll(){

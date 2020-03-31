@@ -16,7 +16,7 @@ include_once '../Interfaces/InterfaceService.php';
         }
 
         public function serviceSearch($search){}
-        public function serviceUpdate(array $post){}
+        public function serviceUpdate($post){}
         public function serviceDelete($infosAnimal){
             $this->getDataAccessObject()->daoDelete($infosAnimal);
         }

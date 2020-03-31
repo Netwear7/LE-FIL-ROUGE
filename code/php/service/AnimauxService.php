@@ -139,7 +139,7 @@ include_once '../Interfaces/InterfaceService.php';
 
         }
                 
-        public function serviceUpdate(array $post)
+        public function serviceUpdate($post)
         {
 
         }
@@ -376,7 +376,7 @@ include_once '../Interfaces/InterfaceService.php';
                     </div>
                     <div class="row mt-3 ">
                         <div class="col-3 offset-3">
-                            <button type="button submit" name="modificationAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
+                            <button type="button submit" name="updateAnimalInfos" class="btn btn-block btn-outline-info">Modifier</button>
                         </div>
                         <div class="col-3">
                             <button type="button submit" name="Annuler" class="btn btn-block btn-outline-info">Annuler</button>

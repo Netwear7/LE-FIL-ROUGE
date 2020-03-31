@@ -1,5 +1,5 @@
 <?php
-    interface InterfaceDao{
+    interface InterfaceDao extends mysqli_sql_exception{
         public function daoSelectAll();
         public function daoSelect(int $id);
         public function daoCount();

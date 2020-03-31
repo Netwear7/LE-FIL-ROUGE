@@ -3,7 +3,9 @@
     include_once '../data-access/LogBdd.php';
     include_once '../Interfaces/InterfaceDao.php';
 
-    class UtilisateurDataAccess extends LogBdd implements InterfaceDao{
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+    class UtilisateurDataAccess extends LogBdd   implements InterfaceDao{
         public function __construct(){
     
         }
@@ -103,24 +105,24 @@
         {
 
             
-                $mysqli = new mysqli('localhost','root','','bddanimaux'); 
+                $mysqli = $this->connexion(); 
                 foreach ($parametres as $key => $value2){
-                    $num ="1";
                     if ($key =="updateUserInfos"){
-                        $mysqli->close();
+                        $this->deconnexion($mysqli); 
                         return $result = "Modification effectuées !";
                     }
                     if ($key == "NOM" or $key == "PRENOM" or $key =="NUM" or $key == "ADRESSE_EMAIL"){
                         $stmt = $mysqli->prepare("UPDATE utilisateur SET ".$key." = ? where ID_UTILISATEUR = ?");
                     } else{
-                        $stmt = $mysqli->prepare("UPDATE adresse SET ".$key." = ? where ID_ADRESSE = ?");
+                        $this->deconnexion($mysqli); 
+                        return $result = "Modification effectuées !";    
 
                     }
                     $stmt->bind_param("ss",$value2,$num);
                     $stmt->execute();
 
                 }      
-                $mysqli->close();      
+                
         }
 
 

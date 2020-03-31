@@ -14,7 +14,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
     public function serviceCount(){}
     public function serviceAdd(object $var){}
     public function serviceSearch($search){}
-    public function serviceUpdate(array $post){}
+    public function serviceUpdate($post){}
 
     public function serviceDelete($infosRetraitFavoris){
         $this->getDataAccessObject()->daoDelete($infosRetraitFavoris);

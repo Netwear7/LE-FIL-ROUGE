@@ -102,7 +102,25 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         public function daoSearch($search){}
 
 
-        public function daoUpdate( $parametres){}
+        public function daoUpdate($parametres){
+            $mysqli = $this->connexion();
+            foreach ($parametres as $key => $value2){
+                if ($key =="updateAnimalInfos"){
+                    $this->deconnexion($mysqli); 
+                    return $result = "Modification effectuées !";
+                }
+                if ($key == "NOM" or $key == "PRENOM" or $key =="NUM" or $key == "ADRESSE_EMAIL"){
+                    $stmt = $mysqli->prepare("UPDATE animaux SET ".$key." = ? where ID_ANIMAL = ?");
+                } else{
+                    $stmt = $mysqli->prepare("UPDATE avoir_couleur SET ".$key." = ? where ID_ANIMAL = ?");
+
+                }
+                $stmt->bind_param("ss",$value2,$num);
+                $stmt->execute();
+
+            }      
+            $this->deconnexion($mysqli);    
+        }
         
 
         public function daoDelete($infosAnimal)
