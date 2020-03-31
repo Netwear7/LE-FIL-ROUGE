@@ -33,98 +33,90 @@
         </div>
 
         <div class="row mt-5">
-            <div class="col-lg-2 offset-lg-1 bg-dark">
-<!--Menu critères de recherche, affichage avec requetes sql vers la base de données-->
-                <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
-                <hr>
-                <form method="post" action="adopter-un-animal.php"> 
-                    <div class="row mt-3">
-                        <div class=col-lg-12>
-                            <select name="nom_espece" id="nom_espece" class="custom-select custom-select-md">
-                                <option value="" selected>Type</option>
-                                <?php
-                                $especeService = new EspeceService();
-                                $data = $especeService->afficherType();
-                                foreach($data as $key =>$value){
-                                    foreach($value as $key2 => $value2){
-                                        echo '<option>' . $value2 . '</option>';
-                                    }
-                                } 
-                                ?>
-                                
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class=col-lg-12>
-                            <select name="nom_race" id="nom_race" class="custom-select custom-select-md">
-                                <option value="" selected>Race</option>
-                                <?php
-                                $raceService = new raceService();
-                                $data = $raceService->afficherRace();
-                                foreach($data as $key =>$value){
-                                    foreach($value as $key2 => $value2){
-                                        echo '<option>' . $value2 . '</option>';
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class=col-lg-12>
-                            <select name="couleur" id="couleur" class="custom-select custom-select-md">
-                                <option value="" selected>Couleur</option>
-                                <?php
-                                $couleurAnimalService = new CouleurAnimalService();
-                                $data = $couleurAnimalService->afficherCouleur();
-                                foreach($data as $key =>$value){
-                                    foreach($value as $key2 => $value2){
-                                        echo '<option>' . $value2 . '</option>';
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class=col-lg-12>
-                            <select name="sexe" id="sexe" class="custom-select custom-select-md">
-                                <option value="" selected>Sexe</option>
-                                <?php
-                                    $daoAnimaux = new AnimauxDataAccess();
-                                    $animauxService = new AnimauxService($daoAnimaux);
-                                    $data = $animauxService->serviceDisplaySelectGender();
-                                    foreach($data as $key =>$value){
-                                        foreach($value as $key2 => $value2){
-                                            echo '<option>' . $value2 . '</option>';
+            <div class="col-lg-2 offset-lg-1">
+                <div class="row">
+                    <div class="col-lg-12 bg-dark">
+        <!--Menu critères de recherche, affichage avec requetes sql vers la base de données-->
+                        <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
+                        <hr>
+                        <form method="post" action="adopter-un-animal.php"> 
+                            <div class="row mt-3">
+                                <div class=col-lg-12>
+                                    <select name="nom_espece" id="nom_espece" class="custom-select custom-select-md">
+                                        <option value="" selected>Type</option>
+                                        <?php
+                                        $especeService = new EspeceService();
+                                        $data = $especeService->afficherType();
+                                        foreach($data as $key =>$value){
+                                            foreach($value as $key2 => $value2){
+                                                echo '<option>' . $value2 . '</option>';
+                                            }
+                                        } 
+                                        ?>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class=col-lg-12>
+                                    <select name="nom_race" id="nom_race" class="simple-select custom-select custom-select-md">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class=col-lg-12>
+                                    <select name="couleur" id="couleur" class="simple-select custom-select custom-select-md">
+                                        <option value="" selected>Couleur</option>
+                                        <?php
+                                        $couleurAnimalService = new CouleurAnimalService();
+                                        $data = $couleurAnimalService->afficherCouleur();
+                                        foreach($data as $key =>$value){
+                                            foreach($value as $key2 => $value2){
+                                                echo '<option>' . $value2 . '</option>';
+                                            }
                                         }
-                                    }
-                                ?>
-                            </select>
-                        </div>
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class=col-lg-12>
+                                    <select name="sexe" id="sexe" class="simple-select custom-select custom-select-md">
+                                        <option value="" selected>Sexe</option>
+                                        <?php
+                                            $daoAnimaux = new AnimauxDataAccess();
+                                            $animauxService = new AnimauxService($daoAnimaux);
+                                            $data = $animauxService->serviceDisplaySelectGender();
+                                            foreach($data as $key =>$value){
+                                                foreach($value as $key2 => $value2){
+                                                    echo '<option>' . $value2 . '</option>';
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr style="border-color:white;">
+                            <div class="row my-3">
+                                <div class=col-lg-12>
+                                    <select name="ville" id="ville" class="simple-select custom-select custom-select-md">
+                                        <option value="" selected>Ville</option>
+                                        <?php
+                                            $daoAdresse = new AdresseDataAccess();
+                                            $adresseService = new AdresseService($daoAdresse);
+                                            $data = $adresseService->serviceAfficherVille();
+                                            foreach($data as $key =>$value){
+                                                foreach($value as $key2 => $value2){
+                                                    echo '<option>' . $value2 . '</option>';
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                    <div class="row mt-3">
-                        <div class=col-lg-12>
-                            <select name="ville" id="ville" class="custom-select custom-select-md">
-                                <option value="" selected>Ville</option>
-                                <?php
-                                    $daoAdresse = new AdresseDataAccess();
-                                    $adresseService = new AdresseService($daoAdresse);
-                                    $data = $adresseService->serviceAfficherVille();
-                                    foreach($data as $key =>$value){
-                                        foreach($value as $key2 => $value2){
-                                            echo '<option>' . $value2 . '</option>';
-                                        }
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row justify-content-center my-3">
-                        <button class="btn btn-primary" name="recherche" type="submit">Valider</button>
-                    </div>
-                </form>
+                </div>
             </div>
 
 <!--Fiches animaux, générées en php grâce à la base de données-->

@@ -7,8 +7,11 @@
         public function __construct(){
             $this->raceDataAccess = new RaceDataAccess();
         }
-        public function afficherRace(){
-            $data = $this->raceDataAccess->afficherRace();
+        public function selectRace($espece){
+            $request="C.nom_espece LIKE ?";
+            $value=$espece;
+            $type="s";
+            $data = $this->raceDataAccess->selectRace($request,$value,$type);
             return $data;            
         }
     }
