@@ -106,25 +106,27 @@
 
             
                 $mysqli = $this->connexion(); 
-                foreach ($parametres as $key => $value2){
-                    if ($key =="updateUserInfos"){
-                        $this->deconnexion($mysqli); 
+                foreach ($parametres as $key => $value){
+                    if ($key =="updateUserInfos" || $key =="idAdresse" || $key == "idUtilisateur"){
+                        $mysqli->close();
                         return $result = "Modification effectuées !";
                     }
                     if ($key == "NOM" or $key == "PRENOM" or $key =="NUM" or $key == "ADRESSE_EMAIL"){
+                        $id = $parametres["idUtilisateur"];
                         $stmt = $mysqli->prepare("UPDATE utilisateur SET ".$key." = ? where ID_UTILISATEUR = ?");
+                        $stmt->bind_param("ss",$value,$id);
                     } else{
-                        $this->deconnexion($mysqli); 
-                        return $result = "Modification effectuées !";    
-
+                        $id = $parametres["idAdresse"];
+                        $stmt = $mysqli->prepare("UPDATE adresse SET ".$key." = ? where ID_ADRESSE = ?");
+                        $stmt->bind_param("ss",$value,$id);
                     }
-                    $stmt->bind_param("ss",$value2,$num);
+                    
                     $stmt->execute();
 
                 }      
+                $mysqli->close();      
                 
         }
-
 
 
         

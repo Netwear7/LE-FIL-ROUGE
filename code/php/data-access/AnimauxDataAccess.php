@@ -132,10 +132,15 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         public function daoDelete($infosAnimal)
         {
             $id = $infosAnimal["idAnimalRetrait"];
+            $idCouleur = $infosAnimal["couleurAnimalRetrait"];
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM animaux where ID_ANIMAL = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
+            $stmt2 = $mysqli->prepare('DELETE from avoir_couleur where ID_ANIMAL = ? and ID_COULEUR = ?');
+            $stmt2->bind_param('ss',$id, $idCouleur);
+            $stmt2->execute();
+
             $this->deconnexion($mysqli);
             return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
         } 

@@ -8,7 +8,8 @@
 
 
         // fonction pour select tout les utilisateurs
-        public function serviceSelectAll(){
+        public function serviceSelectAll()
+        {
             // if admin ok sinon non
         }
 
@@ -53,15 +54,23 @@
         public function serviceUpdatePassword($id,$infos)
         {
             $mdpActuel = $infos["oldMdp"];
-            $confirm = $infos["confirmNewMdp"] == $infos["newMdp"] ? True : False;
-            $this->serviceVerifyActualPassword($id,$mdpActuel);
-            return $confirm ? $this->getDataAccessObject()->daoUpdatePassword($id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT)) : "Mots de passe incorect";
+            if ($infos["confirmNewMdp"] == $infos["newMdp"]) {
+                $result = $this->serviceVerifyActualPassword($id,$mdpActuel);
+                if ($result == true){
+                    return $this->getDataAccessObject()->daoUpdatePassword($id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT));
+                } else {
+                    return "Les mots de passes sont incorrect";
+                }
+                
+            }
+            
+            
         }
 
-        public function serviceVerifyActualPassword($nom, $mdpActuel)
+        public function serviceVerifyActualPassword($id, $mdpActuel)
         {
-            $data = $this->serviceSelect($nom);
-            password_verify($mdpActuel,$data["MDP"]);
+            $data = $this->serviceSelect($id);
+            return  password_verify($mdpActuel,$data["MDP"]);
         }
 
         // fonction de Suppression Utilisateur
@@ -151,11 +160,12 @@
                             </li>
                             <li class="list-group-item">
                                 <label for="userCP">Code Postal : </label>
-                                <input type="text" maxlength="50" class="form-control" name="CODE_POSTAL" value="'. $data["CODE_POSTAL"].'" aria-describedby="UserName">
+                                <input type="text" maxlength="50" class="form-control" name="CODE_POSTAL" value="'. $data["CODE_POSTAL"].'" aria-describedby="UserC">
                             </li>
                             <li class="list-group-item">
                                 <label for="userTown">Ville : </label>
-                                <input type="text" maxlength="50" class="form-control" name="VILLE" value="'. $data["VILLE"].'" aria-describedby="UserName">
+                                <input type="text" maxlength="50" class="form-control" name="VILLE" value="'. $data["VILLE"].'" aria-describedby="UserVille">
+                                
                             </li>
                         </ul>
                     </div>
@@ -166,6 +176,8 @@
                         <div class="row">
                             <div class="col-lg-6 col-sm-12 ">
                                 <div class="row justify-content-center">
+                                    <input type="hidden" name="idUtilisateur" value="'.$data["ID_UTILISATEUR"].'"/>
+                                    <input type="hidden" name="idAdresse" value="'.$data["ID_ADRESSE"].'"/>
                                     <button type="button submit" class="btn btn-outline-primary" name="updateUserInfos">Valider les modifications</button>
                                 </div>
                             </div>

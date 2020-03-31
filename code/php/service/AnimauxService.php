@@ -270,7 +270,7 @@ include_once '../Interfaces/InterfaceService.php';
         {
             $count = count($dataAnimaux);
 
-            for ($i = 0; $i < $count-1 ; $i++) 
+            for ($i = 0; $i < $count ; $i++) 
             
             {
                 $cmpt = $i;
@@ -411,7 +411,7 @@ include_once '../Interfaces/InterfaceService.php';
         public function serviceCreateModals($dataAnimaux){
             $count = count($dataAnimaux);
 
-            for ($i = 0; $i < $count-1 ; $i++) 
+            for ($i = 0; $i < $count ; $i++) 
             
             {
                 $cmpt = $i;

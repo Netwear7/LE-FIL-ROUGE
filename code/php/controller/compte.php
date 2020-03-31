@@ -74,8 +74,7 @@ if (isset($_POST["updatePassword"])){
 
 if (isset($_POST["updateUserInfos"])){
                                             
-    $serviceUtilisateur->serviceUpdate($_POST,$_SESSION["user_id"]);
-    $serviceAdresse->serviceUpdate($_POST,$idAdresse);
+    $serviceUtilisateur->serviceUpdate($_POST);
 
 } 
 
@@ -96,7 +95,6 @@ if (isset($_POST["updateAnimalInfos"])){
 }
 
 if (isset($_POST["removeUserAnimal"])){
-    $avoirCouleurService->serviceDelete($_POST);
     $serviceAnimaux->serviceDelete($_POST);
 }
 
@@ -400,8 +398,8 @@ if(isset($_POST["retraitFavoris"])){
                                                                 <input class="form-control " type="number" placeholder="100" name="taille">
                                                             <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
                                                                 <input class="form-control " type="float" placeholder="1.3" name="poids">
-                                                            <label for="textAreaSpécificités" class="mt-2">Spécificités :</label>
-                                                                <textarea class="form-control " id="textAreaSpécificités" name="specificites" rows="3"></textarea>
+                                                            <label for="specTextArea" class="mt-2">Spécificités :</label>
+                                                            <textarea class="form-control " id="inputTextAreaSpecificite" name="specificites" rows="3"></textarea>
                                                             <input type="hidden" name="idUtilisateur" value="<?php echo $_SESSION["user_id"];?>"></input>
                                                         </div>
                                                     </div>
@@ -425,6 +423,7 @@ if(isset($_POST["retraitFavoris"])){
                         <?php
                             $serviceAnimaux->serviceUpdatePanelAnimals($dataAnimaux);
                         ?>
+                        
                         
                        
 
