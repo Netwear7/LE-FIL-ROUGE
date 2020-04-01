@@ -29,6 +29,8 @@ include_once '../model/AnimauxFavoris.php';
 include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
 
+include_once '../controller/affichageAnimaux.php';
+
 
 
 if(isset($_SESSION["user_id"]))
@@ -95,6 +97,8 @@ if (isset($_POST["updateAnimalInfos"])){
 }
 
 if (isset($_POST["removeUserAnimal"])){
+
+    $avoirCouleurService->serviceDelete($_POST);
     $serviceAnimaux->serviceDelete($_POST);
 }
 
@@ -305,8 +309,7 @@ if(isset($_POST["retraitFavoris"])){
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
                             <?php 
                             $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                            empty($dataAnimaux) ?  $serviceAnimaux->serviceDisplayNoAnimals() : $serviceAnimaux->serviceDisplayUserAnimals($dataAnimaux);
-                            $serviceAnimaux->serviceCreateModals($dataAnimaux);
+                            affichageAnimaux($dataAnimaux);
                             ?>
                        </div>
                     
@@ -348,10 +351,7 @@ if(isset($_POST["retraitFavoris"])){
                                                 </div>
 
                                                 <div class="row mt-5 ">
-                                                    <div class="col-3"><input type="file"  id="photo1" name="photo1" accept="image/png, image/jpeg"></div>
-                                                    <div class="col-3"><input type="file" id="photo2" name="photo1" accept="image/png, image/jpeg"></div>
-                                                    <div class="col-3"><input type="file" id="photo3" name="photo1" accept="image/png, image/jpeg"></div>
-                                                    <div class="col-3"><input type="file" id="photo4" name="photo1" accept="image/png, image/jpeg"></div>
+                                                    <div class="col-4 offset-4"><input type="file"  id="photo1" name="photo1" accept="image/png, image/jpeg"></div>
                                                 </div>
 
                                                 <div class="row mt-3 ">
@@ -421,7 +421,7 @@ if(isset($_POST["retraitFavoris"])){
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
                         <?php
-                            $serviceAnimaux->serviceUpdatePanelAnimals($dataAnimaux);
+                            displayUpdatePanel($dataAnimaux);
                         ?>
                         
                         

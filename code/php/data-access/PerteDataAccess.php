@@ -7,7 +7,17 @@
 
         public function daoSelectAll(){}
 
-        public function daoSelect(int $id){}
+        public function daoSelect(int $id){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from perte WHERE ID_ANIMAL = ? ');
+            $stmt-> bind_param('s', $id );
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
 
         public function daoCount(){}
 

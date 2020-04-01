@@ -23,7 +23,10 @@ include_once '../Interfaces/InterfaceDao.php';
         public function daoUpdate($parametres){}
         public function daoDelete($infosAnimal){
             $idAnimal = $infosAnimal["idAnimalRetrait"];
-            $idCouleur = "1";
+            $idCouleur = $infosAnimal["couleurAnimalRetrait"];
+            if ($idCouleur = "Roux") {
+                $idCouleur = "1";
+            }
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM avoir_couleur WHERE ID_COULEUR = ? AND ID_ANIMAL = ?');
             $stmt->bind_param('ss',$idCouleur,$idAnimal);
