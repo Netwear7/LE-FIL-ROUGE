@@ -57,11 +57,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row mt-3">
-                                <div class=col-lg-12>
-                                    <select name="nom_race" id="nom_race" class="simple-select custom-select custom-select-md">
-                                    </select>
-                                </div>
+                            <div class="row mt-3" id="popSelect">
                             </div>
                             <div class="row mt-3">
                                 <div class=col-lg-12>

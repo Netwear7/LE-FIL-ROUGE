@@ -18,7 +18,7 @@ window.onload=function() {
             $.ajax({
                 url : 'displayRaceByType.php?nomEspece=' + espece,
                 success : function(data){
-                    $("#nom_race").html(data);
+                    $("#popSelect").html(data);
                 }, 
                 error : function(xhr, message, status){ 
                     alert("Erreur !!");
