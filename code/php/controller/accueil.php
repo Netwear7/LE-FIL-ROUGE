@@ -104,6 +104,8 @@
         <?php
             include_once("footer.php");
         ?>
+        <script src="../../javascript/jquery-3.4.1.min.js"></script>
+        <script src="../../javascript/displayCardAccueil.js"></script>
     </body>
 </html>
 
