@@ -57,41 +57,9 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="row mt-3" id="popSelect">
-                            </div>
-                            <div class="row mt-3">
-                                <div class=col-lg-12>
-                                    <select name="couleur" id="couleur" class="simple-select custom-select custom-select-md">
-                                        <option value="" selected>Couleur</option>
-                                        <?php
-                                        $couleurAnimalService = new CouleurAnimalService();
-                                        $data = $couleurAnimalService->afficherCouleur();
-                                        foreach($data as $key =>$value){
-                                            foreach($value as $key2 => $value2){
-                                                echo '<option>' . $value2 . '</option>';
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class=col-lg-12>
-                                    <select name="sexe" id="sexe" class="simple-select custom-select custom-select-md">
-                                        <option value="" selected>Sexe</option>
-                                        <?php
-                                            $daoAnimaux = new AnimauxDataAccess();
-                                            $animauxService = new AnimauxService($daoAnimaux);
-                                            $data = $animauxService->serviceDisplaySelectGender();
-                                            foreach($data as $key =>$value){
-                                                foreach($value as $key2 => $value2){
-                                                    echo '<option>' . $value2 . '</option>';
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
+                            <div class="row">
+                                <div class="col-lg-12" id="popSelect"></div>
+                            </div>                            
                             <hr style="border-color:white;">
                             <div class="row my-3">
                                 <div class=col-lg-12>

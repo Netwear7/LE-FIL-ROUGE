@@ -1,12 +1,30 @@
-function loadInfo(){
+function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, villeValue){
     $('#display').load("../controller/displaySelection.php", 
     {
-        nom_espece:  $('#nom_espece').val(),
-        nom_race : $('#nom_race').val(),
-        couleur : $('#couleur').val(),
-        sexe : $('#sexe').val(),
-        ville : $('#ville').val()
+        nom_espece:  nomEspeceValue,
+        nom_race : nomRaceValue,
+        couleur : couleurValue,
+        sexe : sexeValue,
+        ville : villeValue
     })
+}
+function loadInfo(){
+    nomEspeceValue=$('#nom_espece').val();
+    if(nomEspeceValue.length==0){
+        nomRaceValue = "";
+        couleurValue = "";
+        sexeValue = "";
+        villeValue = $('#ville').val();
+        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, villeValue);
+    }
+    else{
+        nomEspeceValue = $('#nom_espece').val();
+        nomRaceValue = $('#nom_race').val();
+        couleurValue = $('#couleur').val();
+        sexeValue = $('#sexe').val();
+        villeValue = $('#ville').val();
+        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, villeValue);
+    }
 }
 
 
@@ -19,13 +37,13 @@ window.onload=function() {
                 url : 'displayRaceByType.php?nomEspece=' + espece,
                 success : function(data){
                     $("#popSelect").html(data);
+                    $(".simple-select").change(function(e){
+                        loadInfo();
+                    });
                 }, 
                 error : function(xhr, message, status){ 
                     alert("Erreur !!");
                 }
             })
-    });
-    $(".simple-select").change(function(e){
-        loadInfo();
     });
 }
