@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 02 avr. 2020 à 19:58
+-- Généré le :  jeu. 02 avr. 2020 à 20:46
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP :  7.4.1
 
@@ -77,9 +77,9 @@ CREATE TABLE `animaux` (
 --
 
 INSERT INTO `animaux` (`ID_ANIMAL`, `NOM`, `DATE_NAISSANCE`, `POIDS`, `NO_PUCE`, `CARACTERE`, `SPECIFICITE`, `TAILLE`, `ROBE`, `DATE_ARRIVEE_ANIMAL`, `DATE_SORTIE_ANIMAL`, `ID_RACE`, `ID_UTILISATEUR`, `ID_REFUGE`, `ID_GARDERIE`, `SEXE`) VALUES
-(2, 'PEPITO', '2020-03-04', 15, '1AZE', 'gentil', 'gentil', 15, 'BROWN TABBY', '0000-00-00', '0000-00-00', 1, 1, NULL, NULL, 'Mâle'),
-(12, 'VIGGO', '1994-11-22', 5, '1AZEAZE', 'Très gentil', 'TRES TRES GENTIL', 50, 'Brown Tabby', NULL, NULL, 1, 1, NULL, NULL, 'Mâle'),
-(13, 'JONATHAN STOEV', '0000-00-00', 5, '1234TWERK62', '1', 'PAS TRES GENTIL', 80, 'Brown Tabby', NULL, NULL, 1, 1, NULL, NULL, 'Mâle'),
+(2, 'PEPITO', '2020-03-04', 15, '1AZE', 'gentil', 'gentil', 15, 'BROWN TABBY', '0000-00-00', '0000-00-00', 7, 1, NULL, NULL, 'Mâle'),
+(12, 'VIGGO', '1994-11-22', 5, '1AZEAZE', 'Très gentil', 'TRES TRES GENTIL', 50, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle'),
+(13, 'JONATHAN STOEV', '0000-00-00', 5, '1234TWERK62', '1', 'PAS TRES GENTIL', 80, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle'),
 (21, 'Riri', '0000-00-00', 0, '', '', '', NULL, NULL, '0000-00-00', '0000-00-00', 1, NULL, 1, NULL, 'Mâle'),
 (22, 'Fifi', '0000-00-00', 0, '', '', '', NULL, NULL, '0000-00-00', '0000-00-00', 2, NULL, 2, NULL, 'Mâle'),
 (23, 'Loulou', '0000-00-00', 0, '', '', '', NULL, NULL, '0000-00-00', '0000-00-00', 3, NULL, 1, NULL, 'Mâle'),
@@ -98,9 +98,9 @@ INSERT INTO `animaux` (`ID_ANIMAL`, `NOM`, `DATE_NAISSANCE`, `POIDS`, `NO_PUCE`,
 (36, 'Toto', '0000-00-00', 0, '', '', '', NULL, NULL, '0000-00-00', '0000-00-00', 4, NULL, 2, NULL, 'Femelle'),
 (37, 'Titi', '0000-00-00', 0, '', '', '', NULL, NULL, '0000-00-00', '0000-00-00', 5, NULL, 1, NULL, 'Femelle'),
 (38, 'Tutu', '0000-00-00', 0, '', '', '', NULL, NULL, '0000-00-00', '0000-00-00', 6, NULL, 2, NULL, 'Femelle'),
-(47, 'VIGGO', '2015-05-14', 5, '1AZE34567', 'très gentil', 'TRES GENTIL AVEC VALENTINE', 50, 'Brown Tabby', NULL, NULL, 1, 1, NULL, NULL, 'Mâle'),
-(49, 'stoev jo', '1994-11-22', 888, 'cetest', 'test', 'test', 0, 'Brown Tabby', NULL, NULL, 1, 1, NULL, NULL, 'Mâle'),
-(51, 'testretrait', '0000-00-00', 0, '', '', '', 0, 'Brown Tabby', NULL, NULL, 1, 1, NULL, NULL, 'Mâle');
+(47, 'VIGGO', '2015-05-14', 5, '1AZE34567', 'très gentil', 'TRES GENTIL AVEC VALENTINE', 50, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle'),
+(49, 'stoev jo', '1994-11-22', 888, 'cetest', 'test', 'test', 0, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle'),
+(51, 'testretrait', '0000-00-00', 0, '', '', '', 0, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle');
 
 -- --------------------------------------------------------
 
