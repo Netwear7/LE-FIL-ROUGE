@@ -120,7 +120,7 @@
         </ul>
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
         <div class="navbar-item">
-            <a class="nav-link text-white" href="compte.php#list-compagnons">Mes animaux</a>
+            <a class="nav-link text-white" href="compte.php#list-compagnons">Mon compte</a>
         </div>
         <!--<a class="d-flex mr-3" href="#" data-toggle="modal" data-target="#exampleModal">
             <img class="mr-1" src="img/account.png" alt="">

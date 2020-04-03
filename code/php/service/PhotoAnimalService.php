@@ -46,9 +46,9 @@
 
                 for($i=3*$cpt; $i < $maxIndex; $i++){
                     echo "<div class='parent-card col-lg-3'>";
-                    echo '<img id="'.$data[$i]['ID_ANIMAL'].'" class="card d-inline-block w-100 mx-3" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
+                    echo '<img id="'.$data[$i]['ID_ANIMAL'].'" class="card d-inline-block img-fluid" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
                     echo "<div class='row'>";
-                    echo "<div class='col-lg-12 card-body bg-dark' style='heigth : 100px; display: none;'>";
+                    echo "<div class='col-lg-12 card-body bg-secondary' style='heigth : 400px; display: none;'>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";
