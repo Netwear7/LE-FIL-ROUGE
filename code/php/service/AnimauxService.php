@@ -10,7 +10,13 @@ include_once '../Interfaces/InterfaceService.php';
 
         public function serviceSelectAll()
         {
-            $data = $this->getDataAccessObject()->daoSelectAll();
+            $data = $this->getDataAccessObject()->daoSelectAllAdoptableAnimals();
+            return $data;
+        }
+
+        public function serviceSelectAllAdoptableAnimals()
+        {
+            $data = $this->getDataAccessObject()->daoSelectAllAdoptableAnimals();
             return $data;
         }
 

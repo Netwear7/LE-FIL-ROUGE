@@ -25,7 +25,7 @@ include_once('../service/AnimauxService.php');
     $daoAnimaux = new AnimauxDataAccess();
     $animauxService = new AnimauxService($daoAnimaux);
     if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
-        $data=$animauxService->serviceSelectAll();
+        $data=$animauxService->serviceSelectAllAdoptableAnimals();
         affichage($data);
     }
 
