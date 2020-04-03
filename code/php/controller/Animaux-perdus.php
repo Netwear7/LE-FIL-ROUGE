@@ -1,7 +1,12 @@
-<?php 
+<?php
+    include_once('../service/EspeceService.php');
+    include_once('../service/RaceService.php');
+    include_once('../service/CouleurAnimalService.php');
+    include_once('../service/AnimauxService.php');
+    include_once('../data-access/AnimauxDataAccess.php');
     session_start();
-?>
 
+?>
 <!DOCTYPE html>
 
 <html>
@@ -20,193 +25,97 @@
 
     <?php
         include_once("header.php");
-    ?>
+    ?> 
     
     <div class="container-fluid">
         <div class="row my-3">
-            <h1 class="mx-auto">Avez-vous aperçu cet animal ?</h1>
+            <h1 class="mx-auto">Animaux perdus</h1>
         </div>
 
         <div class="row mt-5">
-            <div class="col-lg-2 offset-lg-1 bg-dark">
-                                   
-                <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
-
-                <div class="row text-center">                    
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle" style="width:75%" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Type
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Chien</a>
-                            <a class="dropdown-item" href="#">Chat</a>
-                            <a class="dropdown-item" href="#">Lapin</a>
-                        </div>
-                    </div>                       
+            <div class="col-lg-2 offset-lg-1">
+                <div class="row">
+                    <div class="col-lg-12 bg-dark">
+        <!--Menu critères de recherche, affichage avec requetes sql vers la base de données-->
+                        <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
+                        <hr>
+                        <form method="post" action="adopter-un-animal.php"> 
+                            <div class="row mt-3">
+                                <div class=col-lg-12>
+                                    <select name="nom_espece" id="nom_espece" class="custom-select custom-select-md">
+                                        <option value="" selected>Type</option>
+                                        <?php
+                                        $especeService = new EspeceService();
+                                        $data = $especeService->afficherType();
+                                        foreach($data as $key =>$value){
+                                            foreach($value as $key2 => $value2){
+                                                echo '<option>' . $value2 . '</option>';
+                                            }
+                                        } 
+                                        ?>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12" id="popSelect"></div>
+                            </div>                            
+                            <hr style="border-color:white;">
+                            <div class="row my-3">
+                                <div class=col-lg-12>
+                                    <select name="ville" id="ville" class="simple-select custom-select custom-select-md">
+                                        <option value="" selected>Ville</option>
+                                        <?php
+                                            $daoAdresse = new AdresseDataAccess();
+                                            $adresseService = new AdresseService($daoAdresse);
+                                            $data = $adresseService->serviceAfficherVille();
+                                            foreach($data as $key =>$value){
+                                                foreach($value as $key2 => $value2){
+                                                    echo '<option>' . $value2 . '</option>';
+                                                }
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="row text-center mt-3">                    
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle" style="width:75%" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Race
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Chien</a>
-                            <a class="dropdown-item" href="#">Chat</a>
-                            <a class="dropdown-item" href="#">Lapin</a>
-                        </div>
-                    </div>                       
-                </div>
-                <div class="row text-center mt-3">                   
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle" style="width:75%" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Age
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Chien</a>
-                            <a class="dropdown-item" href="#">Chat</a>
-                            <a class="dropdown-item" href="#">Lapin</a>
-                        </div>
-                    </div>                       
-                </div>
-                <div class="row text-center mt-3">                    
-                    <div class="dropdown w-100">                           
-                        <button class="btn btn-secondary dropdown-toggle" style="width:75%" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Poil
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Chien</a>
-                            <a class="dropdown-item" href="#">Chat</a>
-                            <a class="dropdown-item" href="#">Lapin</a>
-                        </div>
-                    </div>                       
-                </div>               
             </div>
 
+<!--Fiches animaux, générées en php grâce à la base de données-->
             <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        <div class="card">
-                            <img class="card-img-top" src="Koala.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                      <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">4</a></li>
-                      <li class="page-item"><a class="page-link" href="#">5</a></li>
-                      <li class="page-item"><a class="page-link" href="#">6</a></li>
-                      <li class="page-item"><a class="page-link" href="#">7</a></li>
-                      <li class="page-item"><a class="page-link" href="#">8</a></li>
-                      <li class="page-item"><a class="page-link" href="#">9</a></li>
-                      <li class="page-item"><a class="page-link" href="#">10</a></li>
-                      <li class="page-item"><a class="page-link" href="#">suivant</a></li>
-                    </ul>
-                </nav>
-
+                <div class="row" id="display"></div>
             </div>
         </div>
+        <!--navigation vers les pages de recherche, à inclure avec php, les numéros de page doivent se générer avec la création des pages-->
+        <nav aria-label="Page navigation">
+            <div class="col-lg-8 offset-lg-3 justify-content-center">
+                <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <li class="page-item"><a class="page-link" href="#">5</a></li>
+                <li class="page-item"><a class="page-link" href="#">6</a></li>
+                <li class="page-item"><a class="page-link" href="#">7</a></li>
+                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                <li class="page-item"><a class="page-link" href="#">9</a></li>
+                <li class="page-item"><a class="page-link" href="#">10</a></li>
+                <li class="page-item"><a class="page-link" href="#">suivant</a></li>
+                </ul>
+            </div>
+         </nav>
     </div>
 
     <?php
         include_once("footer.php");
-    ?>
+    ?>                             
 
 </body>
+
+<script src="../../javascript/jquery-3.4.1.min.js"></script>
+<script src="../../javascript/scriptDisplaySelection.js"></script>
 
 </html>

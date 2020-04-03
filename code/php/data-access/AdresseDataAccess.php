@@ -117,7 +117,7 @@
 
         public function daoAfficherVille(){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
-            $stmt = $mysqli->prepare('SELECT DISTINCT ville FROM adresse');
+            $stmt = $mysqli->prepare('SELECT DISTINCT ville FROM adresse as A INNER JOIN refuge as B ON A.id_adresse=B.id_adresse WHERE A.id_adresse IN (B.id_adresse)');
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_all(MYSQLI_ASSOC);
