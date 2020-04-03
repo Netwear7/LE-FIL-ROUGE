@@ -68,7 +68,7 @@
                                         <?php
                                             $daoAdresse = new AdresseDataAccess();
                                             $adresseService = new AdresseService($daoAdresse);
-                                            $data = $adresseService->serviceAfficherVille();
+                                            $data = $adresseService->serviceSelectLostAnimalCities();
                                             foreach($data as $key =>$value){
                                                 foreach($value as $key2 => $value2){
                                                     echo '<option>' . $value2 . '</option>';
@@ -116,6 +116,6 @@
 </body>
 
 <script src="../../javascript/jquery-3.4.1.min.js"></script>
-<script src="../../javascript/scriptDisplaySelection.js"></script>
+<script src="../../javascript/scriptDisplayLostAnimals.js"></script>
 
 </html>

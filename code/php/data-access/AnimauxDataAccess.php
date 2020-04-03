@@ -36,6 +36,17 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             return $data;
         }
 
+        public function daoSelectAllLostAnimals(){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN perte as C ON A.id_animal=C.id_animal WHERE A.id_animal IN (C.id_animal)");
+            $stmt -> execute();  
+            $rs = $stmt->get_result();          
+            $data= $rs->fetch_all(MYSQLI_ASSOC);
+            $rs -> free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
+
 
         public function daoSelectAllUserAnimals($id){
             $mysqli = $this->connexion();
@@ -157,18 +168,6 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         } 
  
         
-        public function selectAll(){
-            $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
-            $stmt->execute();  
-            $rs = $stmt->get_result();          
-            $data= $rs->fetch_all(MYSQLI_ASSOC);
-            $rs->free();
-            $this->deconnexion($mysqli);  
-            return $data;
-        }
- 
-        
         public function daoSearchAnimals($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
             $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A 
@@ -180,6 +179,27 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
                                       INNER JOIN refuge as G on A.id_refuge=G.id_refuge
                                       INNER JOIN adresse as H on G.id_adresse=H.id_adresse
                                       WHERE $request");
+            $stmt->bind_param($type, ...$arrayOfValues);
+            $stmt->execute();  
+            $rs = $stmt->get_result();          
+            $data= $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);  
+            return $data;
+        }
+
+        public function daoSearchLostAnimals($request,$type,$arrayOfValues){
+            $mysqli=$this->connexion();
+            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A 
+                                      INNER JOIN race as B on A.id_race = B.id_race 
+                                      INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
+                                      INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
+                                      INNER JOIN appartenir_espece as E on B.id_race=E.id_race
+                                      INNER JOIN espece as F on F.id_espece=E.id_espece
+                                      INNER JOIN refuge as G on A.id_refuge=G.id_refuge
+                                      INNER JOIN adresse as H on G.id_adresse=H.id_adresse
+                                      INNER JOIN perte as I on I.id_animal=A.id_animal
+                                      WHERE A.id_animal IN (I.id_animal) AND $request");
             $stmt->bind_param($type, ...$arrayOfValues);
             $stmt->execute();  
             $rs = $stmt->get_result();          

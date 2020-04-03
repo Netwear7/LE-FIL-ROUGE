@@ -51,5 +51,10 @@
             $data = $this->getDataAccessObject()->daoAfficherVille();
             return $data;            
         }
+
+        public function serviceSelectLostAnimalCities(){
+            $data = $this->getDataAccessObject()->daoSelectLostAnimalCities();
+            return $data;            
+        }
     }
 ?>

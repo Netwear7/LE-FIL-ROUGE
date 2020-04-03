@@ -124,5 +124,19 @@
             $mysqli->close();
             return $data;            
         }
+
+        public function daoSelectLostAnimalCities(){
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $stmt = $mysqli->prepare('SELECT DISTINCT ville FROM adresse as A 
+                                      INNER JOIN utilisateur as B ON A.id_adresse=B.id_adresse 
+                                      INNER JOIN animaux as C ON B.id_utilisateur=C.id_utilisateur 
+                                      INNER JOIN perte as D ON C.id_animal=D.id_animal
+                                      WHERE C.id_animal IN (D.id_animal)');
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $mysqli->close();
+            return $data;            
+        }
     }
 ?>

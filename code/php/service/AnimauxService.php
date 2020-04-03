@@ -20,6 +20,12 @@ include_once '../Interfaces/InterfaceService.php';
             return $data;
         }
 
+        public function serviceSelectAllLostAnimals()
+        {
+            $data = $this->getDataAccessObject()->daoSelectAllLostAnimals();
+            return $data;
+        }
+
 
 
         public function serviceSelectAllUserAnimals($id)
@@ -136,6 +142,68 @@ include_once '../Interfaces/InterfaceService.php';
                     }
             }
             return $data = $this->getDataAccessObject()->daoSearchAnimals($request,$type,$arrayOfValues);
+        }
+
+        public function serviceSearchLostAnimals($tab) : array {
+            $request="";
+            $type="";
+            $counter=0;
+            $tabLength=count(array_filter($tab));
+            foreach(array_filter($tab) as $key=> $value) {
+                switch ($key) {
+                    case "nom_race" :
+                        if($counter<$tabLength-1) {
+                            $request.="B.nom_race like ? and ";
+                        } else {
+                            $request.= "B.nom_race like ?";
+                        }
+                        $type.="s";                       
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "nom_espece" :
+                        if($counter<$tabLength-1) {
+                            $request.="F.nom_espece like ? and ";
+                        } else {
+                            $request.= "F.nom_espece like ?";
+                        }
+                        $type.="s";                       
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "couleur" : 
+                        if($counter<$tabLength-1) {
+                            $request.="D.couleur like ? and ";
+                        } else {
+                            $request.= "D.couleur like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "ville" : 
+                        if($counter<$tabLength-1) {
+                            $request.="H.ville like ? and ";
+                        } else {
+                            $request.= "H.ville like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "sexe" : 
+                        if($counter<$tabLength-1) {
+                            $request.="A.sexe like ? and ";
+                        } else {
+                            $request.= "A.sexe like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    }
+            }
+            return $data = $this->getDataAccessObject()->daoSearchLostAnimals($request,$type,$arrayOfValues);
         }
 
         public function serviceDisplaySelectGender() {
