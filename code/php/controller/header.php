@@ -69,9 +69,9 @@
 ?>
 
 <!--Include with php in futur-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-grey">
+<nav id="navbar" class="sticky-top navbar navbar-expand-lg navbar-light bg-1">
             
-    <a class="navbar-brand ml-5" href="#"><img src="http://localhost/LE-FIL-ROUGE/code/img/logo.jpg"></a>
+    <a id="logo" class="navbar-brand ml-5 mr-5" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -87,8 +87,8 @@
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Adopter un animal</a>
-                    <div class="dropdown-menu bg-grey border-0" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-white" href="adopter-un-animal.php">Adopter un animal</a>
+                    <div class="dropdown-menu bg-1 border-0" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="adopter-un-animal.php">Adopter un animal</a>
                         <div class="dropdown-divider"></div>
 
                         <!-- dans le formulaire de filtre mettre :
@@ -97,8 +97,8 @@
                             Pour Pierre
                     
                         -->
-                        <a class="dropdown-item text-white" href="adopter-un-animal.php?select=chien">- Chien</a>
-                        <a class="dropdown-item text-white" href="adopter-un-animal.php?select=chat">- Chat</a>
+                        <a class="dropdown-item" href="adopter-un-animal.php?select=chien">- Chien</a>
+                        <a class="dropdown-item" href="adopter-un-animal.php?select=chat">- Chat</a>
                     </div>
             </li>
 
@@ -106,11 +106,11 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Animaux perdus</a>
-                <div class="dropdown-menu bg-grey border-0" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-white" href="animaux-perdus.php">Action</a>
-                    <a class="dropdown-item text-white" href="#">Another action</a>
+                <div class="dropdown-menu bg-1 border-0" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="animaux-perdus.php">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-white" href="#">Envoyer la fiche animal</a>
+                    <a class="dropdown-item" href="#">Envoyer la fiche animal</a>
                 </div>
             </li>
             <li>
@@ -119,10 +119,13 @@
             </li>
         </ul>
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
-        <div class="navbar-item">
-            <a class="nav-link text-white" href="compte.php#list-compagnons">Mon compte</a>
-        </div>
-        <!--<a class="d-flex mr-3" href="#" data-toggle="modal" data-target="#exampleModal">
+        <?php
+            if(isset($_SESSION["user_id"])){
+                echo '<div class="navbar-item"><a class="nav-link" href="compte.php#list-compagnons">Mon compte</a></div>';
+            }
+        ?>
+        
+        <!--<a class="d-flex mr-5" href="#" data-toggle="modal" data-target="#exampleModal">
             <img class="mr-1" src="img/account.png" alt="">
             <p class="navbar-nav text-light">Mon compte</p>
         </a>-->
@@ -131,7 +134,7 @@
            
                     <?php
                         if(!isset($_SESSION["user_id"])){
-                            echo "<button type='button' class='btn btn-orange' data-toggle='modal' data-target='#staticBackdrop'>Se connecter/S'inscrire</button>";
+                            echo "<button type='button' class='btn bg-white btn-effect' data-toggle='modal' data-target='#staticBackdrop'>Se connecter / S'inscrire</button>";
                         }
                         else{
                             $daoUtilisateur = new UtilisateurDataAccess();

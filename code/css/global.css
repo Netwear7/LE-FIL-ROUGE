@@ -1,0 +1,125 @@
+/* 
+1           2           3           4           5
+#674a38     #986a46     #d4ad86     #efefef     #534940
+*/
+/* alternative
+1           2           3           4           5
+#666235     #a98c6a     #efe6d6     #f5f8eb     #e1e9eb
+*/
+/* #EDE8C8     #F2661B     #55361C */
+
+
+/*__________Super_Global_____________*/
+@font-face {
+    font-family: 'testFont';
+    src: url('../../font/BalooDa2-Regular.ttf'); 
+}
+html, body {
+    background-color: #f5f5f5;
+    font-family: 'testFont', sans-serif;
+    position: relative;
+    min-height: 100%;
+}
+
+
+
+/*__________Global_____________*/
+/* brown darkest */
+.bg-brown-darkest{
+    background-color: #666235;
+}
+.bg-1{
+    background-color: #EDE8C8;
+}
+.bg-2{
+    background-color: #55361C;
+}
+.bg-grey-light{
+    background-color: #f5f5f5;
+}
+
+.btn-effect{
+    -webkit-box-shadow: 0px 10px 8px -8px rgba(200,200,200,0.10); 
+    box-shadow: 0px 10px 8px -8px rgba(200,200,200,0.20);
+}
+
+
+/*__________Global_____________*/
+.img-round{
+    border-radius: 2%;
+}
+
+
+
+
+
+
+
+
+
+/*__________Navbar_style_____________*/
+
+#navbar {
+    z-index: 2;
+    -webkit-box-shadow: inset 0px 50px 27px 0px #FFFAD8; 
+    box-shadow: inset 0px 50px 27px 0px #FFFAD8;
+}
+.modal-backdrop{
+    z-index: 1;
+}
+#logo{
+    width: 101px;
+    height: 100px;
+    display : block; /*Très important, sinon les dimensions ne sont pas prises en compte*/
+    background : url("../img/logo.png") no-repeat;
+    background-size: contain;
+}
+#logo:hover{
+    display : block; /*Très important, sinon les dimensions ne sont pas prises en compte*/
+    background : url("../img/logo-hover.png") no-repeat;
+    background-size: contain;
+}
+.border-bot-header{
+    border-bottom: 1px solid rgb(207, 203, 175);
+}
+.border-top-footer{
+    border-top: 1px solid rgb(207, 203, 175);
+}
+.rounded-valid{
+    border-radius: 23px;
+}
+footer {
+    position: absolute;
+    bottom: -20;
+    width: 100%;
+    background: #000000;
+    color: #FFFFFF;
+}
+
+
+
+/*__________Page_accueil_____________*/
+ 
+
+    .w-15{
+        width: 15%;
+    }
+    .w-20{
+        width: 15%;
+    }
+    .border-crl{
+        border-top: 10px solid #fff;
+        border-bottom: 10px solid #fff;
+        -webkit-box-shadow: inset 0px 5px 29px 0px rgba(0,0,0,0.5); 
+        box-shadow: inset 0px 5px 29px 0px rgba(0,0,0,0.5);
+    }
+/*__________Page_accueil_____________*/
+
+
+
+
+
+
+
+
+    

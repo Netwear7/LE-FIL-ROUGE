@@ -19,7 +19,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../css/header-and-color-test.css">
+    <!-- <link rel="stylesheet" href="../../css/header-and-color-test.css"> -->
+    <link rel="stylesheet" href="../../css/global.css">
+    <script src="../../javascript/navbarScroll.js"></script>
 </head>
 
 <body>
@@ -28,7 +30,7 @@
         include_once("header.php");
     ?> 
     
-    <div class="container-fluid">
+    <div class="container-fluid bg-grey-light">
         <div class="row my-3">
             <h1 class="mx-auto">Adoptez un animal</h1>
         </div>
