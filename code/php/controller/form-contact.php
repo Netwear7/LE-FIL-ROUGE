@@ -70,7 +70,7 @@
 
                 </div>
 
-                <div class="col-lg-6 bg-1">
+                <div class="col-lg-6 bg-grey-ligth">
                     <div class="row justify-content-center mb-5">
                         <h1 class="mt-4">Formulaire de contact :</h1>
                     </div>
