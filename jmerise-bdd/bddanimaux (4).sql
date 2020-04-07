@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  jeu. 02 avr. 2020 à 20:46
+-- Généré le : mar. 07 avr. 2020 à 16:19
 -- Version du serveur :  10.4.11-MariaDB
--- Version de PHP :  7.4.1
+-- Version de PHP : 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `bddanimaux`
+-- Base de données : `bddanimaux`
 --
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `adresse` (
 --
 
 INSERT INTO `adresse` (`ID_ADRESSE`, `NUMERO`, `RUE`, `VILLE`, `CODE_POSTAL`) VALUES
-(1, 15, 'rue lesage senault', 'Lille', 99999),
+(1, 15, 'rue lesage senault', 'Lille', 50000),
 (3, 75, 'rue du Luxembourg', 'Lille', 59000),
 (4, 48, 'avenue du vélodrome', 'Marseille', 13000),
 (5, 1512, 'fsefsefsef', 'roubaix', 59100),
@@ -100,7 +100,7 @@ INSERT INTO `animaux` (`ID_ANIMAL`, `NOM`, `DATE_NAISSANCE`, `POIDS`, `NO_PUCE`,
 (38, 'Tutu', '0000-00-00', 0, '', '', '', NULL, NULL, '0000-00-00', '0000-00-00', 6, NULL, 2, NULL, 'Femelle'),
 (47, 'VIGGO', '2015-05-14', 5, '1AZE34567', 'très gentil', 'TRES GENTIL AVEC VALENTINE', 50, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle'),
 (49, 'stoev jo', '1994-11-22', 888, 'cetest', 'test', 'test', 0, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle'),
-(51, 'testretrait', '0000-00-00', 0, '', '', '', 0, 'Brown Tabby', NULL, NULL, 7, 1, NULL, NULL, 'Mâle');
+(53, 'VALENTINE', '1991-06-05', 1, '1AZE77T', 'GENTILLE', 'AZEAE', 980, 'Brown Tabby', NULL, NULL, 14, 1, NULL, NULL, 'Femelle');
 
 -- --------------------------------------------------------
 
@@ -124,7 +124,62 @@ INSERT INTO `appartenir_espece` (`ID_RACE`, `ID_ESPECE`) VALUES
 (4, 1),
 (5, 1),
 (6, 1),
-(7, 2);
+(7, 2),
+(8, 2),
+(9, 2),
+(10, 2),
+(11, 2),
+(12, 2),
+(13, 2),
+(14, 2),
+(15, 2),
+(16, 2),
+(17, 2),
+(18, 2),
+(19, 2),
+(20, 2),
+(21, 2),
+(22, 2),
+(23, 2),
+(24, 2),
+(25, 2),
+(26, 2),
+(27, 2),
+(28, 2),
+(29, 2),
+(30, 2),
+(31, 2),
+(32, 2),
+(33, 2),
+(34, 2),
+(35, 2),
+(36, 2),
+(37, 2),
+(38, 2),
+(39, 2),
+(40, 2),
+(41, 2),
+(42, 2),
+(43, 2),
+(44, 2),
+(45, 2),
+(46, 2),
+(47, 2),
+(48, 2),
+(49, 2),
+(50, 2),
+(51, 2),
+(52, 2),
+(53, 2),
+(54, 2),
+(55, 2),
+(56, 2),
+(57, 2),
+(58, 2),
+(59, 2),
+(60, 2),
+(61, 2),
+(62, 2);
 
 -- --------------------------------------------------------
 
@@ -147,7 +202,7 @@ INSERT INTO `avoir_couleur` (`ID_COULEUR`, `ID_ANIMAL`) VALUES
 (1, 21),
 (1, 32),
 (1, 37),
-(1, 51),
+(1, 53),
 (2, 22),
 (2, 31),
 (2, 33),
@@ -349,7 +404,6 @@ CREATE TABLE `perte` (
 --
 
 INSERT INTO `perte` (`ID_PERTE`, `DATE_PERTE`, `DESC_PERTE`, `ID_ANIMAL`) VALUES
-(30, '1994-11-22', '22', 2),
 (31, '2020-04-01', 'perdu', 25);
 
 -- --------------------------------------------------------
@@ -413,7 +467,62 @@ INSERT INTO `race` (`ID_RACE`, `NOM_RACE`) VALUES
 (4, 'Caniche'),
 (5, 'Shiba'),
 (6, 'Carlin'),
-(7, 'Main Coon');
+(7, 'Main Coon'),
+(8, 'ABYSSIN'),
+(9, 'Americain Bobtail'),
+(10, 'Americain Curl'),
+(11, 'Americain Shortair'),
+(12, 'American Wirehair'),
+(13, 'Angora Turc'),
+(14, 'Balinais'),
+(15, 'Bengal'),
+(16, 'Bleu Russe'),
+(17, 'Bombay'),
+(18, 'British Shorthair'),
+(19, 'Burmese'),
+(20, 'Burmilla'),
+(21, 'Ceylan'),
+(22, 'Chartreux'),
+(23, 'Chausie'),
+(24, 'Cornish Rex'),
+(25, 'Devon Rex'),
+(26, 'Donskoy'),
+(27, 'Européen'),
+(28, 'Exotic'),
+(29, 'German Rex'),
+(30, 'Havana Brown'),
+(31, 'Highland Lynx'),
+(32, 'Japanese Bobtail'),
+(33, 'Javanais'),
+(34, 'Korat'),
+(35, 'Kurilian Bobtail'),
+(36, 'LaPerm'),
+(37, 'Manx'),
+(38, 'Mau Egyptien'),
+(39, 'Munchkin'),
+(40, 'Norvégien'),
+(41, 'Ocicat'),
+(42, 'Oriental'),
+(43, 'Persan'),
+(44, 'Peterbald'),
+(45, 'Pixie-bob'),
+(46, 'Ragdoll'),
+(47, 'Sacré de Birmanie'),
+(48, 'Savannah'),
+(49, 'Scottish & Highland'),
+(50, 'Scottish Fold'),
+(51, 'Siamois'),
+(52, 'Sibérien'),
+(53, 'Singapura'),
+(54, 'Skogcatt'),
+(55, 'Snowshoe'),
+(56, 'Somali'),
+(57, 'Sphynx'),
+(58, 'Thaï'),
+(59, 'Tiffany'),
+(60, 'Tonkinois'),
+(61, 'Toyger'),
+(62, 'Turc de Van');
 
 -- --------------------------------------------------------
 
@@ -458,7 +567,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`ID_UTILISATEUR`, `NOM`, `PRENOM`, `PSEUDO`, `MDP`, `ADRESSE_EMAIL`, `NUM`, `ID_ADRESSE`) VALUES
-(1, 'VOETS', 'stoev', 'SHAKKA', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'test@test.fr', '0621630429', 1),
+(1, 'JO', 'stoev', 'SHAKKA', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'test@test.fr', '0621630429', 1),
 (2, 'pierre', 'pentier', 'chef2chantier', '$2y$10$myL.toY8aW3zI/Fgku/.V.gq.rZH/ka7TyXpEN3RRyHCm2SDRQskK', 'pentier.pierre@yahoo.fr', '0615151515', 3),
 (3, 'TESTNOM', 'TESTPRENOM', 'TESTPSEUDO', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'test2@test.fr', '0101', 14),
 (4, 'Pentier', 'Pierre', 'fsefsefsef', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'g@g.com', '0781391574', 5),
@@ -602,7 +711,7 @@ ALTER TABLE `adresse`
 -- AUTO_INCREMENT pour la table `animaux`
 --
 ALTER TABLE `animaux`
-  MODIFY `ID_ANIMAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `ID_ANIMAL` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT pour la table `contactez_nous`
@@ -644,7 +753,7 @@ ALTER TABLE `maladie`
 -- AUTO_INCREMENT pour la table `perte`
 --
 ALTER TABLE `perte`
-  MODIFY `ID_PERTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `ID_PERTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `photo_animal`
@@ -656,7 +765,7 @@ ALTER TABLE `photo_animal`
 -- AUTO_INCREMENT pour la table `race`
 --
 ALTER TABLE `race`
-  MODIFY `ID_RACE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_RACE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT pour la table `refuge`

@@ -266,7 +266,7 @@ function displayUpdatePanel($dataAnimaux){
                                 </select>
                             <label for="inputRace" class="mt-2">Race :</label>
                                 <select class="form-control" id="selectRace" name="raceAnimale">
-                                    <option>Main coon</option>
+                                    <option value="'.$dataAnimaux[$i]["ID_RACE"].'">Main coon</option>
                                     <option>Angora</option>
                                 </select>
                             <label for="inputSexe" class="mt-2">Sexe : </label>

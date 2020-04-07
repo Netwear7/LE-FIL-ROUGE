@@ -215,7 +215,7 @@ include_once '../Interfaces/InterfaceService.php';
                 
         public function serviceUpdate($post)
         {
-
+            $this->getDataAccessObject()->daoUpdate($post);
         }
 
 

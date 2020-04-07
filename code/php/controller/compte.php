@@ -19,6 +19,8 @@ include_once '../data-access/AdresseDataAccess.php';
 include_once '../model/Animaux.php';
 include_once '../service/AnimauxService.php';
 include_once '../data-access/AnimauxDataAccess.php';
+include_once '../service/RaceService.php';
+include_once '../data-access/RaceDataAccess.php';
 include_once '../model/AvoirCouleur.php';
 include_once '../service/AvoirCouleurService.php';
 include_once '../data-access/AvoirCouleurDataAccess.php';
@@ -29,7 +31,7 @@ include_once '../model/AnimauxFavoris.php';
 include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
 
-include_once '../controller/affichageAnimaux.php';
+include_once '../controller/displayUserAnimals.php';
 
 
 
@@ -50,6 +52,9 @@ if(isset($_SESSION["user_id"]))
 
     $avoirCouleurDao = new AvoirCouleurDataAccess();
     $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
+
+    $raceDao = new RaceDataAccess();
+    $raceService = new RaceService($raceDao);
 
     $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
 
@@ -92,7 +97,7 @@ if (isset($_POST["addAnimal"])){
 
 if (isset($_POST["updateAnimalInfos"])){
                                             
-    $serviceAnimaux->serviceUpdate($_POST,$idAnimal);
+    $serviceAnimaux->serviceUpdate($_POST);
 
 }
 
@@ -363,6 +368,13 @@ if(isset($_POST["retraitFavoris"])){
                                                         </select>
                                                         <label for="inputRace" class="mt-2">Race :</label>
                                                             <select class="form-control" id="selectRace" name="raceAnimale">
+                                                            <?php
+                                                                $data = $raceService->selectAllCatRaces();
+                                                                $count = count($data);
+                                                                for ($i = 0; $i < $count; $i++){
+                                                                echo '<option value="'.$data[$i]["ID_RACE"].'">'.$data[$i]["NOM_RACE"].'</option>';
+                                                                }
+                                                            ?>
                                                                 <option>Main coon</option>
                                                                 <option>Angora</option>
                                                             </select>
