@@ -1,5 +1,5 @@
 <!--Include with php in futur-->
-<footer class="page-footer pt-4 text-dark bg-1 border-top-footer">
+<footer class="page-footer mt-5 pt-4 text-dark bg-1 border-top-footer">
     <!-- Footer Text -->
     <div class="container-fluid text-center text-md-left mb-3">
         <!-- Grid row -->
