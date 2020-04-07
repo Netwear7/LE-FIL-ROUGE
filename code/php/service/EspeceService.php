@@ -5,14 +5,8 @@ include_once '../Interfaces/InterfaceService.php';
 
     class EspeceService extends ServiceCommun implements InterfaceService {
 
-        private $especeDataAccess;
-
-        public function __construct(){
-            $this->especeDataAccess = new EspeceDataAccess();
-        }
-
         public function afficherType(){
-            $data = $this->especeDataAccess->afficherType();
+            $data = $this->getDataAccessObject()->afficherType();
             return $data;            
         }
 

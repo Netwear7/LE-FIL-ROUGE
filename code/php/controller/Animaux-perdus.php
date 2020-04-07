@@ -4,6 +4,7 @@
     include_once('../service/CouleurAnimalService.php');
     include_once('../service/AnimauxService.php');
     include_once('../data-access/AnimauxDataAccess.php');
+    include_once('../data-access/EspeceDataAccess.php');
     session_start();
 
 ?>
@@ -45,7 +46,8 @@
                                     <select name="nom_espece" id="nom_espece" class="custom-select custom-select-md">
                                         <option value="" selected>Type</option>
                                         <?php
-                                        $especeService = new EspeceService();
+                                        $especeDataAccess = new EspeceDataAccess();
+                                        $especeService = new EspeceService($especeDataAccess);
                                         $data = $especeService->afficherType();
                                         foreach($data as $key =>$value){
                                             foreach($value as $key2 => $value2){
