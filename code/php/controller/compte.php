@@ -30,7 +30,6 @@ include_once '../data-access/PerteDataAccess.php';
 include_once '../model/AnimauxFavoris.php';
 include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
-
 include_once '../controller/displayUserAnimals.php';
 
 
@@ -375,8 +374,6 @@ if(isset($_POST["retraitFavoris"])){
                                                                 echo '<option value="'.$data[$i]["ID_RACE"].'">'.$data[$i]["NOM_RACE"].'</option>';
                                                                 }
                                                             ?>
-                                                                <option>Main coon</option>
-                                                                <option>Angora</option>
                                                             </select>
                                                         <label for="inputSexe" class="mt-2">Sexe : </label>
                                                             <select class="form-control" id="selectSexe" name="sexeAnimal">
@@ -421,7 +418,7 @@ if(isset($_POST["retraitFavoris"])){
                                                         <button type="button submit" name="addAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
                                                     </div>
                                                     <div class="col-3">
-                                                        <button type="button submit" name="valider" class="btn btn-block btn-outline-info">Annuler</button>
+                                                        <button type="button " name="annuler" data-toggle="list" href="#list-compagnons" class="btn btn-block btn-outline-info">Annuler</button>
                                                     </div>                                            
                                                 </div>
                                             </div>
