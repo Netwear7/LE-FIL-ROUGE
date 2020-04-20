@@ -29,7 +29,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
 
             echo 
             '
-                <div class="row mt-2">
+                <div class="row mt-2 ">
                     <div class="col-8 offset-2 text-center border rounded border-black text-center">
                         <div class="row m-3 ">
                             <div class="col-12 text-center">
@@ -47,16 +47,16 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                 
                 echo 
                 '
-                <div class="row mt-2">
+                <div class="row mt-2 ">
                     <div class="col-8 offset-2 border rounded border-black">
                         <div class="row">
                             <div class="card w-100">
                                 <div class="row ">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 col-sm-12">
                                         <!--image-->
                                         <img src="../../img/Chien/chien2.jpg" class="rounded w-100" alt="img-profil-5">
                                     </div>
-                                    <div class="col-md-2">
+                                    <div class="col-md-2 col-sm-12">
                                         <!--informations sur lanimal-->
                                         <div class="card-block text-center">
                                             <h4 class="card-title mt-3"> '.$dataAnimaux[$i]["NOM"].'</h4>
@@ -71,18 +71,18 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                     <!--COL INFORMATIONS-->
                                     <div class="col-md-6">
                                         <div class="row">
-                                            <div class="col-6">
+                                            <div class="col-lg-6 col-sm-12">
                                                 <div class="card-block">
                                                     <p class="card-text">
                                                         <ul class="list-group list-group-flush">
-                                                            <li >Robe : '.$dataAnimaux[$i]["ROBE"].'</li>
+                                                            <li >Poils : '.$dataAnimaux[$i]["ROBE"].'</li>
                                                             <li >Couleur : '.$dataAnimaux[$i]["COULEUR"].'</li>
                                                             <li >Caractère : '.$dataAnimaux[$i]["CARACTERE"].' </li>
                                                         </ul>
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
+                                            <div class="col-lg-6 col-sm-12">
                                             <div class="card-block">
                                                 <p class="card-text">
                                                     <ul class="list-group list-group-flush">

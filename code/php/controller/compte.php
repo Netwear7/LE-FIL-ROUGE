@@ -149,6 +149,7 @@ if(isset($_POST["retraitFavoris"])){
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="../../css/header-and-color-test.css">
+
         <link rel="stylesheet" href="../../css/global.css">
 
 
@@ -286,7 +287,7 @@ if(isset($_POST["retraitFavoris"])){
 
 
                         <!--PARTIE MODIFIER DU PREMIER SLIDE infos personnelles-->
-                        <div class="tab-pane fade " id="list-updateInfo" role="tabpanel" aria-labelledby="list-updateInfo-list">
+                        <div class="tab-pane fade mb-5 " id="list-updateInfo" role="tabpanel" aria-labelledby="list-updateInfo-list">
                             <div class="row">
                                 <div class="col-8 offset-2 text-center border rounded border-black mt-5">
                                     <h3>Mes Informations Personnelles</h3>
@@ -302,7 +303,7 @@ if(isset($_POST["retraitFavoris"])){
                         </div>
 
                         <!--SECOND PANEL MES COMPAGNONS-->
-                        <div class="tab-pane fade" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">
+                        <div class="tab-pane fade mb-5" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">
                             <!--titre-->
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5 mb-3 text-center">
@@ -316,13 +317,18 @@ if(isset($_POST["retraitFavoris"])){
                             displayModals($dataAnimaux);
                             ?>
                        </div>
+
+                        <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
+                                               <?php
+                            displayUpdatePanel($dataAnimaux);
+                        ?>
                     
 
 
                         
 
                         <!--PARTIE POUR ADD un compagnon /)-->
-                        <div class="tab-pane fade" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
+                        <div class="tab-pane fade mb-5" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
                             <div class="row">
                                 <div class="col-12 ">
                                     <form method="POST" action="compte.php">
@@ -343,10 +349,10 @@ if(isset($_POST["retraitFavoris"])){
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-4 offset-4">
+                                                            <div class="col-lg-4 col-sm-12 offset-4">
                                                                 <input type="text" class="form-control" name="nomAnimal">
                                                             </div>
-                                                            <div class="col-2 offset-5">
+                                                            <div class="col-lg-2 col-sm-12 offset-5">
                                                                 <label for="inputDateNaissance" class="mt-2">Date de naissance : </label>
                                                                 <input type="date" class="form-control" name="dateNaissance">
                                                             </div >
@@ -359,7 +365,7 @@ if(isset($_POST["retraitFavoris"])){
                                                 </div>
 
                                                 <div class="row mt-3 ">
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-sm-12">
                                                         <label for="inputEspece" class="mt-2">Espece : </label>
                                                         <select class="form-control" id="selectEspece" name="especeAnimale">
                                                             <option>Chat</option>
@@ -385,15 +391,13 @@ if(isset($_POST["retraitFavoris"])){
                                                         <label for="textAreaSpécificités" class="mt-2">Caractère :</label>
                                                             <textarea class="form-control " id="textAreaSpécificités" name="caractere" rows="3"></textarea>                          
                                                     </div>
-                                                    <div class="col-6">
+                                                    <div class="col-lg-6 col-sm-12">
                                                         <div class="form-group">
-                                                            <label for="inputRobe" class="mt-2">Robe :</label>
-                                                                <select class="form-control " id="selectRobe" name="robe">
-                                                                    <option>Brown Tabby</option>
-                                                                    <option>Gris</option>
-                                                                    <option>Noir</option>
-                                                                    <option>Blanc</option>
-                                                                    <option>Marron</option>
+                                                            <label for="inputPoils" class="mt-2">Poils :</label>
+                                                                <select class="form-control " class="selectPoils" name="robe">
+                                                                    <option>Courts</option>
+                                                                    <option>Mi-longs</option>
+                                                                    <option>Long</option>
                                                                 </select>
                                                             <label for="inputCouleur" class="mt-2">Couleur :</label>
                                                                 <select class="form-control" class="selectCouleur" name="couleur">
@@ -414,10 +418,10 @@ if(isset($_POST["retraitFavoris"])){
                                                     </div>
                                                 </div>
                                                 <div class="row mt-3 ">
-                                                    <div class="col-3 offset-3">
+                                                    <div class="col-lg-3 col-sm-12 offset-3">
                                                         <button type="button submit" name="addAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
                                                     </div>
-                                                    <div class="col-3">
+                                                    <div class="col-lg-3 col-sm-12">
                                                         <button type="button " name="annuler" data-toggle="list" href="#list-compagnons" class="btn btn-block btn-outline-info">Annuler</button>
                                                     </div>                                            
                                                 </div>
@@ -428,10 +432,7 @@ if(isset($_POST["retraitFavoris"])){
                             </div>
                         </div>
 
-                        <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
-                        <?php
-                            displayUpdatePanel($dataAnimaux);
-                        ?>
+
                         
                         
                        
@@ -441,7 +442,7 @@ if(isset($_POST["retraitFavoris"])){
 
 
 
-                        <div class="tab-pane fade" id="list-favourites" role="tabpanel" aria-labelledby="list-favourites-list">
+                        <div class="tab-pane fade mb-5" id="list-favourites" role="tabpanel" aria-labelledby="list-favourites-list">
                             <div class="row">
 
                             <!--titre-->

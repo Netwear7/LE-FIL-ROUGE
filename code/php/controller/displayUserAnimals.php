@@ -62,9 +62,9 @@ function AffichageAnimaux($dataAnimaux){
             echo 
             '
             <div class="row mt-2">
-                <div class="col-8 offset-2 border rounded border-black">
+                <div class="col-8  offset-2 border rounded border-black">
                     <div class="row">
-                        <div class="col-4 ">
+                        <div class="col-lg-4 col-sm-12 ">
                             <div class="row">
                                 <a href="" data-toggle="modal" data-target="#modalPhotos'.$i.'"><img src="../../img/Chat/chat3.jpg" class="rounded w-100"></a>
                             </div>                            
@@ -72,7 +72,7 @@ function AffichageAnimaux($dataAnimaux){
                                 <!--Row pour les photos-->
                             </div>
                         </div>
-                        <div class="col-2 text-center">
+                        <div class="col-lg-2 col-sm-12 text-center">
                             <div class="row mt-2">
                                 <div class="col-12">
                                 <h4 class="text-break">'.$dataAnimaux[$i]["NOM"].'</h4>
@@ -96,16 +96,16 @@ function AffichageAnimaux($dataAnimaux){
                             echo empty($perdu) ?  $pasPerdu : $signalerRetrouver ;                                                                            ;
                         echo '                            
                         </div>
-                        <div class="col-5">
+                        <div class="col-lg-5 col-sm-12">
                             <div class="row mt-2">
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-12">
                                     <ul class="list-group list-group-flush">
-                                        <li >Robe : '.$dataAnimaux[$i]["ROBE"].'</li>
+                                        <li >Poils : '.$dataAnimaux[$i]["ROBE"].'</li>
                                         <li >Couleur : '.$dataAnimaux[$i]["COULEUR"].'</li>
                                         <li >Caractère : '.$dataAnimaux[$i]["CARACTERE"].' </li>
                                     </ul>
                                 </div>
-                                <div class="col-6">
+                                <div class="col-lg-6 col-sm-12">
                                     <ul class="list-group list-group-flush">
                                         <li> Sexe : '.$dataAnimaux[$i]["SEXE"].'</li>
                                         <li >Poids : '.$dataAnimaux[$i]["POIDS"].' kg</li>
@@ -121,7 +121,7 @@ function AffichageAnimaux($dataAnimaux){
                                 </div>
                             </div>
                         </div>
-                        <div class="col-1">
+                        <div class="col-lg-1 col-sm-12">
                             <div class="row">
                                 <button type="button" class="btn btn-outline-info btn-block" id="modAnimal-list" data-toggle="list" href="#list-modAnimal'.$i.'" role="tab" aria-controls="modAnimal">Modifier</button>
                             </div>
@@ -258,10 +258,10 @@ function displayUpdatePanel($dataAnimaux){
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4 offset-4">
+                                    <div class="col-lg-4 col-sm-12 offset-4">
                                         <input type="text" class="form-control" name="nomAnimal" value="'.$dataAnimaux[$i]["NOM"].'">
                                     </div>
-                                    <div class="col-2 offset-5">
+                                    <div class="col-lg-2 col-sm-12 offset-5">
                                         <label for="inputDateNaissance" class="mt-2">Date de naissance : </label>
                                         <input type="date" class="form-control" name="dateNaissance" value="'.$dataAnimaux[$i]["DATE_NAISSANCE"].'">
                                     </div >
@@ -274,7 +274,7 @@ function displayUpdatePanel($dataAnimaux){
                     <div class="col-4 offset-4"><input type="file"   name="photo" accept="image/png, image/jpeg"></div>
                 </div>
                 <div class="row mt-3 ">
-                    <div class="col-6">
+                    <div class="col-lg-6 col-sm-12">
                         <label for="inputEspece" class="mt-2">Espece : </label>
                         <select class="form-control" class="selectEspece" name="especeAnimale">
                             <option>Chat</option>
@@ -282,6 +282,7 @@ function displayUpdatePanel($dataAnimaux){
                         </select>
                         <label for="inputRace" class="mt-2">Race :</label>
                             <select class="form-control" class="selectRace" name="raceAnimale">
+                                <option value="'.$dataAnimaux[$i]["ID_RACE"].'">'.$dataAnimaux[$i]["NOM_RACE"].'</option>
                             ';
                                 for ($j = 0; $j < $count2; $j++){
                                 echo '<option value="'.$data2[$j]["ID_RACE"].'">'.$data2[$j]["NOM_RACE"].'</option>';
@@ -298,16 +299,14 @@ function displayUpdatePanel($dataAnimaux){
                         <label for="textAreaCaractere" class="mt-2">Caractère :</label>
                             <input type="text" class="form-control " value="'.$dataAnimaux[$i]["CARACTERE"].'"  name="caractere" rows="3">                         
                     </div>
-                    <div class="col-6">
+                    <div class="col-lg-6 col-sm-12">
                         <div class="form-group">
-                            <label for="inputRobe" class="mt-2">Robe :</label>
-                                <select class="form-control " class="selectRobe" name="robe">
-                                    <option>Brown Tabby</option>
-                                    <option>Gris</option>
-                                    <option>Noir</option>
-                                    <option>Blanc</option>
-                                    <option>Marron</option>
-                                </select>
+                            <label for="inputPoils" class="mt-2">Poils :</label>
+                            <select class="form-control " class="selectPoils" name="robe">
+                                <option>Courts</option>
+                                <option>Mi-longs</option>
+                                <option>Long</option>
+                            </select>
                             <label for="inputCouleur" class="mt-2">Couleur :</label>
                                 <select class="form-control" class="selectCouleur" name="couleur">
                                     <option value="1">Blanc</option>
@@ -327,10 +326,10 @@ function displayUpdatePanel($dataAnimaux){
                     </div>
                 </div>
                 <div class="row mt-3 ">
-                    <div class="col-3 offset-3">
+                    <div class="col-lg-3 col-sm-12 offset-3">
                         <button type="button submit" name="updateAnimalInfos" class="btn btn-block btn-outline-info">Modifier</button>
                     </div>
-                    <div class="col-3">
+                    <div class="col-lg-3 col-sm-12">
                         <button type="button " name="annuler" data-toggle="list" href="#list-compagnons" class="btn btn-block btn-outline-info">Annuler</button>
                     </div>                                            
                 </div>

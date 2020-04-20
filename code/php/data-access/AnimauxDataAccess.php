@@ -136,24 +136,27 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
                     $this->deconnexion($mysqli); 
                     return $result = "Modification effectuées !";
                 }
-                if ($key == "nomAnimal" or $key == "raceAnimale" or $key == "dateNaissance" or $key =="poids" or $key == "sexeAnimal" or $key == "numeroPuce" or $key == "taille" or $key == "specificite" or $key == "caractere"){
+                if ($key == "nomAnimal" or $key == "raceAnimale" or $key == "dateNaissance" or $key =="poids" or $key == "sexeAnimal" or $key == "numeroPuce" or $key == "taille" or $key == "specificite" or $key == "caractere" or $key =="robe"){
                     $key == "nomAnimal" ? $key = "NOM": false;
                     $key == "dateNaissance" ? $key ="DATE_NAISSANCE" : false ;
                     $key =="poids" ? $key ="POIDS": false ;
-                    $key == "sexeAnimal" ? $key ="SEXE" : false ;
+                    $key == "sexeAnimal" ? $key ="SEXE" : false;
+                    $key == "robe" ? $key ="ROBE" : false;
                     $key == "numeroPuce" ? $key ="NO_PUCE" : false ;
                     $key == "taille" ? $key ="TAILLE" : false ;
                     $key == "specificite" ? $key ="SPECIFICITE" : false ;
                     $key == "caractere" ? $key ="CARACTERE" : false ;
                     $key =="raceAnimale"? $key ="ID_RACE" : false ; 
                     $stmt = $mysqli->prepare("UPDATE animaux SET ".$key." = ? where ID_ANIMAL = ?");
+                    $stmt->bind_param("ss",$value,$num);
+                    $stmt->execute();
                 } elseif ($key == "couleur"){
                     $key="ID_COULEUR";
                     $stmt = $mysqli->prepare("UPDATE avoir_couleur SET ".$key." = ? where ID_ANIMAL = ?");
+                    $stmt->bind_param("ss",$value,$num);
+                    $stmt->execute();
 
                 } 
-                $stmt->bind_param("ss",$value,$num);
-                $stmt->execute();
 
             }      
             $this->deconnexion($mysqli);    
