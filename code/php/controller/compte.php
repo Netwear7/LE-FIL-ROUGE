@@ -149,8 +149,7 @@ if(isset($_POST["retraitFavoris"])){
         <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="../../css/header-and-color-test.css">
-        <link rel="stylesheet" href="../../css/csstest.css">
-        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../../css/global.css">
 
 
     </head>
@@ -163,7 +162,7 @@ if(isset($_POST["retraitFavoris"])){
         <!--PARTIE PRINCIPALE-->
 
 
-        <div class="container-fluid">
+        <div class="container-fluid bg-grey-light">
             <div class="row">
 
 
@@ -175,10 +174,10 @@ if(isset($_POST["retraitFavoris"])){
                     </div>
                     <div class="row ">
                         <div class="nav  nav-pills  w-100  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Mes Informations Personnelles</a>
-                            <a class="list-group-item list-group-item-action" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
-                            <a class="list-group-item list-group-item-action" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
-                            <a class="list-group-item list-group-item-action mt-auto" data-toggle="modal" data-target="#modalLogout">Se Déconnecter</a>
+                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Mes Informations Personnelles</a>
+                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
+                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
+                            <a class="list-group-item list-group-item-action mt-auto bg-grey-light" data-toggle="modal" data-target="#modalLogout">Se Déconnecter</a>
                         </div> 
                     </div>
                 </div>
@@ -209,7 +208,7 @@ if(isset($_POST["retraitFavoris"])){
                 <!--PARTIE CENTRALE-->
 
 
-                <div class="col-lg-10 col-sm-12">
+                <div class="col-lg-10 col-sm-12 ">
                     <div class="tab-content" id="nav-tabContent">
 
 
@@ -232,7 +231,7 @@ if(isset($_POST["retraitFavoris"])){
 
 
                             <!--PARTIE OU IL Y A LES BOUTONS SUPP ET MOD MDP-->
-                            <div class="row">
+                            <div class="row mb-5">
                                 <div class="col-8 offset-2 rounded border-black mt-2">
                                     <div class="row">
                                         <div class="col-lg-4 col-sm-12 ">

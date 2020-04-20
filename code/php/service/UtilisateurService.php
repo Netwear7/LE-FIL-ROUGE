@@ -92,10 +92,10 @@
                             <div class="col-lg-6 offset-lg-3 pb-2">
                                 <div class="row">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Nom :</strong> '. $data["NOM"].'</li>
-                                        <li class="list-group-item"><strong>Prénom :</strong> '.  $data["PRENOM"].'</li>
-                                        <li class="list-group-item"><strong>Tel :</strong> '. $data["NUM"] .'</li>
-                                        <li class="list-group-item"><strong>Email :</strong> '.$data["ADRESSE_EMAIL"].'</li>
+                                        <li class="list-group-item bg-grey-light"><strong>Nom :</strong> '. $data["NOM"].'</li>
+                                        <li class="list-group-item bg-grey-light"><strong>Prénom :</strong> '.  $data["PRENOM"].'</li>
+                                        <li class="list-group-item bg-grey-light"><strong>Tel :</strong> '. $data["NUM"] .'</li>
+                                        <li class="list-group-item bg-grey-light"><strong>Email :</strong> '.$data["ADRESSE_EMAIL"].'</li>
                                     </ul>
                                 </div>
                             </div>
@@ -106,10 +106,10 @@
                             <div class="col-lg-6 offset-lg-3 pb-2 ">
                                 <div class="row">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Adresse : </strong> '. $data["NUMERO"]." ".$data["RUE"]. '  </li>
-                                        <li class="list-group-item"><strong>Ville :</strong> '. $data["VILLE"].' </li>
-                                        <li class="list-group-item"><strong>Code Postal : </strong>'. $data["CODE_POSTAL"].' </li>
-                                        <li class="list-group-item"><strong>Pays : </strong> France </li>
+                                        <li class="list-group-item bg-grey-light"><strong>Adresse : </strong> '. $data["NUMERO"]." ".$data["RUE"]. '  </li>
+                                        <li class="list-group-item bg-grey-light"><strong>Ville :</strong> '. $data["VILLE"].' </li>
+                                        <li class="list-group-item bg-grey-light"><strong>Code Postal : </strong>'. $data["CODE_POSTAL"].' </li>
+                                        <li class="list-group-item bg-grey-light"><strong>Pays : </strong> France </li>
                                     </ul>
                                 </div>
                             </div>
@@ -128,20 +128,20 @@
             '
                 <div class="row">
                     <div class="col-lg-6 col-sm-12">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
+                        <ul class="list-group list-group-flush bg-grey-light">
+                            <li class="list-group-item bg-grey-light ">
                                 <label for="userName">Nom :</label>
                                 <input type="text" maxlength="50" class="form-control" name="NOM"  value="'. $data["NOM"].'" aria-describedby="UserName">
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item bg-grey-light">
                                 <label for="userNickName">Prénom :</label>
                                 <input type="text" maxlength="50" class="form-control" name="PRENOM"  value="'. $data["PRENOM"].'" aria-describedby="UserNickName">
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item bg-grey-light">
                                 <label for="userPhone">Tel :</label>
                                 <input type="text" maxlength="50" class="form-control" name="NUM"  value="'. $data["NUM"].'" aria-describedby="UserPhone">
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item bg-grey-light">
                                 <label for="userMail">Adresse mail : </label>
                                 <input type="email" class="form-control"  aria-describedby="emailHelp" name="ADRESSE_EMAIL" value="'. $data["ADRESSE_EMAIL"].'">
                                 <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse mail</small>
@@ -150,19 +150,19 @@
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
+                            <li class="list-group-item bg-grey-light">
                                 <label for="userAdress">Numero :</label>
                                 <input type="text" maxlength="50" class="form-control" name="NUMERO" value="'. $data["NUMERO"].'" aria-describedby="UserAdressNumber">
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item bg-grey-light">
                                 <label for="userAdress">Rue :</label>
                                 <input type="text" maxlength="50" class="form-control" name="RUE" value="'. $data["RUE"].'" aria-describedby="UserRue">
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item bg-grey-light">
                                 <label for="userCP">Code Postal : </label>
                                 <input type="text" maxlength="50" class="form-control" name="CODE_POSTAL" value="'. $data["CODE_POSTAL"].'" aria-describedby="UserC">
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item bg-grey-light">
                                 <label for="userTown">Ville : </label>
                                 <input type="text" maxlength="50" class="form-control" name="VILLE" value="'. $data["VILLE"].'" aria-describedby="UserVille">
                                 
