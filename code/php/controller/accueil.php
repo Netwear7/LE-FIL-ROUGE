@@ -58,7 +58,7 @@
                 <!---------------test carrousel---------------->
                 <div class="offset-lg-1 col-lg-10">
                     <!---------------Présentation site--------------->
-                    <div class="row mt-5 p-3 mb-2 bg-white">
+                    <div class="row bg-grey-light mt-5 p-3 mb-2">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
                             <h3 class="font-weight-bold">Présentation de la "LPA"</h3>
                         </div>
@@ -84,9 +84,9 @@
                             </div>
                         </div>
                     </div>
-                    <hr class="row" style="border-color: white;">
-                    <hr class="row" style="border-color: white;">
-                    <div class="row mt-2 mb-5 p-3 bg-white">
+                    <hr class="row bg-grey-light" style="border-color: white;">
+                    <hr class="row bg-grey-light" style="border-color: white;">
+                    <div class="row bg-grey-light mt-2 mb-5 p-3">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
                             <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
                         </div>

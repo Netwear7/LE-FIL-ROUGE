@@ -15,7 +15,7 @@
     src: url('../../font/BalooDa2-Regular.ttf'); 
 }
 html, body {
-    background-color: #f5f5f5;
+    background-color: #EDE8C8;
     font-family: 'testFont', sans-serif;
     position: relative;
     min-height: 100%;
@@ -35,13 +35,10 @@ html, body {
     background-color: #55361C;
 }
 .bg-grey-light{
-    background-color: #f5f5f5;
+    background-color: #F5F5F5;
 }
 
-.btn-effect{
-    -webkit-box-shadow: 0px 10px 8px -8px rgba(200,200,200,0.10); 
-    box-shadow: 0px 10px 8px -8px rgba(200,200,200,0.20);
-}
+
 
 
 /*__________Global_____________*/
@@ -108,8 +105,8 @@ footer {
         width: 15%;
     }
     .border-crl{
-        border-top: 10px solid #fff;
-        border-bottom: 10px solid #fff;
+        border-top: 10px solid #F5F5F5;
+        border-bottom: 10px solid #F5F5F5;
         -webkit-box-shadow: inset 0px 5px 29px 0px rgba(0,0,0,0.5); 
         box-shadow: inset 0px 5px 29px 0px rgba(0,0,0,0.5);
     }
