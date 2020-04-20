@@ -90,7 +90,6 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $idUtilisateur = $animal->getIdUtilisateurAnimal();
             $nomAnimal = $animal->getNomAnimal();
             $dateNaissance= $animal->getDateNaissanceAnimal();
-            $especeAnimal = $animal->getEspeceAnimal();
             $raceAnimal = $animal->getRaceAnimal();
             $sexeAnimal = $animal->getSexeAnimal();
             $numeroPuce = $animal->getNoPuce();
@@ -131,18 +130,29 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoUpdate($parametres){
             $mysqli = $this->connexion();
-            foreach ($parametres as $key => $value2){
-                if ($key =="updateAnimalInfos"){
+            $num = $parametres["idAnimal"];
+            foreach ($parametres as $key => $value){
+                if ($key =="updateAnimalInfos" || $key == "idAnimal"){
                     $this->deconnexion($mysqli); 
                     return $result = "Modification effectuées !";
                 }
-                if ($key == "NOM" or $key == "PRENOM" or $key =="NUM" or $key == "ADRESSE_EMAIL"){
+                if ($key == "nomAnimal" or $key == "raceAnimale" or $key == "dateNaissance" or $key =="poids" or $key == "sexeAnimal" or $key == "numeroPuce" or $key == "taille" or $key == "specificite" or $key == "caractere"){
+                    $key == "nomAnimal" ? $key = "NOM": false;
+                    $key == "dateNaissance" ? $key ="DATE_NAISSANCE" : false ;
+                    $key =="poids" ? $key ="POIDS": false ;
+                    $key == "sexeAnimal" ? $key ="SEXE" : false ;
+                    $key == "numeroPuce" ? $key ="NO_PUCE" : false ;
+                    $key == "taille" ? $key ="TAILLE" : false ;
+                    $key == "specificite" ? $key ="SPECIFICITE" : false ;
+                    $key == "caractere" ? $key ="CARACTERE" : false ;
+                    $key =="raceAnimale"? $key ="ID_RACE" : false ; 
                     $stmt = $mysqli->prepare("UPDATE animaux SET ".$key." = ? where ID_ANIMAL = ?");
-                } else{
+                } elseif ($key == "couleur"){
+                    $key="ID_COULEUR";
                     $stmt = $mysqli->prepare("UPDATE avoir_couleur SET ".$key." = ? where ID_ANIMAL = ?");
 
-                }
-                $stmt->bind_param("ss",$value2,$num);
+                } 
+                $stmt->bind_param("ss",$value,$num);
                 $stmt->execute();
 
             }      
@@ -153,15 +163,10 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         public function daoDelete($infosAnimal)
         {
             $id = $infosAnimal["idAnimalRetrait"];
-            $idCouleur = $infosAnimal["couleurAnimalRetrait"];
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM animaux where ID_ANIMAL = ?');
             $stmt->bind_param('s',$id);
             $stmt->execute();
-            $stmt2 = $mysqli->prepare('DELETE from avoir_couleur where ID_ANIMAL = ? and ID_COULEUR = ?');
-            $stmt2->bind_param('ss',$id, $idCouleur);
-            $stmt2->execute();
-
             $this->deconnexion($mysqli);
             return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
         } 

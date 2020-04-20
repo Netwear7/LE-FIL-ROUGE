@@ -314,6 +314,7 @@ if(isset($_POST["retraitFavoris"])){
                             <?php 
                             $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
                             affichageAnimaux($dataAnimaux);
+                            displayModals($dataAnimaux);
                             ?>
                        </div>
                     
@@ -396,12 +397,12 @@ if(isset($_POST["retraitFavoris"])){
                                                                     <option>Marron</option>
                                                                 </select>
                                                             <label for="inputCouleur" class="mt-2">Couleur :</label>
-                                                                <select class="form-control" id="selectCouleur" name="couleur">
-                                                                    <option>Roux</option>
-                                                                    <option>Gris</option>
-                                                                    <option>Noir</option>
-                                                                    <option>Blanc</option>
-                                                                    <option>Marron</option>
+                                                                <select class="form-control" class="selectCouleur" name="couleur">
+                                                                    <option value="1">Blanc</option>
+                                                                    <option value="3">Gris</option>
+                                                                    <option value="2">Noir</option>
+                                                                    <option value="4">Roux</option>
+                                                                    <option value="5">Chatain</option>
                                                                 </select>
                                                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
                                                                 <input class="form-control " type="number" placeholder="100" name="taille">
