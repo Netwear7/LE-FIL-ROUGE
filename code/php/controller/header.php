@@ -75,15 +75,13 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-<!-- ACCUEIL-->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <!-- ACCUEIL-->
             <li class="nav-item active">
                 <a class="nav-link" href="accueil.php">Accueil</a>
             </li>
-
-<!-- DROPDOWN ADOPTER UN ANIMAL-->
-
+            <!-- DROPDOWN ADOPTER UN ANIMAL-->
             <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Adopter un animal</a>
@@ -102,7 +100,7 @@
                     </div>
             </li>
 
-<!-- DROPDOWN ANIMAUX PERDU-->
+            <!-- DROPDOWN ANIMAUX PERDU-->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Animaux perdus</a>
@@ -118,32 +116,48 @@
                 Contactez-nous</a>
             </li>
         </ul>
+
+        
+
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
-        <?php
-            if(isset($_SESSION["user_id"])){
-                echo '<div class="navbar-item"><a class="nav-link" href="compte.php#list-compagnons">Mon compte</a></div>';
-            }
-        ?>
+        <ul class="navbar-nav">   
+            <li class="nav-link">
+                <?php
+                if(isset($_SESSION["user_id"])){
+                    $daoUtilisateur = new UtilisateurDataAccess();
+                    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                    $data = $serviceUtilisateur->serviceSelect($_SESSION["user_id"]);
+                    $utilisateur = new Utilisateur($data);
+                    echo "Bonjour ". $utilisateur->getPrenom();
+                }
+                ?>
+            </li>
+            <li class="nav-item dropdown ml-3">
+                <a class="nav-link dropdown-toggle" href="#" id="DropdownProfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
+                <div class="dropdown-menu dropdown-menu-right bg-1 border-bottom" aria-labelledby="DropdownProfil">
+                    <?php
+                    if(isset($_SESSION["user_id"])){
+                        echo '<a class="dropdown-item" href="compte.php#list-compagnons">Mon compte</a>';
+                    }
+                    ?>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Se déconnecter</a>
+                </div>
+            </li>
+        </ul>
         
         <!--<a class="d-flex mr-5" href="#" data-toggle="modal" data-target="#exampleModal">
             <img class="mr-1" src="img/account.png" alt="">
             <p class="navbar-nav text-light">Mon compte</p>
         </a>-->
 
+
         <form action="accueil.php" method="POST">
-           
-                    <?php
-                        if(!isset($_SESSION["user_id"])){
-                            echo "<button type='button' class='btn bg-white btn-effect' data-toggle='modal' data-target='#staticBackdrop'>Se connecter / S'inscrire</button>";
-                        }
-                        else{
-                            $daoUtilisateur = new UtilisateurDataAccess();
-                            $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-                            $data = $serviceUtilisateur->serviceSelect($_SESSION["user_id"]);
-                            $utilisateur = new Utilisateur($data);
-                            echo "Bonjour ". $utilisateur->getPrenom();
-                        }
-                    ?>
+            <?php
+                if(!isset($_SESSION["user_id"])){
+                    echo "<button type='button' class='btn bg-white btn-effect' data-toggle='modal' data-target='#staticBackdrop'>Se connecter / S'inscrire</button>";
+                }
+            ?>
             <!-- Modal -->
             <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -193,8 +207,7 @@
                 </div>
             </div>
         </form>
-                                    <!--Modal s'inscrire -->
-
+        <!--Modal s'inscrire -->
         <div class="modal fade bd-example-modal-lg" tabindex="-1" id="modalInscription" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content">
