@@ -10,6 +10,9 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
 }
 function loadInfo(){
     nomEspeceValue=$('#nom_espece').val();
+    $(".simple-select").change(function(e){
+        loadInfo();
+    });
     if(nomEspeceValue.length==0){
         nomRaceValue = "";
         couleurValue = "";

@@ -203,7 +203,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
                                       INNER JOIN appartenir_espece as E on B.id_race=E.id_race
                                       INNER JOIN espece as F on F.id_espece=E.id_espece
-                                      INNER JOIN refuge as G on A.id_refuge=G.id_refuge
+                                      INNER JOIN utilisateur as G on A.id_utilisateur=G.id_utilisateur
                                       INNER JOIN adresse as H on G.id_adresse=H.id_adresse
                                       INNER JOIN perte as I on I.id_animal=A.id_animal
                                       WHERE A.id_animal IN (I.id_animal) AND $request");
