@@ -369,25 +369,19 @@ if(isset($_POST["retraitFavoris"])){
                                                 <div class="row mt-3 ">
                                                     <div class="col-lg-6 col-sm-12">
                                                         <label for="inputEspece" class="mt-2">Espece : </label>
-                                                        <select class="form-control" id="selectEspece" name="especeAnimale">
+                                                        <select class="form-control" id="nom_espece" name="especeAnimale">
                                                             <option>Chat</option>
                                                             <option>Chien</option>
                                                         </select>
                                                         <label for="inputRace" class="mt-2">Race :</label>
-                                                            <select class="form-control" id="selectRace" name="raceAnimale">
-                                                            <?php
-                                                                $data = $raceService->selectAllCatRaces();
-                                                                $count = count($data);
-                                                                for ($i = 0; $i < $count; $i++){
-                                                                echo '<option value="'.$data[$i]["ID_RACE"].'">'.$data[$i]["NOM_RACE"].'</option>';
-                                                                }
-                                                            ?>
+                                                            <select class="form-control" id="popSelect" name="raceAnimale">
                                                             </select>
                                                         <label for="inputSexe" class="mt-2">Sexe : </label>
                                                             <select class="form-control" id="selectSexe" name="sexeAnimal">
                                                                 <option>Mâle</option>
                                                                 <option>Femelle</option>
                                                             </select>
+
                                                         <label for="inputNumeroPuce" class="mt-2" >Numéro d'identification : </label>
                                                             <input type="text" class="form-control" name="numeroPuce" placeholder="Numéro de Puce Electronique">
                                                         <label for="textAreaSpécificités" class="mt-2">Caractère :</label>
@@ -467,10 +461,11 @@ if(isset($_POST["retraitFavoris"])){
             include_once 'footer.php';
         ?>
     </body>    
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="../../javascript/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
+    <script src="../../javascript/scriptDisplayRaceInAddAnimals.js"></script>
 </html>
 
 

@@ -281,13 +281,7 @@ function displayUpdatePanel($dataAnimaux){
                             <option>Chien</option>
                         </select>
                         <label for="inputRace" class="mt-2">Race :</label>
-                            <select class="form-control" class="selectRace" name="raceAnimale">
-                                <option value="'.$dataAnimaux[$i]["ID_RACE"].'">'.$dataAnimaux[$i]["NOM_RACE"].'</option>
-                            ';
-                                for ($j = 0; $j < $count2; $j++){
-                                echo '<option value="'.$data2[$j]["ID_RACE"].'">'.$data2[$j]["NOM_RACE"].'</option>';
-                                }
-                            echo'
+                            <select class="form-control" id="popSelect2" name="raceAnimale">
                             </select>
                         <label for="inputSexe" class="mt-2">Sexe : </label>
                             <select class="form-control" class="selectSexe" name="sexeAnimal">

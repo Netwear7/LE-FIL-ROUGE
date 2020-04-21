@@ -22,6 +22,14 @@ include_once '../Interfaces/InterfaceService.php';
             $data = $this->getDataAccessObject()->selectRace($request,$value,$type);
             return $data;            
         }
+
+        public function selectRaceForAdd($espece){
+            $request="C.nom_espece LIKE ?";
+            $value=$espece;
+            $type="s";
+            $data = $this->getDataAccessObject()->selectRaceForAdd($request,$value,$type);
+            return $data;            
+        }
         
         
         public function selectAllCatRaces(){
