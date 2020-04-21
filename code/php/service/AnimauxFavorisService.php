@@ -47,16 +47,16 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                 
                 echo 
                 '
-                <div class="row mt-2 ">
-                    <div class="col-8 offset-2 border rounded border-black">
+                <div class="row mt-2  ">
+                    <div class="col-8 offset-2 border rounded border-black ">
                         <div class="row">
                             <div class="card w-100">
                                 <div class="row ">
-                                    <div class="col-md-4 col-sm-12">
+                                    <div class="col-md-4 col-sm-12 bg-grey-light">
                                         <!--image-->
                                         <img src="../../img/Chien/chien2.jpg" class="rounded w-100" alt="img-profil-5">
                                     </div>
-                                    <div class="col-md-2 col-sm-12">
+                                    <div class="col-md-2 col-sm-12 bg-grey-light">
                                         <!--informations sur lanimal-->
                                         <div class="card-block text-center">
                                             <h4 class="card-title mt-3"> '.$dataAnimaux[$i]["NOM"].'</h4>
@@ -69,7 +69,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                         </div>
                                     </div>
                                     <!--COL INFORMATIONS-->
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 bg-grey-light">
                                         <div class="row">
                                             <div class="col-lg-6 col-sm-12">
                                                 <div class="card-block">
@@ -82,7 +82,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 col-sm-12">
+                                            <div class="col-lg-6 col-sm-12 bg-grey-light">
                                             <div class="card-block">
                                                 <p class="card-text">
                                                     <ul class="list-group list-group-flush">
@@ -96,7 +96,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                                         </div>
                                         <!--row spécificités-->
                                         <div class="row">
-                                            <div class="col-12">
+                                            <div class="col-12 bg-grey-light">
                                                 <div class="card-block">
                                                     <p class="card-text">
                                                         <ul class="list-group list-group-flush">
