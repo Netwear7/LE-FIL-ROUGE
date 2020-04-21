@@ -171,7 +171,9 @@ if(isset($_POST["retraitFavoris"])){
                 <!--NAVBAR COTE GAUCHE-->
                 <div class="col-lg-2 col-sm-12 border border-black">
                     <div class="row">
-                        <h3>Mon Compte</h3>
+                        <div class="col">
+                            <h3>Mon Compte</h3>
+                        </div>
                     </div>
                     <div class="row ">
                         <div class="nav  nav-pills  w-100  " id="v-pills-tab" role="tablist" aria-orientation="vertical">

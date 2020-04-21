@@ -31,14 +31,15 @@
                     // ajout de l'adresse dans l'utilisateur
                     $utilisateur->setIdAdresse($adresse->getIdAdresse());
                     $daoUtilisateur = new UtilisateurDataAccess();
-                    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
+                   $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
                     //Set ici et non plus dans le construct, car bug :
-                    $utilisateur->setPassword(PASSWORD_HASH($infos["inscriptionPassword"],PASSWORD_DEFAULT));
+                    $utilisateur->setPassword(PASSWORD_HASH($_POST["inscriptionPassword"],PASSWORD_DEFAULT));
                     $serviceUtilisateur->serviceAdd($utilisateur);
-                    session_start();
+                    session_start() ;
                     $_SESSION["user_id"] = $utilisateur->getIdUtilisateur();
                     header('Location: accueil.php');
                     exit;
+
                 }
             }
         }

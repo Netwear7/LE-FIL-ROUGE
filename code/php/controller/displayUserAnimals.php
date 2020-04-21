@@ -211,7 +211,7 @@ function displayModals($dataAnimaux){
                 </div>
                 <div class="modal-footer">
                     <form method="POST" action="">
-                        <input type="hidden" name="couleurAnimalRetrait" value="'.$dataAnimaux[$i]["COULEUR"].'"></input>
+                        <input type="hidden" name="couleurAnimalRetrait" value="'.$dataAnimaux[$i]["ID_COULEUR"].'"></input>
                         <input type="hidden" name="idAnimalRetrait" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         <button type="button submit"  class="btn btn-outline-info" name="removeUserAnimal" value="true">Confirmer le retrait</button>
