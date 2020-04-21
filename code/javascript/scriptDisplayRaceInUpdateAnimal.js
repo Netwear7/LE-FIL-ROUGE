@@ -4,7 +4,7 @@ window.onload=function() {
             $.ajax({
                 url : 'displayRaceAnimal.php?nomEspece=' + espece,
                 success : function(data){
-                    $(".popSelectModif").html(data);
+                    $(".popSelect").html(data);
                 }, 
                 error : function(xhr, message, status){ 
                     alert("Erreur !!");

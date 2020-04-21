@@ -281,7 +281,7 @@ function displayUpdatePanel($dataAnimaux){
                             <option>Chien</option>
                         </select>
                         <label for="inputRace" class="mt-2">Race :</label>
-                            <select class="form-control" id="popSelect2" name="raceAnimale">
+                            <select class="form-control" class="popSelect" name="raceAnimale">
                             </select>
                         <label for="inputSexe" class="mt-2">Sexe : </label>
                             <select class="form-control" class="selectSexe" name="sexeAnimal">
@@ -333,10 +333,11 @@ function displayUpdatePanel($dataAnimaux){
 
         ';
         } 
-
+        
     }
 }
 
 
 
 ?>
+
