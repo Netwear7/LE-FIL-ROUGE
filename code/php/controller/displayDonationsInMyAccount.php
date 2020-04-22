@@ -3,6 +3,8 @@
 include_once '../service/DonationService.php';
 include_once '../data-access/DonationDataAccess.php';
 
+
+
 function displayDonations(){
     $donationDataAccess = new DonationDataAccess();
     $donationService = new DonationService($donationDataAccess);
@@ -52,7 +54,7 @@ function displayDonations(){
                         <tr>
                             <th scope="row">'.$dataDonations[$i]["ID_DONATION"].'</th>
                             <td>'.$dataDonations[$i]["montant"].'    </td>
-                            <td>'.$dataDonations[$i]["DATE_DONATION"].'</td>
+                            <td>'.dateFr($dataDonations[$i]["DATE_DONATION"]).'</td>
                         </tr>
                         ';
                     }

@@ -33,7 +33,9 @@ include_once '../data-access/AnimauxFavorisDataAccess.php';
 include_once '../controller/displayUserAnimals.php';
 include_once '../controller/displayDonationsInMyAccount.php';
 
-
+function dateFr($date){
+    return strftime('%d-%m-%Y',strtotime($date));
+}
 
 if(isset($_SESSION["user_id"]))
 {

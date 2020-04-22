@@ -80,13 +80,13 @@ function AffichageAnimaux($dataAnimaux){
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <p class="text-break"><strong>Race/Apparence</strong></p>
+                                    <p class="text-break"><strong>Race/Apparence :</strong></p>
                                     <p>'.$dataAnimaux[$i]["NOM_RACE"].'</p>
                                 </div>                               
                             </div>
                             <div class="row ">
                                 <div class="col-12">
-                                    <p><strong>Né le  : </strong><br/>'.$dataAnimaux[$i]["DATE_NAISSANCE"].'  </p>
+                                    <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
                                 </div>                                
                             </div>
                             ';
@@ -336,6 +336,7 @@ function displayUpdatePanel($dataAnimaux){
         
     }
 }
+
 
 
 
