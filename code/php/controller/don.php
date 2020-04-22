@@ -1,3 +1,8 @@
+<?
+  session_start();
+  
+?>
+
 <!DOCTYPE html>
 <html lang=fr>
     <head>
@@ -21,12 +26,13 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="../../css/global.css">
     </head>
-    <body>
+    <body class="bg-grey-light">
         <?php
             include_once("header.php");
         ?>
-        <div class="container">
+        <div class="container ">
             <div class="row mt-5">
                 <div class="col text-center">
                     <h3>Vous souhaitez nous Soutenir ?</h3>
