@@ -113,6 +113,10 @@
                 </div>
             </li>
             <li>
+            <a class="nav-link" href="form-garde.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
+                Garderie</a>
+            </li>
+            <li>
             <a class="nav-link" href="form-contact.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
                 Contactez-nous</a>
             </li>
@@ -133,18 +137,20 @@
                 }
                 ?>
             </li>
-            <li class="nav-item dropdown ml-3">
-                <a class="nav-link dropdown-toggle" href="#" id="DropdownProfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
-                <div class="dropdown-menu dropdown-menu-right bg-1 border-bottom" aria-labelledby="DropdownProfil">
-                    <?php
-                    if(isset($_SESSION["user_id"])){
-                        echo '<a class="dropdown-item" href="compte.php#list-compagnons">Mon compte</a>';
-                    }
-                    ?>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Se déconnecter</a>
-                </div>
-            </li>
+            <?php
+                if(isset($_SESSION["user_id"])){
+                    echo '<li class="nav-item dropdown ml-3">
+                                <a class="nav-link dropdown-toggle" href="#" id="DropdownProfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
+                                <div class="dropdown-menu dropdown-menu-right bg-1 border-0" aria-labelledby="DropdownProfil">
+                                    <a class="dropdown-item text-center" href="compte.php#list-compagnons">Mon compte</a>
+                                    <div class="dropdown-divider"></div>
+                                    <form class="dropdown-item" action="" method="POST">
+                                        <button type="button submit" class="btn" name="logout">Déconnexion</a>
+                                    </form>
+                                </div>
+                            </li>';
+                }
+            ?>
         </ul>
         
         <!--<a class="d-flex mr-5" href="#" data-toggle="modal" data-target="#exampleModal">

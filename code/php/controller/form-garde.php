@@ -6,7 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="../../css/header-and-color-test.css">
+        <!-- <link rel="stylesheet" href="../../css/header-and-color-test.css"> -->
+        <link rel="stylesheet" href="../../css/global.css">
+
 
         <!-- script Javascript-->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> 
@@ -32,16 +34,12 @@
             </div>
 
             <div class="row mt-5">
-
-
                 <div class="col-lg-5 offset-lg-1 bg-dark">
                     <div class="row mt-3">
                         <div class="col-lg-12 text-center text-white">
                             <h3>Date de réservation :</h3>
                         </div>
                     </div>
-
-
                     <div class="row mt-3"> 
                         <div class="col-lg-10 offset-lg-1 mb-3">
                             <div class="input-group input-group-lg">
@@ -51,8 +49,6 @@
                                 <input type="date" class="form-control" aria-label="date d'entrée :" aria-describedby="inputGroup-sizing-sm">
                             </div>
                         </div>
-
-
                         <div class="col-lg-10 offset-lg-1 mb-3">
                             <div class="input-group input-group-lg">
                                 <div class="input-group-prepend">
@@ -61,7 +57,6 @@
                                 <input type="date" class="form-control" aria-label="date d'entrée :" aria-describedby="inputGroup-sizing-sm">
                             </div>
                         </div>
-
                         <div class="col-lg-10 offset-lg-1 mb-3">
                             <select class="custom-select custom-select-sm">
                                 <option selected>Selectionner un refuge :</option>
@@ -72,7 +67,7 @@
                         </div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-lg-10 offset-lg-1">
+                        <div class="col-lg-10 offset-lg-1 text-white">
                             <p>Informations tarif : ........................................................................
                                 ................................................................................
                                 ................................................................................
