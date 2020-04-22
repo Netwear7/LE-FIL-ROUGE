@@ -20,7 +20,7 @@ function AffichageAnimaux($dataAnimaux){
             <div class="col-8 offset-2 text-center border rounded border-black text-center">
                 <div class="row m-3 ">
                     <div class="col-12 text-center">
-                        <h5>Vous navez pas encore ajouté votre Compagnon ?</h5>
+                        <h5>Vous n\'avez pas encore ajouté votre Compagnon ?</h5>
                         <p> Pour ajouter votre compagnon à votre liste, cliquez sur le bouton suivant : </p>
                         <button type="button" class="btn btn-outline-info" id="addAnimal-list" data-toggle="list" href="#list-addAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
                     </div>

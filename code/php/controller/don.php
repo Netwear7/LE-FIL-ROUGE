@@ -55,13 +55,13 @@
                                 <div class="row">
                                     <select class="selectpicker">
                                         <optgroup label="Don Unique">
-                                            <option>Via Paypal</option>
-                                            <option>Par Carte Bancaire</option>
+                                            <option>Paypal</option>
+                                            <option>Carte Bancaire</option>
                                         </optgroup>
                                         <optgroup label="Don Mensuel">
-                                            <option>Via Paypal</option>
-                                            <option>Par Carte Bancaire</option>
-                                            <option>Via TWITCH</option>
+                                            <option>Paypal</option>
+                                            <option>Carte Bancaire</option>
+                                            <option>TWITCH</option>
                                         </optgroup>
                                     </select>
                                       

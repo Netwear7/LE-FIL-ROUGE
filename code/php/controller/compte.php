@@ -31,6 +31,7 @@ include_once '../model/AnimauxFavoris.php';
 include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
 include_once '../controller/displayUserAnimals.php';
+include_once '../controller/displayDonationsInMyAccount.php';
 
 
 
@@ -180,6 +181,7 @@ if(isset($_POST["retraitFavoris"])){
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Mes Informations Personnelles</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
+                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-myDonations-list" data-toggle="list" href="#list-donations" role="tab" aria-controls="myDonations">Mes Donations</a>
                             <a class="list-group-item list-group-item-action mt-auto bg-grey-light" data-toggle="modal" data-target="#modalLogout">Se Déconnecter</a>
                         </div> 
                     </div>
@@ -217,7 +219,7 @@ if(isset($_POST["retraitFavoris"])){
 
                         <!--PREMIER SLIDE DANS MES INFOS PERSONNELLES-->
                         <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
-                            <div class="row">
+                            <div class="row ">
                                 <div class="col-8 offset-2 border rounded border-black mt-5">
                                     <div class="row">
                                         <div class="col-12 text-center">
@@ -226,7 +228,7 @@ if(isset($_POST["retraitFavoris"])){
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mt-3">
 
                                         <?php $serviceUtilisateur->utilisateurServiceDisplayinfos($_SESSION["user_id"]); 
                                         ?>
@@ -370,6 +372,7 @@ if(isset($_POST["retraitFavoris"])){
                                                     <div class="col-lg-6 col-sm-12">
                                                         <label for="inputEspece" class="mt-2">Espece : </label>
                                                         <select class="form-control" id="nom_espece" name="especeAnimale">
+                                                            <option>Selectionnez une race</option>
                                                             <option>Chat</option>
                                                             <option>Chien</option>
                                                         </select>
@@ -452,7 +455,20 @@ if(isset($_POST["retraitFavoris"])){
                             $dataAnimauxFavoris = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
                             empty($dataAnimauxFavoris) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
                             ?>
-                        </div>                        
+                        </div>        
+                        
+                        
+                        <!--Mes dons-->
+                        <div class="tab-pane fade mb-5" id="list-donations" role="tabpanel" aria-labelledby="list-donations-list">
+                            <div class="row">
+
+                            <!--titre-->
+                                <div class="col-8 offset-2 text-center border rounded border-black mt-5 mb-3">
+                                    <h3>Mes Dons</h3>
+                                </div>
+                            </div>
+                            <?php displayDonations() ?>
+                        </div>   
                     </div>
                 </div>                
             </div>
