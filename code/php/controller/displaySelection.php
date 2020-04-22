@@ -5,7 +5,7 @@ include_once('../service/AnimauxService.php');
 
     function affichage($data){
         foreach($data as $key => $value){
-            echo '<div class="col-lg-3 mb-4">
+            echo '<div class="col-lg-3 mb-4 contentDisplay">
                     <div class="card">
                         <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap">
                         <div class="card-body">
@@ -37,5 +37,6 @@ include_once('../service/AnimauxService.php');
         else{
             echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
         }
-    } 
+    }
+     
 ?>

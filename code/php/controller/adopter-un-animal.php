@@ -92,22 +92,9 @@
             </div>
         </div>
         <!--navigation vers les pages de recherche, à inclure avec php, les numéros de page doivent se générer avec la création des pages-->
-        <nav aria-label="Page navigation">
-            <div class="col-lg-8 offset-lg-3 justify-content-center">
-                <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="#">Précédent</a></li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                <li class="page-item"><a class="page-link" href="#">5</a></li>
-                <li class="page-item"><a class="page-link" href="#">6</a></li>
-                <li class="page-item"><a class="page-link" href="#">7</a></li>
-                <li class="page-item"><a class="page-link" href="#">8</a></li>
-                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                <li class="page-item"><a class="page-link" href="#">10</a></li>
-                <li class="page-item"><a class="page-link" href="#">suivant</a></li>
-                </ul>
+        <nav aria-label="Search results pages">
+            <div class="col-lg-8 offset-lg-3">
+            <ul id="pagin" class="pagination justify-content-center"></ul>
             </div>
          </nav>
     </div>
@@ -120,6 +107,5 @@
 
 <script src="../../javascript/jquery-3.4.1.min.js"></script>
 <script src="../../javascript/scriptDisplaySelection.js"></script>
-
 
 </html>

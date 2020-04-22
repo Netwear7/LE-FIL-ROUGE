@@ -6,8 +6,13 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
         couleur : couleurValue,
         sexe : sexeValue,
         ville : villeValue
+    },
+    function(e){
+        $("#pagin li").remove();
+        loadPagination();
     })
 }
+
 function loadInfo(){
     nomEspeceValue=$('#nom_espece').val();
     $(".simple-select").change(function(e){
@@ -28,6 +33,37 @@ function loadInfo(){
         villeValue = $('#ville').val();
         displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, villeValue);
     }
+}
+
+function loadPagination(){
+    var pageSize = 24;
+
+    var pageCount =  $(".contentDisplay").length / pageSize;
+    
+    console.log($(".contentDisplay").length);
+    console.log(pageCount);
+    
+    for(var i = 0 ; i<pageCount;i++){
+    
+    $("#pagin").append('<li class="page-item"><a class="page-link" href="#">'+(i+1)+'</a></li> ');
+    }
+    $("#pagin li").first().find("a").addClass("current");
+
+    showPage = function(page) {
+    $(".contentDisplay").hide();
+    $(".contentDisplay").each(function(n) {
+        if (n >= pageSize * (page - 1) && n < pageSize * page)
+            $(this).show();
+    });        
+	}
+    
+	showPage(1);
+
+	$("#pagin li a").click(function() {
+	    $("#pagin li a").removeClass("current");
+	    $(this).addClass("current");
+	    showPage(parseInt($(this).text())) 
+	});
 }
 
 
