@@ -102,7 +102,7 @@
             </li>
 
             <!-- DROPDOWN ANIMAUX PERDU-->
-            <li class="nav-item dropdown">
+            <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Animaux perdus</a>
                 <div class="dropdown-menu bg-1 border-0" aria-labelledby="navbarDropdown">
@@ -111,7 +111,12 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Envoyer la fiche animal</a>
                 </div>
-            </li>
+            </li> -->
+            <li>
+                <a class="nav-link" href="animaux-perdus.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
+                Animaux perdus</a>
+                </li>
+            <li>
             <li>
             <a class="nav-link" href="form-garde.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
                 Garderie</a>
