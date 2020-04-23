@@ -46,7 +46,15 @@ if(isset($_GET["nomEspece"]) && !empty($_GET["nomEspece"])){
                 echo '<option>' . $value2 . '</option>';
             }
         }
-    echo'</select></div></div>';
+    echo'</select></div></div>
+    <div class="row mt-3">
+    <div class=col-lg-12>
+    <select name="poil" id="poil" class="simple-select custom-select custom-select-md">
+    <option value="">Poil</option>
+    <option>Court</option>
+    <option>Mi-long</option>
+    <option>Long</option>
+    </select></div></div>';
 }
 ?>
 

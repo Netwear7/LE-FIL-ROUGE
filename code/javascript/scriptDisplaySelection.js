@@ -1,10 +1,11 @@
-function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, villeValue){
+function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue){
     $('#display').load("../controller/displaySelection.php", 
     {
-        nom_espece:  nomEspeceValue,
+        nom_espece :  nomEspeceValue,
         nom_race : nomRaceValue,
         couleur : couleurValue,
         sexe : sexeValue,
+        poil : poilValue,
         ville : villeValue
     },
     function(e){
@@ -23,16 +24,18 @@ function loadInfo(){
         nomRaceValue = "";
         couleurValue = "";
         sexeValue = "";
+        poilValue = "";
         villeValue = $('#ville').val();
-        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, villeValue);
+        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue);
     }
     else{
         nomEspeceValue = $('#nom_espece').val();
         nomRaceValue = $('#nom_race').val();
         couleurValue = $('#couleur').val();
         sexeValue = $('#sexe').val();
+        poilValue = $('#poil').val();
         villeValue = $('#ville').val();
-        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, villeValue);
+        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue);
     }
 
 }

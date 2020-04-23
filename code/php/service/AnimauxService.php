@@ -139,6 +139,16 @@ include_once '../Interfaces/InterfaceService.php';
                         $counter++;
                         $arrayOfValues[$counter-1] = $value . "%";
                         break;
+                    case "poil" : 
+                        if($counter<$tabLength-1) {
+                            $request.="A.robe like ? and ";
+                        } else {
+                            $request.= "A.robe like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
                     }
             }
             return $data = $this->getDataAccessObject()->daoSearchAnimals($request,$type,$arrayOfValues);
@@ -196,6 +206,16 @@ include_once '../Interfaces/InterfaceService.php';
                             $request.="A.sexe like ? and ";
                         } else {
                             $request.= "A.sexe like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "poil" : 
+                        if($counter<$tabLength-1) {
+                            $request.="A.robe like ? and ";
+                        } else {
+                            $request.= "A.robe like ?";
                         }
                         $type.="s";
                         $counter++;
