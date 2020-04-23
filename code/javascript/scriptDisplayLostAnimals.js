@@ -14,11 +14,16 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
     })
 }
 
+$(".simple-select").change(function(e){
+    loadInfo();
+});
+
+$("#ville").change(function(e){
+    loadInfo();
+});
+
 function loadInfo(){
     nomEspeceValue=$('#nom_espece').val();
-    $(".simple-select").change(function(e){
-        loadInfo();
-    });
     if(nomEspeceValue.length==0){
         nomRaceValue = "";
         couleurValue = "";

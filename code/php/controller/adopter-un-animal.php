@@ -66,7 +66,7 @@
                             <hr style="border-color:white;">
                             <div class="row my-3">
                                 <div class=col-lg-12>
-                                    <select name="ville" id="ville" class="simple-select custom-select custom-select-md">
+                                    <select name="ville" id="ville" class="custom-select custom-select-md">
                                         <option value="" selected>Ville</option>
                                         <?php
                                             $daoAdresse = new AdresseDataAccess();
