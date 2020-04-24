@@ -14,7 +14,7 @@
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> 
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        
+        <script src="../../javascript/navbarScroll.js"></script>
         <!-- Carrousel pause script-->
         
     
@@ -80,8 +80,8 @@
 
 
 
-                <div class="col-lg-5 bg-1">
-                    <div class="row bg-light">
+                <div class="col-lg-5 bg-grey-light">
+                    <div class="row ">
                         <div class="col-lg-10 offset-1">
                             <div class="row mt-3">
                                 <h4>Selectionnez votre animal :</h4>
@@ -130,10 +130,7 @@
                 <div class="col-lg-5 offset-lg-1"></div>
                 <div class="col-lg-5">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <button type="button submit" class="btn btn-outline-danger w-100">Annuler la réservation</button>
-                        </div>
-                        <div class="col-lg-6">
+                        <div class="offset-lg-6 col-lg-6">
                             <button type="button submit" class="btn btn-primary w-100">Confirmer la réservation</button>
                         </div>
                     </div>
