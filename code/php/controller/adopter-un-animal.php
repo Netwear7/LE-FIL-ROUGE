@@ -69,6 +69,14 @@
                             <hr style="border-color:white;">
                             <div class="row my-3">
                                 <div class=col-lg-12>
+                                    <div class="custom-control custom-checkbox" id="urgenceDiv">
+                                        <input type="checkbox" class="custom-control-input" name="urgence" id="urgence" value="">
+                                        <label class="custom-control-label text-white" for="urgence">Urgence d'adoption</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class=col-lg-12>
                                     <select name="ville" id="ville" class="custom-select custom-select-md">
                                         <option value="" selected>Ville</option>
                                         <?php

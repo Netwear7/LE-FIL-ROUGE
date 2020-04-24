@@ -24,12 +24,22 @@ include_once('../service/AnimauxService.php');
 
     $daoAnimaux = new AnimauxDataAccess();
     $animauxService = new AnimauxService($daoAnimaux);
-    if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
+    if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"]) && empty($_POST["urgence"])){
         $data=$animauxService->serviceSelectAllAdoptableAnimals();
         affichage($data);
     }
+    
+    if((!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])) && empty($_POST["urgence"])){
+        $data=$animauxService->serviceSearchAnimals2($_POST);
+        if(count($data)>0){
+            affichage($data);
+        }
+        else{
+            echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
+        }
+    }
 
-    if(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])){
+    elseif(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"]) ||!empty($_POST["urgence"])){
         $data=$animauxService->serviceSearchAnimals($_POST);
         if(count($data)>0){
             affichage($data);
@@ -38,5 +48,6 @@ include_once('../service/AnimauxService.php');
             echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
         }
     }
+    
      
 ?>

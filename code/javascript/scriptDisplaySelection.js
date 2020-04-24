@@ -1,4 +1,4 @@
-function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue){
+function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue, urgenceValue){
     $('#display').load("../controller/displaySelection.php", 
     {
         nom_espece :  nomEspeceValue,
@@ -6,7 +6,8 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
         couleur : couleurValue,
         sexe : sexeValue,
         poil : poilValue,
-        ville : villeValue
+        ville : villeValue,
+        urgence : urgenceValue
     },
     function(e){
         $("#pagin li").remove();
@@ -14,6 +15,19 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
     })
 
 }
+
+$("#urgence").click(function(e){
+    if($("#urgence").prop("checked") == true){
+        $("#urgence").attr("value", 1 );
+        console.log($("#urgence").val())
+        loadInfo();
+    }
+    if($("#urgence").prop("checked") == false){
+        $("#urgence").attr("value", "" );
+        console.log($("#urgence").val())
+        loadInfo();
+    }
+});
 
 $(".simple-select").change(function(e){
     loadInfo();
@@ -32,7 +46,8 @@ function loadInfo(){
         sexeValue = "";
         poilValue = "";
         villeValue = $('#ville').val();
-        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue);
+        urgenceValue = $('#urgence').val();
+        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue, urgenceValue);
     }
     else{
         nomEspeceValue = $('#nom_espece').val();
@@ -41,7 +56,8 @@ function loadInfo(){
         sexeValue = $('#sexe').val();
         poilValue = $('#poil').val();
         villeValue = $('#ville').val();
-        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue);
+        urgenceValue = $('#urgence').val();
+        displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue, urgenceValue);
     }
 
 }

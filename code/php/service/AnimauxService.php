@@ -149,9 +149,91 @@ include_once '../Interfaces/InterfaceService.php';
                         $counter++;
                         $arrayOfValues[$counter-1] = $value . "%";
                         break;
-                    }
+                    case "urgence" : 
+                        if($counter<$tabLength-1) {
+                            $request.="J.urgence like ? and ";
+                        } else {
+                            $request.= "J.urgence like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                }
             }
             return $data = $this->getDataAccessObject()->daoSearchAnimals($request,$type,$arrayOfValues);
+        }
+
+        public function serviceSearchAnimals2($tab) : array {
+            $request="";
+            $type="";
+            $counter=0;
+            $tabLength=count(array_filter($tab));
+            foreach(array_filter($tab) as $key=> $value) {
+                switch ($key) {
+                    case "nom_race" :
+                        if($counter<$tabLength-1) {
+                            $request.="B.nom_race like ? and ";
+                        } else {
+                            $request.= "B.nom_race like ?";
+                        }
+                        $type.="s";                       
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "nom_espece" :
+                        if($counter<$tabLength-1) {
+                            $request.="F.nom_espece like ? and ";
+                        } else {
+                            $request.= "F.nom_espece like ?";
+                        }
+                        $type.="s";                       
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "couleur" : 
+                        if($counter<$tabLength-1) {
+                            $request.="D.couleur like ? and ";
+                        } else {
+                            $request.= "D.couleur like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "ville" : 
+                        if($counter<$tabLength-1) {
+                            $request.="H.ville like ? and ";
+                        } else {
+                            $request.= "H.ville like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "sexe" : 
+                        if($counter<$tabLength-1) {
+                            $request.="A.sexe like ? and ";
+                        } else {
+                            $request.= "A.sexe like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                    case "poil" : 
+                        if($counter<$tabLength-1) {
+                            $request.="A.robe like ? and ";
+                        } else {
+                            $request.= "A.robe like ?";
+                        }
+                        $type.="s";
+                        $counter++;
+                        $arrayOfValues[$counter-1] = $value . "%";
+                        break;
+                }
+            }
+            return $data = $this->getDataAccessObject()->daoSearchAnimals2($request,$type,$arrayOfValues);
         }
 
         public function serviceSearchLostAnimals($tab) : array {
