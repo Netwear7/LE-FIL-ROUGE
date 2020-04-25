@@ -7,7 +7,6 @@ include_once '../Interfaces/InterfaceDao.php';
 class EspeceDataAccess extends LogBdd implements InterfaceDao{
 
 
-
         public function afficherType(){
             $mysqli = $this->connexion();
             $stmt = $mysqli -> prepare("SELECT nom_espece FROM espece");
@@ -18,15 +17,31 @@ class EspeceDataAccess extends LogBdd implements InterfaceDao{
             $this->deconnexion($mysqli);  
             return $data;
         }
+        public function daoSelectAll(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * from espece');
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
+        public function daoSelect($id){
 
+        }
+        public function daoCount(){
 
+        }
+        public function daoAdd($object){
 
-        public function daoSelectAll(){}
-        public function daoSelect(int $id){}
-        public function daoCount(){}
-        public function daoAdd(object $object){}
-        public function daoSearch($search){}
-        public function daoUpdate(array $parametres){}
-        public function daoDelete(string $nom){}
+        }
+        public function daoSearch($search){
+
+        }
+        public function daoUpdate($parametres){
+
+        }
+        public function daoDelete($nom){
+
+        }
     }
 ?>
