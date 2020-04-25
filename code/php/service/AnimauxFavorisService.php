@@ -33,7 +33,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                     <div class="col-8 offset-2 text-center border rounded border-black text-center">
                         <div class="row m-3 ">
                             <div class="col-12 text-center">
-                                <p> Pour ajouter d\'autres animaux dans vos coups de coeur, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page d\'adoption</p>
+                                <p> Pour ajouter d\'autres animaux dans vos coups de coeur, cliquez sur le <a href="adopter-un-animal.php"><i class="far fa-heart"></i></a> situé en haut à droite des fiches sur la page d\'adoption</p>
                                 <a href="adopter-un-animal.php"><button type="button" class="btn btn-outline-info">Ajoutez d\'autres compagnons dans vos coups de coeur</button></a>
                             </div>
                         </div>
@@ -127,7 +127,7 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
                     <div class="row m-3 ">
                         <div class="col-12 text-center">
                             <h5>Pas encore d\'animaux Coup de coeur ?</h5>
-                            <p> Pour en ajouter un, cliquez sur le COEURCOEUR situé en haut à droite des fiches sur la page d\'adoption</p>
+                            <p> Pour en ajouter un, cliquez sur le <a href="adopter-un-animal.php"><i class="far fa-heart"></i></a> situé en haut à droite des fiches sur la page d\'adoption</p>
                             <a href="adopter-un-animal.php"><button type="button" class="btn btn-outline-info">Ajoutez un Compagnon dans vos coups de coeur</button></a>
                         </div>
                     </div>

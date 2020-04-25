@@ -84,6 +84,12 @@ function AffichageAnimaux($dataAnimaux){
                                     <p>'.$dataAnimaux[$i]["NOM_RACE"].'</p>
                                 </div>                               
                             </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="text-break"><small><strong>Identification :</strong></small> </p>
+                                    <p>'.$dataAnimaux[$i]["NO_PUCE"].'</p>
+                                </div>                               
+                            </div>
                             <div class="row ">
                                 <div class="col-12">
                                     <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
@@ -314,7 +320,7 @@ function displayUpdatePanel($dataAnimaux){
                             <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
                                 <input class="form-control " type="float" value="'.$dataAnimaux[$i]["POIDS"].'" name="poids">
                             <label for="specTextArea" class="mt-2">Spécificités :</label>
-                            <input type="text" class="form-control " value="'.$dataAnimaux[$i]["SPECIFICITE"].'" name="specificites" rows="3">
+                            <input type="text" class="form-control " value="'.$dataAnimaux[$i]["SPECIFICITE"].'" name="specificite" rows="3">
                             <input type="hidden" name="idAnimal" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>   
                         </div>
                     </div>
