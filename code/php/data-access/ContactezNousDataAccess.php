@@ -7,15 +7,10 @@
     */
 
     include_once("../model/ContactezNous.php");
+    include_once("../Interfaces/InterfaceDao.php");
+    include_once("logBdd.php");
 
-    class ContactezNousDataAccess{
-        public function connexion(){
-            $mysqli = new mysqli('localhost','root','','bddanimaux');
-            return $mysqli;    
-        }
-        public function deconnexion($mysqli){
-            $mysqli->close();
-        }
+    class ContactezNousDataAccess extends LogBdd implements InterfaceDao{
         public function InsertMessage($insert){
             $mysqli = $this->connexion();
             $message = $insert->getMessage();
@@ -25,6 +20,32 @@
             $stmt->bind_param("ss", $message, $motif);
             $stmt->execute();
             $this->deconnexion($mysqli);
+        }
+        public function daoSelectAll(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * from contactez_nous');
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
+        public function daoSelect($id){
+
+        }
+        public function daoCount(){
+
+        }
+        public function daoAdd($object){
+
+        }
+        public function daoSearch($search){
+
+        }
+        public function daoUpdate($parametres){
+
+        }
+        public function daoDelete($nom){
+
         }
     }
 ?>

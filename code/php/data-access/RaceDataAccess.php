@@ -6,7 +6,7 @@ include_once '../Interfaces/InterfaceDao.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 
-    class RaceDataAccess  extends LogBdd   implements InterfaceDao{
+    class RaceDataAccess extends LogBdd implements InterfaceDao{
 
         public function selectRace($request,$value,$type){
             $mysqli = $this->connexion();
@@ -44,7 +44,14 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
             return $data;
         }
 
-        public function daoSelectAll(){}
+        public function daoSelectAll(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * from race');
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
         public function daoSelect(int $id){}
         public function daoCount(){}
         public function daoAdd(object $object){}

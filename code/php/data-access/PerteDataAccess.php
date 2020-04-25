@@ -5,7 +5,14 @@
 
     class PerteDataAccess extends LogBdd implements InterfaceDao{
 
-        public function daoSelectAll(){}
+        public function daoSelectAll(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * from perte');
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
 
         public function daoSelect(int $id){
             $mysqli = $this->connexion();
