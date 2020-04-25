@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 07 avr. 2020 à 16:19
+-- Généré le :  sam. 25 avr. 2020 à 18:53
 -- Version du serveur :  10.4.11-MariaDB
--- Version de PHP : 7.4.3
+-- Version de PHP :  7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `bddanimaux`
+-- Base de données :  `bddanimaux`
 --
 
 -- --------------------------------------------------------
@@ -229,7 +229,9 @@ CREATE TABLE `contactez_nous` (
   `ID_MESSAGE` int(11) NOT NULL,
   `MESSAGE` text NOT NULL,
   `MOTIF` varchar(50) NOT NULL,
-  `ID_UTILISATEUR` int(11) NOT NULL
+  `ID_UTILISATEUR` int(11) DEFAULT NULL,
+  `NOM` varchar(50) NOT NULL,
+  `PRENOM` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------

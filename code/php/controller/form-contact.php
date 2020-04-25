@@ -1,7 +1,9 @@
 <?php
     include_once("../service/ContactezNousService.php");
+    include_once("../data-access/ContactezNousDataAccess.php");
 
-    $contact = new ContactezNousService();
+    $contactDAO = new ContactezNousDataAccess();
+    $contact = new ContactezNousService($contactDAO);
     session_start();
 
     if(isset($_POST["action"]) && $_POST["action"] == "InsertMessage"){

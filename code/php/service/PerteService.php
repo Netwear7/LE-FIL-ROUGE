@@ -7,7 +7,10 @@ include_once '../Interfaces/InterfaceService.php';
 
 
 
-        public function serviceSelectAll(){}
+        public function serviceSelectAll(){
+            $data = $this->getDataAccessObject()->daoSelectAll();
+            return $data;
+        }
         public function serviceSelect($id){
            $data = $this->getDataAccessObject()->daoSelect($id);
            return $data;

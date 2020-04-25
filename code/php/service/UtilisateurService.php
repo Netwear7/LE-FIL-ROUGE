@@ -10,7 +10,8 @@
         // fonction pour select tout les utilisateurs
         public function serviceSelectAll()
         {
-            // if admin ok sinon non
+            $data = $this->getDataAccessObject()->daoSelectAll();
+            return $data;
         }
 
         //Select Utilisateur

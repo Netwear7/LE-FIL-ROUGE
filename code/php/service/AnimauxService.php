@@ -1,7 +1,7 @@
 <?php
-// je comprends pas trop cette page, tu pourras m'expliquer ?
-include_once '../service/ServiceCommun.php';
-include_once '../Interfaces/InterfaceService.php';
+
+    include_once '../service/ServiceCommun.php';
+    include_once '../Interfaces/InterfaceService.php';
 
     class AnimauxService extends ServiceCommun implements InterfaceService {
 
@@ -10,7 +10,7 @@ include_once '../Interfaces/InterfaceService.php';
 
         public function serviceSelectAll()
         {
-            $data = $this->getDataAccessObject()->daoSelectAllAdoptableAnimals();
+            $data = $this->getDataAccessObject()->daoSelectAll();
             return $data;
         }
 

@@ -11,7 +11,8 @@
         public function serviceDelete($nom){}
         // fonction pour select toutes les adresses
         public function serviceSelectAll(){
-            // if admin ok sinon non // 
+            $data = $this->getDataAccessObject()->daoSelectAll();
+            return $data;
         }
 
         //Select Adresses
