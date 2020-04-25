@@ -1,36 +1,42 @@
 <?php
     class ContactezNous{
         private $idUtilisateur;
-        private $idMessage;
         private $message;
         private $motif;
-        private static $increment = 0;
+        private $nom;
+        private $prenom;
 
-        function __construct(string $message, string $motif){
-            $this->idUtilisateur = ++self::$increment;
+        function __construct(string $message, string $motif, string $nom, string $prenom, string $idUtilisateur){
             $this->message = $message;
             $this->motif = $motif;
+            $this->nom = $nom;
+            $this->prenom = $prenom;
+            $this->idUtilisateur = $idUtilisateur;
         }
+
+
         /**
-         * Getter for IdMessage
+         * Getter for IdUtilisateur
          *
          * @return [type]
          */
-        public function getIdMessage()
+        public function getIdUtilisateur()
         {
-            return $this->idMessage;
+            return $this->idUtilisateur;
         }
+
         /**
-         * Setter for IdMessage
-         * @var [type] idMessage
+         * Setter for IdUtilisateur
+         * @var [type] idUtilisateur
          *
          * @return self
          */
-        public function setIdMessage($idMessage)
+        public function setIdUtilisateur($idUtilisateur)
         {
-            $this->idMessage = $idMessage;
+            $this->idUtilisateur = $idUtilisateur;
             return $this;
         }
+
         /**
          * Getter for Message
          *
@@ -69,6 +75,49 @@
         public function setMotif($motif)
         {
             $this->motif = $motif;
+            return $this;
+        }
+        
+        /**
+         * Getter for Nom
+         *
+         * @return [type]
+         */
+        public function getNom()
+        {
+            return $this->nom;
+        }
+
+        /**
+         * Setter for Nom
+         * @var [type] nom
+         *
+         * @return self
+         */
+        public function setNom($nom)
+        {
+            $this->nom = $nom;
+            return $this;
+        }
+        /**
+         * Getter for Prenom
+         *
+         * @return [type]
+         */
+        public function getPrenom()
+        {
+            return $this->prenom;
+        }
+
+        /**
+         * Setter for Prenom
+         * @var [type] prenom
+         *
+         * @return self
+         */
+        public function setPrenom($prenom)
+        {
+            $this->prenom = $prenom;
             return $this;
         }
     }

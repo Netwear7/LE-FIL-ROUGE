@@ -3,7 +3,7 @@
     include_once("../data-access/ContactezNousDataAccess.php");
 
     $contactDAO = new ContactezNousDataAccess();
-    $contact = new ContactezNousService($contactDAO);
+    $contactService = new ContactezNousService($contactDAO);
     session_start();
 
     if(isset($_POST["action"]) && $_POST["action"] == "InsertMessage"){
@@ -12,7 +12,7 @@
             && is_string($_POST["motif"]) 
             && preg_match("/^[a-zA-Z.0-9!?,]+$/", $_POST["message"])
             && preg_match("/^[a-zA-Z.0-9!?,]+$/", $_POST["motif"])){
-            $contact->InsertMessage($_POST);
+            $contactService->InsertMessage($_POST);
         }
     }
 ?>
@@ -141,6 +141,14 @@
                                   </div>
                             </div>
                         </div>
+                        <?php 
+                            if(isset($_SESSION["user_id"])){
+                                echo "<input type='hidden' name='id' value='" . $_SESSION["user_id"] . "'/>";
+                            }
+                            else{
+                                echo "<input type='hidden' name='id' value='null'/>";
+                            }
+                        ?>
                         <div class="row">
                             <div class="col-lg-10 offset-lg-1 mb-3">
                                 <input class="btn btn-lg col-lg-12 bg-primary mb-3 text-white" type="submit" value="Envoyer">

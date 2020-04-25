@@ -11,16 +11,6 @@
     include_once("logBdd.php");
 
     class ContactezNousDataAccess extends LogBdd implements InterfaceDao{
-        public function InsertMessage($insert){
-            $mysqli = $this->connexion();
-            $message = $insert->getMessage();
-            $motif = $insert->getMotif();
-            $stmt = $mysqli->prepare("INSERT INTO contactez_nous(msg, motif, id_utilisateur)
-            VALUES(?, ?, 2)");
-            $stmt->bind_param("ss", $message, $motif);
-            $stmt->execute();
-            $this->deconnexion($mysqli);
-        }
         public function daoSelectAll(){
             $mysqli = $this->connexion();
             $rs = $mysqli->query('SELECT * from contactez_nous');
@@ -35,8 +25,24 @@
         public function daoCount(){
 
         }
-        public function daoAdd($object){
-
+        public function daoAdd($insert){
+            $mysqli = $this->connexion();
+            $message = $insert->getMessage();
+            $motif = $insert->getMotif();
+            $nom = $insert->getNom();
+            $prenom = $insert->getPrenom();
+            $id_utilisateur = $insert->getIdUtilisateur();
+            $stmt = $mysqli->prepare("INSERT INTO contactez_nous(message, motif, id_utilisateur, nom, prenom)
+            VALUES(?, ?, ?, ?, ?)");
+            if($id_utilisateur == "null"){
+                $id_utilisateur = null;
+                $stmt->bind_param("ssiss", $message, $motif, $id_utilisateur, $nom, $prenom);
+            }
+            else {
+                $stmt->bind_param("ssiss", $message, $motif, $id_utilisateur, $nom, $prenom);
+            }
+            $stmt->execute();
+            $this->deconnexion($mysqli);
         }
         public function daoSearch($search){
 
