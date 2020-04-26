@@ -43,7 +43,6 @@ class DonationDataAccess extends LogBdd implements InterfaceDao{
 
     }
     public function daoAdd(object $object){
-
     }
     public function daoSearch($search){
 

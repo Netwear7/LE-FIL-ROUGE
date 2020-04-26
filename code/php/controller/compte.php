@@ -174,10 +174,10 @@ if(isset($_POST["retraitFavoris"])){
 
 
                 <!--NAVBAR COTE GAUCHE-->
-                <div class="col-lg-2 col-sm-12 border border-black">
+                <div class="col-lg-2 col-sm-12 border rounded-sm border-black">
                     <div class="row">
                         <div class="col">
-                            <h3>Mon Compte</h3>
+                            <h3 >Mon Compte</h3>
                         </div>
                     </div>
                     <div class="row ">
@@ -227,7 +227,7 @@ if(isset($_POST["retraitFavoris"])){
                                 <div class="col-8 offset-2 mt-5 border rounded border-black shadow-sm">
                                     <div class="row">
                                         <div class="col-12 text-center">
-                                            <h3>Mes Informations Personnelles</h3>
+                                            <h3 class="mt-2">Mes Informations Personnelles</h3>
                                         </div>                                                
                                     </div>
                                 </div>
@@ -298,7 +298,7 @@ if(isset($_POST["retraitFavoris"])){
                         <div class="tab-pane fade mb-5 " id="list-updateInfo" role="tabpanel" aria-labelledby="list-updateInfo-list">
                             <div class="row">
                                 <div class="col-8 offset-2 text-center border rounded border-black mt-5">
-                                    <h3>Mes Informations Personnelles</h3>
+                                    <h3 class="mt-1">Mes Informations Personnelles</h3>
                                 </div>
                             </div>
                             <div class="row mt-2">
@@ -315,7 +315,7 @@ if(isset($_POST["retraitFavoris"])){
                             <!--titre-->
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5 mb-3 text-center">
-                                        <h3>Mes Compagnons</h3>                                        
+                                        <h3 class="mt-2">Mes Compagnons</h3>                                        
                                 </div>
                             </div>
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
@@ -343,7 +343,7 @@ if(isset($_POST["retraitFavoris"])){
                                         <div class="row mt-3">
                                             <!--titre-->
                                             <div class="col-lg-12 text-center">
-                                                <h3>Ajoutez votre compagnon</h3>                                                
+                                                <h3 class="mt-2">Ajoutez votre compagnon</h3>                                                
                                             </div>
                                         </div>
                                          
@@ -450,7 +450,7 @@ if(isset($_POST["retraitFavoris"])){
 
                             <!--titre-->
                                 <div class="col-8 offset-2 text-center border rounded border-black mt-5 mb-3">
-                                    <h3>Mes Animaux Favoris</h3>
+                                    <h3 class="mt-2">Mes Animaux Favoris</h3>
                                 </div>
                             </div>
 
@@ -468,7 +468,7 @@ if(isset($_POST["retraitFavoris"])){
 
                             <!--titre-->
                                 <div class="col-8 offset-2 text-center border rounded border-black mt-5 mb-3">
-                                    <h3>Mes Dons</h3>
+                                    <h3 class="mt-2">Mes Dons</h3>
                                 </div>
                             </div>
                             <?php displayDonations() ?>
