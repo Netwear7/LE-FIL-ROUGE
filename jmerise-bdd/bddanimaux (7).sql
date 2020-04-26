@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  sam. 25 avr. 2020 à 18:53
+-- Généré le : Dim 26 avr. 2020 à 14:51
 -- Version du serveur :  10.4.11-MariaDB
--- Version de PHP :  7.4.1
+-- Version de PHP : 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `bddanimaux`
+-- Base de données : `bddanimaux`
 --
 
 -- --------------------------------------------------------
@@ -257,6 +257,27 @@ INSERT INTO `couleur_animal` (`ID_COULEUR`, `COULEUR`) VALUES
 (5, 'Chatain'),
 (6, 'Bleu'),
 (7, 'Cerf');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `donation`
+--
+
+CREATE TABLE `donation` (
+  `ID_DONATION` int(11) NOT NULL,
+  `DATE_DONATION` date NOT NULL,
+  `ID_UTILISATEUR` int(11) NOT NULL,
+  `montant` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `donation`
+--
+
+INSERT INTO `donation` (`ID_DONATION`, `DATE_DONATION`, `ID_UTILISATEUR`, `montant`) VALUES
+(1, '2020-04-22', 1, 50),
+(5, '2020-04-01', 1, 980);
 
 -- --------------------------------------------------------
 
@@ -620,6 +641,13 @@ ALTER TABLE `couleur_animal`
   ADD PRIMARY KEY (`ID_COULEUR`);
 
 --
+-- Index pour la table `donation`
+--
+ALTER TABLE `donation`
+  ADD PRIMARY KEY (`ID_DONATION`),
+  ADD KEY `donation_utilisateur0_AK` (`ID_UTILISATEUR`) USING BTREE;
+
+--
 -- Index pour la table `espece`
 --
 ALTER TABLE `espece`
@@ -728,6 +756,12 @@ ALTER TABLE `couleur_animal`
   MODIFY `ID_COULEUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT pour la table `donation`
+--
+ALTER TABLE `donation`
+  MODIFY `ID_DONATION` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT pour la table `espece`
 --
 ALTER TABLE `espece`
@@ -810,6 +844,12 @@ ALTER TABLE `avoir_couleur`
 --
 ALTER TABLE `contactez_nous`
   ADD CONSTRAINT `contactez_nous_utilisateur0_FK` FOREIGN KEY (`ID_UTILISATEUR`) REFERENCES `utilisateur` (`ID_UTILISATEUR`);
+
+--
+-- Contraintes pour la table `donation`
+--
+ALTER TABLE `donation`
+  ADD CONSTRAINT `donation_utilisateur0_FK` FOREIGN KEY (`ID_UTILISATEUR`) REFERENCES `utilisateur` (`ID_UTILISATEUR`);
 
 --
 -- Contraintes pour la table `espece_avoir_maladie`

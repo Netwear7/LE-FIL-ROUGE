@@ -77,24 +77,14 @@ function AffichageAnimaux($dataAnimaux){
                                 <div class="col-12">
                                 <h4 class="text-break">'.$dataAnimaux[$i]["NOM"].'</h4>
                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-12">
-                                    <p class="text-break"><strong>Race/Apparence :</strong></p>
+                                    <p class="text-break"><small><strong>Race/Apparence :</strong></small></p>
                                     <p>'.$dataAnimaux[$i]["NOM_RACE"].'</p>
-                                </div>                               
+                                </div>                           
                             </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <p class="text-break"><small><strong>Identification :</strong></small> </p>
-                                    <p>'.$dataAnimaux[$i]["NO_PUCE"].'</p>
-                                </div>                               
-                            </div>
-                            <div class="row ">
                                 <div class="col-12">
                                     <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
                                 </div>                                
-                            </div>
                             ';
                             $perdu = $servicePerte->serviceSelect($dataAnimaux[$i]["ID_ANIMAL"]);
                             $pasPerdu = '<a href="" data-toggle="modal" data-target="#modalPerdu'.$i.'">Signaler perdu</a>';
@@ -106,9 +96,9 @@ function AffichageAnimaux($dataAnimaux){
                             <div class="row mt-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <ul class="list-group list-group-flush">
+                                        <li >Identification : '.$dataAnimaux[$i]["NO_PUCE"].' </li>
                                         <li >Poils : '.$dataAnimaux[$i]["ROBE"].'</li>
                                         <li >Couleur : '.$dataAnimaux[$i]["COULEUR"].'</li>
-                                        <li >Caractère : '.$dataAnimaux[$i]["CARACTERE"].' </li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-sm-12">
@@ -120,7 +110,12 @@ function AffichageAnimaux($dataAnimaux){
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-12">
+                                <div class="col-6">
+                                    <ul class="list-group list-group-flush">
+                                        <li >Caractère : <br/>'.$dataAnimaux[$i]["CARACTERE"].'</li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
                                     <ul class="list-group list-group-flush">
                                         <li >Spécificités : <br/>'.$dataAnimaux[$i]["SPECIFICITE"].'</li>
                                     </ul>
@@ -129,10 +124,8 @@ function AffichageAnimaux($dataAnimaux){
                         </div>
                         <div class="col-lg-1 col-sm-12">
                             <div class="row">
-                                <button type="button" class="btn btn-outline-info btn-block" id="modAnimal-list" data-toggle="list" href="#list-modAnimal'.$i.'" role="tab" aria-controls="modAnimal">Modifier</button>
-                            </div>
-                            <div class="row">
-                                <button type="button" class="btn btn-outline-info mb-2 btn-block " data-toggle="modal" data-target="#modalRetrait'.$i.'">Retrait</button>
+                                <button type="button" class="btn  " id="modAnimal-list" data-toggle="list" href="#list-modAnimal'.$i.'" role="tab" aria-controls="modAnimal"><i class="fas fa-edit"></i></button>
+                                <button type="button" class="btn " data-toggle="modal" data-target="#modalRetrait'.$i.'"><i class="fas fa-times"></i></button>
                             </div>
                         </div>
                     </div>

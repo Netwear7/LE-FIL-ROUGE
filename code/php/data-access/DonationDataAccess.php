@@ -27,7 +27,7 @@ class DonationDataAccess extends LogBdd implements InterfaceDao{
 
     public function daoSelectAllUserDonations($id){
         $mysqli = $this->connexion();
-        $stmt = $mysqli->prepare("SELECT * from donations where ID_UTILISATEUR = ?");
+        $stmt = $mysqli->prepare("SELECT * from donation where ID_UTILISATEUR = ?");
         $stmt->bind_param('s',$id);
         $stmt -> execute();  
         $rs = $stmt->get_result();          

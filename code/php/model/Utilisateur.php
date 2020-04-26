@@ -17,7 +17,7 @@
             $this->num = $infos["NUM"];
 
         }
-
+        
         /**
          * Getter for IdUtilisateur
          *

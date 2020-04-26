@@ -44,6 +44,17 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
             return $data;
         }
 
+        public function selectAllDogRaces(){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from race as A INNER JOIN appartenir_espece as B on A.ID_RACE = B.ID_RACE where ID_ESPECE = 1');
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
+
         public function daoSelectAll(){
             $mysqli = $this->connexion();
             $rs = $mysqli->query('SELECT * from race');

@@ -153,8 +153,9 @@ if(isset($_POST["retraitFavoris"])){
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="../../css/header-and-color-test.css">
-
         <link rel="stylesheet" href="../../css/global.css">
+        <link rel="stylesheet" href="../../css/monCompte.css">
+
 
 
     </head>
@@ -223,7 +224,7 @@ if(isset($_POST["retraitFavoris"])){
                         <!--PREMIER SLIDE DANS MES INFOS PERSONNELLES-->
                         <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
                             <div class="row ">
-                                <div class="col-8 offset-2 border rounded border-black mt-5">
+                                <div class="col-8 offset-2 mt-5 border rounded border-black shadow-sm">
                                     <div class="row">
                                         <div class="col-12 text-center">
                                             <h3>Mes Informations Personnelles</h3>

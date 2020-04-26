@@ -15,7 +15,6 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $rs -> free();
             ...
             */
-
             $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
             $stmt -> execute();  
             $rs = $stmt->get_result();          
