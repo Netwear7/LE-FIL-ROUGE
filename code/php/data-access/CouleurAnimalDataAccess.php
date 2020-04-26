@@ -17,7 +17,9 @@
         public function daoSelectAll(){
             $mysqli = $this->connexion();
             $rs = $mysqli->query('SELECT * from couleur_animal');
-            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            //J'ai changer le fetch array en fetch all pour la page admin
+            //exactement comme les autres DaoSelectAll
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
             $this->deconnexion($mysqli);
             return $data;

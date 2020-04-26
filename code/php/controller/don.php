@@ -15,7 +15,9 @@
 
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-        <link rel="stylesheet" href="../../css/header-and-color-test.css">
+        <!-- <link rel="stylesheet" href="../../css/header-and-color-test.css"> -->
+        <link rel="stylesheet" href="../../css/global.css">
+
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
@@ -25,10 +27,12 @@
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css"/>
+        <!-- <link rel="stylesheet" href="style.css"/> -->
         <link rel="stylesheet" href="../../css/global.css">
+        <script src="../../javascript/navbarScroll.js"></script>
+
     </head>
-    <body class="bg-grey-light">
+    <body>
         <?php
             include_once("header.php");
         ?>
@@ -56,9 +60,9 @@
             <section class="row mt-5 border rounded border-black">
                 <div class="col-12">
                     <form method="GET" action="don.html">
-                        <div class="row">
+                        <div class="row bg-grey-light shadow-sm">
                             <div class="col-lg-2 col-sm-12">
-                                <div class="row">
+                                <div class="row p-4">
                                     <select class="selectpicker">
                                         <optgroup label="Don Unique">
                                             <option>Paypal</option>
@@ -74,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 col-sm-12">
-                                <div class="row">
+                                <div class="row p-4">
                                     <div class="col-12 text-center">
                                         <h3>Paypal</h3>
                                     </div>
@@ -117,10 +121,10 @@
                                     </div>
                                 </div>
                                 <div class="row mt-2 mb-2">
-                                    <div class="col-6">
+                                    <div class="col-6 mb-2">
                                         <button type="button submit" class="btn btn-outline-primary btn-lg btn-block">Annuler</button>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-6 mb-2">
                                         <button type="button submit" class="btn btn-outline-info btn-lg btn-block">Valider</button>
                                     </div>
                                 </div>

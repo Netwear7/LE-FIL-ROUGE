@@ -1,101 +1,86 @@
 <?php 
     include_once("../service/ControlAdminService.php");
     include_once("../data-access/ControlAdminDataAccess.php");
+    
+    //data-Access
+        include_once("../data-access/AdresseDataAccess.php");
+        include_once("../data-access/AnimauxDataAccess.php");
+        include_once("../data-access/ContactezNousDataAccess.php");
+        include_once("../data-access/CouleurAnimalDataAccess.php");
+        include_once("../data-access/EspeceDataAccess.php");
+        include_once("../data-access/GarderieDataAccess.php");
+        include_once("../data-access/ImgSiteDataAccess.php");
+        include_once("../data-access/MaladieDataAccess.php");
+        include_once("../data-access/PhotoAnimalDataAccess.php");
+        include_once("../data-access/PerteDataAccess.php");
+        include_once("../data-access/RaceDataAccess.php");
+        include_once("../data-access/RefugeDataAccess.php");
+        include_once("../data-access/UtilisateurDataAccess.php");
+    
+    //Service
+        include_once("../service/AdresseService.php");
+        include_once("../service/AnimauxService.php");
+        include_once("../service/ContactezNousService.php");
+        include_once("../service/CouleurAnimalService.php");
+        include_once("../service/EspeceService.php");
+        include_once("../service/GarderieService.php");
+        include_once("../service/ImgSiteService.php");
+        include_once("../service/MaladieService.php");
+        include_once("../service/PhotoAnimalService.php");
+        include_once("../service/PerteService.php");
+        include_once("../service/RaceService.php");
+        include_once("../service/RefugeService.php");
+        include_once("../service/UtilisateurService.php");
+
+
+
     session_start();
 
-    function GetSelectedTable($table){
+    function GetDataOfSelectedTable($table){
         $classnameDAO = $table.'DataAccess';
         $classnameService = $table.'Service';
 
         $SelectedTableDAO = new $classnameDAO;
         $SelectedTableService =new $classnameService($SelectedTableDAO);
-        $data = $SelectedTableService->$e;
+        $data = $SelectedTableService->serviceSelectAll();
         return $data;
     }
-
-    function DisplayTable($data){
-        $controlAdminDAO = new ControlAdminDataAccessDataAccess();
-        $controlAdminService = new ControlAdminService($controlAdminDAO);
-        $table = $_POST["table"];
-        $tableColumn = $controlAdminService->serviceSelectTableColumn($table);
-        foreach($tableColumn as $colName){
-            echo $colName;
+    function underscoreToCamelCase($string, $capitalizeFirstCharacter = false) {
+        $str = str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
+        if (!$capitalizeFirstCharacter) {
+            $str[0] = strtoupper($str[0]);
         }
-        switch($table){
-            case "adresse":
-                $adresseDAO = new AdresseDataAccess();
-                $adresseService = new AdresseService($adresseDAO);
-            case "animaux":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "contactez_nous":
-                $contactez_nousDAO = new AnimauxDataAccess();
-                $contactez_nousService = new AnimauxService($contactez_nousDAO);
-            case "couleur_animal":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "espece":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "garderie":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "img_site":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "maladie":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "perte":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "photo_animal":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "race":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "refuge":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "utilisateur":
-                $animauxDAO = new AnimauxDataAccess();
-                $animauxService = new AnimauxService($animauxDAO);
-            case "default": 
+        return $str;
+    }
+
+    function DisplayTable(){
+        $table = underscoreToCamelCase($_POST["table"]);
+        $data = GetDataOfSelectedTable($table);
+        // var_dump($data);
+        
+        if($_POST["table"] == "img_site"){
+            //Pas d'image pour le moment a voir plus tard
+            var_dump($data);
         }
-        $data = GetSelectedTable($table);
-        
-
-
-
-        
-        for($i=0; $i < count($data); $i++){
-            echo "<tr><td>" . $data[$i]["NOEMP"] . "</td>";
-            echo "<td>" . $data[$i]["NOM"] . "</td>";
-            echo "<td>" . $data[$i]["PRENOM"] . "</td>";
-            echo "<td>" . $data[$i]["EMPLOI"] . "</td>";
-            echo "<td>" . $data[$i]["SUP"] . "</td>";
-            echo "<td>" . $data[$i]["EMBAUCHE"] . "</td>";
-            echo "<td>" . $data[$i]["SAL"] . "</td>";
-            echo "<td>" . $data[$i]["COMM"] . "</td>";
-            echo "<td>" . $data[$i]["NOSERV"] . "</td>";
-            $numEmp = $data[$i]["NOEMP"];
-            $noserv = $data[$i]["NOSERV"];
-            if($_SESSION["role"] == "admin"){
-                echo "<td> 
-                <div class='row'>
-                    <div class='col-lg-6'>
-                        <a class='btn btn-outline-danger w-100 delete' data-noemp='$numEmp' role='button'>X</a>
-                    </div> 
-                
-                    <div class='col-lg-6'>
-                        <a class='btn btn-outline-primary w-100' href='add.php?noemp=$numEmp&noserv=$noserv' role='button'>Edit</a>
-                    </div>
-                </div>
-                </td></tr>";
+        else{
+            foreach($data as $row){
+                echo "<tr>";
+                foreach($row as $key => $cell){
+                    if($key == "PHOTO"){
+                        echo '<td><img class="img-round d-inline-block w-50 mx-3" src="data:image/png;base64,'.base64_encode($cell).'"/></td>';
+                    }
+                    elseif($key == "MDP"){
+                        continue;
+                    }
+                    else{
+                        echo "<td>". $cell. "</td>";
+                    }
+                }
+                echo "</tr>";
             }
         }
     }
+
 ?>
 
 
@@ -105,41 +90,38 @@
         echo "<caption> List of " .$_POST["table"]."</caption>";
         }
     ?>
-    <thead class="thead-light">
+    <thead class="thead-light text-center">
         <tr>
+            <?php
+                if(isset($_POST["table"]) && !empty($_POST["table"])){
+                    $controlAdminDAO = new ControlAdminDataAccessDataAccess();
+                    $controlAdminService = new ControlAdminService($controlAdminDAO);
+                    $table = $_POST["table"];
+                    $tableColumn = $controlAdminService->serviceSelectTableColumn($table);
+                    foreach($tableColumn as $colName){
+                        if($colName["COLUMN_NAME"] == "MDP"){
+                            continue;
+                        }
+                        elseif(strpos($colName["COLUMN_NAME"], "ID")!== false){
+                            echo "<th scope='col'>ID</th>";
+                        }
+                        else{
+                            echo "<th scope='col'>".$colName["COLUMN_NAME"]."</th>";
+                        }
+                    }
 
-        <?php
-            if(isset($_POST["table"]) && !empty($_POST["table"])){
-                $controlAdminDAO = new ControlAdminDataAccessDataAccess();
-                $controlAdminService = new ControlAdminService($controlAdminDAO);
-                $table = $_POST["table"];
-                $tableColumn = $controlAdminService->serviceSelectTableColumn($table);
-                foreach($tableColumn as $colName){
-                    echo "<th scope='col'>".$colName["COLUMN_NAME"]."</th>";
                 }
-
-            }
-        ?>
-                <!-- if($_SESSION["role"] == "admin"){
-                    echo '<th scope="col">Action</th>';
-                } -->
-            
-           
+            ?>
+            <!-- if($_SESSION["role"] == "admin"){
+                echo '<th scope="col">Action</th>';
+            } -->
         </tr>
     </thead>
-    <tbody>
+    <tbody class="text-center">
         <?php 
-
-            // if(!isset($_POST["selection"]) && empty($_POST["selection"])){
-            //     $employeService = new EmployeService();
-            //     $data = $employeService->selectAllEmploye();
-            //     DisplayTable($data);
-            // }
-            // if(isset($_POST["selection"])){
-            //     $employeService = new EmployeService();
-            //     $data = $employeService->search_Employe();
-            //     DisplayTable($data);
-            // }
+            if(isset($_POST["table"])){
+                DisplayTable();
+            }
         ?>
     </tbody>
 </table>

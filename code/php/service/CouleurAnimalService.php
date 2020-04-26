@@ -17,7 +17,7 @@
             return $data;            
         }
         public function serviceSelectAll(){
-            $data = $this->getDataAccessObject()->daoSelectAll();
+            $data = $this->couleurAnimalDataAccess->daoSelectAll();
             return $data;
         }
         public function serviceSelect($id){

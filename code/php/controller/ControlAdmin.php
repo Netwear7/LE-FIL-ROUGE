@@ -30,7 +30,7 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <div class="offset-lg-1 col-lg-10 mt-5">
+                <div class="offset-lg-1 col-lg-10 mt-5 py-5 bg-grey-light">
                     <select class="form-control" id="tableSelect" name="tableSelect">
                     <?php
                         $controlAdminDAO = new ControlAdminDataAccessDataAccess();

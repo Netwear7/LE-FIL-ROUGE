@@ -2,8 +2,6 @@ function loadInfos(){
     $('#ptable').load("displayControlAdmin.php",
     {
         table:  $('#tableSelect').val(),
-        // nom : $('#nom').val(),
-        // prenom : $('#prenom').val(), 
     }, function(){
         // $(".delete").click(function(e){
         //     var numero = $(this).data('noemp');

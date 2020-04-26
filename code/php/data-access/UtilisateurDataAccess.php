@@ -20,8 +20,8 @@
         // fonction pour le select de tout les utilisateurs
         public function daoSelectAll(){
             $mysqli = $this->connexion();
-            $rs = $mysqli->query('SELECT * from refuge');
-            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs = $mysqli->query('SELECT * from utilisateur');
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
             $this->deconnexion($mysqli);
             return $data;

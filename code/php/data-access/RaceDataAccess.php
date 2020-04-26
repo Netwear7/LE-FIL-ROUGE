@@ -47,7 +47,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         public function daoSelectAll(){
             $mysqli = $this->connexion();
             $rs = $mysqli->query('SELECT * from race');
-            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
             $this->deconnexion($mysqli);
             return $data;

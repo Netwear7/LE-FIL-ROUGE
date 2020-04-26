@@ -14,7 +14,7 @@
         public function daoSelectAll(){
             $mysqli = $this->connexion();
             $rs = $mysqli->query('SELECT * from contactez_nous');
-            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
             $this->deconnexion($mysqli);
             return $data;
