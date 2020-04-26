@@ -21,19 +21,20 @@
 
         public function __construct($infos)
         {
-            $this->setNomAnimal($infos["nomAnimal"]);
-            $this->setDateNaissanceAnimal($infos["dateNaissance"]);
-            $this->setNoPuce($infos["numeroPuce"]);
-            $this->setPoidsAnimal($infos["poids"]);
-            $this->setCaractereAnimal($infos["caractere"]);
-            $this->setSpecificiteAnimal($infos["specificites"]);
-            $this->setTailleAnimal($infos["taille"]);
-            $this->setRobeAnimal($infos["robe"]);
-            $this->setEspeceAnimal($infos["especeAnimale"]);
-            $this->setRaceAnimal($infos["raceAnimale"]);
-            $this->setIdUtilisateurAnimal($infos["idUtilisateur"]);
-            $this->setSexeAnimal($infos["sexeAnimal"]);
-            $this->setCouleurAnimal($infos["couleur"]);
+			$this->nomAnimal = $infos["nomAnimal"];
+			$this->dateNaissanceAnimal = $infos["dateNaissance"];
+			$this->noPuce = $infos["numeroPuce"];
+			$this->poidsAnimal = $infos["poids"];
+			$this->caractereAnimal = $infos["caractere"];
+			$this->specificiteAnimal = $infos["specificites"];
+			$this->tailleAnimal = $infos["taille"];
+			$this->robeAnimal = $infos["robe"];
+			$this->especeAnimal = $infos["especeAnimale"];
+			$this->raceAnimal = $infos["raceAnimale"];
+			$this->idUtilisateurAnimal = $infos["idUtilisateur"];
+			$this->sexeAnimal = $infos["sexeAnimal"];
+			$this->couleurAnimal = $infos["couleur"];
+
         }
 
 

@@ -5,8 +5,8 @@
         private $idAnimal;
 
         public function __construct($animal){
-            $this->setCouleur($animal->getCouleurAnimal());
-            $this->setIdAnimal($animal->getIdAnimal());
+            $this->couleur = $animal->getCouleurAnimal();
+            $this->idAnimal = $animal->getIdAnimal();
         }
 
         /**

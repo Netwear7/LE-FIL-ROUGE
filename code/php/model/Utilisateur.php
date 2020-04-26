@@ -10,11 +10,11 @@
         private $idAdresse;
 
         public function __construct($infos){
-            $this->setNom($infos["NOM"]);
-            $this->setPrenom($infos["PRENOM"]);
-            $this->setPseudo($infos["PSEUDO"]);
-            $this->setEmail($infos["ADRESSE_EMAIL"]);
-            $this->setNum($infos["NUM"]);
+            $this->nom = $infos["NOM"];
+            $this->prenom = $infos["PRENOM"];
+            $this->pseudo = $infos["PSEUDO"];
+            $this->email = $infos["ADRESSE_EMAIL"];
+            $this->num = $infos["NUM"];
 
         }
 

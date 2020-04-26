@@ -8,10 +8,10 @@
 
         public function __construct($infos)
         {
-            $this->setNumero($infos["NUMERO"]);
-            $this->setRue($infos["RUE"]);
-            $this->setVille($infos["VILLE"]);
-            $this->setCodePostal($infos["CODE_POSTAL"]);
+            $this->numero = $infos["NUMERO"];
+            $this->rue = $infos["RUE"];
+            $this->ville = $infos["VILLE"];
+            $this->codePostal = $infos["CODE_POSTAL"];
             
         }
 
