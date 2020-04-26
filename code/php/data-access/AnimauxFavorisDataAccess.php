@@ -41,5 +41,14 @@ class AnimauxFavorisDataAccess extends LogBdd implements InterfaceDao{
         $stmt->execute();
         $this->deconnexion($mysqli);
     }
+
+    public function daoAddFavouriteAnimal($idUser, $idAnimal){
+
+        $mysqli = $this->connexion();
+        $stmt = $mysqli->prepare('INSERT INTO etre_favoris(id_utilisateur,id_animal)  VALUES(?,?)');
+        $stmt->bind_param('ii', $idUser, $idAnimal);
+        $stmt->execute();
+        $this->deconnexion($mysqli);
+    }
 }
 ?>
