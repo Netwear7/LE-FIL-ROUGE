@@ -7,7 +7,10 @@ include_once('../service/AnimauxService.php');
         foreach($data as $key => $value){
             echo '<div class="col-lg-3 mb-4 contentDisplay">
                     <div class="card">
-                        <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap">
+                            <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap" style="z-index : 1">                        
+                            <a href="" id="like" style="color:#fc0341">
+                            <i id="icone" class="far fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i> 
+                            </a>                       
                         <div class="card-body">
                             <div class="row justify-content-center">
                                 <p class="card-text ">' . $value["nom"] . '</p>

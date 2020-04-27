@@ -114,3 +114,9 @@ window.onload=function() {
         })
     });
 }
+
+//$("i").click(function(e){
+//    e.preventDefault();
+//    $("i").removeClass("far");
+//    $("i").addClass("fas");
+//});
