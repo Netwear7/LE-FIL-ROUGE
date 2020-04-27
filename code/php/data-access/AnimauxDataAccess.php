@@ -217,6 +217,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         }
 
         public function daoSearchLostAnimals($request,$type,$arrayOfValues){
+
             $mysqli=$this->connexion();
             $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race 
@@ -235,6 +236,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $rs->free();
             $this->deconnexion($mysqli);  
             return $data;
+
         }
 
         public function daoDisplaySelectGender(){
@@ -249,5 +251,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             return $data;
 
         }
+
     }
+
 ?>

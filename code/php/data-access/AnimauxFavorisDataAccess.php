@@ -42,6 +42,19 @@ class AnimauxFavorisDataAccess extends LogBdd implements InterfaceDao{
         $this->deconnexion($mysqli);
     }
 
+    public function daoVerifyIfAnimalAlreadyFavourite($idUser, $idAnimal){
+
+        $mysqli = $this->connexion(); 
+        $stmt = $mysqli->prepare('SELECT * from etre_favoris where id_utilisateur=? AND id_animal=?');
+        $stmt->bind_param('ii', $idUser, $idAnimal);
+        $stmt->execute();
+        $rs = $stmt->get_result();
+        $data = $rs->fetch_all(MYSQLI_ASSOC);
+        $this->deconnexion($mysqli);
+        return $data;
+
+    }
+
     public function daoAddFavouriteAnimal($idUser, $idAnimal){
 
         $mysqli = $this->connexion();
@@ -49,6 +62,18 @@ class AnimauxFavorisDataAccess extends LogBdd implements InterfaceDao{
         $stmt->bind_param('ii', $idUser, $idAnimal);
         $stmt->execute();
         $this->deconnexion($mysqli);
+
     }
+
+    public function daoRemoveFavouriteAnimal($idUser, $idAnimal){
+
+        $mysqli = $this->connexion();
+        $stmt = $mysqli->prepare('DELETE FROM etre_favoris where id_utilisateur=? AND id_animal=?');
+        $stmt->bind_param('ii', $idUser, $idAnimal);
+        $stmt->execute();
+        $this->deconnexion($mysqli);
+
+    }
+
 }
 ?>

@@ -136,6 +136,24 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
         ';
     }
 
+    public function serviceVerifyIfAnimalAlreadyFavourite($idUser, $idAnimal){
+        $data = $this->getDataAccessObject()->daoVerifyIfAnimalAlreadyFavourite($idUser, $idAnimal);
+        return $data;
+    }
+
+    public function  serviceAddOrRemoveFavouriteAnimal($idUser, $idAnimal){
+
+        $data=$this->serviceVerifyIfAnimalAlreadyFavourite($idUser, $idAnimal);
+
+        if(count($data)>0){
+            $this->getDataAccessObject()->daoRemoveFavouriteAnimal($idUser, $idAnimal);
+        }
+        else{
+            $this->getDataAccessObject()->daoAddFavouriteAnimal($idUser, $idAnimal);            
+        }
+
+    }
+
 }
 
 
