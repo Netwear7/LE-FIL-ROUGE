@@ -19,6 +19,9 @@ include_once '../data-access/AdresseDataAccess.php';
 include_once '../model/Animaux.php';
 include_once '../service/AnimauxService.php';
 include_once '../data-access/AnimauxDataAccess.php';
+include_once '../model/PhotoAnimal.php';
+include_once '../service/PhotoAnimalService.php';
+include_once '../data-access/PhotoAnimalDataAccess.php';
 include_once '../service/RaceService.php';
 include_once '../data-access/RaceDataAccess.php';
 include_once '../model/AvoirCouleur.php';
@@ -58,6 +61,9 @@ if(isset($_SESSION["user_id"]))
     $raceDao = new RaceDataAccess();
     $raceService = new RaceService($raceDao);
 
+    $photoAnimalDao = New PhotoAnimalDataAccess();
+    $photoAnimalService = New PhotoAnimalService($photoAnimalDao);
+
     $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
 
 } else {
@@ -88,11 +94,22 @@ if (isset($_POST["updateUserInfos"])){
 } 
 
 if (isset($_POST["addAnimal"])){
+
+
+
     $animal = new Animaux($_POST);
     $serviceAnimaux->serviceAddUserAnimal($animal);
     $avoirCouleur = new AvoirCouleur($animal);
     $avoirCouleurService->serviceAdd($avoirCouleur);
-        
+    $ret        = is_uploaded_file($_FILES['photo']['tmp_name']);    
+    if (!$ret) {
+        echo "Problème de transfert";
+        return false;
+    } else {
+
+        $photoAnimal = new PhotoAnimal($_FILES, $animal->getIdAnimal());
+        $photoAnimalService->serviceAdd($photoAnimal);
+    }
 }
     
 
@@ -105,6 +122,7 @@ if (isset($_POST["updateAnimalInfos"])){
 
 if (isset($_POST["removeUserAnimal"])){
 
+    $photoAnimalService->serviceDelete($_POST);
     $avoirCouleurService->serviceDelete($_POST);
     $serviceAnimaux->serviceDelete($_POST);
 }
@@ -339,7 +357,7 @@ if(isset($_POST["retraitFavoris"])){
                         <div class="tab-pane fade mb-5" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
                             <div class="row">
                                 <div class="col-12 ">
-                                    <form method="POST" action="compte.php">
+                                    <form method="POST" enctype="multipart/form-data" action="compte.php">
                                         <div class="row mt-3">
                                             <!--titre-->
                                             <div class="col-lg-12 text-center">
@@ -369,7 +387,7 @@ if(isset($_POST["retraitFavoris"])){
                                                 </div>
 
                                                 <div class="row mt-5 ">
-                                                    <div class="col-4 offset-4"><input type="file"  id="photo1" name="photo1" accept="image/png, image/jpeg"></div>
+                                                    <div class="col-4 offset-4"><input type="file" name="photo" accept="image/png, image/jpeg"></div>
                                                 </div>
 
                                                 <div class="row mt-3 ">
@@ -497,3 +515,22 @@ if(isset($_POST["retraitFavoris"])){
 
 
 
+<?php
+
+
+
+
+
+function transfert (){
+
+
+        $req = "INSERT INTO images (" .
+                            "img_nom, img_taille, img_type, img_blob " .
+                            ") VALUES (" .
+                            "'" . $img_nom . "', " .
+                            "'" . $img_taille . "', " .
+                            "'" . $img_type . "', " .
+                            "'" . addslashes ($img_blob) . "') "; // N'oublions pas d'échapper le contenu binaire
+        $ret = mysql_query ($req) or die (mysql_error ());
+        return true;
+    }

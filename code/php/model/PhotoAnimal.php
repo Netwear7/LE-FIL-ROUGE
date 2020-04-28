@@ -5,6 +5,17 @@
         private $photoNom;
         private $photoTaille;
         private $photoType;
+        private $idAnimal;
+
+
+        public function __construct($photo,$id){
+
+            $this->photoNom = $photo['photo']['name']; ;
+            $this->photoTaille = $photo['photo']['size'];
+            $this->photoType =  $photo['photo']['type'];
+            $this->blob = file_get_contents ($photo['photo']['tmp_name']);
+            $this->idAnimal = $id;
+        }
 
         /**
          * Getter for IdPhotoAnimal
@@ -120,5 +131,25 @@
             return $this;
         }
 
+
+        /**
+         * Get the value of idAnimal
+         */ 
+        public function getIdAnimal()
+        {
+                return $this->idAnimal;
+        }
+
+        /**
+         * Set the value of idAnimal
+         *
+         * @return  self
+         */ 
+        public function setIdAnimal($idAnimal)
+        {
+                $this->idAnimal = $idAnimal;
+
+                return $this;
+        }
     }
 ?>

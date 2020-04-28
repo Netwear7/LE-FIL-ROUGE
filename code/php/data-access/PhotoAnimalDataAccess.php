@@ -52,9 +52,28 @@
             return $data;
         }
         public function daoCount(){}
-        public function daoAdd($object){}
+        public function daoAdd($photo){
+            $blob = $photo->getBlob();
+            $photoNom = $photo->getPhotoNom();
+            $photoTaille = $photo->getPhotoTaille();
+            $photoType = $photo->getPhotoType();
+            $idAnimal = $photo->getIdAnimal();
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('INSERT INTO photo_animal(PHOTO,PHOTO_NOM,PHOTO_TAILLE,PHOTO_TYPE, ID_ANIMAL) VALUES(?,?,?,?,?)');
+            $stmt->bind_param('sssss',$blob, $photoNom, $photoTaille, $photoType,$idAnimal);
+            $stmt->execute();                
+            $this->deconnexion($mysqli);
+        }
         public function daoSearch($search){}
         public function daoUpdate($parametres){}
-        public function daoDelete($nom){}
+        public function daoDelete($infos){
+            $id = $infos["idAnimalRetrait"];
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('DELETE FROM photo_animal where ID_ANIMAL = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $this->deconnexion($mysqli);
+            return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
+        }
     }
 ?>

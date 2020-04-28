@@ -22,10 +22,14 @@
         }
         public function serviceSelect($id){}
         public function serviceCount(){}
-        public function serviceAdd($var){}
+        public function serviceAdd($photo){
+            $this->getDataAccessObject()->daoAdd($photo);
+        }
         public function serviceSearch($search){}
         public function serviceUpdate($post){}
-        public function serviceDelete($nom){}
+        public function serviceDelete($infos){
+                $this->getDataAccessObject()->daoDelete($infos);
+        }
         public function carrousselDisplayLostAnimal($data){
             $cpt=0;
             for($j = 0 ;$j <= intdiv(count($data), 4); $j++ ){

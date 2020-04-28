@@ -9,7 +9,10 @@ include_once '../data-access/RaceDataAccess.php';
 
 
 
+
 function AffichageAnimaux($dataAnimaux){
+
+
 
     $daoPerte = new PerteDataAccess();
     $servicePerte = new PerteService($daoPerte);
@@ -58,7 +61,11 @@ function AffichageAnimaux($dataAnimaux){
                 
         {
     
-    
+
+
+            $rawPhoto = "data:image/png;base64," . base64_encode($dataAnimaux[$i]["PHOTO"]);
+
+                
             echo 
             '
             <div class="row mt-2">
@@ -66,7 +73,7 @@ function AffichageAnimaux($dataAnimaux){
                     <div class="row">
                         <div class="col-lg-4 col-sm-12 ">
                             <div class="row">
-                                <a href="" data-toggle="modal" data-target="#modalPhotos'.$i.'"><img src="../../img/Chat/chat3.jpg" class="rounded w-100"></a>
+                                <a href="" data-toggle="modal" data-target="#modalPhotos'.$i.'"><img src="'.$rawPhoto.'" class="rounded w-100"></a>
                             </div>                            
                             <div class="row">
                                 <!--Row pour les photos-->
@@ -340,4 +347,5 @@ function displayUpdatePanel($dataAnimaux){
 
 
 ?>
+
 
