@@ -282,15 +282,20 @@ function displayUpdatePanel($dataAnimaux){
                 <div class="row mt-3 ">
                     <div class="col-lg-6 col-sm-12">
                         <label for="inputEspece" class="mt-2">Espece : </label>
-                        <select class="form-control" class="selectEspece" name="especeAnimale">
-                            <option>Chat</option>
-                            <option>Chien</option>
-                        </select>
+                            <div>
+                                <select class="form-control selectEspece" name="especeAnimale">
+                                    <option>Selectionnez une Race</option>
+                                    <option>Chat</option>
+                                    <option>Chien</option>
+                                </select>
+                            </div>
                         <label for="inputRace" class="mt-2">Race :</label>
-                            <select class="form-control" class="popSelect" name="raceAnimale">
-                            </select>
+                            <div>
+                                <select class="form-control popSelect"  name="raceAnimale">
+                                </select>
+                            </div>
                         <label for="inputSexe" class="mt-2">Sexe : </label>
-                            <select class="form-control" class="selectSexe" name="sexeAnimal">
+                            <select class="form-control selectSexe" name="sexeAnimal">
                                 <option>Mâle</option>
                                 <option>Femelle</option>
                             </select>

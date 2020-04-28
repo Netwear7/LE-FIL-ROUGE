@@ -504,6 +504,7 @@ if(isset($_POST["retraitFavoris"])){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
     <script src="../../javascript/scriptDisplayRaceInAddAnimals.js"></script>
+    <script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>
     <script src="../../javascript/fontAwesome.js"></script>
 </html>
 
@@ -520,17 +521,3 @@ if(isset($_POST["retraitFavoris"])){
 
 
 
-
-function transfert (){
-
-
-        $req = "INSERT INTO images (" .
-                            "img_nom, img_taille, img_type, img_blob " .
-                            ") VALUES (" .
-                            "'" . $img_nom . "', " .
-                            "'" . $img_taille . "', " .
-                            "'" . $img_type . "', " .
-                            "'" . addslashes ($img_blob) . "') "; // N'oublions pas d'échapper le contenu binaire
-        $ret = mysql_query ($req) or die (mysql_error ());
-        return true;
-    }
