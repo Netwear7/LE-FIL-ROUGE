@@ -117,6 +117,15 @@ if (isset($_POST["addAnimal"])){
 if (isset($_POST["updateAnimalInfos"])){
                                             
     $serviceAnimaux->serviceUpdate($_POST);
+    $ret        = is_uploaded_file($_FILES['photo']['tmp_name']);    
+    if (!$ret) {
+        echo "Problème de transfert";
+        return false;
+    } else {
+
+        $photoAnimal = new PhotoAnimal($_FILES, $_POST["idAnimal"]);
+        $photoAnimalService->Update($photoAnimal);
+    }
 
 }
 

@@ -26,7 +26,12 @@
             $this->getDataAccessObject()->daoAdd($photo);
         }
         public function serviceSearch($search){}
-        public function serviceUpdate($post){}
+        public function serviceUpdate(array $array){
+
+        }
+        public function Update($photoAnimal){
+            $this->getDataAccessObject()->Update($photoAnimal);
+        }
         public function serviceDelete($infos){
                 $this->getDataAccessObject()->daoDelete($infos);
         }

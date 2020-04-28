@@ -65,7 +65,21 @@
             $this->deconnexion($mysqli);
         }
         public function daoSearch($search){}
-        public function daoUpdate($parametres){}
+        public function daoUpdate( array $array){
+
+        }
+        public function Update($photo){
+            $blob = $photo->getBlob();
+            $photoNom = $photo->getPhotoNom();
+            $photoTaille = $photo->getPhotoTaille();
+            $photoType = $photo->getPhotoType();
+            $idAnimal = $photo->getIdAnimal();
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('UPDATE photo_animal SET PHOTO = ?, PHOTO_NOM = ? , PHOTO_TAILLE = ?, PHOTO_TYPE = ? WHERE ID_ANIMAL = ?');
+            $stmt->bind_param('sssss',$blob, $photoNom, $photoTaille, $photoType,$idAnimal);
+            $stmt->execute();                
+            $this->deconnexion($mysqli);
+        }
         public function daoDelete($infos){
             $id = $infos["idAnimalRetrait"];
             $mysqli = $this->connexion();
