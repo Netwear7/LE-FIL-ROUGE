@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 29 avr. 2020 à 19:43
+-- Généré le :  mer. 29 avr. 2020 à 21:39
 -- Version du serveur :  10.4.11-MariaDB
--- Version de PHP : 7.4.3
+-- Version de PHP :  7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `bddanimaux`
+-- Base de données :  `bddanimaux`
 --
 
 -- --------------------------------------------------------
@@ -612,10 +612,66 @@ CREATE TABLE `espece_avoir_maladie` (
 --
 
 INSERT INTO `espece_avoir_maladie` (`ID_ESPECE`, `ID_MALADIE`) VALUES
+(1, 40),
+(1, 41),
+(1, 42),
+(1, 43),
+(1, 44),
+(1, 45),
+(1, 46),
+(1, 47),
+(1, 48),
+(1, 49),
+(1, 50),
+(1, 51),
+(1, 52),
+(1, 53),
+(1, 54),
+(1, 55),
+(1, 56),
+(1, 57),
+(1, 58),
+(1, 59),
+(1, 60),
 (2, 1),
 (2, 2),
 (2, 3),
-(2, 4);
+(2, 4),
+(2, 5),
+(2, 6),
+(2, 7),
+(2, 8),
+(2, 9),
+(2, 10),
+(2, 11),
+(2, 12),
+(2, 13),
+(2, 14),
+(2, 15),
+(2, 16),
+(2, 17),
+(2, 18),
+(2, 19),
+(2, 20),
+(2, 21),
+(2, 22),
+(2, 23),
+(2, 24),
+(2, 25),
+(2, 26),
+(2, 27),
+(2, 28),
+(2, 29),
+(2, 30),
+(2, 31),
+(2, 32),
+(2, 33),
+(2, 34),
+(2, 35),
+(2, 36),
+(2, 37),
+(2, 38),
+(2, 39);
 
 -- --------------------------------------------------------
 
@@ -686,8 +742,64 @@ CREATE TABLE `maladie` (
 INSERT INTO `maladie` (`ID_MALADIE`, `MALADIE`, `URGENCE`) VALUES
 (1, 'Acné féline', 1),
 (2, 'Amylose', 0),
-(3, 'Asthme félin', 0),
-(4, 'Borréliose féline', 1);
+(3, 'Anaplasmose', 0),
+(4, 'Asthme félin', 1),
+(5, 'Borréliose féline', 1),
+(6, 'Calculs urinaires du chat', 1),
+(7, 'Calicivirose féline', 1),
+(8, 'Cardiomyopathie hypertrophique féline (CMH)', 1),
+(9, 'Conjonctivite du chat', 1),
+(10, 'Chlamydiose du chat', 0),
+(11, 'Coronavirus félin', 1),
+(12, 'Diabète sucré félin', 1),
+(13, 'Échinococcose', 1),
+(14, 'Encéphalite', 1),
+(15, 'Érythrolyse néonatale', 1),
+(16, 'Fibrosarcome félin', 1),
+(17, 'Gingivite féline', 0),
+(18, 'Herpès virose du chat', 0),
+(19, 'Hyperthyroïdie féline', 1),
+(20, 'Hémobartonellose féline', 1),
+(21, 'Otacariose', 1),
+(22, 'Insuffisance rénale du chat', 1),
+(23, 'Glycogénose type IV (GSD IV)', 1),
+(24, 'Granulome éosinophilique', 1),
+(25, 'Leucémie féline', 1),
+(26, 'Leucose féline', 1),
+(27, 'Occlusion intestinale chez le chat', 1),
+(28, 'Ostéofibrose', 1),
+(29, 'Péritonite Infectieuse Féline PIF)', 1),
+(30, 'Piroplasmose', 1),
+(31, 'Rage féline', 1),
+(32, 'Rhinotrachéite virale féline (RVF)', 1),
+(33, 'Rickettsiose', 1),
+(34, 'Sida du chat', 1),
+(35, 'Syndrome urologique félin (SUF)', 1),
+(36, 'Teigne', 1),
+(37, 'Toxoplasmose féline', 1),
+(38, 'Tuberculose féline', 1),
+(39, 'Typhus du chat', 1),
+(40, 'Allergies du chien', 1),
+(41, 'Arthrose du chien', 1),
+(42, 'Cystite du chien', 0),
+(43, 'Démodécie', 1),
+(44, 'Diabète sucré du chien', 1),
+(45, 'Dirofilariose du chien', 1),
+(46, 'Dysplasie de la hanche du chien', 0),
+(47, 'Ehrlichiose du chien', 1),
+(48, 'Hépatite de Rubarth', 1),
+(49, 'Herpès virose du chien', 1),
+(50, 'Insuffisance cardiaque', 1),
+(51, 'Insuffisance rénale du chien', 1),
+(52, 'Leptospirose du chien', 1),
+(53, 'Maladie de Carré', 1),
+(54, 'Maladie de Lyme du chien', 1),
+(55, 'Parvovirose', 1),
+(56, 'Piroplasmose', 1),
+(57, 'Pyomètre', 1),
+(58, 'Rage', 1),
+(59, 'Tétanos du chien', 1),
+(60, 'Toux de chenil', 1);
 
 -- --------------------------------------------------------
 
@@ -1397,7 +1509,7 @@ ALTER TABLE `img_site`
 -- AUTO_INCREMENT pour la table `maladie`
 --
 ALTER TABLE `maladie`
-  MODIFY `ID_MALADIE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_MALADIE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT pour la table `perte`
