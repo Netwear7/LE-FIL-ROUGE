@@ -41,7 +41,7 @@
         $classnameService = $table.'Service';
 
         $SelectedTableDAO = new $classnameDAO;
-        $SelectedTableService =new $classnameService($SelectedTableDAO);
+        $SelectedTableService = new $classnameService($SelectedTableDAO);
         $data = $SelectedTableService->serviceSelectAll();
         return $data;
     }
@@ -101,9 +101,6 @@
                     foreach($tableColumn as $colName){
                         if($colName["COLUMN_NAME"] == "MDP"){
                             continue;
-                        }
-                        elseif(strpos($colName["COLUMN_NAME"], "ID")!== false){
-                            echo "<th scope='col'>ID</th>";
                         }
                         else{
                             echo "<th scope='col'>".$colName["COLUMN_NAME"]."</th>";

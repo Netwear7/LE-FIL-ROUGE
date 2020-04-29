@@ -5,23 +5,30 @@ include_once '../Interfaces/InterfaceDao.php';
 
 class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         public function daoSelectAll(){
-            $mysqli = $this->connexion();
+            // $mysqli = $this->connexion();
             // Sans info en entrée, on peut utiliser 
-            //$mysqli->query directement, et donc pas besoin de stmt->execute()
+                //$mysqli->query directement, et donc pas besoin de stmt->execute()
+                /*
+                $rs = $mysqli->query("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");  
+                $data = $rs->fetch_all(MYSQLI_ASSOC);
+                $rs -> free();
+                ...
+                */
 
-            /*
-            $rs = $mysqli->query("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");  
+            // $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
+            // $stmt -> execute();  
+            // $rs = $stmt->get_result();          
+            // $data= $rs->fetch_all(MYSQLI_ASSOC);
+            // $rs -> free();
+            // $this->deconnexion($mysqli);
+            // return $data;
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * from animaux');
             $data = $rs->fetch_all(MYSQLI_ASSOC);
-            $rs -> free();
-            ...
-            */
-            $stmt = $mysqli->prepare("SELECT A.nom, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race");
-            $stmt -> execute();  
-            $rs = $stmt->get_result();          
-            $data= $rs->fetch_all(MYSQLI_ASSOC);
-            $rs -> free();
+            $rs->free();
             $this->deconnexion($mysqli);
             return $data;
+
         }
 
         public function daoSelectAllAdoptableAnimals(){
