@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mer. 29 avr. 2020 à 21:39
+-- Généré le :  mer. 29 avr. 2020 à 21:54
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP :  7.4.1
 
@@ -556,13 +556,31 @@ CREATE TABLE `couleur_animal` (
 --
 
 INSERT INTO `couleur_animal` (`ID_COULEUR`, `COULEUR`) VALUES
-(1, 'Blanc'),
-(2, 'Noir'),
-(3, 'Gris'),
-(4, 'Roux'),
-(5, 'Chatain'),
-(6, 'Bleu'),
-(7, 'Cerf');
+(8, 'Acajou'),
+(9, 'Blanc'),
+(10, 'Bleu'),
+(11, 'Cerf'),
+(12, 'Châtain'),
+(13, 'Chevreuil'),
+(14, 'Chocolat'),
+(15, 'Citron'),
+(16, 'Fauve'),
+(17, 'Foie'),
+(18, 'Isabelle'),
+(19, 'Lilas'),
+(20, 'Louvet'),
+(21, 'Marron'),
+(22, 'Puce'),
+(23, 'Rouge'),
+(24, 'Roux'),
+(25, 'Rubis'),
+(26, 'Sable'),
+(27, 'Sésame'),
+(28, 'Sésame noir'),
+(29, 'Sésame rouge'),
+(30, 'Noir'),
+(31, 'Crème'),
+(32, 'Cinnamon');
 
 -- --------------------------------------------------------
 
@@ -1485,7 +1503,7 @@ ALTER TABLE `contactez_nous`
 -- AUTO_INCREMENT pour la table `couleur_animal`
 --
 ALTER TABLE `couleur_animal`
-  MODIFY `ID_COULEUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `ID_COULEUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT pour la table `espece`
