@@ -9,7 +9,6 @@
 
 
         public function __construct($photo,$id){
-
             $this->photoNom = $photo['photo']['name']; ;
             $this->photoTaille = $photo['photo']['size'];
             $this->photoType =  $photo['photo']['type'];

@@ -350,7 +350,7 @@ if(isset($_POST["retraitFavoris"])){
                        </div>
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
-                                               <?php
+                        <?php
                             displayUpdatePanel($dataAnimaux);
                         ?>
                     
