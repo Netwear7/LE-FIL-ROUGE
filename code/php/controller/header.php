@@ -200,7 +200,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-10 offset-lg-1 text-center mb-3">
-                                    <a href="#">Mot de passe oublié ?</a>
+                                    <a href="" class="btn btn-link" data-toggle="modal" data-dismiss="modal" data-target="#modalMdpOublie">Mot de passe oublié ?</a>
                                 </div>   
                             </div>
 
@@ -267,5 +267,42 @@
                 </div>
             </div>
         </div>
+        <!--modal mdp oublié-->
+        <div class="modal fade bd-example-modal-sm" tabindex="-1" id="modalMdpOublie" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalRetraitCenterTitle">Mot de passe oublié ?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="email" class="form-control w-100 " placeholder="Adresse mail" aria-describedby="emailHelp" id="mail">
+                                </div>
+                            </div>
+                            <div class="row" id="resultReset">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                    <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-primary" id="resetPassword">Réinitialiser le mot de passe</button>
+                                </div>
+                                <div class="col-6">
+                                    <button type="button" class="btn btn-outline-secondary">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>
+
+<script src="../../javascript/resetPassword.js"></script>

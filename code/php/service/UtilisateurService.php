@@ -81,6 +81,10 @@
             return "Suppression réussie";
         }
 
+        public function serviceResetPassword($mail){
+            return $this->getDataAccessObject()->daoResetPassword($mail);
+        }
+
         public function utilisateurServiceDisplayinfos($id)
         {
             $data = $this->serviceSelect($id); 
