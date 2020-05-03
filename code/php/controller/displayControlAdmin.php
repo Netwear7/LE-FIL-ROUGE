@@ -16,6 +16,7 @@
         include_once("../data-access/RaceDataAccess.php");
         include_once("../data-access/RefugeDataAccess.php");
         include_once("../data-access/UtilisateurDataAccess.php");
+        include_once("../data-access/DonationDataAccess.php");
     
     //Service
         include_once("../service/AdresseService.php");
@@ -31,6 +32,7 @@
         include_once("../service/RaceService.php");
         include_once("../service/RefugeService.php");
         include_once("../service/UtilisateurService.php");
+        include_once("../service/DonationService.php");
 
 
 
@@ -45,6 +47,13 @@
         $data = $SelectedTableService->serviceSelectAll();
         return $data;
     }
+    function GetColumnOfSelectedTable($table){
+        $controlAdminDAO = new ControlAdminDataAccessDataAccess();
+        $controlAdminService = new ControlAdminService($controlAdminDAO);
+        $data = $controlAdminService->serviceSelectTableColumn($table);
+        return $data;
+    }
+
     function underscoreToCamelCase($string, $capitalizeFirstCharacter = false) {
         $str = str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
         if (!$capitalizeFirstCharacter) {
@@ -52,33 +61,28 @@
         }
         return $str;
     }
-
     function DisplayTable(){
         $table = underscoreToCamelCase($_POST["table"]);
         $data = GetDataOfSelectedTable($table);
         // var_dump($data);
         
-        if($_POST["table"] == "img_site"){
-            //Pas d'image pour le moment a voir plus tard
-            var_dump($data);
-        }
-        else{
-            foreach($data as $row){
-                echo "<tr>";
-                foreach($row as $key => $cell){
-                    if($key == "PHOTO"){
-                        echo '<td><img class="img-round d-inline-block w-50 mx-3" src="data:image/png;base64,'.base64_encode($cell).'"/></td>';
-                    }
-                    elseif($key == "MDP"){
-                        continue;
-                    }
-                    else{
-                        echo "<td>". $cell. "</td>";
-                    }
+        
+        foreach($data as $row){
+            echo "<tr>";
+            foreach($row as $key => $cell){
+                if($key == "PHOTO"){
+                    echo '<td><img class="img-round d-inline-block w-50 mx-3" src="data:image/png;base64,'.base64_encode($cell).'"/></td>';
                 }
-                echo "</tr>";
+                elseif($key == "MDP"){
+                    continue;
+                }
+                else{
+                    echo "<td>". $cell. "</td>";
+                }
             }
+            echo "</tr>";
         }
+        
     }
 
 ?>
@@ -94,10 +98,7 @@
         <tr>
             <?php
                 if(isset($_POST["table"]) && !empty($_POST["table"])){
-                    $controlAdminDAO = new ControlAdminDataAccessDataAccess();
-                    $controlAdminService = new ControlAdminService($controlAdminDAO);
-                    $table = $_POST["table"];
-                    $tableColumn = $controlAdminService->serviceSelectTableColumn($table);
+                    $tableColumn = GetColumnOfSelectedTable($_POST["table"]);
                     foreach($tableColumn as $colName){
                         if($colName["COLUMN_NAME"] == "MDP"){
                             continue;

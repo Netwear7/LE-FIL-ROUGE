@@ -16,7 +16,7 @@ class DonationDataAccess extends LogBdd implements InterfaceDao{
         $rs -> free();
         ...
         */
-        $stmt = $mysqli->prepare("SELECT * from donations");
+        $stmt = $mysqli->prepare("SELECT * from donation");
         $stmt -> execute();  
         $rs = $stmt->get_result();          
         $data= $rs->fetch_all(MYSQLI_ASSOC);
