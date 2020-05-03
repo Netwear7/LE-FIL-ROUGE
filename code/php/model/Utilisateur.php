@@ -8,6 +8,7 @@
         private $email;
         private $num;
         private $idAdresse;
+        private $role;
 
         public function __construct($infos){
             $this->nom = $infos["NOM"];
@@ -15,6 +16,7 @@
             $this->pseudo = $infos["PSEUDO"];
             $this->email = $infos["ADRESSE_EMAIL"];
             $this->num = $infos["NUM"];
+            $this->role = "utilisateur";
 
         }
         
@@ -195,6 +197,26 @@
         public function setIdAdresse($idAdresse)
         {
                 $this->idAdresse = $idAdresse;
+
+                return $this;
+        }
+
+        /**
+         * Get the value of role
+         */ 
+        public function getRole()
+        {
+                return $this->role;
+        }
+
+        /**
+         * Set the value of role
+         *
+         * @return  self
+         */ 
+        public function setRole($role)
+        {
+                $this->role = $role;
 
                 return $this;
         }
