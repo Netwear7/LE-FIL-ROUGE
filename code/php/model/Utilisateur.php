@@ -16,7 +16,7 @@
             $this->pseudo = $infos["PSEUDO"];
             $this->email = $infos["ADRESSE_EMAIL"];
             $this->num = $infos["NUM"];
-            $this->role = "utilisateur";
+            $this->role = "[user]";
 
         }
         

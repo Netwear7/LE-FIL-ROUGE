@@ -37,7 +37,7 @@
                     $serviceUtilisateur->serviceAdd($utilisateur);
                     session_start() ;
                     $_SESSION["user_id"] = $utilisateur->getIdUtilisateur();
-                    $_SESSION["user_role"] = $utilisateur->getIdUtilisateur();
+                    $_SESSION["user_role"] = $utilisateur->getRole();
                     header('Location: accueil.php');
                     exit;
 
@@ -55,7 +55,7 @@
             if (password_verify($_POST["connexionPassword"], $data[0]["MDP"]) === true) {
                 session_start();
                 $_SESSION["user_id"] = $data[0]["ID_UTILISATEUR"];
-                $_SESSION["user_role"] = $data[0]["ROLE_UTILISATEUR"];
+                $_SESSION["user_role"] = $data[0]["ROLE"];
                 header('Location: accueil.php');
                 exit;
             } else {    

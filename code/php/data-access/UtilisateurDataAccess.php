@@ -63,9 +63,10 @@
             $mdp = $user->getPassword();
             $mail = $user->getEmail();
             $num = $user->getNum();
+            $role = $user->getRole();
             $idAdresse = $user->getIdAdresse();
-            $stmt = $mysqli->prepare('INSERT INTO utilisateur (NOM, PRENOM, PSEUDO,MDP,ADRESSE_EMAIL,NUM,ID_ADRESSE) VALUES (?,?,?,?,?,?,?) ');
-            $stmt-> bind_param('sssssss',$nom, $prenom, $pseudo, $mdp, $mail, $num, $idAdresse);
+            $stmt = $mysqli->prepare('INSERT INTO utilisateur (NOM, PRENOM, PSEUDO,MDP,ADRESSE_EMAIL,NUM,ROLE,ID_ADRESSE) VALUES (?,?,?,?,?,?,?,?)');
+            $stmt-> bind_param('ssssssss',$nom, $prenom,$pseudo,$mdp,$mail,$num,$role,$idAdresse);
             $stmt->execute();
             $mysqli->close();
             return $result = $stmt ? "L'ajout a bien été effectué ! " : "L'ajout a échoué :/";
