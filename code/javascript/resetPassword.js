@@ -5,7 +5,7 @@ $(document).ready(function (){
         var email = $('#mail').val()
             data = { mail : email,
                 },
-            $('#resultReset').load("resetPassword.php", data);
+                $('#resultReset').load("resetPassword.php", data);
         });
     });
 
