@@ -36,6 +36,11 @@ include_once '../data-access/AnimauxFavorisDataAccess.php';
 include_once '../controller/displayUserAnimals.php';
 include_once '../controller/displayDonationsInMyAccount.php';
 
+include_once '../service/CouleurAnimalService.php';
+include_once '../data-access/CouleurAnimalDataAccess.php';
+
+
+
 function dateFr($date){
     return strftime('%d-%m-%Y',strtotime($date));
 }
@@ -63,6 +68,10 @@ if(isset($_SESSION["user_id"]))
 
     $photoAnimalDao = New PhotoAnimalDataAccess();
     $photoAnimalService = New PhotoAnimalService($photoAnimalDao);
+    
+    $couleurDataAccess = new CouleurAnimalDataAccess;
+    $couleurService = New CouleurAnimalService($couleurDataAccess);
+
 
     $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
 
@@ -78,12 +87,6 @@ if (isset($_POST["delete"])){
     $serviceUtilisateur->serviceDelete($nom);
     header('Location: accueil.php');
     exit;
-
-}
-
-if (isset($_POST["updatePassword"])){
-
-    $serviceUtilisateur->serviceUpdatePassword($_SESSION["user_id"],$_POST);
 
 }
 
@@ -297,7 +300,7 @@ if(isset($_POST["retraitFavoris"])){
                                             
                                                 <div class="collapse mt-2" id="collapseMdp">
                                                     <div class="card card-body">
-                                                        <form method="post" action="compte.php">
+                                                        <form id="updatePassword">
                                                             <label for="inputPassword2" class="sr-only">Mot de Passe Actuel</label>
                                                             <input type="password" class="form-control mt-2" id="inputPassword2" placeholder="MdP Actuel" name="oldMdp">
                                                             <label for="inputPassword2" class="sr-only mt-2">Nouveau Mot de Passe</label>
@@ -311,6 +314,9 @@ if(isset($_POST["retraitFavoris"])){
 
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row" id="resultUpdatePassword">
+
                                     </div>
                                 </div>
                             </div>
@@ -427,11 +433,13 @@ if(isset($_POST["retraitFavoris"])){
                                                                 </select>
                                                             <label for="inputCouleur" class="mt-2">Couleur :</label>
                                                                 <select class="form-control" class="selectCouleur" name="couleur">
-                                                                    <option value="1">Blanc</option>
-                                                                    <option value="3">Gris</option>
-                                                                    <option value="2">Noir</option>
-                                                                    <option value="4">Roux</option>
-                                                                    <option value="5">Chatain</option>
+                                                                    <?php
+                                                                        $data = $couleurService->serviceSelectAll();
+                                                                        $cmpt = count($data);
+                                                                        for ($i = 0; $i < $cmpt; $i++){
+                                                                            echo '<option value="'.$data[$i]["ID_COULEUR"].'">'.$data[$i]["COULEUR"].'</option>';
+                                                                        }
+                                                                    ?>
                                                                 </select>
                                                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
                                                                 <input class="form-control " type="number" placeholder="100" name="taille">
@@ -482,6 +490,10 @@ if(isset($_POST["retraitFavoris"])){
                             $dataAnimauxFavoris = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
                             empty($dataAnimauxFavoris) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
                             ?>
+
+                            <div class="row" id="resultRemoveFavourite">
+                                
+                            </div>
                         </div>        
                         
                         
@@ -510,7 +522,11 @@ if(isset($_POST["retraitFavoris"])){
     <script type="text/javascript" src="script.js"></script>
     <script src="../../javascript/scriptDisplayRaceInAddAnimals.js"></script>
     <script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>
+    <script src="../../javascript/updatePassword.js"></script>
+    <script src="../../javascript/removeFavouriteAnimal.js"></script>
+    
     <script src="../../javascript/fontAwesome.js"></script>
+    
 </html>
 
 

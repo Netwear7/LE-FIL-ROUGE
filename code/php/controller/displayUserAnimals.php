@@ -7,6 +7,8 @@ include_once '../data-access/PerteDataAccess.php';
 include_once '../service/RaceService.php';
 include_once '../data-access/RaceDataAccess.php';
 
+include_once '../service/CouleurAnimalService.php';
+include_once '../data-access/CouleurAnimalDataAccess.php';
 
 
 
@@ -222,6 +224,8 @@ function displayModals($dataAnimaux){
 function displayUpdatePanel($dataAnimaux){
     $raceDao = new RaceDataAccess();
     $raceService = new RaceService($raceDao);
+    $couleurDataAccess = new CouleurAnimalDataAccess;
+    $couleurService = New CouleurAnimalService($couleurDataAccess);
     if (!empty($dataAnimaux)){
         $count = count($dataAnimaux);
         $data2 = $raceService->selectAllCatRaces();
@@ -302,13 +306,14 @@ function displayUpdatePanel($dataAnimaux){
                                 <option>Long</option>
                             </select>
                             <label for="inputCouleur" class="mt-2">Couleur :</label>
-                                <select class="form-control" class="selectCouleur" name="couleur">
-                                    <option value="1">Blanc</option>
-                                    <option value="3">Gris</option>
-                                    <option value="2">Noir</option>
-                                    <option value="4">Roux</option>
-                                    <option value="5">Chatain</option>
-                                </select>
+                                <select class="form-control" class="selectCouleur" name="couleur">';
+                                    $dataCouleur = $couleurService->serviceSelectAll();
+                                    $cmpt = count($dataCouleur);
+                                    for ($h = 0; $h < $cmpt; $h++){
+                                        echo '<option value="'.$dataCouleur[$h]["ID_COULEUR"].'">'.$dataCouleur[$h]["COULEUR"].'</option>';
+                                    }
+
+                            echo '    </select>
                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
                                 <input class="form-control " type="number" value="'.$dataAnimaux[$i]["TAILLE"].'" name="taille">
                             <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
@@ -336,6 +341,8 @@ function displayUpdatePanel($dataAnimaux){
         
     }
 }
+
+
 
 
 function redimension($rawPhoto)

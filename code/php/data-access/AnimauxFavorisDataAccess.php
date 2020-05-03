@@ -12,7 +12,7 @@ class AnimauxFavorisDataAccess extends LogBdd implements InterfaceDao{
     public function daoSelectAllUserFavouritesAnimals($id)
     {
         $mysqli = new mysqli('localhost','root','','bddanimaux');
-        $stmt = $mysqli->prepare('SELECT DISTINCT A.ID_UTILISATEUR, B.ID_ANIMAL, b.NOM, b.DATE_NAISSANCE, b.POIDS, b.NO_PUCE, b.CARACTERE, b.SPECIFICITE, b.TAILLE, b.ROBE,g.COULEUR, b.SEXE, c.NOM_RACE, e.NOM_ESPECE from etre_favoris as A INNER JOIN animaux as B on A.ID_ANIMAL = b.ID_ANIMAL INNER JOIN race as c on b.id_race = c.id_race INNER JOIN appartenir_espece as d on c.id_race = d.id_race inner join espece as e on d.ID_ESPECE = e.ID_ESPECE inner join avoir_couleur as f on f.ID_ANIMAL = A.ID_ANIMAL inner join couleur_animal as g on f.ID_COULEUR = g.ID_COULEUR where A.ID_UTILISATEUR =  ?');
+        $stmt = $mysqli->prepare('SELECT * from etre_favoris as A INNER JOIN animaux as B on A.ID_ANIMAL = b.ID_ANIMAL INNER JOIN race as c on b.id_race = c.id_race INNER JOIN appartenir_espece as d on c.id_race = d.id_race inner join espece as e on d.ID_ESPECE = e.ID_ESPECE inner join avoir_couleur as f on f.ID_ANIMAL = A.ID_ANIMAL inner join couleur_animal as g on f.ID_COULEUR = g.ID_COULEUR INNER JOIN photo_animal as h on B.ID_ANIMAL = h.ID_ANIMAL where A.ID_UTILISATEUR =  ?');
         $stmt->bind_param('s',$id);
         $stmt->execute();
         $rs = $stmt->get_result();

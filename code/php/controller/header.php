@@ -291,10 +291,10 @@
                     <!--PARTIE OU IL Y A LES BOUTONS VALIDER ET ANNULER -->
                             <div class="row">
                                 <div class="col-6">
-                                    <button type="button" class="btn btn-outline-primary" id="resetPassword">Réinitialiser le mot de passe</button>
+                                    <button type="button" class="btn btn-outline-primary" id="resetPassword">Réinitialiser</button>
                                 </div>
                                 <div class="col-6">
-                                    <button type="button" class="btn btn-outline-secondary">Annuler</button>
+                                    <button type="button"  class="btn btn-outline-secondary">Annuler</button>
                                 </div>
                             </div>
                         </div>
@@ -304,5 +304,5 @@
         </div>
     </div>
 </nav>
-
+<script src="../../javascript/jquery-3.4.1.min.js"></script>
 <script src="../../javascript/resetPassword.js"></script>

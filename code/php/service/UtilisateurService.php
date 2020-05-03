@@ -54,16 +54,9 @@
 
         public function serviceUpdatePassword($id,$infos)
         {
-            $mdpActuel = $infos["oldMdp"];
-            if ($infos["confirmNewMdp"] == $infos["newMdp"]) {
-                $result = $this->serviceVerifyActualPassword($id,$mdpActuel);
-                if ($result == true){
-                    return $this->getDataAccessObject()->daoUpdatePassword($id,$mdp = password_hash($infos["newMdp"], PASSWORD_DEFAULT));
-                } else {
-                    return "Les mots de passes sont incorrect";
-                }
+
+            return $this->getDataAccessObject()->daoUpdatePassword($id,password_hash($infos["newPassword"], PASSWORD_DEFAULT));
                 
-            }
             
             
         }

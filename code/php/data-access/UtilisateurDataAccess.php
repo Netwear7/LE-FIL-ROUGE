@@ -143,7 +143,7 @@
             $stmt->bind_param('ss',$mdpHash,$id);
             $stmt->execute();
             $this->deconnexion($mysqli);
-            return $result = $stmt ? "La modification a bien été effectuée " : "La modification a échouée ";
+            return $result = $stmt ? true : false ;
         }
 
         
