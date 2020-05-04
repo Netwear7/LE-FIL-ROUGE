@@ -2,6 +2,8 @@
 
     include_once("../data-access/AdresseDataAccess.php");
     include_once("../service/AdresseService.php");
+    include_once("../data-access/AnimauxDataAccess.php");
+    include_once("../service/AnimauxService.php");
 
     session_start();
 ?>
@@ -87,38 +89,22 @@
                                 <div class="col-lg-10 offset-1 mt-5">
                                     <h4>Selectionnez votre animal :</h4>
                                 </div>
-                                <div class="col-lg-10 offset-1">
-                                    <input class="form-check-input ml-1" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label ml-4" for="defaultCheck1">
-                                        Guizmo, 8ans
-                                    </label>
-                                </div>
-                                <div class="col-lg-10 offset-1">
-                                    <input class="form-check-input ml-1" type="checkbox" value="" id="defaultCheck2">
-                                    <label class="form-check-label ml-4" for="defaultCheck2">
-                                        Mowgli, 4ans
-                                    </label>
-                                </div>
-                                <div class="col-lg-10 offset-1">
-                                    <input class="form-check-input ml-1" type="checkbox" value="" id="defaultCheck3">
-                                    <label class="form-check-label ml-4" for="defaultCheck3">
-                                        Symba, 2ans
-                                    </label>
-                                </div>
-                                <div class="col-lg-10 offset-1">
-                                    <input class="form-check-input ml-1" type="checkbox" value="" id="defaultCheck4">
-                                    <label class="form-check-label ml-4" for="defaultCheck4">
-                                        Volovitz, 3ans
-                                    </label>
-                                </div>
-                                <div class="col-lg-10 offset-1">
-                                    <input class="form-check-input ml-1" type="checkbox" value="" id="defaultCheck5">
-                                    <label class="form-check-label ml-4" for="defaultCheck5">
-                                        Guizmo, 1an
-                                    </label>
-                                </div>
+                                <?php
+                                $daoAnimaux = new AnimauxDataAccess();
+                                $animauxService = new AnimauxService($daoAnimaux);
+                                $data = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                                foreach($data as $key =>$value){
+                                        echo '<div class="col-lg-10 offset-1">
+                                        <input class="form-check-input ml-1" type="checkbox" value='.$value["ID_ANIMAL"].' id="defaultCheck1">
+                                        <label class="form-check-label ml-4" for="defaultCheck1">
+                                            '.$value["NOM"].'
+                                        </label>
+                                        </div>';
+                                    }
+                                ?>
+
                                 <div class="col-lg-10 offset-1 mt-5">
-                                    <button type="button submit" class="btn btn-primary w-100">Confirmer la réservation</button>
+                                    <button type="submit" class="btn btn-primary w-100">Confirmer la réservation</button>
                                 </div>
                             </div>
                         </div>
