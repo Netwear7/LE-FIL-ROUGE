@@ -46,7 +46,15 @@
                             <div class="row">
                                 <div class="offset-lg-1 col-lg-10 mb-4">
                                     <h4>Pourquoi faire garder son Animal ? </h4>
-                                    <span>Lors de vos déplacements, n'hésitez pas à réserver une place dans un de nos refuges ! Toutes nos Assistants Animaliers se feront un plaisir d'accueuillir votre Animal de compagnie lors de vos déplacements ou vos vacances ! Nous avons des équipes spécialisées réparties dans les différents refuges, ces équipes ont été crées pour permettre une prise en charge de votre Animal lorsque vous n'êtes pas là ! Nos Garderies sont ouvertes toutes l'année!</span>
+                                    <span>Vous devez vous absenter pour des vacances ou une toute autre raison ? <strong>Confiez-nous votre animal</strong> de compagnie (chien ou chat) !<br>
+
+Nous mettons toute notre expertise et nos locaux <strong>au service de nos clients</strong> afin d’offrir un <strong>séjour agréable</strong> aux petits compagnons accueillis en pension canine ou féline.<br>
+
+<strong style="text-decoration: underline; font-size:1.2em">Pour les chiens</strong> : nous pouvons héberger votre chien dans un <strong>box individuel</strong> avec <strong>cour privative</strong>. Les animaux sont sortis 2 fois par jour pour se défouler dans un grand espace dédié à cet effet.<br>
+
+<strong style="text-decoration: underline; font-size:1.2em">Pour les chats</strong> : votre chat profitera d’un <strong>box individuel</strong> ou <strong>box double</strong> (pour les couples de chats) dans la chatterie avec une <strong>cour privative</strong>. Par précaution, les chats accueillis en pension sont <strong>séparés</strong> des autres chats du refuge.<br>
+
+Tous les boxes (chiens et chats) sont <strong>chauffés par le sol</strong> et abrités des éléments extérieurs. Nous fournissons aussi le <strong>couchage</strong> (panier, coussin, …), les <strong>jouets</strong> et la <strong>nourriture</strong> le temps du séjour.</span>
                                 </div>
                             </div>
                             <div class="row mb-2">
