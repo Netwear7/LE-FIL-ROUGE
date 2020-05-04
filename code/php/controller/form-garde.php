@@ -93,7 +93,8 @@
                                 $daoAnimaux = new AnimauxDataAccess();
                                 $animauxService = new AnimauxService($daoAnimaux);
                                 $data = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                                foreach($data as $key =>$value){
+                                if(count($data)>0){
+                                    foreach($data as $key =>$value){
                                         echo '<div class="col-lg-10 offset-1">
                                         <input class="form-check-input ml-1" type="checkbox" value='.$value["ID_ANIMAL"].' id="defaultCheck1">
                                         <label class="form-check-label ml-4" for="defaultCheck1">
@@ -101,6 +102,10 @@
                                         </label>
                                         </div>';
                                     }
+                                }
+                                else{
+                                    echo '<div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Aucun animal inscrit sur votre compte.</div>';
+                                }
                                 ?>
 
                                 <div class="col-lg-10 offset-1 mt-5">
