@@ -141,7 +141,7 @@
                             </li>
                             <li class="list-group-item bg-grey-light">
                                 <label for="userMail">Adresse mail : </label>
-                                <input type="email" class="form-control"  aria-describedby="emailHelp" name="ADRESSE_EMAIL" value="'. $data["ADRESSE_EMAIL"].'">
+                                <input type="email" class="form-control"  aria-describedby="emailHelp" id="ADRESSE_EMAIL" value="'. $data["ADRESSE_EMAIL"].'">
                                 <small id="emailHelp" class="form-text text-muted">Nous ne partagerons pas votre adresse mail</small>
                             </li>
                         </ul>

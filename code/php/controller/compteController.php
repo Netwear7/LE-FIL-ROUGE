@@ -94,6 +94,13 @@ if(isset($_POST["updatePassword"])){
     }    
 }
 
+if (isset($_POST["updateUserInfos"])){
+                                            
+    $serviceUtilisateur->serviceUpdate($_POST);
+
+
+} 
+
 if(isset($_POST["retraitFavoris"])){
     $serviceAnimauxFavoris->serviceDelete($_POST);
 }

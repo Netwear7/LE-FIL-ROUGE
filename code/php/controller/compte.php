@@ -94,6 +94,7 @@ if (isset($_POST["updateUserInfos"])){
                                             
     $serviceUtilisateur->serviceUpdate($_POST);
 
+
 } 
 
 if (isset($_POST["addAnimal"])){
@@ -332,7 +333,7 @@ if(isset($_POST["retraitFavoris"])){
                             </div>
                             <div class="row mt-2">
                                 <div class="col-8 offset-2 border rounded border-black ">
-                                    <form method="POST" action="compte.php">
+                                    <form method="POST" action="" id="updateUserInfos">
                                         <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel($_SESSION["user_id"]); ?>                                        
                                     </form>  
                                 </div>
@@ -492,7 +493,7 @@ if(isset($_POST["retraitFavoris"])){
                             ?>
 
                             <div class="row" id="resultRemoveFavourite">
-                                
+
                             </div>
                         </div>        
                         
@@ -523,6 +524,7 @@ if(isset($_POST["retraitFavoris"])){
     <script src="../../javascript/scriptDisplayRaceInAddAnimals.js"></script>
     <script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>
     <script src="../../javascript/updatePassword.js"></script>
+
     <script src="../../javascript/removeFavouriteAnimal.js"></script>
     
     <script src="../../javascript/fontAwesome.js"></script>
