@@ -142,7 +142,7 @@ function displayModals($dataAnimaux){
     echo '
     <div class="modal fade" id="modalPerdu'.$i.'" tabindex="-1" role="dialog" aria-labelledby="modalPerduTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form method="POST" action="">
+            <form method="POST" action="compteController.php">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
@@ -181,7 +181,7 @@ function displayModals($dataAnimaux){
                     <small id="lostAnimal" class="form-text text-muted">Si c\'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="">
+                    <form method="post" action="compteController.php">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         <input type="hidden" name="idAnimalRetrouve" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
                         <button type="button submit" class="btn btn-primary name="animalRetrouve">Confirmer</button>
@@ -206,7 +206,7 @@ function displayModals($dataAnimaux){
                     <p class="mt-2">Confirmer le retrait ?</p>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="">
+                    <form method="POST" action="compteController.php">
                         <input type="hidden" name="couleurAnimalRetrait" value="'.$dataAnimaux[$i]["ID_COULEUR"].'"></input>
                         <input type="hidden" name="idAnimalRetrait" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -236,7 +236,7 @@ function displayUpdatePanel($dataAnimaux){
 
 
         <div class="tab-pane fade" id="list-modAnimal'.$i.'" role="tabpanel" aria-labelledby="list-modAnimal-list">
-            <form method="POST" enctype="multipart/form-data" action="compte.php">
+            <form method="POST" enctype="multipart/form-data" action="compteController.php"">
                 <div class="row">
                     <div class="col-8 offset-2 border rounded border-black mt-5">
                         <div class="row">

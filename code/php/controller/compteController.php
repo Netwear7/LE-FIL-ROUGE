@@ -104,3 +104,75 @@ if (isset($_POST["updateUserInfos"])){
 if(isset($_POST["retraitFavoris"])){
     $serviceAnimauxFavoris->serviceDelete($_POST);
 }
+
+
+if (isset($_POST["delete"])){
+
+    $serviceUtilisateur->serviceDelete($nom);
+    header('Location: accueil.php');
+    exit;
+
+}
+
+if (isset($_POST["updateUserInfos"])){
+                                            
+    if($serviceUtilisateur->serviceUpdate($_POST)){
+        return json_encode('success');
+    }
+
+
+} 
+
+if (isset($_POST["addAnimal"])){
+
+
+
+    $animal = new Animaux($_POST);
+    $serviceAnimaux->serviceAddUserAnimal($animal);
+    $avoirCouleur = new AvoirCouleur($animal);
+    $avoirCouleurService->serviceAdd($avoirCouleur);
+    if (!$_POST["file"]) {
+        echo "Problème de transfert";
+        return false;
+    } else {
+
+        $photoAnimal = new PhotoAnimal($_POST["file"], $animal->getIdAnimal());
+        $photoAnimalService->serviceAdd($photoAnimal);
+    }
+}
+    
+
+
+if (isset($_POST["updateAnimalInfos"])){
+                                            
+    $serviceAnimaux->serviceUpdate($_POST);
+    $ret        = is_uploaded_file($_FILES['photo']['tmp_name']);    
+    if ($ret) {
+        $photoAnimal = new PhotoAnimal($_FILES, $_POST["idAnimal"]);
+        $photoAnimalService->Update($photoAnimal);
+    }
+
+}
+
+if (isset($_POST["removeUserAnimal"])){
+
+    $photoAnimalService->serviceDelete($_POST);
+    $avoirCouleurService->serviceDelete($_POST);
+    $serviceAnimaux->serviceDelete($_POST);
+}
+
+if (isset($_POST["perte"])){
+    $perte = new Perte($_POST);
+    $servicePerte->serviceAdd($perte);
+}
+
+if(isset($_POST["idAnimalRetrouve"])){
+    $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
+}
+
+if (isset($_POST["confirmRetrait"])) {
+
+    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
+}  
+
+

@@ -33,11 +33,13 @@ include_once '../data-access/PerteDataAccess.php';
 include_once '../model/AnimauxFavoris.php';
 include_once '../service/AnimauxFavorisService.php';
 include_once '../data-access/AnimauxFavorisDataAccess.php';
-include_once '../controller/displayUserAnimals.php';
-include_once '../controller/displayDonationsInMyAccount.php';
-
 include_once '../service/CouleurAnimalService.php';
 include_once '../data-access/CouleurAnimalDataAccess.php';
+
+include_once '../controller/displayUserAnimals.php';
+include_once '../controller/displayDonationsInMyAccount.php';
+include_once '../controller/displayUserFavouriteAnimal.php';
+
 
 
 
@@ -53,9 +55,6 @@ if(isset($_SESSION["user_id"]))
 
     $daoAnimaux = new AnimauxDataAccess();
     $serviceAnimaux = new AnimauxService($daoAnimaux);
-
-    $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
-    $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
 
     $daoPerte = new PerteDataAccess();
     $servicePerte = new PerteService($daoPerte);
@@ -81,78 +80,6 @@ if(isset($_SESSION["user_id"]))
 }
 
 
-
-if (isset($_POST["delete"])){
-
-    $serviceUtilisateur->serviceDelete($nom);
-    header('Location: accueil.php');
-    exit;
-
-}
-
-if (isset($_POST["updateUserInfos"])){
-                                            
-    $serviceUtilisateur->serviceUpdate($_POST);
-
-
-} 
-
-if (isset($_POST["addAnimal"])){
-
-
-
-    $animal = new Animaux($_POST);
-    $serviceAnimaux->serviceAddUserAnimal($animal);
-    $avoirCouleur = new AvoirCouleur($animal);
-    $avoirCouleurService->serviceAdd($avoirCouleur);
-    $ret        = is_uploaded_file($_FILES['photo']['tmp_name']);    
-    if (!$ret) {
-        echo "Problème de transfert";
-        return false;
-    } else {
-
-        $photoAnimal = new PhotoAnimal($_FILES, $animal->getIdAnimal());
-        $photoAnimalService->serviceAdd($photoAnimal);
-    }
-}
-    
-
-
-if (isset($_POST["updateAnimalInfos"])){
-                                            
-    $serviceAnimaux->serviceUpdate($_POST);
-    $ret        = is_uploaded_file($_FILES['photo']['tmp_name']);    
-    if ($ret) {
-        $photoAnimal = new PhotoAnimal($_FILES, $_POST["idAnimal"]);
-        $photoAnimalService->Update($photoAnimal);
-    }
-
-}
-
-if (isset($_POST["removeUserAnimal"])){
-
-    $photoAnimalService->serviceDelete($_POST);
-    $avoirCouleurService->serviceDelete($_POST);
-    $serviceAnimaux->serviceDelete($_POST);
-}
-
-if (isset($_POST["perte"])){
-    $perte = new Perte($_POST);
-    $servicePerte->serviceAdd($perte);
-}
-
-if(isset($_POST["idAnimalRetrouve"])){
-    $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
-}
-
-if (isset($_POST["confirmRetrait"])) {
-
-    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
-}  
-
-if(isset($_POST["retraitFavoris"])){
-    $serviceAnimauxFavoris->serviceDelete($_POST);
-}
 
 
 
@@ -209,7 +136,7 @@ if(isset($_POST["retraitFavoris"])){
                     </div>
                     <div class="row ">
                         <div class="nav  nav-pills  w-100  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Mes Informations Personnelles</a>
+                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-profile-list" data-toggle="list" href="#profilePanel" role="tab" aria-controls="profile">Mes Informations Personnelles</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myDonations-list" data-toggle="list" href="#list-donations" role="tab" aria-controls="myDonations">Mes Donations</a>
@@ -231,7 +158,7 @@ if(isset($_POST["retraitFavoris"])){
                                 </button>
                             </div>
                             <div class="modal-footer">
-                                <form method="POST" action="">
+                                <form method="POST" action="compteController.php">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                                     <button type="button submit" class="btn btn-outline-info" name="logout">Déconnexion</a>
                                 </form>                                            
@@ -248,8 +175,9 @@ if(isset($_POST["retraitFavoris"])){
                     <div class="tab-content" id="nav-tabContent">
 
 
+
                         <!--PREMIER SLIDE DANS MES INFOS PERSONNELLES-->
-                        <div class="tab-pane fade show active" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">
+                        <div class="tab-pane fade show active" id="profilePanel" role="tabpanel" aria-labelledby="list-profile-list">
                             <div class="row ">
                                 <div class="col-8 offset-2 mt-5 border rounded border-black shadow-sm">
                                     <div class="row">
@@ -259,11 +187,12 @@ if(isset($_POST["retraitFavoris"])){
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-3">
+                            <div class="row mt-3" id="rowUserInfos" >
 
-                                        <?php $serviceUtilisateur->utilisateurServiceDisplayinfos($_SESSION["user_id"]); 
-                                        ?>
+
                             </div>
+
+
 
 
                             <!--PARTIE OU IL Y A LES BOUTONS SUPP ET MOD MDP-->
@@ -280,7 +209,7 @@ if(isset($_POST["retraitFavoris"])){
                                                 <div class="collapse mt-2" id="collapseSuppression">
                                                     <div class="card card-body">
                                                         <p>En cliquant sur le bouton ci-dessous vous confirmez accepter la suppression de votre compte ainsi que de toutes vos données personnelles enregistrées dans nos bases de données, une fois la suppression de votre compte effectuée, vous n'aurez plus accès à votre espace personnel. Pour confirmer, cliquez sur le bouton ci-dessous.</p>
-                                                        <form method="post" action="compte.php">
+                                                        <form method="post" action="compteController.php">
                                                             <button class="btn btn-outline-danger btn-lg btn-block" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="delete">Confirmer la suppression</button>
                                                         </form>
                                                     </div>
@@ -289,7 +218,7 @@ if(isset($_POST["retraitFavoris"])){
                                         </div>
 
                                         <div class="col-lg-4 col-sm-12">
-                                            <button  type="button" name="modifier" class="btn btn-outline-info" id="updateInfo-list" data-toggle="list" href="#list-updateInfo" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
+                                            <button  type="button" name="modifier" class="btn btn-outline-info" id="updateInfo-list" data-toggle="list" href="#updateUserInfosPanel" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
                                         </div>
                                         <!--modifier mon mdp-->
                                         <div class="col-lg-4 col-sm-12 ">
@@ -321,24 +250,11 @@ if(isset($_POST["retraitFavoris"])){
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
 
-                        <!--PARTIE MODIFIER DU PREMIER SLIDE infos personnelles-->
-                        <div class="tab-pane fade mb-5 " id="list-updateInfo" role="tabpanel" aria-labelledby="list-updateInfo-list">
-                            <div class="row">
-                                <div class="col-8 offset-2 text-center border rounded border-black mt-5">
-                                    <h3 class="mt-1">Mes Informations Personnelles</h3>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-8 offset-2 border rounded border-black ">
-                                    <form method="POST" action="" id="updateUserInfos">
-                                        <?php echo $serviceUtilisateur->utilisateurServiceUpdatePanel($_SESSION["user_id"]); ?>                                        
-                                    </form>  
-                                </div>
-                            </div>
-                        </div>
+                        <?php include_once 'displayUserUpdatePanel.php';?>
 
                         <!--SECOND PANEL MES COMPAGNONS-->
                         <div class="tab-pane fade mb-5" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">
@@ -369,7 +285,7 @@ if(isset($_POST["retraitFavoris"])){
                         <div class="tab-pane fade mb-5" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
                             <div class="row">
                                 <div class="col-12 ">
-                                    <form method="POST" enctype="multipart/form-data" action="compte.php">
+                                    <form enctype="multipart/form-data" id="addUserAnimal">
                                         <div class="row mt-3">
                                             <!--titre-->
                                             <div class="col-lg-12 text-center">
@@ -388,18 +304,18 @@ if(isset($_POST["retraitFavoris"])){
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-4 col-sm-12 offset-4">
-                                                                <input type="text" class="form-control" name="nomAnimal">
+                                                                <input type="text" class="form-control" id="nomAnimal">
                                                             </div>
                                                             <div class="col-lg-2 col-sm-12 offset-5">
                                                                 <label for="inputDateNaissance" class="mt-2">Date de naissance : </label>
-                                                                <input type="date" class="form-control" name="dateNaissance">
+                                                                <input type="date" class="form-control" id="dateNaissance">
                                                             </div >
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row mt-5 ">
-                                                    <div class="col-4 offset-4"><input type="file" name="photo" accept="image/png, image/jpeg"></div>
+                                                    <div class="col-4 offset-4"><input type="file" id="photo" accept="image/png, image/jpeg"></div>
                                                 </div>
 
                                                 <div class="row mt-3 ">
@@ -414,26 +330,26 @@ if(isset($_POST["retraitFavoris"])){
                                                             <select class="form-control" id="popSelect" name="raceAnimale">
                                                             </select>
                                                         <label for="inputSexe" class="mt-2">Sexe : </label>
-                                                            <select class="form-control" id="selectSexe" name="sexeAnimal">
+                                                            <select class="form-control" id="selectSexe">
                                                                 <option>Mâle</option>
                                                                 <option>Femelle</option>
                                                             </select>
 
                                                         <label for="inputNumeroPuce" class="mt-2" >Numéro d'identification : </label>
-                                                            <input type="text" class="form-control" name="numeroPuce" placeholder="Numéro de Puce Electronique">
-                                                        <label for="textAreaSpécificités" class="mt-2">Caractère :</label>
-                                                            <textarea class="form-control " id="textAreaSpécificités" name="caractere" rows="3"></textarea>                          
+                                                            <input type="text" class="form-control" id="numeroPuce" placeholder="Numéro de Puce Electronique">
+                                                        <label for="textAreaCaractere" class="mt-2">Caractère :</label>
+                                                            <textarea class="form-control " id="textAreaCaractere" name="caractere" rows="3"></textarea>                          
                                                     </div>
                                                     <div class="col-lg-6 col-sm-12">
                                                         <div class="form-group">
                                                             <label for="inputPoils" class="mt-2">Poils :</label>
-                                                                <select class="form-control " class="selectPoils" name="robe">
+                                                                <select class="form-control " class="selectPoils" id="robe">
                                                                     <option>Courts</option>
                                                                     <option>Mi-longs</option>
                                                                     <option>Long</option>
                                                                 </select>
                                                             <label for="inputCouleur" class="mt-2">Couleur :</label>
-                                                                <select class="form-control" class="selectCouleur" name="couleur">
+                                                                <select class="form-control" class="selectCouleur" id="couleur">
                                                                     <?php
                                                                         $data = $couleurService->serviceSelectAll();
                                                                         $cmpt = count($data);
@@ -443,12 +359,12 @@ if(isset($_POST["retraitFavoris"])){
                                                                     ?>
                                                                 </select>
                                                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
-                                                                <input class="form-control " type="number" placeholder="100" name="taille">
+                                                                <input class="form-control " type="number" placeholder="100" id="taille">
                                                             <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
-                                                                <input class="form-control " type="float" placeholder="1.3" name="poids">
+                                                                <input class="form-control " type="float" placeholder="1.3" id="poids">
                                                             <label for="specTextArea" class="mt-2">Spécificités :</label>
-                                                            <textarea class="form-control " id="inputTextAreaSpecificite" name="specificites" rows="3"></textarea>
-                                                            <input type="hidden" name="idUtilisateur" value="<?php echo $_SESSION["user_id"];?>"></input>
+                                                            <textarea class="form-control"  id="specificites" rows="3"></textarea>
+                                                            <input type="hidden" id="idUtilisateur" value="<?php echo $_SESSION["user_id"];?>"></input>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -457,7 +373,7 @@ if(isset($_POST["retraitFavoris"])){
                                                         <button type="button submit" name="addAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
                                                     </div>
                                                     <div class="col-lg-3 col-sm-12">
-                                                        <button type="button " name="annuler" data-toggle="list" href="#list-compagnons" class="btn btn-block btn-outline-info">Annuler</button>
+                                                        <button type="button "  data-toggle="list" href="#list-compagnons" class="btn btn-block btn-outline-info">Annuler</button>
                                                     </div>                                            
                                                 </div>
                                             </div>
@@ -488,8 +404,7 @@ if(isset($_POST["retraitFavoris"])){
 
                             <!--si pas d'animaux en favoris affichage de la div ajouter un animal en favoris sinon affichage des animaux en favoris-->
                             <?php
-                            $dataAnimauxFavoris = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
-                            empty($dataAnimauxFavoris) ?  $serviceAnimauxFavoris->serviceDisplayNoFavoritesAnimals() : $serviceAnimauxFavoris->serviceDisplayUserFavouriteAnimals($_SESSION["user_id"]);
+                            displayUserFavouriteAnimals($_SESSION["user_id"]);                          
                             ?>
 
                             <div class="row" id="resultRemoveFavourite">
@@ -523,10 +438,11 @@ if(isset($_POST["retraitFavoris"])){
     <script type="text/javascript" src="script.js"></script>
     <script src="../../javascript/scriptDisplayRaceInAddAnimals.js"></script>
     <script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>
+    <script src="../../javascript/updateUserInfos.js"></script>
     <script src="../../javascript/updatePassword.js"></script>
-
     <script src="../../javascript/removeFavouriteAnimal.js"></script>
-    
+    <script src="../../javascript/addUserAnimal.js"></script>
+    <script src="../../javascript/affichageMonCompte.js"></script>
     <script src="../../javascript/fontAwesome.js"></script>
     
 </html>
