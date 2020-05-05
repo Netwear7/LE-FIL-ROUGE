@@ -4,7 +4,7 @@ include_once '../service/UtilisateurService.php';
 include_once '../data-access/UtilisateurDataAccess.php';
 
 
-    session_start();
+session_start();
 
 
     $daoUtilisateur = new UtilisateurDataAccess();

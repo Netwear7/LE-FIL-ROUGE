@@ -253,8 +253,19 @@ if(isset($_SESSION["user_id"]))
 
                         </div>
 
+                        <!--PARTIE MODIFIER DU PREMIER SLIDE infos personnelles-->
+                        <div class="tab-pane fade mb-5 " id="updateUserInfosPanel" role="tabpanel" aria-labelledby="list-updateInfo-list">
+                            <div class="row">
+                                <div class="col-8 offset-2 text-center border rounded border-black mt-5">
+                                    <h3 class="mt-1">Mes Informations Personnelles</h3>
+                                </div>
+                            </div>
+                        <form  id="updateUserInfos">
+                        </form> 
+                        <div class="row mb-3" id="resultModificationInfos">
 
-                        <?php include_once 'displayUserUpdatePanel.php';?>
+                        </div>
+                        </div>
 
                         <!--SECOND PANEL MES COMPAGNONS-->
                         <div class="tab-pane fade mb-5" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">

@@ -1,5 +1,6 @@
 $(document).ready(function (){
     $('#updateUserInfos').submit(function (e) {
+
         e.preventDefault();
         var nom = $('#NOM').val();
         var prenom = $('#PRENOM').val();
@@ -11,6 +12,8 @@ $(document).ready(function (){
         var ville = $('#VILLE').val();
         var idAdresse = $("#idAdresse").val();
         var idUtilisateur = $("#idUtilisateur").val()
+        var infosPanel = $("#profilePanel");
+        var updateUserInfosPanel = $("#updateUserInfosPanel");
         $.ajax(
             {
                 url: 'compteController.php',
