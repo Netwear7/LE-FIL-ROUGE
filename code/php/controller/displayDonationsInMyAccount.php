@@ -4,8 +4,8 @@ include_once '../service/DonationService.php';
 include_once '../data-access/DonationDataAccess.php';
 
 
+session_start();
 
-function displayDonations(){
     $donationDataAccess = new DonationDataAccess();
     $donationService = new DonationService($donationDataAccess);
     $dataDonations = $donationService->serviceSelectAllUserDonations($_SESSION["user_id"]);
@@ -66,7 +66,7 @@ function displayDonations(){
         ';
 
     }
-}
+
 
 
 

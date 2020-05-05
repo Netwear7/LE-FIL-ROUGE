@@ -1,17 +1,17 @@
 <?php
 
+include_once '../data-access/AnimauxFavorisDataAccess.php';
+include_once '../service/AnimauxFavorisService.php';
 
 
+session_start();
 
-
-function displayUserFavouriteAnimals($id)
-{
 
     $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
     $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
     
 
-        $dataAnimaux = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($id);
+        $dataAnimaux = $serviceAnimauxFavoris->serviceSelectAllUserFavouriteAnimals($_SESSION["user_id"]);
         if(empty($dataAnimaux)){
             echo 
             '
@@ -55,7 +55,7 @@ function displayUserFavouriteAnimals($id)
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 ">
                                 <div class="row">
-                                    <a href="" data-toggle="modal" data-target="#modalPhotos'.$i.'"></a>
+                                    <a href="" data-toggle="modal" data-target="#modalPhotos'.$i.'">'.redimension($rawPhoto).'</a>
                                 </div>                            
                             </div>
                             <div class="col-lg-2 col-sm-12 text-center">
@@ -64,13 +64,13 @@ function displayUserFavouriteAnimals($id)
                                     <h4 class="text-break">'.$dataAnimaux[$i]["NOM"].'</h4>
                                     </div>
                                     <div class="col-12">
-                                        <p class="text-break"><small><strong>Race/Apparence :</strong></small></p>
+                                        <p class="text-break">Race/Apparence :</p>
                                         <p>'.$dataAnimaux[$i]["NOM_RACE"].'</p>
-                                    </div>                           
-                                </div>
+                                    </div>
                                     <div class="col-12">
-                                        <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
-                                    </div>                                                         
+                                    <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
+                                    </div>                             
+                                </div>                                                        
                             </div>
                             <div class="col-lg-5 col-sm-12">
                                 <div class="row mt-2">
@@ -115,7 +115,35 @@ function displayUserFavouriteAnimals($id)
             }
         }
 
+        function dateFr($date){
+            return strftime('%d-%m-%Y',strtotime($date));
+        }
         
-    }
+        function redimension($rawPhoto)
+        {
+            $maxWidth = 380;
+            $maxHeight = 380;
+            # Passage des paramètres dans la table : imageinfo
+            $imageinfo= getimagesize("$rawPhoto");
+            $iw=$imageinfo[0];
+            $ih=$imageinfo[1];
+            # Calcul des rapport de Largeur et de Hauteur
+            $widthscale = $iw/$maxWidth;
+            $heightscale = $ih/$maxHeight;
+            $rapport = $ih/$widthscale;
+            # Calul des rapports Largeur et Hauteur à afficher
+            if($rapport < $maxHeight){
+                
+                $nwidth = $maxWidth;
+            }else{
+                $nwidth = $iw/$heightscale;
+            }if($rapport < $maxHeight){
+                $nheight = $rapport;
+            }else{
+                $nheight = $maxHeight;
+            }
+            # Affichage
+            return " <img class=\"rounded img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+        }
 
 ?>

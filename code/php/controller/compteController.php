@@ -170,9 +170,4 @@ if(isset($_POST["idAnimalRetrouve"])){
     $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
 }
 
-if (isset($_POST["confirmRetrait"])) {
-
-    $serviceAnimaux->serviceDelete($_POST["ID_ANIMAL"]);
-}  
-
 

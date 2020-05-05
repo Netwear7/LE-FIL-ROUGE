@@ -37,8 +37,6 @@ include_once '../service/CouleurAnimalService.php';
 include_once '../data-access/CouleurAnimalDataAccess.php';
 
 include_once '../controller/displayUserAnimals.php';
-include_once '../controller/displayDonationsInMyAccount.php';
-include_once '../controller/displayUserFavouriteAnimal.php';
 
 
 
@@ -245,10 +243,10 @@ if(isset($_SESSION["user_id"]))
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row" id="resultUpdatePassword">
-
-                                    </div>
                                 </div>
+                            </div>
+                            <div class="row" id="resultUpdatePassword">
+
                             </div>
 
                         </div>
@@ -260,11 +258,11 @@ if(isset($_SESSION["user_id"]))
                                     <h3 class="mt-1">Mes Informations Personnelles</h3>
                                 </div>
                             </div>
-                        <form  id="updateUserInfos">
-                        </form> 
-                        <div class="row mb-3" id="resultModificationInfos">
+                            <form  id="updateUserInfos">
+                            </form> 
+                            <div class="row mb-3" id="resultModificationInfos">
 
-                        </div>
+                            </div>
                         </div>
 
                         <!--SECOND PANEL MES COMPAGNONS-->
@@ -276,11 +274,17 @@ if(isset($_SESSION["user_id"]))
                                 </div>
                             </div>
                             <!--Affichage de la row ajouter un compagnon si pas d'animaux / sinon affichage des animaux dans les cartes -->
+                            <div class="row mt-3" id="rowAnimals" >
+
+
+                            </div>
                             <?php 
+                            
                             $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
                             affichageAnimaux($dataAnimaux);
                             displayModals($dataAnimaux);
                             ?>
+                            <div class="Row" id="resultRetraitAnimal"></div>
                        </div>
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
@@ -294,6 +298,9 @@ if(isset($_SESSION["user_id"]))
 
                         <!--PARTIE POUR ADD un compagnon /)-->
                         <div class="tab-pane fade mb-5" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
+                        <div class="row mb-3" id="resultAjoutAnimal">
+
+                        </div>
                             <div class="row">
                                 <div class="col-12 ">
                                     <form enctype="multipart/form-data" id="addUserAnimal">
@@ -414,9 +421,9 @@ if(isset($_SESSION["user_id"]))
                             </div>
 
                             <!--si pas d'animaux en favoris affichage de la div ajouter un animal en favoris sinon affichage des animaux en favoris-->
-                            <?php
-                            displayUserFavouriteAnimals($_SESSION["user_id"]);                          
-                            ?>
+                            <div class="row">
+                                <div class="col-12" id="rowFavouriteAnimals"></div>
+                            </div>
 
                             <div class="row" id="resultRemoveFavourite">
 
@@ -433,7 +440,11 @@ if(isset($_SESSION["user_id"]))
                                     <h3 class="mt-2">Mes Dons</h3>
                                 </div>
                             </div>
-                            <?php displayDonations() ?>
+                            <div class="row " >
+                                <div class="col-12" id="rowDonations">
+                                    
+                                </div>
+                            </div>
                         </div>   
                     </div>
                 </div>                
@@ -452,7 +463,10 @@ if(isset($_SESSION["user_id"]))
     <script src="../../javascript/updateUserInfos.js"></script>
     <script src="../../javascript/updatePassword.js"></script>
     <script src="../../javascript/removeFavouriteAnimal.js"></script>
+    <script src="../../javascript/removeUserAnimal.js"></script>
     <script src="../../javascript/addUserAnimal.js"></script>
+    <script src="../../javascript/lostAnimal.js"></script>
+    <script src="../../javascript/animalIsBack.js"></script>
     <script src="../../javascript/affichageMonCompte.js"></script>
     <script src="../../javascript/fontAwesome.js"></script>
     

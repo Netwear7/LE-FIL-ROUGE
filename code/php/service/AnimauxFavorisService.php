@@ -1,4 +1,6 @@
 <?php
+include_once '../service/ServiceCommun.php';
+include_once '../Interfaces/InterfaceService.php';
 
 class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
 

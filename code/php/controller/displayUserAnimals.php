@@ -14,7 +14,7 @@ include_once '../data-access/CouleurAnimalDataAccess.php';
 
 function AffichageAnimaux($dataAnimaux){
 
-
+    
 
     $daoPerte = new PerteDataAccess();
     $servicePerte = new PerteService($daoPerte);
@@ -61,7 +61,7 @@ function AffichageAnimaux($dataAnimaux){
                 
             echo 
             '
-            <div class="row mt-2">
+            <div class="row mt-1">
                 <div class="col-8  offset-2 border rounded border-black">
                     <div class="row">
                         <div class="col-lg-4 col-sm-12 ">
@@ -70,18 +70,18 @@ function AffichageAnimaux($dataAnimaux){
                             </div>                            
                         </div>
                         <div class="col-lg-2 col-sm-12 text-center">
-                            <div class="row mt-2">
+                            <div class="row ">
                                 <div class="col-12">
                                 <h4 class="text-break">'.$dataAnimaux[$i]["NOM"].'</h4>
                                 </div>
                                 <div class="col-12">
-                                    <p class="text-break"><small><strong>Race/Apparence :</strong></small></p>
+                                    <p class="text-break">Race/Apparence :</p>
                                     <p>'.$dataAnimaux[$i]["NOM_RACE"].'</p>
+                                </div>   
+                                <div class="col-12">
+                                <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
                                 </div>                           
                             </div>
-                                <div class="col-12">
-                                    <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
-                                </div>                                
                             ';
                             $perdu = $servicePerte->serviceSelect($dataAnimaux[$i]["ID_ANIMAL"]);
                             $pasPerdu = '<a href="" data-toggle="modal" data-target="#modalPerdu'.$i.'">Signaler perdu</a>';
@@ -142,7 +142,7 @@ function displayModals($dataAnimaux){
     echo '
     <div class="modal fade" id="modalPerdu'.$i.'" tabindex="-1" role="dialog" aria-labelledby="modalPerduTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form method="POST" action="compteController.php">
+            <form class="formPerte">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
@@ -160,7 +160,7 @@ function displayModals($dataAnimaux){
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         <input type="hidden" name="idAnimalPerdu" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
-                        <button type="button submit" class="btn btn-primary" name="perte">Signaler Perdu</button>
+                        <button type="button submit" class="btn btn-primary lost" id="perte">Signaler Perdu</button>
                     </div>
                 </div>
             </form>
@@ -181,7 +181,7 @@ function displayModals($dataAnimaux){
                     <small id="lostAnimal" class="form-text text-muted">Si c\'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
                 </div>
                 <div class="modal-footer">
-                    <form method="post" action="compteController.php">
+                    <form class="formRetrouve">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         <input type="hidden" name="idAnimalRetrouve" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
                         <button type="button submit" class="btn btn-primary name="animalRetrouve">Confirmer</button>
@@ -206,7 +206,7 @@ function displayModals($dataAnimaux){
                     <p class="mt-2">Confirmer le retrait ?</p>
                 </div>
                 <div class="modal-footer">
-                    <form method="POST" action="compteController.php">
+                    <form class="formRetrait">
                         <input type="hidden" name="couleurAnimalRetrait" value="'.$dataAnimaux[$i]["ID_COULEUR"].'"></input>
                         <input type="hidden" name="idAnimalRetrait" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
@@ -236,7 +236,7 @@ function displayUpdatePanel($dataAnimaux){
 
 
         <div class="tab-pane fade" id="list-modAnimal'.$i.'" role="tabpanel" aria-labelledby="list-modAnimal-list">
-            <form method="POST" enctype="multipart/form-data" action="compteController.php"">
+            <form method="POST" id="formUpdate"enctype="multipart/form-data" action="compteController.php"">
                 <div class="row">
                     <div class="col-8 offset-2 border rounded border-black mt-5">
                         <div class="row">

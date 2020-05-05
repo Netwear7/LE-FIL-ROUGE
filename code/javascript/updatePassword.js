@@ -5,7 +5,19 @@ $(document).ready(function (){
         var actualPassword = $('#inputPassword2').val();
         var newPassword = $('#inputPassword3').val();
         var confirmedNew = $('#inputPassword3').val();
-                data = ({ "updatePassword" : true, "actual" : actualPassword, "newPassword" : newPassword, "confirmedNew" : confirmedNew })
-                $('#resultUpdatePassword').load("compteController.php", data);
+        $.ajax(
+            {
+                url: 'compteController.php',
+                method: "POST",
+                data : {
+                    updatePassword : true, 
+                    actual : actualPassword, 
+                    newPassword : newPassword, 
+                    confirmedNew : confirmedNew
+
+                    
+                }
+            }   
+        )
         });
     });

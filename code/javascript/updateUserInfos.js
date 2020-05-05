@@ -37,7 +37,7 @@ $(document).ready(function (){
         ).done(function() {
             $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">Modifications effectuées avec succès !</div>' ).appendTo( "#resultModificationInfos" ).fadeIn(3000).fadeOut(2500);
         }).then(function(){
-            $("#rowUserInfos").load("displayUserInfos.php");
+            setTimeout(location.reload.bind(location), 2200);
         })
     });
 });
