@@ -6,4 +6,7 @@ $( document ).ready(function() {
     $('#rowFavouriteAnimals').load('displayUserFavouriteAnimal.php');
     $('#formUpdateAnimals').load('displayUserAnimalsUpdatePanel.php');
     $('#popCouleur').load('displayColorsOptions.php');
+
+    $('#modalRetrouve').load('displayAnimalIsBackModal.php');
+    $('#modalRetrait').load('displayRemoveAnimalModal.php');
 });

@@ -9,37 +9,12 @@
 
 session_start();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if(!isset($_SESSION["user_id"]))
 {
 
     header('Location: accueil.php');
     exit;
 }
-
-
-
-
-
-
-
-
 
 
 ?>
@@ -234,12 +209,22 @@ if(!isset($_SESSION["user_id"]))
 
 
                             </div>
-                            <?php 
                             
+                            <!-- Modal signaler perdu -->
+                            <div class="modal fade" id="modalPerdu" tabindex="-1" role="dialog" aria-labelledby="modalPerduTitle" aria-hidden="true">
+                            </div>
 
-                            ?>
+                            <!-- Modal signaler retrouvé -->
+                            <div class="modal fade" id="modalRetrouve" tabindex="-1" role="dialog" aria-labelledby="modalRetrouvéTitle" aria-hidden="true">    
+                            </div>
+
+                            <!-- Modal retrait animal -->
+                            <div class="modal fade" id="modalRetrait" tabindex="-1" role="dialog" aria-labelledby="modalRetraitTitle" aria-hidden="true">
+                            </div>
+
+
                             <div class="Row" id="resultRetraitAnimal"></div>
-                        </div>
+                            </div>
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
                         <div class="tab-pane fade" id="list-modAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">
@@ -262,9 +247,7 @@ if(!isset($_SESSION["user_id"]))
 
                         <!--PARTIE POUR ADD un compagnon /)-->
                         <div class="tab-pane fade mb-5" id="list-addAnimal" role="tabpanel" aria-labelledby="list-addAnimal-list">
-                        <div class="row mb-3" id="resultAjoutAnimal">
 
-                        </div>
                             <div class="row">
                                 <div class="col-12 ">
                                     <form enctype="multipart/form-data" id="addUserAnimal">
@@ -286,61 +269,62 @@ if(!isset($_SESSION["user_id"]))
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-lg-4 col-sm-12 offset-4">
-                                                                <input type="text" class="form-control" id="nomAnimal">
+                                                                <input type="text" class="form-control" id="nomAnimal" name="nomAnimal">
                                                             </div>
                                                             <div class="col-lg-2 col-sm-12 offset-5">
                                                                 <label for="inputDateNaissance" class="mt-2">Date de naissance : </label>
-                                                                <input type="date" class="form-control" id="dateNaissance">
+                                                                <input type="date" class="form-control" id="dateNaissance" name="dateNaissance">
                                                             </div >
                                                         </div>
                                                     </div>
                                                 </div>
 
                                                 <div class="row mt-5 ">
-                                                    <div class="col-4 offset-4"><input type="file" id="photo" accept="image/png, image/jpeg"></div>
+                                                    <div class="col-4 offset-4"><input type="file" name="photo" id="photo" accept="image/png, image/jpeg"></div>
                                                 </div>
 
                                                 <div class="row mt-3 ">
                                                     <div class="col-lg-6 col-sm-12">
                                                         <label for="inputEspece" class="mt-2">Espece : </label>
-                                                        <select class="form-control" id="nom_espece" name="especeAnimale">
+                                                        <select class="form-control" id="nom_espece" name="nom_espece">
                                                             <option>Selectionnez une race</option>
                                                             <option>Chat</option>
                                                             <option>Chien</option>
                                                         </select>
                                                         <label for="inputRace" class="mt-2">Race :</label>
-                                                            <select class="form-control" id="popSelect" name="raceAnimale">
+                                                            <select class="form-control" id="popSelect" name="race">
                                                             </select>
                                                         <label for="inputSexe" class="mt-2">Sexe : </label>
-                                                            <select class="form-control" id="selectSexe">
+                                                            <select class="form-control" name="sexe" id="selectSexe">
                                                                 <option>Mâle</option>
                                                                 <option>Femelle</option>
                                                             </select>
 
                                                         <label for="inputNumeroPuce" class="mt-2" >Numéro d'identification : </label>
-                                                            <input type="text" class="form-control" id="numeroPuce" placeholder="Numéro de Puce Electronique">
+                                                            <input type="text" class="form-control" id="numeroPuce" name="numeroPuce" placeholder="Numéro de Puce Electronique">
                                                         <label for="textAreaCaractere" class="mt-2">Caractère :</label>
                                                             <textarea class="form-control " id="textAreaCaractere" name="caractere" rows="3"></textarea>                          
                                                     </div>
                                                     <div class="col-lg-6 col-sm-12">
                                                         <div class="form-group">
                                                             <label for="inputPoils" class="mt-2">Poils :</label>
-                                                                <select class="form-control " class="selectPoils" id="robe">
+                                                                <select class="form-control " class="selectPoils" name="robe" id="robe">
                                                                     <option>Courts</option>
                                                                     <option>Mi-longs</option>
                                                                     <option>Long</option>
                                                                 </select>
                                                             <label for="inputCouleur" class="mt-2">Couleur :</label>
-                                                                <select class="form-control" class="selectCouleur" id="popCouleur">
+                                                                <select class="form-control" class="selectCouleur" name="couleur" id="popCouleur">
 
                                                                 </select>
                                                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
-                                                                <input class="form-control " type="number" placeholder="100" id="taille">
+                                                                <input class="form-control " type="number" placeholder="100" name="taille" id="taille">
                                                             <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
-                                                                <input class="form-control " type="float" placeholder="1.3" id="poids">
+                                                                <input class="form-control " type="float" placeholder="1.3" name="poids" id="poids">
                                                             <label for="specTextArea" class="mt-2">Spécificités :</label>
-                                                            <textarea class="form-control"  id="specificites" rows="3"></textarea>
-                                                            <input type="hidden" id="idUtilisateur" value="<?php echo $_SESSION["user_id"];?>"></input>
+                                                            <textarea class="form-control"  id="specificites" name="specificites" rows="3"></textarea>
+                                                            <input type="hidden" name="idUtilisateur" id="idUtilisateur" value="<?php echo $_SESSION["user_id"];?>">
+                                                            <input type="hidden" name="addAnimal">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -351,6 +335,10 @@ if(!isset($_SESSION["user_id"]))
                                                     <div class="col-lg-3 col-sm-12">
                                                         <button type="button "  data-toggle="list" href="#list-compagnons" class="btn btn-block btn-outline-info">Annuler</button>
                                                     </div>                                            
+                                                </div>
+
+                                                <div class="row mb-3" id="resultAjoutAnimal">
+
                                                 </div>
                                             </div>
                                         </div>
@@ -426,20 +414,7 @@ if(!isset($_SESSION["user_id"]))
     <script src="../../javascript/lostAnimal.js"></script>
     <script src="../../javascript/animalIsBack.js"></script>
     <script src="../../javascript/affichageMonCompte.js"></script>
+
     <script src="../../javascript/fontAwesome.js"></script>
     
 </html>
-
-
-
-
-
-
-
-
-
-<?php
-
-
-
-

@@ -54,7 +54,7 @@ if(isset($_SESSION["user_id"]))
     $photoAnimalDao = New PhotoAnimalDataAccess();
     $photoAnimalService = New PhotoAnimalService($photoAnimalDao);
 
-    $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+
 
 } else {
     header('Location: accueil.php');
@@ -125,20 +125,29 @@ if (isset($_POST["updateUserInfos"])){
 
 if (isset($_POST["addAnimal"])){
 
+    if(empty($_POST["nomAnimal"])){
+        $response_array['status'] = 'error';  
+        $response_array['message'] = 'Le nom ne peux être vide !';
+        header('Content-type: application/json; charset=UTF-8');
+        $error = (json_encode($response_array));
+        return $error;
+    }else {
+    
+        $animal = new Animaux($_POST);
+        $serviceAnimaux->serviceAddUserAnimal($animal);
+        $avoirCouleur = new AvoirCouleur($animal);
+        $avoirCouleurService->serviceAdd($avoirCouleur);
+        if (!$_FILES["photo"]) {
+            echo "Problème de transfert";
+            return json_encode("error");
+        } else {
 
-
-    $animal = new Animaux($_POST);
-    $serviceAnimaux->serviceAddUserAnimal($animal);
-    $avoirCouleur = new AvoirCouleur($animal);
-    $avoirCouleurService->serviceAdd($avoirCouleur);
-    if (!$_POST["file"]) {
-        echo "Problème de transfert";
-        return false;
-    } else {
-
-        $photoAnimal = new PhotoAnimal($_POST["file"], $animal->getIdAnimal());
-        $photoAnimalService->serviceAdd($photoAnimal);
+            $photoAnimal = new PhotoAnimal($_FILES["photo"], $animal->getIdAnimal());
+            $photoAnimalService->serviceAdd($photoAnimal);
+            return json_encode("success");
+        }
     }
+    
 }
     
 

@@ -66,7 +66,17 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             return $data;
         }
 
-        public function daoSelect($id){}
+        public function daoSelect($id){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from animaux as A INNER JOIN race as B on A.id_race = B.id_race INNER JOIN appartenir_espece as C on A.id_race = C.id_race INNER JOIN espece as D on C.ID_ESPECE = D.ID_ESPECE INNER JOIN avoir_couleur as E on A.ID_ANIMAL=E.ID_ANIMAL INNER JOIN couleur_animal as F on E.ID_COULEUR=F.ID_COULEUR INNER JOIN photo_animal as G on A.ID_ANIMAL = G.ID_ANIMAL  where A.ID_ANIMAL = ?');
+            $stmt->bind_param('i',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
 
 
         public function daoCount(){}

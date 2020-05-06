@@ -1,0 +1,43 @@
+<?php
+include_once '../service/AnimauxService.php';
+include_once '../data-access/AnimauxDataAccess.php';
+
+if(isset($_GET)){
+    $id = key($_GET);
+    $daoAnimaux = new AnimauxDataAccess();
+    $serviceAnimaux = new AnimauxService($daoAnimaux);
+
+    $dataAnimaux = $serviceAnimaux->serviceSelect($id);
+
+    echo '
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <form class="formPerte">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Date de la disparition :</p>
+                        <input type="date" name="datePerte" class="mb-3"/>
+                        <label for="textAreaperte">Quelques précisions concernant le lieu ? L\'heure ?</label>
+                        <textarea class="form-control mb-3" name="precisionPerte" rows="3"></textarea>
+                        <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant <a href="animaux-perdus.php">ici</a> , <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                        <input type="hidden" name="idAnimalPerdu" value="'.$dataAnimaux["ID_ANIMAL"].'"></input>
+                        <button type="button submit" class="btn btn-primary lost" id="perte">Signaler Perdu</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+         ';
+
+}
+

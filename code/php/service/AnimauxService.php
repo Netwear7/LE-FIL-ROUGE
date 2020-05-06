@@ -39,7 +39,7 @@
 
         public function serviceSelect($id)
         {
-            $data = $this->getDataAccessObject()->daoSelect($this->id);
+            $data = $this->getDataAccessObject()->daoSelect($id);
             return $data;
         }
 

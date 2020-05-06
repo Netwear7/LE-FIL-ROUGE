@@ -73,8 +73,7 @@ session_start();
                 
             echo 
             '
-            <div class="row mt-1">
-                <div class="col-8  offset-2 border rounded border-black">
+                <div class="col-8 mt-2  offset-2 border rounded border-black">
                     <div class="row">
                         <div class="col-lg-4 col-sm-12 ">
                             <div class="row">
@@ -96,12 +95,13 @@ session_start();
                             </div>
                             ';
                             $perdu = $servicePerte->serviceSelect($dataAnimaux[$i]["ID_ANIMAL"]);
-                            $pasPerdu = '<a href="" data-toggle="modal" data-target="#modalPerdu'.$i.'">Signaler perdu</a>';
-                            $signalerRetrouver = '<a href="" data-toggle="modal" data-target="#modalRetrouvé'.$i.'">Signaler Retrouvé</a>';
+                            $pasPerdu = '<button class="btn btn-link lost" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"  data-toggle="modal" data-target="#modalPerdu">Signaler perdu</button>';
+                            $signalerRetrouver = '<button class="btn btn-link isBack" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetrouvé">Signaler Retrouvé</button>';
                             echo empty($perdu) ?  $pasPerdu : $signalerRetrouver ;                                                                            ;
                         echo '                            
                         </div>
                         <div class="col-lg-5 col-sm-12">
+                        
                             <div class="row mt-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <ul class="list-group list-group-flush">
@@ -133,13 +133,12 @@ session_start();
                         </div>
                         <div class="col-lg-1 col-sm-12">
                             <div class="row">
-                                <button type="button" class="btn  " id="modAnimal-list" data-toggle="list" href="#list-modAnimal" role="tab" aria-controls="modAnimal"><i class="fas fa-edit"></i></button>
-                                <button type="button" class="btn " data-toggle="modal" data-target="#modalRetrait'.$i.'"><i class="fas fa-times"></i></button>
+                                <button type="button" class="btn updateAnimal" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="modAnimal-list" data-toggle="list" href="#list-modAnimal" role="tab" aria-controls="modAnimal"><i class="fas fa-edit"></i></button>
+                                <button type="button" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" class="btn remove"><i class="fas fa-times"></i></button>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>      
+                    </div> 
+                </div>     
     
             ';
 
@@ -147,91 +146,7 @@ session_start();
     }
 
 
-function displayModals($dataAnimaux){
-    if (!empty($dataAnimaux)){
-        $count = count($dataAnimaux);
-        for ($i = 0; $i < $count ; $i++) {
-    echo '
-    <div class="modal fade" id="modalPerdu'.$i.'" tabindex="-1" role="dialog" aria-labelledby="modalPerduTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <form class="formPerte">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Date de la disparition :</p>
-                        <input type="date" name="datePerte" class="mb-3"/>
-                        <label for="textAreaperte">Quelques précisions concernant le lieu ? L\'heure ?</label>
-                        <textarea class="form-control mb-3" name="precisionPerte" rows="3"></textarea>
-                        <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant <a href="animaux-perdus.php">ici</a> , <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <input type="hidden" name="idAnimalPerdu" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
-                        <button type="button submit" class="btn btn-primary lost" id="perte">Signaler Perdu</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-            
-    <!-- Modal signaler retrouvé -->
-    <div class="modal fade" id="modalRetrouvé'.$i.'" tabindex="-1" role="dialog" aria-labelledby="modalRetrouvéTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" class="modalRetrouvéTitle1">Confirmez vous avoir Retrouvé votre animal?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <small id="lostAnimal" class="form-text text-muted">Si c\'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
-                </div>
-                <div class="modal-footer">
-                    <form class="formRetrouve">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <input type="hidden" name="idAnimalRetrouve" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
-                        <button type="button submit" class="btn btn-primary name="animalRetrouve">Confirmer</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-    <!-- Modal -->
-    <div class="modal fade" id="modalRetrait'.$i.'" tabindex="-1" role="dialog" aria-labelledby="modalRetraitTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalRetraitCenterTitle">Êtes vous sûr de vouloir retirer la fiche?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>En cliquant sur le bouton ci-dessous vous confirmez le retrait de la fiche animale de vos fiches. Une fois l\'action validée, la fiche ne sera plus disponible</p>
-                    <p class="mt-2">Confirmer le retrait ?</p>
-                </div>
-                <div class="modal-footer">
-                    <form class="formRetrait">
-                        <input type="hidden" name="couleurAnimalRetrait" value="'.$dataAnimaux[$i]["ID_COULEUR"].'"></input>
-                        <input type="hidden" name="idAnimalRetrait" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button submit"  class="btn btn-outline-info" name="removeUserAnimal" value="true">Confirmer le retrait</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-         ';
-}
-    }
-}
+
 
 
 
@@ -274,3 +189,6 @@ function dateFr($date){
 ?>
 
 
+<script src="../../javascript/showLostModal.js"></script>
+<script src="../../javascript/showModalRetrait.js"></script>
+<script src="../../javascript/showAnimalIsBackModal.js"></script>

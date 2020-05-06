@@ -9,10 +9,10 @@
 
 
         public function __construct($photo,$id){
-            $this->photoNom = $photo['photo']['name']; ;
-            $this->photoTaille = $photo['photo']['size'];
-            $this->photoType =  $photo['photo']['type'];
-            $this->blob = file_get_contents ($photo['photo']['tmp_name']);
+            $this->photoNom = $photo["name"]; ;
+            $this->photoTaille = $photo["size"];
+            $this->photoType =  $photo['type'];
+            $this->blob = file_get_contents ($photo['tmp_name']);
             $this->idAnimal = $id;
         }
 

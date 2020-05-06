@@ -112,7 +112,7 @@ session_start();
                             </div>
                             <div class="col-lg-1 col-sm-12">
                                 <div class="row">
-                                    <button type="button" class="btn " data-toggle="modal" data-target="#modalRetrait'.$i.'"><i class="fas fa-times"></i></button>
+                                    <button type="button" class="btn removeFavoris " value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetraitFavoris"><i class="fas fa-times"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -155,3 +155,5 @@ session_start();
         }
 
 ?>
+
+<script src="../../javascript/showRemoveFavouriteAnimalModal.js"></script>

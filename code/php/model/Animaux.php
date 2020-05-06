@@ -30,9 +30,9 @@
 			$this->tailleAnimal = $infos["taille"];
 			$this->robeAnimal = $infos["robe"];
 			$this->especeAnimal = $infos["especeAnimale"];
-			$this->raceAnimal = $infos["raceAnimale"];
+			$this->raceAnimal = $infos["race"];
 			$this->idUtilisateurAnimal = $infos["idUtilisateur"];
-			$this->sexeAnimal = $infos["sexeAnimal"];
+			$this->sexeAnimal = $infos["sexe"];
 			$this->couleurAnimal = $infos["couleur"];
 
         }
