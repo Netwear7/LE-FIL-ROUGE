@@ -24,6 +24,7 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="../../javascript/navbarScroll.js"></script>
+        <script src="https://kit.fontawesome.com/c24fee648d.js" crossorigin="anonymous"></script>
         <!-- Carrousel pause script-->
         
     
@@ -45,12 +46,15 @@
             var_dump($_POST);
             if(isset($_POST["reservation"]) && !empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
                 echo '<div class="row">
-                <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte.<br>
-                                                                                                Un mail de confirmation va vous être adressé</div>
+                <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
+                                                                                                Un mail de confirmation va vous être adressé.</div>
                 </div>';
             }
             elseif(isset($_POST["reservation"]) && (empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal"]))){
-                echo '<div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert">Veuillez remplir tous les champs du formulaire</div>';
+                echo '<div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
+                                                                                                     <span>Veuillez remplir tous les champs du formulaire</span> 
+                                                                                                     <i class="fas fa-exclamation-triangle ml-3"> </i>
+                      </div>';
             }
             
             ?>
