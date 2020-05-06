@@ -4,8 +4,7 @@ include_once '../data-access/AnimauxDataAccess.php';
 
 
 
-    if(isset($_GET)){
-        $id = key($_GET);
+
     echo '
 
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -22,15 +21,14 @@ include_once '../data-access/AnimauxDataAccess.php';
                 </div>
                 <div class="modal-footer">
                     <form class="formRetrait">
-                        <input type="hidden" name="couleurAnimalRetrait" value="'.$dataAnimaux["ID_COULEUR"].'"></input>
-                        <input type="hidden" name="idAnimalRetrait" value="'.$id.'"></input>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button submit"  class="btn btn-outline-info" name="removeUserAnimal" value="true">Confirmer le retrait</button>
+                        <button type="button submit" id="removeAnimal" name="" value=""  class="btn btn-outline-info">Confirmer le retrait</button>
                     </form>
                 </div>
             </div>
         </div>
 
          ';
-    
-}
+?>
+
+<script src="../../javascript/removeUserAnimal.js"></script>

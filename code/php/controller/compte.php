@@ -418,5 +418,6 @@ if(!isset($_SESSION["user_id"]))
     <script src="../../javascript/affichageMonCompte.js"></script>
     <script src="../../javascript/lostAnimal.js"></script>
     <script src="../../javascript/fontAwesome.js"></script>
+
     
 </html>

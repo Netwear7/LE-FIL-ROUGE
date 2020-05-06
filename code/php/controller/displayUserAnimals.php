@@ -133,8 +133,8 @@ session_start();
                         </div>
                         <div class="col-lg-1 col-sm-12">
                             <div class="row">
-                                <button type="button" class="btn updateAnimal" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="modAnimal-list" data-toggle="list" href="#list-modAnimal" role="tab" aria-controls="modAnimal"><i class="fas fa-edit"></i></button>
-                                <button type="button" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" class="btn remove"><i class="fas fa-times"></i></button>
+                                <button type="button" class="btn updateAnimal"  value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="modAnimal-list" data-toggle="list" href="#list-modAnimal" role="tab" aria-controls="modAnimal"><i class="fas fa-edit"></i></button>
+                                <button type="button" class="btn remove" name="'.$dataAnimaux[$i]["ID_COULEUR"].'" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="removeAnimal-list" data-toggle="list" href="#modalRetrait" role="tab" aria-controls="removeAnimal"><i class="fas fa-times"></i></button>
                             </div>
                         </div>
                     </div> 
@@ -190,6 +190,7 @@ function dateFr($date){
 
 
 <script src="../../javascript/showLostModal.js"></script>
-<script src="../../javascript/showModalRetrait.js"></script>
 <script src="../../javascript/showAnimalIsBackModal.js"></script>
 <script src="../../javascript/displayAnimalUpdatePanel.js"></script>
+<script src="../../javascript/showModalRetrait.js"></script>
+

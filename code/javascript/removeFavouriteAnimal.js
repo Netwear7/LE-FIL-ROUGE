@@ -1,10 +1,22 @@
 $(document).ready(function (){
 
-    $('.removeFavouriteAnimal').submit(function (e) {
-        e.preventDefault();
-        var userId = $('#id_utilisateur').val();
-        var animalId = $('#id_animal').val();
-            data = ({ "retraitFavoris" : true, "actual" : actualPassword, "newPassword" : newPassword, "confirmedNew" : confirmedNew })
-            $('#resultRemoveFavourite').load("compteController.php", data);
-        });
+        $('button#removeFavoris').click(function(e){
+                e.preventDefault();
+                var id = $(this).val();
+                var idUser = $(this).attr('name');
+                alert(idUser);
+                alert(id);
+                $.ajax(
+                        {
+                            url: 'compteController.php',
+                            method: "POST",
+                            data : {
+                                
+                                    "retraitFavoris" : id,
+                                    "id_utilisateur" : idUser
+                                
+                            }
+                        }   
+                    )
+        })
     });

@@ -9,6 +9,7 @@ $(document).ready(function (){
             {
                 url: 'compteController.php',
                 method: "POST",
+                dataType: 'JSON',
                 data : {
                     updatePassword : true, 
                     actual : actualPassword, 
@@ -16,6 +17,13 @@ $(document).ready(function (){
                     confirmedNew : confirmedNew
 
                     
+                },
+                success: function(response){
+                    var len = response.length;
+                    for(var i=0; i<len; i++){
+                        alert(response[i].error);
+                        alert(response[i].code);
+                    }        
                 }
             }   
         )

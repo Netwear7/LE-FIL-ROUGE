@@ -71,23 +71,22 @@ if(isset($_POST["updatePassword"])){
             if (preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{6,}$#', $_POST["confirmedNew"])) {
                 $resultUpdate = $serviceUtilisateur->serviceUpdatePassword($_SESSION["user_id"],$_POST); 
                 if($resultUpdate == true){
-                    echo '
-                    <div class="alert alert-success col-12 mt-2 text-center" role="alert">
-                    La modification du mot de passe a bien été effectuée  !
-                    </div>';
+                    $result = '<div class="alert alert-success col-12 mt-2 text-center" role="alert">La modification du mot de passe a bien été effectuée  !</div>';
+                    $return_arr[] = array("success" => $result,"code" => "111");
+                    echo json_encode($result);
                 }
             } else {
-                echo '
-                <div class="alert alert-warning col-12 mt-2 text-center" role="alert">
-                Le mot de passe doit contenir entre 0 et 9 caractères et contenir au moins un caractère spécial !
-                </div>';
+                $result = '<div class="alert alert-warning col-12 mt-2 text-center" role="alert">Le mot de passe doit contenir entre 0 et 9 caractères et contenir au moins un caractère spécial !</div>';
+                $return_arr[] = array("error" => $result,"code" => "888");
+                echo json_encode($result);
             }
 
         } else {
-            echo '
-            <div class="alert alert-warning col-12 mt-2 text-center" role="alert">
+            $result ='<div class="alert alert-warning col-12 mt-2 text-center" role="alert">
             Les mots de passes ne correspondent pas !
             </div>';
+            $return_arr[] = array("error" => $result,"code" => "999");
+            return json_encode($return_arr);
         }
 
         
