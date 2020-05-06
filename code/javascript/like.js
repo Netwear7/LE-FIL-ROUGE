@@ -24,4 +24,5 @@ $(document).ready(function(){
 document.querySelectorAll('a.js-like').forEach(function(link){
 link.addEventListener('click', onClickBtnLike);
 })
+
 })
