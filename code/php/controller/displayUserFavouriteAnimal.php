@@ -157,3 +157,4 @@ session_start();
 ?>
 
 <script src="../../javascript/showRemoveFavouriteAnimalModal.js"></script>
+<script src="../../javascript/lostAnimal.js"></script>

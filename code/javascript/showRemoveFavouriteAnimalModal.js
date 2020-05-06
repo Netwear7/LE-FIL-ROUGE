@@ -3,6 +3,6 @@ $(document).ready(function(){
         e.preventDefault();
         var idAnimalToRemove = $(this).val();
         alert(idAnimalToRemove);
-        $('#modalRetrait').load('displayRemoveFavouriteAnimalModal.php',idAnimalToRemove);
+        $('#modalRetraitFavoris').load('displayRemoveFavouriteAnimalModal.php',idAnimalToRemove);
     })
 });

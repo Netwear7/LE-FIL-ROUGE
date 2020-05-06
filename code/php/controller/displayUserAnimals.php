@@ -96,7 +96,7 @@ session_start();
                             ';
                             $perdu = $servicePerte->serviceSelect($dataAnimaux[$i]["ID_ANIMAL"]);
                             $pasPerdu = '<button class="btn btn-link lost" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"  data-toggle="modal" data-target="#modalPerdu">Signaler perdu</button>';
-                            $signalerRetrouver = '<button class="btn btn-link isBack" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetrouvé">Signaler Retrouvé</button>';
+                            $signalerRetrouver = '<button class="btn btn-link isBack" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetrouve">Signaler Retrouvé</button>';
                             echo empty($perdu) ?  $pasPerdu : $signalerRetrouver ;                                                                            ;
                         echo '                            
                         </div>

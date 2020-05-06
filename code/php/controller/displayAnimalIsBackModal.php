@@ -2,13 +2,8 @@
 include_once '../service/AnimauxService.php';
 include_once '../data-access/AnimauxDataAccess.php';
 
-    $daoAnimaux = new AnimauxDataAccess();
-    $serviceAnimaux = new AnimauxService($daoAnimaux);
-
-    $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-    if (!empty($dataAnimaux)){
-        $count = count($dataAnimaux);
-        for ($i = 0; $i < $count ; $i++) {
+if(isset($_GET)){
+    $id = key($_GET);
     echo '
             
 
@@ -24,9 +19,9 @@ include_once '../data-access/AnimauxDataAccess.php';
                     <small id="lostAnimal" class="form-text text-muted">Si c\'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
                 </div>
                 <div class="modal-footer">
-                    <form class="formRetrouve">
+                    <form id="formRetrouve">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <input type="hidden" name="idAnimalRetrouve" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>
+                        <input type="hidden" name="idAnimalRetrouve" value="'.$id.'"></input>
                         <button type="button submit" class="btn btn-primary name="animalRetrouve">Confirmer</button>
                     </form>
                 </div>
@@ -35,4 +30,7 @@ include_once '../data-access/AnimauxDataAccess.php';
 
          ';
         }
-    }
+
+        ?>
+        <script src="../../javascript/animalRetrouve.js"></script>
+    

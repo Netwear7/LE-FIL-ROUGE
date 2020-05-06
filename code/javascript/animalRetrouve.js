@@ -1,5 +1,7 @@
+
+
 $(document).ready(function (){
-    $('.formRetrouve').submit(function (e) {
+    $('#formRetrouve').submit(function (e) {
         e.preventDefault();
         var idAnimalRetrouve = $(this).find('input[name="idAnimalRetrouve"]').val();
         $.ajax(
@@ -11,11 +13,11 @@ $(document).ready(function (){
                         "animalRetrouve" : true,
                         idAnimalRetrouve : idAnimalRetrouve
 
-                    
+
                 }
             }   
         ).done(function(){
-
+            alert("coucou");
         })
     });
 });

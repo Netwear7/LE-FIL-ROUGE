@@ -2,20 +2,16 @@
 include_once '../service/AnimauxService.php';
 include_once '../data-access/AnimauxDataAccess.php';
 
-if(isset($_GET)){
+ if(isset($_GET)){
     $id = key($_GET);
-    $daoAnimaux = new AnimauxDataAccess();
-    $serviceAnimaux = new AnimauxService($daoAnimaux);
-
-    $dataAnimaux = $serviceAnimaux->serviceSelect($id);
 
     echo '
 
         <div class="modal-dialog modal-dialog-centered" role="document">
-            <form class="formPerte">
+            <form id="formPerte">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalRetrouvéTitle">Signaler votre animal comme étant perdu ?</h5>
+                        <h5 class="modal-title" id="modalRetrouveTitle">Signaler votre animal comme étant perdu ?</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -29,8 +25,8 @@ if(isset($_GET)){
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <input type="hidden" name="idAnimalPerdu" value="'.$dataAnimaux["ID_ANIMAL"].'"></input>
-                        <button type="button submit" class="btn btn-primary lost" id="perte">Signaler Perdu</button>
+                        <input type="hidden" name="idAnimalPerdu" value="'.$id.'"></input>
+                        <button type="button submit" class="btn btn-primary lost">Signaler Perdu</button>
                     </div>
                 </div>
             </form>
@@ -40,4 +36,7 @@ if(isset($_GET)){
          ';
 
 }
+?>
+
+<script src="../../javascript/lostAnimal.js"></script>
 

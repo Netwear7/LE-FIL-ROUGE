@@ -375,6 +375,10 @@ if(!isset($_SESSION["user_id"]))
 
                             </div>
                         </div>        
+
+                        <!-- Modal retrait animal -->
+                            <div class="modal fade" id="modalRetraitFavoris" tabindex="-1" role="dialog" aria-labelledby="modalRetraitTitle" aria-hidden="true">
+                            </div>
                         
                         
                         <!--Mes dons-->
@@ -411,9 +415,11 @@ if(!isset($_SESSION["user_id"]))
     <script src="../../javascript/removeFavouriteAnimal.js"></script>
     <script src="../../javascript/removeUserAnimal.js"></script>
     <script src="../../javascript/addUserAnimal.js"></script>
-    <script src="../../javascript/lostAnimal.js"></script>
+
     <script src="../../javascript/animalIsBack.js"></script>
     <script src="../../javascript/affichageMonCompte.js"></script>
+    <script src="../../javascript/lostAnimal.js"></script>
+    <script src="../../javascript/animalIsBack.js"></script>
 
     <script src="../../javascript/fontAwesome.js"></script>
     

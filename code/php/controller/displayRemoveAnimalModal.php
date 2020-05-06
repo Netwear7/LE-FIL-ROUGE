@@ -6,11 +6,6 @@ include_once '../data-access/AnimauxDataAccess.php';
 
     if(isset($_GET)){
         $id = key($_GET);
-        $daoAnimaux = new AnimauxDataAccess();
-        $serviceAnimaux = new AnimauxService($daoAnimaux);
-    
-        $dataAnimaux = $serviceAnimaux->serviceSelect($id);
-    if (!empty($dataAnimaux)){
     echo '
 
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -28,7 +23,7 @@ include_once '../data-access/AnimauxDataAccess.php';
                 <div class="modal-footer">
                     <form class="formRetrait">
                         <input type="hidden" name="couleurAnimalRetrait" value="'.$dataAnimaux["ID_COULEUR"].'"></input>
-                        <input type="hidden" name="idAnimalRetrait" value="'.$dataAnimaux["ID_ANIMAL"].'"></input>
+                        <input type="hidden" name="idAnimalRetrait" value="'.$id.'"></input>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                         <button type="button submit"  class="btn btn-outline-info" name="removeUserAnimal" value="true">Confirmer le retrait</button>
                     </form>
@@ -37,5 +32,5 @@ include_once '../data-access/AnimauxDataAccess.php';
         </div>
 
          ';
-    }
+    
 }
