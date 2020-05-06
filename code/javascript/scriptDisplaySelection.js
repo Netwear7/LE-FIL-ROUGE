@@ -12,9 +12,12 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
     function(e){
         $("#pagin li").remove();
         loadPagination();
+        
     })
 
+
 }
+
 
 $("#urgence").click(function(e){
     if($("#urgence").prop("checked") == true){
@@ -36,6 +39,7 @@ $(".simple-select").change(function(e){
 $("#ville").change(function(e){
     loadInfo();
 });
+
 
 
 function loadInfo(){
@@ -61,6 +65,8 @@ function loadInfo(){
     }
 
 }
+
+
 
 function loadPagination(){
     var pageSize = 24;
@@ -92,6 +98,7 @@ function loadPagination(){
 	    showPage(parseInt($(this).text())) 
 	});
 }
+
 
 
 window.onload=function() {

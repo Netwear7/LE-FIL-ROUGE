@@ -40,6 +40,8 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
             $this->getDataAccessObject()->daoAddFavouriteAnimal($idUser, $idAnimal);            
         }
 
+        return $data;
+
     }
 
 }
