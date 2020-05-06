@@ -15,7 +15,7 @@ if(isset($_GET)){
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="bodyModalRetrouve">
                     <small id="lostAnimal" class="form-text text-muted">Si c\'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
                 </div>
                 <div class="modal-footer">

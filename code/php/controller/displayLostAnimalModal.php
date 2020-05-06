@@ -16,7 +16,7 @@ include_once '../data-access/AnimauxDataAccess.php';
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
+                    <div class="modal-body" id="bodyModalPerte">
                         <p>Date de la disparition :</p>
                         <input type="date" name="datePerte" class="mb-3"/>
                         <label for="textAreaperte">Quelques précisions concernant le lieu ? L\'heure ?</label>
