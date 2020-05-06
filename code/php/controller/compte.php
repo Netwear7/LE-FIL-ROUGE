@@ -10,69 +10,25 @@
 session_start();
 
 
-include_once '../model/Utilisateur.php';
-include_once '../service/UtilisateurService.php';
-include_once '../data-access/UtilisateurDataAccess.php';
-include_once '../model/Adresse.php';
-include_once '../service/AdresseService.php';
-include_once '../data-access/AdresseDataAccess.php';
-include_once '../model/Animaux.php';
-include_once '../service/AnimauxService.php';
-include_once '../data-access/AnimauxDataAccess.php';
-include_once '../model/PhotoAnimal.php';
-include_once '../service/PhotoAnimalService.php';
-include_once '../data-access/PhotoAnimalDataAccess.php';
-include_once '../service/RaceService.php';
-include_once '../data-access/RaceDataAccess.php';
-include_once '../model/AvoirCouleur.php';
-include_once '../service/AvoirCouleurService.php';
-include_once '../data-access/AvoirCouleurDataAccess.php';
-include_once '../model/Perte.php';
-include_once '../service/PerteService.php';
-include_once '../data-access/PerteDataAccess.php';
-include_once '../model/AnimauxFavoris.php';
-include_once '../service/AnimauxFavorisService.php';
-include_once '../data-access/AnimauxFavorisDataAccess.php';
-include_once '../service/CouleurAnimalService.php';
-include_once '../data-access/CouleurAnimalDataAccess.php';
-
-include_once '../controller/displayUserAnimals.php';
 
 
 
 
-function dateFr($date){
-    return strftime('%d-%m-%Y',strtotime($date));
-}
 
-if(isset($_SESSION["user_id"]))
+
+
+
+
+
+
+
+
+
+
+
+if(!isset($_SESSION["user_id"]))
 {
 
-    $daoUtilisateur = new UtilisateurDataAccess();
-    $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
-
-    $daoAnimaux = new AnimauxDataAccess();
-    $serviceAnimaux = new AnimauxService($daoAnimaux);
-
-    $daoPerte = new PerteDataAccess();
-    $servicePerte = new PerteService($daoPerte);
-
-    $avoirCouleurDao = new AvoirCouleurDataAccess();
-    $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
-
-    $raceDao = new RaceDataAccess();
-    $raceService = new RaceService($raceDao);
-
-    $photoAnimalDao = New PhotoAnimalDataAccess();
-    $photoAnimalService = New PhotoAnimalService($photoAnimalDao);
-    
-    $couleurDataAccess = new CouleurAnimalDataAccess;
-    $couleurService = New CouleurAnimalService($couleurDataAccess);
-
-
-    $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-
-} else {
     header('Location: accueil.php');
     exit;
 }
@@ -280,17 +236,25 @@ if(isset($_SESSION["user_id"]))
                             </div>
                             <?php 
                             
-                            $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                            affichageAnimaux($dataAnimaux);
-                            displayModals($dataAnimaux);
+
                             ?>
                             <div class="Row" id="resultRetraitAnimal"></div>
-                       </div>
+                        </div>
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
-                        <?php
-                            displayUpdatePanel($dataAnimaux);
-                        ?>
+                        <div class="tab-pane fade" id="list-modAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">
+                            <div class="row">
+                                <div class="col-8 offset-2 border rounded border-black mt-5">
+                                    <div class="row">
+                                        <div class="col-12 text-center">
+                                            <h3>Modifier mon compagnon</h3>
+                                        </div>                                                
+                                    </div>
+                                </div>
+                            </div> 
+                            <form method="POST" id="formUpdateAnimals"enctype="multipart/form-data" action="compteController.php"">
+                            </form>  
+                        </div>
                     
 
 
@@ -367,14 +331,8 @@ if(isset($_SESSION["user_id"]))
                                                                     <option>Long</option>
                                                                 </select>
                                                             <label for="inputCouleur" class="mt-2">Couleur :</label>
-                                                                <select class="form-control" class="selectCouleur" id="couleur">
-                                                                    <?php
-                                                                        $data = $couleurService->serviceSelectAll();
-                                                                        $cmpt = count($data);
-                                                                        for ($i = 0; $i < $cmpt; $i++){
-                                                                            echo '<option value="'.$data[$i]["ID_COULEUR"].'">'.$data[$i]["COULEUR"].'</option>';
-                                                                        }
-                                                                    ?>
+                                                                <select class="form-control" class="selectCouleur" id="popCouleur">
+
                                                                 </select>
                                                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
                                                                 <input class="form-control " type="number" placeholder="100" id="taille">

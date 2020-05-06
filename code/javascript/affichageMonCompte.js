@@ -3,5 +3,7 @@ $( document ).ready(function() {
     $('#updateUserInfos').load("displayUserUpdatePanel.php");
     $('#rowDonations').load('displayDonationsInMyAccount.php');
     $('#rowAnimals').load('displayUserAnimals.php');
-    $('#rowFavouriteAnimals').load('displayUserFavouriteAnimal.php')
+    $('#rowFavouriteAnimals').load('displayUserFavouriteAnimal.php');
+    $('#formUpdateAnimals').load('displayUserAnimalsUpdatePanel.php');
+    $('#popCouleur').load('displayColorsOptions.php');
 });

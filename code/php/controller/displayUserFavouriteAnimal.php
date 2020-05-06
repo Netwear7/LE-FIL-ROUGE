@@ -1,7 +1,15 @@
 <?php
 
+include_once '../model/Animaux.php';
+include_once '../service/AnimauxService.php';
+include_once '../data-access/AnimauxDataAccess.php';
+
 include_once '../data-access/AnimauxFavorisDataAccess.php';
 include_once '../service/AnimauxFavorisService.php';
+
+include_once '../model/PhotoAnimal.php';
+include_once '../service/PhotoAnimalService.php';
+include_once '../data-access/PhotoAnimalDataAccess.php';
 
 
 session_start();

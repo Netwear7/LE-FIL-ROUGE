@@ -3,6 +3,11 @@
 include_once '../service/UtilisateurService.php';
 include_once '../data-access/UtilisateurDataAccess.php';
 
+include_once '../model/Utilisateur.php';
+include_once '../model/Adresse.php';
+include_once '../service/AdresseService.php';
+include_once '../data-access/AdresseDataAccess.php';
+
 session_start();
 
 $daoUtilisateur = new UtilisateurDataAccess();
