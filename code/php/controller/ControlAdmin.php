@@ -22,6 +22,8 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="../../javascript/navbarScroll.js"></script>
+        <script src="https://kit.fontawesome.com/ca25c21894.js" crossorigin="anonymous"></script>
+
 
     </head>
     <body>
@@ -30,13 +32,14 @@
         </nav>
         <div class="container-fluid">
             <div class="row">
-                <div class="offset-lg-1 col-lg-10 mt-5 py-5 bg-grey-light">
+                <div class="offset-lg-1 col-lg-10 mt-2 bg-grey-light">
+                    <a href="displayModalAddInDatabase.php" id="modalAdd" class="" data-toggle="modal" data-target="#add"><i class="fas fa-plus mb-2 mt-2 ml-2"></i></a>
+                    <div id="pload"></div>
                     <select class="form-control" id="tableSelect" name="tableSelect">
                     <?php
                         $controlAdminDAO = new ControlAdminDataAccessDataAccess();
                         $controlAdminService = new ControlAdminService($controlAdminDAO);
                         $data = $controlAdminService->serviceSelectTable();
-                        var_dump($data);
                         foreach($data as $array){
                             if($array["table_name"] == "appartenir_espece" 
                             || $array["table_name"] == "avoir_couleur" 
@@ -50,7 +53,7 @@
                         }
                     ?>
                     </select>
-                    <div id='ptable' class="col-lg-12 py-4 table-responsive">
+                    <div id='ptable' class="col-lg-12 py-2 table-responsive">
 
                     </div>
 

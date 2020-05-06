@@ -117,7 +117,7 @@
     </thead>
     <tbody class="text-center">
         <?php 
-            if(isset($_POST["table"])){
+            if(isset($_POST["table"]) && !empty($_POST["table"])){
                 DisplayTable();
             }
         ?>
