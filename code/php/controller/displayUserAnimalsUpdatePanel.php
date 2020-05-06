@@ -11,16 +11,26 @@ session_start();
 $daoAnimaux = new AnimauxDataAccess();
 $serviceAnimaux = new AnimauxService($daoAnimaux);
 
+
+if(isset($_GET)){
+$id = key($_GET);
+
+$daoAnimaux = new AnimauxDataAccess();
+$serviceAnimaux = new AnimauxService($daoAnimaux);
+$raceDao = new RaceDataAccess();
+$raceService = new RaceService($raceDao);
+$couleurDataAccess = new CouleurAnimalDataAccess;
+$couleurService = New CouleurAnimalService($couleurDataAccess);
+
+$dataAnimaux = $serviceAnimaux->serviceSelect($id);
+
+
     $raceDao = new RaceDataAccess();
     $raceService = new RaceService($raceDao);
     $couleurDataAccess = new CouleurAnimalDataAccess;
     $couleurService = New CouleurAnimalService($couleurDataAccess);
-    $dataAnimaux = $serviceAnimaux->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+
     if (!empty($dataAnimaux)){
-        $count = count($dataAnimaux);
-        $data2 = $raceService->selectAllCatRaces();
-        $count2 = count($data2);
-        for ($i = 0; $i < $count ; $i++) {
     echo '
 
 
@@ -38,11 +48,11 @@ $serviceAnimaux = new AnimauxService($daoAnimaux);
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-4 col-sm-12 offset-4">
-                                        <input type="text" class="form-control" name="nomAnimal" value="'.$dataAnimaux[$i]["NOM"].'">
+                                        <input type="text" class="form-control" name="nomAnimal" value="'.$dataAnimaux["NOM"].'">
                                     </div>
                                     <div class="col-lg-2 col-sm-12 offset-5">
                                         <label for="inputDateNaissance" class="mt-2">Date de naissance : </label>
-                                        <input type="date" class="form-control" name="dateNaissance" value="'.$dataAnimaux[$i]["DATE_NAISSANCE"].'">
+                                        <input type="date" class="form-control" name="dateNaissance" value="'.$dataAnimaux["DATE_NAISSANCE"].'">
                                     </div >
                                 </div>
                             </div>
@@ -65,7 +75,7 @@ $serviceAnimaux = new AnimauxService($daoAnimaux);
                         <label for="inputRace" class="mt-2">Race :</label>
                             <div>
                                 <select class="form-control popSelect"  name="raceAnimale">
-                                    <option value="'.$dataAnimaux[$i]["ID_RACE"].'">'.$dataAnimaux[$i]["NOM_RACE"].'</option>
+                                    <option value="'.$dataAnimaux["ID_RACE"].'">'.$dataAnimaux["NOM_RACE"].'</option>
                                 </select>
                             </div>
                         <label for="inputSexe" class="mt-2">Sexe : </label>
@@ -74,9 +84,9 @@ $serviceAnimaux = new AnimauxService($daoAnimaux);
                                 <option>Femelle</option>
                             </select>
                         <label for="inputNumeroPuce" class="mt-2" >Numéro d\'identification : </label>
-                            <input type="text" class="form-control" name="numeroPuce" value="'.$dataAnimaux[$i]["NO_PUCE"].'">
+                            <input type="text" class="form-control" name="numeroPuce" value="'.$dataAnimaux["NO_PUCE"].'">
                         <label for="textAreaCaractere" class="mt-2">Caractère :</label>
-                            <input type="text" class="form-control " value="'.$dataAnimaux[$i]["CARACTERE"].'"  name="caractere" rows="3">                         
+                            <input type="text" class="form-control " value="'.$dataAnimaux["CARACTERE"].'"  name="caractere" rows="3">                         
                     </div>
                     <div class="col-lg-6 col-sm-12">
                         <div class="form-group">
@@ -96,12 +106,12 @@ $serviceAnimaux = new AnimauxService($daoAnimaux);
 
                             echo '    </select>
                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
-                                <input class="form-control " type="number" value="'.$dataAnimaux[$i]["TAILLE"].'" name="taille">
+                                <input class="form-control " type="number" value="'.$dataAnimaux["TAILLE"].'" name="taille">
                             <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
-                                <input class="form-control " type="float" value="'.$dataAnimaux[$i]["POIDS"].'" name="poids">
+                                <input class="form-control " type="float" value="'.$dataAnimaux["POIDS"].'" name="poids">
                             <label for="specTextArea" class="mt-2">Spécificités :</label>
-                            <input type="text" class="form-control " value="'.$dataAnimaux[$i]["SPECIFICITE"].'" name="specificite" rows="3">
-                            <input type="hidden" name="idAnimal" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"></input>   
+                            <input type="text" class="form-control " value="'.$dataAnimaux["SPECIFICITE"].'" name="specificite" rows="3">
+                            <input type="hidden" name="idAnimal" value="'.$dataAnimaux["ID_ANIMAL"].'"></input>   
                         </div>
                     </div>
                 </div>
@@ -114,6 +124,10 @@ $serviceAnimaux = new AnimauxService($daoAnimaux);
                     </div>                                            
                 </div>
         ';
-        } 
         
     }
+}
+
+?>
+
+<script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>

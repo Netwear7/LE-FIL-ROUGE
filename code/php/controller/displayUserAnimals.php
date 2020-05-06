@@ -192,3 +192,4 @@ function dateFr($date){
 <script src="../../javascript/showLostModal.js"></script>
 <script src="../../javascript/showModalRetrait.js"></script>
 <script src="../../javascript/showAnimalIsBackModal.js"></script>
+<script src="../../javascript/displayAnimalUpdatePanel.js"></script>

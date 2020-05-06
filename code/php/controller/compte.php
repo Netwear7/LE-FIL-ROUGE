@@ -409,18 +409,14 @@ if(!isset($_SESSION["user_id"]))
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script type="text/javascript" src="script.js"></script>
     <script src="../../javascript/scriptDisplayRaceInAddAnimals.js"></script>
-    <script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>
+
     <script src="../../javascript/updateUserInfos.js"></script>
     <script src="../../javascript/updatePassword.js"></script>
     <script src="../../javascript/removeFavouriteAnimal.js"></script>
     <script src="../../javascript/removeUserAnimal.js"></script>
     <script src="../../javascript/addUserAnimal.js"></script>
-
-    <script src="../../javascript/animalIsBack.js"></script>
     <script src="../../javascript/affichageMonCompte.js"></script>
     <script src="../../javascript/lostAnimal.js"></script>
-    <script src="../../javascript/animalIsBack.js"></script>
-
     <script src="../../javascript/fontAwesome.js"></script>
     
 </html>

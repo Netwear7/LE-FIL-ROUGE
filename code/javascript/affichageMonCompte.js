@@ -4,9 +4,7 @@ $( document ).ready(function() {
     $('#rowDonations').load('displayDonationsInMyAccount.php');
     $('#rowAnimals').load('displayUserAnimals.php');
     $('#rowFavouriteAnimals').load('displayUserFavouriteAnimal.php');
-    $('#formUpdateAnimals').load('displayUserAnimalsUpdatePanel.php');
     $('#popCouleur').load('displayColorsOptions.php');
-
     $('#modalRetrouve').load('displayAnimalIsBackModal.php');
     $('#modalRetrait').load('displayRemoveAnimalModal.php');
 });

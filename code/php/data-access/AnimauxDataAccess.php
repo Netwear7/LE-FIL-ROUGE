@@ -72,7 +72,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $stmt->bind_param('i',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
-            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
             $rs->free();
             $this->deconnexion($mysqli);
             return $data;
