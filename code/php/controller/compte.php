@@ -336,7 +336,7 @@ if(!isset($_SESSION["user_id"]))
                                                         <button type="button submit" name="addAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
                                                     </div>
                                                     <div class="col-lg-3 col-sm-12">
-                                                        <button type="button "  data-toggle="list" href="#animalTab" class="btn btn-block btn-outline-info">Annuler</button>
+                                                        <button type="button"  id="abortAddAnimal" class="btn btn-block btn-outline-info">Annuler</button>
                                                     </div>                                            
                                                 </div>
 
@@ -420,6 +420,7 @@ if(!isset($_SESSION["user_id"]))
     <script src="../../javascript/addUserAnimal.js"></script>
     <script src="../../javascript/affichageMonCompte.js"></script>
     <script src="../../javascript/lostAnimal.js"></script>
+    <script src="../../javascript/abortAddUserAnimal.js"></script>
     <script src="../../javascript/fontAwesome.js"></script>
 
     

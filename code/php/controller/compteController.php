@@ -399,7 +399,6 @@ if (isset($_POST["addAnimal"])){
                 }
             }
         }
-
     }
 }
 

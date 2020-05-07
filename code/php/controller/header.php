@@ -149,7 +149,7 @@
                     echo '<li class="nav-item dropdown ml-3">
                                 <a class="nav-link dropdown-toggle" href="#" id="DropdownProfil" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profil</a>
                                 <div class="dropdown-menu dropdown-menu-right bg-1 border-0" aria-labelledby="DropdownProfil">
-                                    <a class="dropdown-item text-center" href="compte.php#list-compagnons">Mon compte</a>
+                                    <a class="dropdown-item text-center" href="compte.php">Mon compte</a>
                                     <div class="dropdown-divider"></div>
                                     <form class="dropdown-item" action="" method="POST">
                                         <button type="button submit" class="btn" name="logout">Déconnexion</a>

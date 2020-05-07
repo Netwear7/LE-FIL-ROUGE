@@ -120,7 +120,7 @@ $dataAnimaux = $serviceAnimaux->serviceSelect($id);
                         <button type="button submit" name="updateAnimalInfos" class="btn btn-block btn-outline-info">Modifier</button>
                     </div>
                     <div class="col-lg-3 col-sm-12">
-                        <button type="button " name="annuler" data-toggle="list" href="#animalTab" class="btn btn-block btn-outline-info">Annuler</button>
+                        <button type="button " id="abortUpdateAnimal" data-toggle="list" class="btn btn-block btn-outline-info">Annuler</button>
                     </div>                                            
                 </div>
         ';
@@ -131,3 +131,4 @@ $dataAnimaux = $serviceAnimaux->serviceSelect($id);
 ?>
 
 <script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>
+<script src="../../javascript/abortUpdateUserAnimal.js"></script>
