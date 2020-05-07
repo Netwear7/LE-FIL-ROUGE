@@ -1356,6 +1356,7 @@ CREATE TABLE `utilisateur` (
   `MDP` varchar(100) NOT NULL,
   `ADRESSE_EMAIL` varchar(100) NOT NULL,
   `NUM` varchar(50) NOT NULL,
+  `ROLE` varchar(50) NOT NULL,
   `ID_ADRESSE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -1363,12 +1364,12 @@ CREATE TABLE `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID_UTILISATEUR`, `NOM`, `PRENOM`, `PSEUDO`, `MDP`, `ADRESSE_EMAIL`, `NUM`, `ID_ADRESSE`) VALUES
-(1, 'JO', 'stoev', 'SHAKKA', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'test@test.fr', '0621630429', 1),
-(2, 'pierre', 'pentier', 'chef2chantier', '$2y$10$myL.toY8aW3zI/Fgku/.V.gq.rZH/ka7TyXpEN3RRyHCm2SDRQskK', 'pentier.pierre@yahoo.fr', '0615151515', 3),
-(3, 'TESTNOM', 'TESTPRENOM', 'TESTPSEUDO', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'test2@test.fr', '0101', 14),
-(4, 'Pentier', 'Pierre', 'fsefsefsef', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'g@g.com', '0781391574', 5),
-(5, 'VD', 'Jean', 'JCVD', '$2y$10$UDAz/dQ85qFGL.fIWOD.c.f1Eef8M.Th9/k1k6./bflYvdKHmMRzC', 'test@test.com', '0606060606', 28);
+INSERT INTO `utilisateur` (`ID_UTILISATEUR`, `NOM`, `PRENOM`, `PSEUDO`, `MDP`, `ADRESSE_EMAIL`, `NUM`, `ROLE`,`ID_ADRESSE`) VALUES
+(1, 'JO', 'stoev', 'SHAKKA', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'test@test.fr', '0621630429', '[user]',1),
+(2, 'pierre', 'pentier', 'chef2chantier', '$2y$10$myL.toY8aW3zI/Fgku/.V.gq.rZH/ka7TyXpEN3RRyHCm2SDRQskK', 'pentier.pierre@yahoo.fr', '0615151515', '[user]', 3),
+(3, 'TESTNOM', 'TESTPRENOM', 'TESTPSEUDO', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'test2@test.fr', '0101', '[user]', 14),
+(4, 'Pentier', 'Pierre', 'fsefsefsef', '$2y$10$nQSMAHozojfl4erlotsh7eKZSJdOSOS01.RHLYybM6H7ser7IShZW', 'g@g.com', '0781391574', '[user]', 5),
+(5, 'VD', 'Jean', 'JCVD', '$2y$10$UDAz/dQ85qFGL.fIWOD.c.f1Eef8M.Th9/k1k6./bflYvdKHmMRzC', 'test@test.com', '0606060606', '[user]', 28);
 
 --
 -- Index pour les tables déchargées
