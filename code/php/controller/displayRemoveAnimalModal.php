@@ -25,9 +25,10 @@ if(isset($_POST))
                     <p class="mt-2">Confirmer le retrait ?</p>
                 </div>
                 <div class="modal-footer">
-                    <form class="formRetrait">
-                        <button type="button submit" id="removeAnimal" name="'.$id.'" value="'.$couleur.'"  class="btn btn-outline-info">Confirmer le retrait</button>
+                    <form >
+                        <button type="button" id="removeAnimal" name="'.$id.'" value="'.$couleur.'"  class="btn btn-outline-info">Confirmer le retrait</button>
                     </form>
+                    <div class="Row" id="resultRetraitAnimal"></div>
                 </div>
             </div>
         </div>

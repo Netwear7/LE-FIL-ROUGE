@@ -226,8 +226,7 @@ if(!isset($_SESSION["user_id"]))
                             </div>
 
 
-                            <div class="Row" id="resultRetraitAnimal"></div>
-                            </div>
+                        </div>
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
                         <div class="tab-pane fade" id="updateAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">

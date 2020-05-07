@@ -424,10 +424,31 @@ if (isset($_POST["updateAnimalInfos"])){
 }
 
 if (isset($_POST["removeUserAnimal"])){
+    if(empty($_POST["couleur"]) || empty($_POST["idAnimal"])){
+        $response_array['status'] = '01'; 
+        $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard !';
+        header('Content-type: application/json; charset=UTF-8');
+        $error = (json_encode($response_array));
+        echo $error;
+    } else {
+        if (!preg_match("/^\d+$/",$_POST["couleur"]) || !preg_match("/^\d+$/",$_POST["idAnimal"]) ){
+            $response_array['status'] = '01'; 
+            $response_array['message'] = 'Ca ne sers à rien d\'essayer c\'est sécurisé!';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        } else {
+            $photoAnimalService->serviceDelete($_POST);
+            $avoirCouleurService->serviceDelete($_POST);
+            $serviceAnimaux->serviceDelete($_POST);
+            $response_array['status'] = 'success'; 
+            $response_array['message'] = 'Le retrait a été effectué';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        }
+    }
 
-    $photoAnimalService->serviceDelete($_POST);
-    $avoirCouleurService->serviceDelete($_POST);
-    $serviceAnimaux->serviceDelete($_POST);
 }
 
 if (isset($_POST["perte"])){

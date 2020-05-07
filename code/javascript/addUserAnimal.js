@@ -25,9 +25,17 @@ $(document).ready(function(){
             async: true,
             success: function (data) {
                 if(data.status != 'success'){
-                    $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000);
+                    $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000)
                 } else {
                     $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000);
+                    setTimeout(function(){
+                        $('#list-addAnimal').removeClass( "active", "show" );
+                    },5000);
+                    setTimeout(function(){
+                        $('#rowAnimals').load('displayUserAnimals.php');   
+                        $('#animalTab').tab('show');
+                    },5000);
+                    $("#addAnimal-list").removeClass( "active" ).attr("aria-selected","false");
                 }                       
             },
             cache: false,
