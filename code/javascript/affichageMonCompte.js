@@ -7,4 +7,5 @@ $( document ).ready(function() {
     $('#popCouleur').load('displayColorsOptions.php');
     $('#modalRetrouve').load('displayAnimalIsBackModal.php');
     $('#modalRetrait').load('displayRemoveAnimalModal.php');
+
 });

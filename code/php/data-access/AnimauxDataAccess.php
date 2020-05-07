@@ -181,7 +181,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoDelete($infosAnimal)
         {
-            $id = $infosAnimal["idAnimalRetrait"];
+            $id = $infosAnimal["idAnimal"];
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM animaux where ID_ANIMAL = ?');
             $stmt->bind_param('s',$id);

@@ -24,17 +24,11 @@ $(document).ready(function(){
             dataType: "json",
             async: true,
             success: function (data) {
-                if(data.status == 'success'){
-                    $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+nom+' !</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(2500);
-                }else if(data.status == 'error'){
-                    $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+' cela fait que '+nom+' n\'a pas pu être ajouté ! Veuillez réessayer</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(2500);
-                }
-
-            },
-
-            error: function(data){ 
-            
-               alert(data.message);
+                if(data.status != 'success'){
+                    $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000);
+                } else {
+                    $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000);
+                }                       
             },
             cache: false,
             contentType: false,

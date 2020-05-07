@@ -4,7 +4,7 @@ $(document).ready(function (){
         e.preventDefault();
         var actualPassword = $('#inputPassword2').val();
         var newPassword = $('#inputPassword3').val();
-        var confirmedNew = $('#inputPassword3').val();
+        var confirmedNew = $('#inputPassword4').val();
         $.ajax(
             {
                 url: 'compteController.php',
@@ -18,12 +18,12 @@ $(document).ready(function (){
 
                     
                 },
-                success: function(response){
-                    var len = response.length;
-                    for(var i=0; i<len; i++){
-                        alert(response[i].error);
-                        alert(response[i].code);
-                    }        
+                success: function(data){ 
+                    if(data.status != 'success'){
+                        $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdatePassword" ).fadeIn(3000).fadeOut(9000);
+                        } else {
+                            $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdatePassword" ).fadeIn(3000).fadeOut(9000);
+                        }     
                 }
             }   
         )

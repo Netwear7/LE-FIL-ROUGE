@@ -81,7 +81,7 @@
             $this->deconnexion($mysqli);
         }
         public function daoDelete($infos){
-            $id = $infos["idAnimalRetrait"];
+            $id = $infos["idAnimal"];
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM photo_animal where ID_ANIMAL = ?');
             $stmt->bind_param('s',$id);

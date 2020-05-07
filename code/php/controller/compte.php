@@ -1,6 +1,6 @@
 <!--regex for le nom and prénom
 
-/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u
+
 -->
 
 
@@ -66,7 +66,7 @@ if(!isset($_SESSION["user_id"]))
                     <div class="row ">
                         <div class="nav  nav-pills  w-100  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-profile-list" data-toggle="list" href="#profilePanel" role="tab" aria-controls="profile">Mes Informations Personnelles</a>
-                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-myanimals-list" data-toggle="list" href="#list-compagnons" role="tab" aria-controls="myanimals">Mes Compagnons</a>
+                            <a class="list-group-item list-group-item-action bg-grey-light" id="list-myanimals-list" data-toggle="list" href="#animalTab" role="tab" aria-controls="myanimals">Mes Compagnons</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myDonations-list" data-toggle="list" href="#list-donations" role="tab" aria-controls="myDonations">Mes Donations</a>
                             <a class="list-group-item list-group-item-action mt-auto bg-grey-light" data-toggle="modal" data-target="#modalLogout">Se Déconnecter</a>
@@ -132,14 +132,14 @@ if(!isset($_SESSION["user_id"]))
                                             <!--Supprimer mon compte -->
                                             <div class="row justify-content-center">
                                                 <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
-                                                    Supprimer mon Compte
+                                                    Demander à supprimer mes informations
                                                 </button>
                                             
                                                 <div class="collapse mt-2" id="collapseSuppression">
                                                     <div class="card card-body">
-                                                        <p>En cliquant sur le bouton ci-dessous vous confirmez accepter la suppression de votre compte ainsi que de toutes vos données personnelles enregistrées dans nos bases de données, une fois la suppression de votre compte effectuée, vous n'aurez plus accès à votre espace personnel. Pour confirmer, cliquez sur le bouton ci-dessous.</p>
-                                                        <form method="post" action="compteController.php">
-                                                            <button class="btn btn-outline-danger btn-lg btn-block" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="delete">Confirmer la suppression</button>
+                                                        <p>En cliquant sur le bouton ci-dessous, vous nous soummetez une demande pour supprimer votre compte ainsi que toutes vos informations personnelles, nous reviendrons vers vous dans les plus brefs délais</p>
+                                                        <form >
+                                                            <button class="btn btn-outline-danger btn-lg btn-block" type="submit" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" name="delete">Confirmer</button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -147,7 +147,7 @@ if(!isset($_SESSION["user_id"]))
                                         </div>
 
                                         <div class="col-lg-4 col-sm-12">
-                                            <button  type="button" name="modifier" class="btn btn-outline-info" id="updateInfo-list" data-toggle="list" href="#updateUserInfosPanel" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
+                                            <button  type="button" id="modifierInfos" class="btn btn-outline-info" id="updateInfo-list" data-toggle="list" href="#updateUserInfosPanel" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
                                         </div>
                                         <!--modifier mon mdp-->
                                         <div class="col-lg-4 col-sm-12 ">
@@ -197,7 +197,7 @@ if(!isset($_SESSION["user_id"]))
                         </div>
 
                         <!--SECOND PANEL MES COMPAGNONS-->
-                        <div class="tab-pane fade mb-5" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">
+                        <div class="tab-pane fade mb-5" id="animalTab" role="tabpanel" aria-labelledby="list-compagnons-list">
                             <div class="row " id="errorAnimal">
                             
                             </div>
@@ -230,7 +230,7 @@ if(!isset($_SESSION["user_id"]))
                             </div>
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
-                        <div class="tab-pane fade" id="list-modAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">
+                        <div class="tab-pane fade" id="updateAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5">
                                     <div class="row">
@@ -336,7 +336,7 @@ if(!isset($_SESSION["user_id"]))
                                                         <button type="button submit" name="addAnimal" class="btn btn-block btn-outline-info">Ajouter</button>
                                                     </div>
                                                     <div class="col-lg-3 col-sm-12">
-                                                        <button type="button "  data-toggle="list" href="#list-compagnons" class="btn btn-block btn-outline-info">Annuler</button>
+                                                        <button type="button "  data-toggle="list" href="#animalTab" class="btn btn-block btn-outline-info">Annuler</button>
                                                     </div>                                            
                                                 </div>
 

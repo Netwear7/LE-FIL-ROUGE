@@ -19,25 +19,36 @@ $(document).ready(function (){
                 url: 'compteController.php',
                 method: "POST",
                 data : {
-                        NOM : nom,
-                        PRENOM : prenom,
-                        NUM : num,
-                        ADRESSE_EMAIL : mail,
-                        NUMERO : numeroRue,
-                        RUE : rue ,
-                        CODE_POSTAL : cp,
-                        VILLE : ville,
-                        idAdresse : idAdresse ,
-                        idUtilisateur : idUtilisateur,
-                        "updateUserInfos" : true
-
-                    
-                }
+                    NOM : nom,
+                    PRENOM : prenom,
+                    NUM : num,
+                    ADRESSE_EMAIL : mail,
+                    NUMERO : numeroRue,
+                    RUE : rue ,
+                    CODE_POSTAL : cp,
+                    VILLE : ville,
+                    idAdresse : idAdresse ,
+                    idUtilisateur : idUtilisateur,
+                    "updateUserInfos" : true,                 
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data.status != 'success'){
+                        $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultModificationInfos" ).fadeIn(3000).fadeOut(9000);
+                        } else {
+                            $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultModificationInfos" ).fadeIn(3000).fadeOut(9000);
+                            $('#rowUserInfos').load("displayUserInfos.php");
+                            setTimeout(function(){
+                                $('#updateUserInfosPanel').removeClass( "active", "show" );
+                            },4000);
+                            setTimeout(function(){
+                                $('#profilePanel').tab('show');
+                            },4000);
+                            $("#modifierInfos").removeClass( "active" ).attr("aria-selected","false");
+                        }                       
+                },  
             }   
-        ).done(function() {
-            $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">Modifications effectuées avec succès !</div>' ).appendTo( "#resultModificationInfos" ).fadeIn(3000).fadeOut(2500);
-        }).then(function(){
-            setTimeout(location.reload.bind(location), 2200);
-        })
+        )
     });
 });
+

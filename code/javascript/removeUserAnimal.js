@@ -1,10 +1,7 @@
 $(document).ready(function (){
     $('#removeAnimal').click(function (e) {
-        alert("hello");
-        var couleur = $(this).attr('name');
-        alert(couleur);
-        var idAnimal = $(this).val();
-        alert(idAnimal);
+        var couleur = $(this).val();
+        var idAnimal = $(this).attr('name');
         $.ajax({
             url: 'compteController.php',
             method: 'POST',

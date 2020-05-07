@@ -4,8 +4,6 @@ $(document).ready(function (){
                 e.preventDefault();
                 var id = $(this).val();
                 var idUser = $(this).attr('name');
-                alert(idUser);
-                alert(id);
                 $.ajax(
                         {
                             url: 'compteController.php',

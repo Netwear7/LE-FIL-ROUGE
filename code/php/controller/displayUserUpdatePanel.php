@@ -19,7 +19,7 @@ echo
 
 
     <div class="row mt-2">
-        <div class="col-8 offset-2 border rounded border-black ">
+        <div class="col-8 offset-2">
                      
                 <div class="row" >
                     <div class="col-lg-6 col-sm-12">
@@ -77,7 +77,7 @@ echo
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="row justify-content-center">
-                                    <button type="button" class="btn btn-outline-secondary">Annuler les modifications</button>
+                                    <button type="button" id="abortUpdate" class="btn btn-outline-secondary" data-toggle="list" >Annuler les modifications</button>
                                 </div>
                             </div>
                         </div>
@@ -90,3 +90,7 @@ echo
 
 
 ';
+
+?>
+
+<script src="../../javascript/abortUpdateUserInfos.js"></script>
