@@ -1,9 +1,3 @@
-<!--regex for le nom and prénom
-
-
--->
-
-
 <?php
 
 
@@ -229,18 +223,8 @@ if(!isset($_SESSION["user_id"]))
                         </div>
 
                         <!--PARTIE POUR MODIFIER un compagnon V2 /)-->
-                        <div class="tab-pane fade" id="updateAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">
-                            <div class="row">
-                                <div class="col-8 offset-2 border rounded border-black mt-5">
-                                    <div class="row">
-                                        <div class="col-12 text-center">
-                                            <h3>Modifier mon compagnon</h3>
-                                        </div>                                                
-                                    </div>
-                                </div>
-                            </div> 
-                            <form method="POST" id="formUpdateAnimals"enctype="multipart/form-data" action="compteController.php"">
-                            </form>  
+                        <div class="tab-pane fade" id="panelModifyAnimal" role="tabpanel" aria-labelledby="list-modAnimal-list">
+
                         </div>
                     
 

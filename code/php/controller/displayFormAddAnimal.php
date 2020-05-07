@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 echo '
 
@@ -77,7 +78,7 @@ echo '
                                     <input class="form-control " type="float" placeholder="1.3" name="poids" id="poids">
                                 <label for="specTextArea" class="mt-2">Spécificités :</label>
                                 <textarea class="form-control"  id="specificites" name="specificites" rows="3"></textarea>
-                                <input type="hidden" name="idUtilisateur" id="idUtilisateur" value="<?php echo $_SESSION["user_id"];?>">
+                                <input type="hidden" name="idUtilisateur" id="idUtilisateur" value="'.$_SESSION["user_id"].'"
                                 <input type="hidden" name="addAnimal">
                             </div>
                         </div>

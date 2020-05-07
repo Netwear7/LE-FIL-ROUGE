@@ -1,8 +1,9 @@
 $('button#abortUpdateAnimal').click(function(){
     setTimeout(function(){
-        $('#updateAnimal').removeClass( "active", "show" );
+        $('#panelModifyAnimal').removeClass( "active", "show" );
     },500);
     setTimeout(function(){
+        
         $('#profilePanel').tab('show');
     },500);
     $("#addAnimal-list").removeClass( "active" ).attr("aria-selected","false");
@@ -11,7 +12,7 @@ $('button#abortUpdateAnimal').click(function(){
 
 $('a#list-profile-list').click(function(){
     setTimeout(function(){
-        $('#updateAnimal').removeClass( "active", "show" );
+        $('#panelModifyAnimal').removeClass( "active", "show" );
     },200);
     setTimeout(function(){
         $('#profilePanel').tab('show');
@@ -21,7 +22,7 @@ $('a#list-profile-list').click(function(){
 
 $('a#list-myanimals-list').click(function(){
     setTimeout(function(){
-        $('#updateAnimal').removeClass( "active", "show" );
+        $('#panelModifyAnimal').removeClass( "active", "show" );
     },200);
     setTimeout(function(){
         $('#animalTab').tab('show');
@@ -31,7 +32,7 @@ $('a#list-myanimals-list').click(function(){
 
 $('a#list-myfavourites-list').click(function(){
     setTimeout(function(){
-        $('#updateAnimal').removeClass( "active", "show" );
+        $('#panelModifyAnimal').removeClass( "active", "show" );
     },200);
     setTimeout(function(){
         $('#list-favourites').tab('show');
@@ -41,7 +42,7 @@ $('a#list-myfavourites-list').click(function(){
 
 $('a#list-myDonations-list').click(function(){
     setTimeout(function(){
-        $('#updateAnimal').removeClass( "active", "show" );
+        $('#panelModifyAnimal').removeClass( "active", "show" );
     },200);
     setTimeout(function(){
         $('#list-donations').tab('show');
