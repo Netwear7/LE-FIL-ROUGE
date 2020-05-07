@@ -7,15 +7,18 @@ function loadInfos(){
         { 
             "table": $('#tableSelect').val()
         }, function(){
-            $('#add').click(function(e){
+            $('#addInDatabase').click(function(e){
                 e.preventDefault();
-                console.log($('#form-admin').serializeArray())   
+                table = $('#tableSelect').val()
+                form = $('#form-admin').serializeArray()
+                typeTable = {name: 'selectTable', value : table}
+                form[form.length] = $.extend({}, form, typeTable);
+                $.post( "ControlAdmin.php", form);  
             })
         })
     })
 
 }
-
 
 window.onload=function(){
     loadInfos();
@@ -25,16 +28,6 @@ window.onload=function(){
         loadInfos();
     });
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

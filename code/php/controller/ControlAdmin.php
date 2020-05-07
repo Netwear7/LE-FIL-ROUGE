@@ -1,9 +1,65 @@
-
-
 <?php 
+
+
     include_once("../service/ControlAdminService.php");
     include_once("../data-access/ControlAdminDataAccess.php");
+
+    //data-Access
+    include_once("../data-access/AdresseDataAccess.php");
+    include_once("../data-access/AnimauxDataAccess.php");
+    include_once("../data-access/ContactezNousDataAccess.php");
+    include_once("../data-access/CouleurAnimalDataAccess.php");
+    include_once("../data-access/EspeceDataAccess.php");
+    include_once("../data-access/GarderieDataAccess.php");
+    include_once("../data-access/ImgSiteDataAccess.php");
+    include_once("../data-access/MaladieDataAccess.php");
+    include_once("../data-access/PhotoAnimalDataAccess.php");
+    include_once("../data-access/PerteDataAccess.php");
+    include_once("../data-access/RaceDataAccess.php");
+    include_once("../data-access/RefugeDataAccess.php");
+    include_once("../data-access/UtilisateurDataAccess.php");
+    include_once("../data-access/DonationDataAccess.php");
+ 
+    //Service
+    include_once("../service/AdresseService.php");
+    include_once("../service/AnimauxService.php");
+    include_once("../service/ContactezNousService.php");
+    include_once("../service/CouleurAnimalService.php");
+    include_once("../service/EspeceService.php");
+    include_once("../service/GarderieService.php");
+    include_once("../service/ImgSiteService.php");
+    include_once("../service/MaladieService.php");
+    include_once("../service/PhotoAnimalService.php");
+    include_once("../service/PerteService.php");
+    include_once("../service/RaceService.php");
+    include_once("../service/RefugeService.php");
+    include_once("../service/UtilisateurService.php");
+    include_once("../service/DonationService.php");
+
     session_start();
+
+    function AddNewRowOfSelectedTable($table){
+        $table = underscoreToCamelCase($table, true);
+        $classnameDAO = $table.'DataAccess';
+        $classnameService = $table.'Service';
+
+        $SelectedTableDAO = new $classnameDAO;
+        $SelectedTableService = new $classnameService($SelectedTableDAO);
+
+        $SelectedTableService->InsertMessage($_POST);
+    }
+    function underscoreToCamelCase($string, $capitalizeFirstCharacter = false) {
+        $str = str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
+        if (!$capitalizeFirstCharacter) {
+            $str[0] = strtoupper($str[0]);
+        }
+        return $str;
+    }
+
+    if(isset($_POST["selectTable"]) && !empty($_POST["selectTable"])){
+        AddNewRowOfSelectedTable($_POST["selectTable"]);
+    }
+
 ?>
 
 <!doctype html>
@@ -56,12 +112,9 @@
                     <div id='ptable' class="col-lg-12 py-2 table-responsive">
 
                     </div>
-
                 </div>
             </div>
-            
         </div>
-
         <script src="../../javascript/jquery-3.4.1.min.js"></script>
         <script src="../../javascript/displayControlAdmin.js"></script>
     </body>

@@ -19,7 +19,7 @@
         else{
             $input = "<div class='form-group'>
                         <label for='$id'>$label</label>
-                        <input type='$type' accept='image/*' class='form-control' id='$id' placeholder='$label'>
+                        <input type='$type' accept='image/*' class='form-control' name='$id' id='$id' placeholder='$label'>
                     </div>";
 
         }
@@ -50,6 +50,13 @@
                 echo "select ID Race";
                 echo "select ID User ou refuge pas les deux";
                 echo "select Garderie";
+            break;
+            case "contactez_nous":
+                echo makeInput("text", "Message", "message");
+                echo makeInput("text", "Motif", "motif");
+                echo makeInput("text", "Nom", "name");
+                echo makeInput("text", "Prénom", "fname");
+                echo makeInput("text", "Id utilisateur", "id");
             break;
             case "couleur_animal":
                 echo makeInput("text", "Couleur", "couleur");
@@ -119,7 +126,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" action="POST" id="form-admin">
+                <form action="POST" id="form-admin">
                     <?php
                         // $ColumnTable = GetDataOfSelectedTable($_POST["table"]);
                         if(isset($_POST["table"]) && !empty($_POST["table"])){
@@ -127,7 +134,7 @@
                         }
                         $result = ($_POST["table"] == "animaux")? "animal" : $_POST["table"];
                         if($_POST["table"] != "adresse"){
-                            echo "<button type='button' id='add' class='btn btn-primary'>Ajouter un(e) $result</button>";
+                            echo "<button type='button' id='addInDatabase' class='btn btn-primary'>Ajouter un(e) $result</button>";
                         }
                     ?>
                 </form>
