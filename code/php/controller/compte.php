@@ -198,6 +198,9 @@ if(!isset($_SESSION["user_id"]))
 
                         <!--SECOND PANEL MES COMPAGNONS-->
                         <div class="tab-pane fade mb-5" id="list-compagnons" role="tabpanel" aria-labelledby="list-compagnons-list">
+                            <div class="row " id="errorAnimal">
+                            
+                            </div>
                             <!--titre-->
                             <div class="row">
                                 <div class="col-8 offset-2 border rounded border-black mt-5 mb-3 text-center">

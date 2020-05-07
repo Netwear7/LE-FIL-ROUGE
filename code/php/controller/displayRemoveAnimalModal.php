@@ -3,9 +3,14 @@ include_once '../service/AnimauxService.php';
 include_once '../data-access/AnimauxDataAccess.php';
 
 
-
-
-    echo '
+if(isset($_POST))
+{
+    $id=$_POST["id"];
+    $couleur=$_POST["couleur"];
+    if(empty($id) || empty($couleur)){
+        exit;
+    }else {
+        echo '
 
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -21,14 +26,17 @@ include_once '../data-access/AnimauxDataAccess.php';
                 </div>
                 <div class="modal-footer">
                     <form class="formRetrait">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <button type="button submit" id="removeAnimal" name="" value=""  class="btn btn-outline-info">Confirmer le retrait</button>
+                        <button type="button submit" id="removeAnimal" name="'.$id.'" value="'.$couleur.'"  class="btn btn-outline-info">Confirmer le retrait</button>
                     </form>
                 </div>
             </div>
         </div>
-
+    
          ';
+    }
+}
+
+
 ?>
 
 <script src="../../javascript/removeUserAnimal.js"></script>
