@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+    $('#list-addAnimal').load('displayFormAddAnimal.php');
     $('#rowUserInfos').load("displayUserInfos.php");
     $('#updateUserInfos').load("displayUserUpdatePanel.php");
     $('#rowDonations').load('displayDonationsInMyAccount.php');
