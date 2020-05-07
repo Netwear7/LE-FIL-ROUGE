@@ -92,13 +92,7 @@ session_start();
                                 <div class="col-12">
                                 <p><strong>Né le  : </strong><br/>'.dateFr($dataAnimaux[$i]["DATE_NAISSANCE"]).'  </p>
                                 </div>                           
-                            </div>
-                            ';
-                            $perdu = $servicePerte->serviceSelect($dataAnimaux[$i]["ID_ANIMAL"]);
-                            $pasPerdu = '<button class="btn btn-link lost" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"  data-toggle="modal" data-target="#modalPerdu">Signaler perdu</button>';
-                            $signalerRetrouver = '<button class="btn btn-link isBack" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetrouve">Signaler Retrouvé</button>';
-                            echo empty($perdu) ?  $pasPerdu : $signalerRetrouver ;                                                                            ;
-                        echo '                            
+                            </div>                            
                         </div>
                         <div class="col-lg-5 col-sm-12">
                         
@@ -135,6 +129,14 @@ session_start();
                             <div class="row">
                                 <button type="button" class="btn updateAnimal"  value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="modAnimal-list" data-toggle="list" href="#list-modAnimal" role="tab" aria-controls="modAnimal"><i class="fas fa-edit"></i></button>
                                 <button type="button" class="btn remove" name="'.$dataAnimaux[$i]["ID_COULEUR"].'" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="removeAnimal-list" data-toggle="list" href="#modalRetrait" role="tab" aria-controls="removeAnimal"><i class="fas fa-times"></i></button>
+                            </div>
+                            <div class="row">
+                            ';
+                            $perdu = $servicePerte->serviceSelect($dataAnimaux[$i]["ID_ANIMAL"]);
+                            $pasPerdu = '<button class="btn btn-link lost" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"  data-toggle="modal" data-target="#modalPerdu">Signaler perdu</button>';
+                            $signalerRetrouver = '<button class="btn btn-link isBack" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetrouve">Signaler Retrouvé</button>';
+                            echo empty($perdu) ?  $pasPerdu : $signalerRetrouver ;  
+                            echo'
                             </div>
                         </div>
                     </div> 
