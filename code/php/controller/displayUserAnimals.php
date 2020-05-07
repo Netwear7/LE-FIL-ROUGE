@@ -42,7 +42,7 @@ session_start();
                     <div class="col-12 text-center">
                         <h5>Vous n\'avez pas encore ajouté votre Compagnon ?</h5>
                         <p> Pour ajouter votre compagnon à votre liste, cliquez sur le bouton suivant : </p>
-                        <button type="button" class="btn btn-outline-info" id="addAnimal-list" data-toggle="list" href="#list-addAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
+                        <button type="button" class="btn btn-outline-info" id="addAnimal-list" data-toggle="list" href="#panelAddAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
                     </div>
                 </div>
             </div>                                
@@ -54,7 +54,7 @@ session_start();
                 <div class="row mt-3 ">
                     <div class="col-12 text-center">
                         <p> Pour ajouter un nouveau compagnon à votre liste, cliquez sur le bouton suivant : </p>
-                        <button type="button" class="btn btn-outline-info mb-2" id="addAnimal-list" data-toggle="list" href="#list-addAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
+                        <button type="button" class="btn btn-outline-info mb-2" id="addAnimal-list" data-toggle="list" href="#panelAddAnimal" role="tab" aria-controls="addmyAnimal">Ajoutez votre Compagnon</button>
                     </div>
                 </div>
             </div>                                

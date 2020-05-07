@@ -29,7 +29,7 @@ $(document).ready(function(){
                 } else {
                     $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000);
                     setTimeout(function(){
-                        $('#list-addAnimal').removeClass( "active", "show" );
+                        $('#panelAddAnimal').removeClass( "active", "show" );
                     },5000);
                     setTimeout(function(){
                         $('#rowAnimals').load('displayUserAnimals.php');   
