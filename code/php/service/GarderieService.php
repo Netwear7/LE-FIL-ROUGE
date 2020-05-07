@@ -26,5 +26,9 @@
         public function serviceDelete($nom){
             
         }
+
+        public function serviceReservationGarderie($tab){
+            
+        }
     }
 ?>

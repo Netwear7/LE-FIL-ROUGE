@@ -44,17 +44,27 @@
             </div>
             <?php
             var_dump($_POST);
-            if(isset($_POST["reservation"]) && !empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
+            if(isset($_POST["reservation"]) && !empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal1"])){
+                $daoGarderie = new GarderieDataAccess();
+                $serviceGarderie = new GarderieService($daoGarderie);
+                $serviceGarderie->serviceReservationGarderie($_POST);
                 echo '<div class="row">
                 <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
                                                                                                 Un mail de confirmation va vous être adressé.</div>
-                </div>';
-            }
-            elseif(isset($_POST["reservation"]) && (empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal"]))){
-                echo '<div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
-                                                                                                     <span>Veuillez remplir tous les champs du formulaire</span> 
-                                                                                                     <i class="fas fa-exclamation-triangle ml-3"> </i>
                       </div>';
+            }
+            elseif(isset($_POST["reservation"]) && (empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal1"]))){
+                echo '<div class="row">
+                <div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
+                                                                                                     <span>Veuillez remplir tous les champs du formulaire</span> 
+                                                                                                     <i class="fas fa-exclamation-triangle ml-3"> </i></div>
+                      </div>';
+            }
+            elseif(isset($_POST["id_animal6"])){
+                echo "<div class='row'>
+                    <div class='alert alert-danger text-center col-lg-10 offset-lg-1' role='alert'>Par soucis d'équité entre nos usagers, nos garderies sont limitées à 5 animaux par personne.</br>
+                                                                                                     Merci de votre compréhension.</div>
+                      </div>";
             }
             
             ?>
@@ -109,12 +119,12 @@
                                     $daoAnimaux = new AnimauxDataAccess();
                                     $animauxService = new AnimauxService($daoAnimaux);
                                     $data = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                                    $countAnimals =0;
-                                    if(count($data)>0){
+                                    $countAnimals = 0;
+                                    if(count($data) > 0){
                                         foreach($data as $key =>$value){
                                             $countAnimals++;
                                             echo '<div class="col-lg-10 offset-1">
-                                            <input class="form-check-input ml-1" name="id_animal'.$countAnimals.'" type="checkbox" value='.$value["ID_ANIMAL"].' id="defaultCheck1">
+                                            <input class="form-check-input ml-1" name="id_animal[]" type="checkbox" value='.$value["ID_ANIMAL"].' id="defaultCheck1">
                                             <label class="form-check-label ml-4" for="defaultCheck1">
                                                 '.$value["NOM"].'
                                             </label>
