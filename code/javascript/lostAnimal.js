@@ -16,11 +16,17 @@ $(document).ready(function (){
                         idAnimalPerdu : idAnimalPerdu
 
                     
+                },
+                success: function (data) {
+                    if(data.status != 'success'){
+                        $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);
+                    } else {
+                        $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);
+                        $('#modalPerte').modal('hide');
+                    }                       
                 }
             }   
-        ).done(function(){
-            $( '<p class="alert alert-success mt-2 mb-2" role="alert">Votre animal a bien été signalé comme étant perdu !</p>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);
-
-        })
+        )
     });
 });
+

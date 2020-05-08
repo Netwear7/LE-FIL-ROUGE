@@ -7,7 +7,7 @@ include_once '../data-access/AnimauxDataAccess.php';
 
     echo '
 
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" id="modalPerte" role="document">
             <form id="formPerte">
                 <div class="modal-content">
                     <div class="modal-header">

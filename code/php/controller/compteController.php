@@ -452,9 +452,40 @@ if (isset($_POST["removeUserAnimal"])){
 }
 
 if (isset($_POST["perte"])){
-    $perte = new Perte($_POST);
-    $servicePerte->serviceAdd($perte);
+    if(empty($_POST["datePerte"])){
+        $response_array['status'] = '01'; 
+        $response_array['message'] = 'La date ne peut être vide !';
+        header('Content-type: application/json; charset=UTF-8');
+        $error = (json_encode($response_array));
+        echo $error;
+    } else {
+        if(empty($_POST["precisionPerte"])){
+            $response_array['status'] = '03'; 
+            $response_array['message'] = 'Veuillez donner quelques informations sur la perte de votre animal';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        }else {
+            if(!preg_match('/^(?=[a-zA-Z0-9~@#$^*()_+=[\]{}|\\,.?: -]*$)(?!.*[<>\'"\/;`%])/',$_POST["precisionPerte"])){
+                $response_array['status'] = '04'; 
+                $response_array['message'] = 'Votre texte contiens des caractères interdis !';
+                header('Content-type: application/json; charset=UTF-8');
+                $error = (json_encode($response_array));
+                echo $error;  
+            } else {
+                $perte = new Perte($_POST);
+                $servicePerte->serviceAdd($perte);
+                $response_array['status'] = 'success'; 
+                $response_array['message'] = 'Votre animal a bien été signalé comme étant perdu !';
+                header('Content-type: application/json; charset=UTF-8');
+                $error = (json_encode($response_array));
+                echo $error;  
+            }
+        }
+    }
 }
+
+
 
 if(isset($_POST["idAnimalRetrouve"])){
     $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
