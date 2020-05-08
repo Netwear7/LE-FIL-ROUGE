@@ -131,10 +131,13 @@
                 echo makeInput("text", "Motif", "motif");
                 echo makeInput("text", "Nom", "name");
                 echo makeInput("text", "Prénom", "fname");
-                echo makeInput("text", "Id utilisateur", "id");
+                echo makeSelect("utilisateur"); 
+            break;
+            case "donation":
+                echo "Impossible d'insérer une donation depuis la page administrateur.";
             break;
             case "couleur_animal":
-                echo makeInput("text", "Couleur", "couleur");
+                echo "Implémenter la couleur dans la base de donnée sur la table animaux.";
             break;
             case "espece":
                 echo makeInput("text", "Nom espèce", "nomEspece");
@@ -147,7 +150,9 @@
             break;
             case "maladie" :
                 echo makeInput("text", "Maladie", "maladie");
-                echo makeInput("number", "Urgence boléen (1)", "urgence");
+                // echo makeInput("number", "Urgence boléen (1)", "urgence");
+                echo '<input type="checkbox" name="urgence" aria-label="urgence maladie animal"> Urgence';
+                echo "<hr>";
             break;
             case "perte" :
                 echo makeInput("date", "Date perte animal", "datePerte");
@@ -209,7 +214,7 @@
                             CreateFormbyTable($_POST["table"]);
                         }
                         $result = ($_POST["table"] == "animaux")? "animal" : $_POST["table"];
-                        if($_POST["table"] != "adresse"){
+                        if($_POST["table"] != "adresse" && $_POST["table"] != "couleur_animal" && $_POST["table"] != "donation"){
                             echo "<button type='button' id='addInDatabase' class='btn btn-primary'>Ajouter un(e) $result</button>";
                         }
                     ?>

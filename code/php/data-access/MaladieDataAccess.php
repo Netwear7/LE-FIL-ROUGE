@@ -19,7 +19,13 @@
 
         }
         public function daoAdd($object){
-
+            $maladie = $object->getMaladie();
+            $urgence = $object->getUrgence();
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $stmt = $mysqli->prepare('INSERT INTO maladie (MALADIE,URGENCE) VALUES (?,?) ');
+            $stmt->bind_param('si',$maladie, $urgence);
+            $stmt->execute();
+            $mysqli->close();
         }
         public function daoSearch($search){
 

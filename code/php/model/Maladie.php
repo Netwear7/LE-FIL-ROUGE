@@ -4,6 +4,15 @@
         private $maladie;
         private $urgence;
 
+        public function __construct($array)
+        {
+            $this->maladie = $array["maladie"];
+            if($array["urgence"] == "on"){
+                $this->urgence = 1;
+            }
+            
+        }
+
         /**
          * Getter for IdMaladie
          *
