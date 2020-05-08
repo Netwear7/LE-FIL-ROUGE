@@ -30,5 +30,13 @@
         public function daoDelete($nom){
 
         }
+
+        public function daoReservationGarderie($dateEntree,$dateSortie,$idRefuge,$idAnimal){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('INSERT INTO garderie(date_entree,date_sortie,id_refuge,id_animal) VALUES(?,?,?,?)');
+            $stmt->bind_param('ssii', $dateEntree,$dateSortie,$idRefuge,$idAnimal);
+            $stmt->execute();                
+            $this->deconnexion($mysqli);
+        }
     }
 ?>

@@ -4,6 +4,8 @@
     include_once("../service/AdresseService.php");
     include_once("../data-access/AnimauxDataAccess.php");
     include_once("../service/AnimauxService.php");
+    include_once("../data-access/GarderieDataAccess.php");
+    include_once("../service/GarderieService.php");
 
     session_start();
 ?>
@@ -44,7 +46,14 @@
             </div>
             <?php
             var_dump($_POST);
-            if(isset($_POST["reservation"]) && !empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal1"])){
+            foreach($_POST as $key => $value){
+                if($key == "id_animal"){
+                    foreach($value as $value2){
+                        echo $value2;
+                    }
+                }
+            }
+            if(isset($_POST["reservation"]) && !empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
                 $daoGarderie = new GarderieDataAccess();
                 $serviceGarderie = new GarderieService($daoGarderie);
                 $serviceGarderie->serviceReservationGarderie($_POST);
@@ -53,7 +62,7 @@
                                                                                                 Un mail de confirmation va vous être adressé.</div>
                       </div>';
             }
-            elseif(isset($_POST["reservation"]) && (empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal1"]))){
+            elseif(isset($_POST["reservation"]) && (empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal"]))){
                 echo '<div class="row">
                 <div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
                                                                                                      <span>Veuillez remplir tous les champs du formulaire</span> 
@@ -96,7 +105,8 @@
                                                 $data = $adresseService->serviceAfficherVille();
                                                 foreach($data as $key =>$value){
                                                     foreach($value as $key2 => $value2){
-                                                        echo '<option>' . $value2 . '</option>';
+                                                            $idRefuge=$value["id_refuge"];
+                                                            if($key2=="ville"){echo '<option value ='.$idRefuge.'>'.$value2.'</option>';};                                                       
                                                     }
                                                 }
                                             ?>

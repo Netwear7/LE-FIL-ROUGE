@@ -84,7 +84,7 @@
                                             $data = $adresseService->serviceAfficherVille();
                                             foreach($data as $key =>$value){
                                                 foreach($value as $key2 => $value2){
-                                                    echo '<option>' . $value2 . '</option>';
+                                                    if($key2=="ville"){echo '<option>'.$value2.'</option>';};;
                                                 }
                                             }
                                         ?>

@@ -28,7 +28,17 @@
         }
 
         public function serviceReservationGarderie($tab){
-            
+            $dateEntree=$tab["date_entree"];
+            $dateSortie=$tab["date_sortie"];
+            $idRefuge=$tab["ville"];
+            foreach($tab as $key => $value){
+                if($key == "id_animal"){
+                    foreach($value as $value2){
+                        $idAnimal= $value2;
+                        $this->getDataAccessObject()->daoReservationGarderie($dateEntree,$dateSortie,$idRefuge,$idAnimal);
+                    }
+                }
+            }
         }
     }
 ?>
