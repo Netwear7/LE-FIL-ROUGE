@@ -48,33 +48,48 @@
 
             $daoGarderie = new GarderieDataAccess();
             $serviceGarderie = new GarderieService($daoGarderie);
+            if(isset($_SESSION["user_id"])){
 
-            if(isset($_POST["reservation"])){
-                if(!empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
-                    if(count($_POST["id_animal"])<5){
-                        $serviceGarderie->serviceReservationGarderie($_POST);
+                if(isset($_POST["reservation"])){
+    
+                    if(!empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
+    
+                        if(count($_POST["id_animal"])<5){
+                            $serviceGarderie->serviceReservationGarderie($_POST);
+                            echo '<div class="row">
+                            <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
+                            Un mail de confirmation va vous être adressé.</div>
+                            </div>';
+                        }
+    
+                        elseif(count($_POST["id_animal"])>5){
+                            echo "<div class='row'>
+                            <div class='alert alert-danger text-center col-lg-10 offset-lg-1' role='alert'>Par soucis d'équité entre nos usagers, nos garderies sont limitées à 5 animaux par personne.</br>
+                            Merci de votre compréhension.</div>
+                            </div>";
+                        }
+    
+                    }
+    
+                               
+                    elseif(empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal"])){
                         echo '<div class="row">
-                        <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
-                        Un mail de confirmation va vous être adressé.</div>
+                        <div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
+                        <span>Veuillez remplir tous les champs du formulaire</span> 
+                        <i class="fas fa-exclamation-triangle ml-3"> </i></div>
                         </div>';
                     }
-                    elseif(count($_POST["id_animal"])>5){
-                        echo "<div class='row'>
-                        <div class='alert alert-danger text-center col-lg-10 offset-lg-1' role='alert'>Par soucis d'équité entre nos usagers, nos garderies sont limitées à 5 animaux par personne.</br>
-                        Merci de votre compréhension.</div>
-                        </div>";
-                    }
+
                 }
 
-                
-                
-                elseif(empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal"])){
-                    echo '<div class="row">
-                    <div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
-                    <span>Veuillez remplir tous les champs du formulaire</span> 
-                    <i class="fas fa-exclamation-triangle ml-3"> </i></div>
-                    </div>';
+                if(isset($_GET["delete"])){
+                    $serviceGarderie->serviceDeleteReservation($_SESSION["user_id"]);
+                    echo "<div class='row'>
+                    <div class='alert alert-primary text-center col-lg-10 offset-lg-1' role='alert'>Votre réservation a bien été annulée.</br>
+                    Un mail de confirmation vient de vous être envoyé, consultez votre boîte mail.</div>
+                    </div>";
                 }
+
             }
 
             
@@ -130,11 +145,6 @@
                                     </div>
                                     <?php
                                     if(isset($_SESSION["user_id"])){
-
-                                        if(isset($_GET["delete"])){
-                                            $serviceGarderie->serviceDeleteReservation($_SESSION["user_id"]);
-                                        }
-
                                         $daoAnimaux = new AnimauxDataAccess();
                                         $animauxService = new AnimauxService($daoAnimaux);
                                         $data = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
