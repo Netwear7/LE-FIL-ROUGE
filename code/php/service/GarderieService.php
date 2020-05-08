@@ -45,5 +45,9 @@
             $data = $this->getDataAccessObject()->daoVerifyIfReservationExists($idUser);
             return $data;
         }
+
+        public function serviceDeleteReservation($idUser){
+            $data = $this->getDataAccessObject()->daoDeleteReservation($idUser);
+        }
     }
 ?>

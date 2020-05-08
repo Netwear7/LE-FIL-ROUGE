@@ -47,5 +47,13 @@
             $this->deconnexion($mysqli);
             return $data;
         }
+
+        public function daoDeleteReservation($idUser){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('DELETE A.* FROM garderie as A INNER JOIN animaux as B WHERE B.id_utilisateur = ?');
+            $stmt->bind_param('i', $idUser);
+            $stmt->execute();                
+            $this->deconnexion($mysqli);
+        }
     }
 ?>
