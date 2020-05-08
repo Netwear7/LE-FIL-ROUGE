@@ -2,6 +2,7 @@
 
     include_once('../service/ServiceCommun.php');
     include_once('../Interfaces/InterfaceService.php');
+    include_once('../model/Maladie.php');
 
     class MaladieService extends ServiceCommun implements InterfaceService{
         public function serviceSelectAll(){
@@ -14,6 +15,12 @@
         public function serviceCount(){
             
         }
+
+        public function InsertPostToEntityAndAdd(array $post){
+            $maladie = new Maladie($post);
+            $this->getDataAccessObject()->daoAdd($maladie);
+        }
+
         public function serviceAdd(object $var){
             
         }
