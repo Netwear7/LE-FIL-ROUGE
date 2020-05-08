@@ -112,19 +112,18 @@
                 echo "Insérer un utilisateur ou un refuge pour inserer une adresse.";
             break;
             case "animaux": 
-                echo makeInput("text", "Nom", "nom");
+                echo makeInput("text", "Nom", "nomAnimal");
                 echo makeInput("date", "Date de naissance", "dateNaissance");
                 echo makeInput("number", "Poids", "poids");
-                echo makeInput("text", "Numéro puce", "puce");
+                echo makeInput("text", "Numéro puce", "numeroPuce");
                 echo makeInput("text", "Caractère", "caractere");
-                echo makeInput("text", "Spécificité", "specificite");
+                echo makeInput("text", "Spécificités", "specificites");
                 echo makeInput("text", "Taille", "taille");
                 echo makeInput("text", "Robe", "robe");
                 echo makeInput("date", "Date arrivée", "dateArrivee");
-                echo makeInput("date", "Date sortie", "datesortie");
+                echo makeInput("date", "Date sortie", "dateSortie");
                 echo makeInput("text", "Sexe", "sexe");     
                 echo makeSelect("race");
-                echo makeSelect("utilisateur");
                 echo makeSelect("refuge");
             break;
             case "contactez_nous":
@@ -171,20 +170,20 @@
                 echo makeInput("text", "Région", "region");
                 echo makeInput("text", "Département", "departement");
                 echo "<hr>";
-                echo makeInput("text", "Numero", "numero");
-                echo makeInput("text", "Rue", "rue");
-                echo makeInput("text", "Ville", "ville");
-                echo makeInput("number", "Code Postal", "codePostal");
+                echo makeInput("text", "Numero", "NUMERO");
+                echo makeInput("text", "Rue", "RUE");
+                echo makeInput("text", "Ville", "VILLE");
+                echo makeInput("number", "Code Postal", "CODE_POSTAL");
             break;
             case "utilisateur" :
                 echo makeInput("text", "Nom", "nom");
                 echo makeInput("text", "Prenom", "prenom");
                 echo makeInput("text", "Pseudo", "pseudo");
                 echo "<hr>";
-                echo makeInput("text", "Numero", "numero");
-                echo makeInput("text", "Rue", "rue");
-                echo makeInput("text", "Ville", "ville");
-                echo makeInput("number", "Code Postal", "codePostal");
+                echo makeInput("text", "Numero", "NUMERO");
+                echo makeInput("text", "Rue", "RUE");
+                echo makeInput("text", "Ville", "VILLE");
+                echo makeInput("number", "Code Postal", "CODE_POSTAL");
             break;
         }
     }

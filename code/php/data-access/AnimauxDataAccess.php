@@ -95,9 +95,29 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             return $count;
         }
 
-        public function daoAdd($objet)
+        public function daoAdd($object)
         {
-            
+        }
+        
+        public function daoAddInRefuge($animal){
+            $idRefuge = $animal->getIdRefuge();
+            $nomAnimal = $animal->getNomAnimal();
+            $dateNaissance= $animal->getDateNaissanceAnimal();
+            $raceAnimal = $animal->getRaceAnimal();
+            $sexeAnimal = $animal->getSexeAnimal();
+            $numeroPuce = $animal->getNoPuce();
+            $caractere= $animal->getCaractereAnimal();
+            $robe = $animal->getRobeAnimal();
+            // $couleur = $animal->getCouleurAnimal();
+            $taille = $animal->getTailleAnimal();
+            $poids = $animal->getPoidsAnimal();
+            $specificites = $animal->getSpecificiteAnimal();
+    
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, SEXE) VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,NULL,?,?)');
+            $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe,$raceAnimal,$idRefuge, $sexeAnimal);
+            $stmt->execute();                
+            $this->deconnexion($mysqli);
         }
         
         public function daoAddUserAnimal($animal)
@@ -115,11 +135,11 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $taille = $animal->getTailleAnimal();
             $poids = $animal->getPoidsAnimal();
             $specificites = $animal->getSpecificiteAnimal();
-                $mysqli = $this->connexion();
-                $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, ID_GARDERIE, SEXE) VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,?,NULL,NULL,?)');
-                $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe,$raceAnimal,$idUtilisateur, $sexeAnimal);
-                $stmt->execute();                
-                $this->deconnexion($mysqli);
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, ID_GARDERIE, SEXE) VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,?,NULL,NULL,?)');
+            $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe,$raceAnimal,$idUtilisateur, $sexeAnimal);
+            $stmt->execute();                
+            $this->deconnexion($mysqli);
         }
 
 

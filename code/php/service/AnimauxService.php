@@ -2,12 +2,9 @@
 
     include_once '../service/ServiceCommun.php';
     include_once '../Interfaces/InterfaceService.php';
+    include_once '../model/Animaux.php';
 
     class AnimauxService extends ServiceCommun implements InterfaceService {
-
-
-
-
         public function serviceSelectAll()
         {
             $data = $this->getDataAccessObject()->daoSelectAll();
@@ -49,7 +46,7 @@
 
         }
 
-
+        
 
         public function serviceCountAll() 
         {
@@ -63,7 +60,10 @@
             return $this->getDataAccessObject()->daoCountUserAnimal($id);
         }
 
-
+        public function InsertPostToEntityAndAdd(array $post){
+            $animaux = new Animaux($post);
+            $this->getDataAccessObject()->daoAddInRefuge($animaux);
+        }
 
         public function serviceAdd(object $animal)
         {

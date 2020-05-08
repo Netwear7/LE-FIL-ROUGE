@@ -2,6 +2,7 @@
 
     include_once '../service/ServiceCommun.php';
     include_once '../Interfaces/InterfaceService.php';
+    include_once '../model/Adresse.php';
 
     class AdresseService extends ServiceCommun implements InterfaceService{
         public function serviceUpdate($parametres){
@@ -14,8 +15,9 @@
             $data = $this->getDataAccessObject()->daoSelectAll();
             return $data;
         }
-        public function InsertPostToEntityAndAdd(){
-            
+        public function InsertPostToEntityAndAdd(array $post){
+            $adresse = new Adresse($post);
+            $this->getDataAccessObject()->daoAdd($adresse);
         }
 
         //Select Adresses

@@ -13,7 +13,6 @@
         private $raceAnimal;
         private $idUtilisateurAnimal;
         private $sexeAnimal;
-        private $couleurAnimal;
         private $dateArrivee;
         private $dateSortie;
         private $idRefuge;
@@ -29,11 +28,22 @@
 			$this->specificiteAnimal = $infos["specificites"];
 			$this->tailleAnimal = $infos["taille"];
 			$this->robeAnimal = $infos["robe"];
-			$this->raceAnimal = $infos["race"];
-			$this->idUtilisateurAnimal = $infos["idUtilisateur"];
-			$this->sexeAnimal = $infos["sexe"];
-			$this->couleurAnimal = $infos["couleur"];
+            $this->raceAnimal = $infos["race"];
+            $this->sexeAnimal = $infos["sexe"];
 
+            //petit changement, l'utilisateur n'est pas obligatoirement set, idem pour refuge, dateArrivee, et dateSortie            
+            if(isset($infos["idUtilisateur"])){
+                $this->idUtilisateurAnimal = $infos["idUtilisateur"];
+            }
+            if(isset($infos["refuge"])){
+                $this->idRefuge = $infos["refuge"];
+            }
+            if(isset($infos["dateArrivee"])){
+                $this->dateArrivee = $infos["dateArrivee"];
+            }
+            if(isset($infos["dateSortie"])){
+                $this->dateArrivee = $infos["dateSortie"];
+            }
         }
 
 
