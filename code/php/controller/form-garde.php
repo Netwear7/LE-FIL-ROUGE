@@ -45,36 +45,35 @@
                 </div>
             </div>
             <?php
-            var_dump($_POST);
-            foreach($_POST as $key => $value){
-                if($key == "id_animal"){
-                    foreach($value as $value2){
-                        echo $value2;
-                    }
+
+            $daoGarderie = new GarderieDataAccess();
+            $serviceGarderie = new GarderieService($daoGarderie);
+
+            if(isset($_POST["reservation"])){
+                if(count($_POST["id_animal"])<5 && !empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
+                    $serviceGarderie->serviceReservationGarderie($_POST);
+                    echo '<div class="row">
+                    <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
+                    Un mail de confirmation va vous être adressé.</div>
+                    </div>';
+                }
+
+                elseif(count($_POST["id_animal"])>5){
+                    echo "<div class='row'>
+                    <div class='alert alert-danger text-center col-lg-10 offset-lg-1' role='alert'>Par soucis d'équité entre nos usagers, nos garderies sont limitées à 5 animaux par personne.</br>
+                    Merci de votre compréhension.</div>
+                    </div>";
+                }
+                
+                elseif(empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal"])){
+                    echo '<div class="row">
+                    <div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
+                    <span>Veuillez remplir tous les champs du formulaire</span> 
+                    <i class="fas fa-exclamation-triangle ml-3"> </i></div>
+                    </div>';
                 }
             }
-            if(isset($_POST["reservation"]) && !empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
-                $daoGarderie = new GarderieDataAccess();
-                $serviceGarderie = new GarderieService($daoGarderie);
-                $serviceGarderie->serviceReservationGarderie($_POST);
-                echo '<div class="row">
-                <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
-                                                                                                Un mail de confirmation va vous être adressé.</div>
-                      </div>';
-            }
-            elseif(isset($_POST["reservation"]) && (empty($_POST["date_entree"]) || empty($_POST["date_sortie"]) || empty($_POST["ville"]) || empty($_POST["id_animal"]))){
-                echo '<div class="row">
-                <div class="alert alert-danger text-center col-lg-10 offset-lg-1" role="alert"><i class="fas fa-exclamation-triangle mr-3"></i> 
-                                                                                                     <span>Veuillez remplir tous les champs du formulaire</span> 
-                                                                                                     <i class="fas fa-exclamation-triangle ml-3"> </i></div>
-                      </div>';
-            }
-            elseif(isset($_POST["id_animal6"])){
-                echo "<div class='row'>
-                    <div class='alert alert-danger text-center col-lg-10 offset-lg-1' role='alert'>Par soucis d'équité entre nos usagers, nos garderies sont limitées à 5 animaux par personne.</br>
-                                                                                                     Merci de votre compréhension.</div>
-                      </div>";
-            }
+
             
             ?>
             <form method="post" name="reservation" action="form-garde.php">
@@ -126,28 +125,50 @@
                                         <h4>Selectionnez votre animal :</h4>
                                     </div>
                                     <?php
-                                    $daoAnimaux = new AnimauxDataAccess();
-                                    $animauxService = new AnimauxService($daoAnimaux);
-                                    $data = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
-                                    $countAnimals = 0;
-                                    if(count($data) > 0){
-                                        foreach($data as $key =>$value){
-                                            $countAnimals++;
-                                            echo '<div class="col-lg-10 offset-1">
-                                            <input class="form-check-input ml-1" name="id_animal[]" type="checkbox" value='.$value["ID_ANIMAL"].' id="defaultCheck1">
-                                            <label class="form-check-label ml-4" for="defaultCheck1">
-                                                '.$value["NOM"].'
-                                            </label>
-                                            </div>';
+                                    if(isset($_SESSION["user_id"])){
+
+                                        $daoAnimaux = new AnimauxDataAccess();
+                                        $animauxService = new AnimauxService($daoAnimaux);
+                                        $data = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                                        $countAnimals = 0;
+                                        if(count($data) > 0){
+                                            foreach($data as $key =>$value){
+                                                $countAnimals++;
+                                                echo '<div class="col-lg-10 offset-1">
+                                                <input class="form-check-input ml-1" name="id_animal[]" type="checkbox" value='.$value["ID_ANIMAL"].' id="defaultCheck1">
+                                                <label class="form-check-label ml-4" for="defaultCheck1">
+                                                    '.$value["NOM"].'
+                                                </label>
+                                                </div>';
+                                            }
+                                        }
+                                        else{
+                                            echo '<div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Aucun animal inscrit sur votre compte.</div>';
                                         }
                                     }
                                     else{
-                                        echo '<div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Aucun animal inscrit sur votre compte.</div>';
+                                        echo "<div class='alert alert-primary text-center col-lg-10 offset-lg-1' role='alert'>Il faut être identifié pour pouvoir inscrire des animaux dans notre garderie. Connectez-vous à votre compte ou créez-en un si ce n'est pas déjà fait</div>";
                                     }
                                     ?>
 
-                                    <div class="col-lg-10 offset-1 mt-5">
-                                        <button type="submit" href="forme-garde.php" name="reservation" class="btn btn-primary w-100">Confirmer la réservation</button>
+                                    <div class="col-lg-10 offset-1 mt-5 text-center">
+                                         
+                                        <?php if(!isset($_SESSION["user_id"])){
+                                                echo '<button type="submit" href="forme-garde.php" name="reservation" disabled="disabled"
+                                                class="btn btn-primary w-100">Confirmer la réservation</button>';
+                                            }
+                                            elseif(isset($_SESSION["user_id"])){
+                                                $data = $serviceGarderie->serviceVerifyIfReservationExists($_SESSION["user_id"]);
+                                                if(count($data) > 0){
+                                                    echo "<a type ='button submit' class='btn btn-danger w-100 mt-2' href='form-garde.php?delete'>Annuler la réservation</a>
+                                                              <small><i>*Vous ne pouvez pas avoir plus d'une réservation.</br>Si vous souhaiter réserver à nouveau, veuillez annuler votre précédente réservation.</i></small>";
+                                                }
+                                                else{
+                                                    echo '<button type="submit" href="forme-garde.php" name="reservation"
+                                                    class="btn btn-primary w-100">Confirmer la réservation</button>';
+                                                }
+                                            }
+                                        ?>       
                                     </div>
                                 </div>
                             </div>

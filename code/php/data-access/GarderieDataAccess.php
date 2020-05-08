@@ -38,5 +38,14 @@
             $stmt->execute();                
             $this->deconnexion($mysqli);
         }
+        
+        public function daoVerifyIfReservationExists($idUser){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT id_garderie FROM garderie as A INNER JOIN animaux as B WHERE B.id_utilisateur = '.$idUser.'');
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
     }
 ?>

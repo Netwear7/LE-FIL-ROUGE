@@ -40,5 +40,10 @@
                 }
             }
         }
+
+        public function serviceVerifyIfReservationExists($idUser){
+            $data = $this->getDataAccessObject()->daoVerifyIfReservationExists($idUser);
+            return $data;
+        }
     }
 ?>
