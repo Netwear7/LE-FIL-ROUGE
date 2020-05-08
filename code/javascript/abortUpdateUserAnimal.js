@@ -1,10 +1,10 @@
-$('button#abortUpdateAnimal').click(function(){
+$('button#abortUpdateAnimal').click(function(e){
+    e.preventDefault();
     setTimeout(function(){
         $('#panelModifyAnimal').removeClass( "active", "show" );
     },500);
-    setTimeout(function(){
-        
-        $('#profilePanel').tab('show');
+    setTimeout(function(){        
+        $('#animalTab').tab('show');
     },500);
     $("#addAnimal-list").removeClass( "active" ).attr("aria-selected","false");
 })
