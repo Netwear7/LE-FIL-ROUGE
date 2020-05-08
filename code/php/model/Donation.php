@@ -1,7 +1,7 @@
 <?
 
 
-class Adresse{
+class Donation{
     private $montant;
     private $userId;
     private $date;
