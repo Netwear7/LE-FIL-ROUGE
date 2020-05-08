@@ -245,15 +245,56 @@ if (isset($_POST["updateUserInfos"])){
 } 
 
 if(isset($_POST["retraitFavoris"])){
-    $serviceAnimauxFavoris->serviceDelete($_POST);
+    if(empty($_POST["retraitFavoris"])){
+        $response_array['status'] = '01'; 
+        $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard.';
+        header('Content-type: application/json; charset=UTF-8');
+        $error = (json_encode($response_array));
+        echo $error;
+    } else {
+        if(!preg_match('/^\d+$/',$_POST["retraitFavoris"])){
+            $response_array['status'] = '02'; 
+            $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard.';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        }else {
+            if(empty($_POST["id_utilisateur"])){
+                $response_array['status'] = '03'; 
+                $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard.';
+                header('Content-type: application/json; charset=UTF-8');
+                $error = (json_encode($response_array));
+                echo $error;
+            } else {
+                if(!preg_match('/^\d+$/',$_POST["id_utilisateur"])){
+                    $serviceAnimauxFavoris->serviceDelete($_POST);
+                    $response_array['status'] = '04'; 
+                    $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard.';
+                    header('Content-type: application/json; charset=UTF-8');
+                    $error = (json_encode($response_array));
+                    echo $error;
+                } else {
+                    $serviceAnimauxFavoris->serviceDelete($_POST);
+                    $response_array['status'] = 'success'; 
+                    $response_array['message'] = 'L\'animal a bien été retiré de vos favoris !';
+                    header('Content-type: application/json; charset=UTF-8');
+                    $error = (json_encode($response_array));
+                    echo $error;
+                }
+            }
+        }
+    }
+
 }
 
 
 if (isset($_POST["delete"])){
 
-    $serviceUtilisateur->serviceDelete($nom);
-    header('Location: accueil.php');
-    exit;
+    $response_array['status'] = '01'; 
+    $response_array['message'] = 'La demande nous à bien été envoyée ! Nous prendrons contact avec vous dés que possible.';
+    header('Content-type: application/json; charset=UTF-8');
+    $error = (json_encode($response_array));
+    echo $error;
 
 }
 
@@ -452,35 +493,51 @@ if (isset($_POST["removeUserAnimal"])){
 }
 
 if (isset($_POST["perte"])){
-    if(empty($_POST["datePerte"])){
+    if(empty($_POST["idAnimalPerdu"])){
         $response_array['status'] = '01'; 
-        $response_array['message'] = 'La date ne peut être vide !';
+        $response_array['message'] = 'L\'identifiant de votre animal ne peut être vide !';
         header('Content-type: application/json; charset=UTF-8');
         $error = (json_encode($response_array));
         echo $error;
-    } else {
-        if(empty($_POST["precisionPerte"])){
-            $response_array['status'] = '03'; 
-            $response_array['message'] = 'Veuillez donner quelques informations sur la perte de votre animal';
+    } else{
+        if (preg_match('/^"\d"+$/',$_POST["idAnimalPerdu"])){
+            $response_array['status'] = '02'; 
+            $response_array['message'] = 'L\'identifiant de votre animal ne peux contenir que des chiffres !';
             header('Content-type: application/json; charset=UTF-8');
             $error = (json_encode($response_array));
             echo $error;
         }else {
-            if(!preg_match('/^(?=[a-zA-Z0-9~@#$^*()_+=[\]{}|\\,.?: -]*$)(?!.*[<>\'"\/;`%])/',$_POST["precisionPerte"])){
-                $response_array['status'] = '04'; 
-                $response_array['message'] = 'Votre texte contiens des caractères interdis !';
+            if(empty($_POST["datePerte"])){
+                $response_array['status'] = '01'; 
+                $response_array['message'] = 'La date ne peut être vide !';
                 header('Content-type: application/json; charset=UTF-8');
                 $error = (json_encode($response_array));
-                echo $error;  
+                echo $error;
             } else {
-                $perte = new Perte($_POST);
-                $servicePerte->serviceAdd($perte);
-                $response_array['status'] = 'success'; 
-                $response_array['message'] = 'Votre animal a bien été signalé comme étant perdu !';
-                header('Content-type: application/json; charset=UTF-8');
-                $error = (json_encode($response_array));
-                echo $error;  
-            }
+                if(empty($_POST["precisionPerte"])){
+                    $response_array['status'] = '03'; 
+                    $response_array['message'] = 'Veuillez donner quelques informations sur la perte de votre animal';
+                    header('Content-type: application/json; charset=UTF-8');
+                    $error = (json_encode($response_array));
+                    echo $error;
+                }else {
+                    if(!preg_match('/^(?=[a-zA-Z0-9~@#$^*()_+=[\]{}|\\,.?: -]*$)(?!.*[<>\'"\/;`%])/',$_POST["precisionPerte"])){
+                        $response_array['status'] = '04'; 
+                        $response_array['message'] = 'Votre texte contiens des caractères interdis !';
+                        header('Content-type: application/json; charset=UTF-8');
+                        $error = (json_encode($response_array));
+                        echo $error;  
+                    } else {
+                        $perte = new Perte($_POST);
+                        $servicePerte->serviceAdd($perte);
+                        $response_array['status'] = 'success'; 
+                        $response_array['message'] = 'Votre animal a bien été signalé comme étant perdu !';
+                        header('Content-type: application/json; charset=UTF-8');
+                        $error = (json_encode($response_array));
+                        echo $error;  
+                    }
+                }
+            } 
         }
     }
 }
@@ -488,7 +545,29 @@ if (isset($_POST["perte"])){
 
 
 if(isset($_POST["idAnimalRetrouve"])){
-    $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
+    if(empty($_POST["idAnimalRetrouve"])){
+        $response_array['status'] = '01'; 
+        $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard !';
+        header('Content-type: application/json; charset=UTF-8');
+        $error = (json_encode($response_array));
+        echo $error;
+    } else {
+        if(!preg_match("/^\d+$/",$_POST["idAnimalRetrouve"])){
+            $response_array['status'] = '02'; 
+            $response_array['message'] = 'C\'est sécurisé cela ne sers à rien !';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        } else {
+            $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
+            $response_array['status'] = 'success'; 
+            $response_array['message'] = 'Votre animal a bien été signalé comme étant retrouvé !';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        }
+    }
+
 }
 
 
