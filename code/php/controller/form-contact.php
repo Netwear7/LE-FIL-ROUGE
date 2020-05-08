@@ -12,7 +12,7 @@
             && is_string($_POST["motif"]) 
             && preg_match("/^[a-zA-Z.0-9!?,]+$/", $_POST["message"])
             && preg_match("/^[a-zA-Z.0-9!?,]+$/", $_POST["motif"])){
-            $contactService->InsertMessage($_POST);
+            $contactService->InsertPostToEntityAndAdd($_POST);
         }
     }
 ?>

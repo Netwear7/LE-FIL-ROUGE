@@ -38,22 +38,30 @@
 
     session_start();
 
-    function AddNewRowOfSelectedTable($table){
-        $table = underscoreToCamelCase($table, true);
-        $classnameDAO = $table.'DataAccess';
-        $classnameService = $table.'Service';
 
-        $SelectedTableDAO = new $classnameDAO;
-        $SelectedTableService = new $classnameService($SelectedTableDAO);
-
-        $SelectedTableService->InsertMessage($_POST);
-    }
     function underscoreToCamelCase($string, $capitalizeFirstCharacter = false) {
         $str = str_replace(' ', '', ucwords(str_replace('_', ' ', $string)));
         if (!$capitalizeFirstCharacter) {
             $str[0] = strtoupper($str[0]);
         }
         return $str;
+    }
+    function ConcatTableDataAccess($table){
+        $table = underscoreToCamelCase($table, true);
+        $TableDataAccess = $table.'DataAccess';
+        $SelectedTableDAO = new $TableDataAccess;
+        return $SelectedTableDAO;
+    }
+    function ConcatTableService($table, $dataAccess){
+        $table = underscoreToCamelCase($table, true);
+        $TableService = $table.'Service';
+        $SelectedTableService = new $TableService($dataAccess);
+        return $SelectedTableService;
+    }
+    function AddNewRowOfSelectedTable($table){
+        $SelectedTableDAO = ConcatTableDataAccess($table);
+        $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
+        $SelectedTableService->InsertPostToEntityAndAdd($_POST);
     }
 
     if(isset($_POST["selectTable"]) && !empty($_POST["selectTable"])){

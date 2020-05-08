@@ -1,5 +1,6 @@
 <?php
 
+include_once '../model/Espece.php';
 include_once '../service/ServiceCommun.php';
 include_once '../Interfaces/InterfaceService.php';
 
@@ -10,10 +11,15 @@ include_once '../Interfaces/InterfaceService.php';
             return $data;            
         }
 
+        // Où cette fonction est elle utilisée ?
         public function selectAllCatRaces(){
             return $this->getDataAccessObject()->selectAllCatRaces();
         }
-
+        public function InsertPostToEntityAndAdd(array $post){
+            $espece = new Espece();
+            $espece->setNomEspece($post["nomEspece"]);
+            $this->getDataAccessObject()->daoAdd($espece);
+        }
 
         public function serviceSelectAll(){
             $data = $this->getDataAccessObject()->daoSelectAll();

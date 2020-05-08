@@ -11,9 +11,9 @@
          * Je ne suis pas passer dans la fonction serviceAdd mais dans insertMessage car serviceAdd demande un objet. 
          * Moi je lui envoie le post, faudrait qu'on y regarde.
          * */
-        public function InsertMessage(array $array){
-            $insert = new ContactezNous($array["message"], $array["motif"], $array["name"], $array["fname"], $array["id"]);
-            $this->getDataAccessObject()->daoAdd($insert);
+        public function InsertPostToEntityAndAdd(array $post){
+            $contactezNous = new ContactezNous($post["message"], $post["motif"], $post["name"], $post["fname"], $post["id"]);
+            $this->getDataAccessObject()->daoAdd($contactezNous);
         }
         public function serviceSelectAll(){
             $data = $this->getDataAccessObject()->daoSelectAll();

@@ -25,13 +25,13 @@
         public function daoCount(){
 
         }
-        public function daoAdd($insert){
+        public function daoAdd($contactezNous){
             $mysqli = $this->connexion();
-            $message = $insert->getMessage();
-            $motif = $insert->getMotif();
-            $nom = $insert->getNom();
-            $prenom = $insert->getPrenom();
-            $id_utilisateur = $insert->getIdUtilisateur();
+            $message = $contactezNous->getMessage();
+            $motif = $contactezNous->getMotif();
+            $nom = $contactezNous->getNom();
+            $prenom = $contactezNous->getPrenom();
+            $id_utilisateur = $contactezNous->getIdUtilisateur();
             $stmt = $mysqli->prepare("INSERT INTO contactez_nous(message, motif, id_utilisateur, nom, prenom)
             VALUES(?, ?, ?, ?, ?)");
             if($id_utilisateur == "null"){

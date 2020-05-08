@@ -31,8 +31,13 @@ class EspeceDataAccess extends LogBdd implements InterfaceDao{
         public function daoCount(){
 
         }
-        public function daoAdd($object){
-
+        public function daoAdd($espece){
+            $mysqli = $this->connexion();
+            $nomEspece = $espece->getNomEspece();
+            $stmt = $mysqli->prepare("INSERT INTO espece(nom_espece) VALUES(?)");
+            $stmt->bind_param("s", $nomEspece);
+            $stmt->execute();
+            $this->deconnexion($mysqli);
         }
         public function daoSearch($search){
 

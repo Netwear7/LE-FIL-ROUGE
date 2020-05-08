@@ -14,19 +14,6 @@
         }
 
         /**
-         * Setter for IdEspece
-         * @var [type] idEspece
-         *
-         * @return self
-         */
-        public function setIdEspece($idEspece)
-        {
-            $this->idEspece = $idEspece;
-            return $this;
-        }
-
-
-        /**
          * Getter for NomEspece
          *
          * @return [type]

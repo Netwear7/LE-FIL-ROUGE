@@ -14,6 +14,9 @@
             $data = $this->getDataAccessObject()->daoSelectAll();
             return $data;
         }
+        public function InsertPostToEntityAndAdd(){
+            
+        }
 
         //Select Adresses
         public function serviceSelect($id)
