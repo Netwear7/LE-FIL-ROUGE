@@ -406,6 +406,6 @@ if(!isset($_SESSION["user_id"]))
     <script src="../../javascript/scriptDisplayRaceInAddAnimals.js"></script>
     <script src="../../javascript/abortAddUserAnimal.js"></script>
     <script src="../../javascript/addUserAnimal.js"></script>
-
+    
     
 </html>

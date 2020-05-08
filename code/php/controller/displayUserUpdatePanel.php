@@ -77,7 +77,7 @@ echo
                             </div>
                             <div class="col-lg-6 col-sm-12">
                                 <div class="row justify-content-center">
-                                    <button type="button" id="abortUpdate" class="btn btn-outline-secondary" data-toggle="list" >Annuler les modifications</button>
+                                    <button type="button" id="abortUpdateUserInfos" class="btn btn-outline-secondary" data-toggle="list" >Annuler les modifications</button>
                                 </div>
                             </div>
                         </div>

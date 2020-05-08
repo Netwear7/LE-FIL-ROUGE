@@ -1,6 +1,5 @@
 $(document).ready(function(){
-
-    $("#addUserAnimal").submit(function(e){
+    $('#formUpdateAnimals').submit(function(e){
         e.preventDefault();
         var nom = $('#nomAnimal').val();
         var dateNaissance = $('#dateNaissance').val();
@@ -15,7 +14,6 @@ $(document).ready(function(){
         var specificites = $('#specificites').val();
         var idUtilisateur = $('#idUtilisateur').val();
         var inputFile = $('#photo');
-        e.stopPropagation();
         var formData = new FormData($(this)[0]);
         $.ajax({
             url: 'compteController.php',
@@ -24,24 +22,25 @@ $(document).ready(function(){
             dataType: "json",
             async: true,
             success: function (data) {
-                if(data.status == 'success'){
-                    $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+nom+' !</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(2500);
-                }else if(data.status == 'error'){
-                    $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+' cela fait que '+nom+' n\'a pas pu être ajouté ! Veuillez réessayer</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(2500);
+                if(data.status != 'success'){
+                    $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdateAnimal" ).fadeIn(3000).fadeOut(2500);
+                }else{
+                    $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdateAnimal" ).fadeIn(3000);
+                    setTimeout(function(){
+                        $('#panelModifyAnimal').removeClass( "active", "show" );
+                    },5000);
+                    setTimeout(function(){
+                        $('#rowAnimals').load('displayUserAnimals.php');   
+                        $('#animalTab').tab('show');
+                    },5000);
                 }
 
-            },
-
-            error: function(data){ 
-            
-               alert(data.message);
             },
             cache: false,
             contentType: false,
             processData: false
         });
-        
-        return false;
+
     });
 
     

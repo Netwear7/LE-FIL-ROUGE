@@ -1,4 +1,4 @@
-$('button#abortUpdate').click(function(){
+$('button#abortUpdateUserInfos').click(function(){
     setTimeout(function(){
         $('#updateUserInfosPanel').removeClass( "active", "show" );
     },500);

@@ -42,7 +42,7 @@ $dataAnimaux = $serviceAnimaux->serviceSelect($id);
             </div>
         </div>
     </div> 
-    <form method="POST" id="formUpdateAnimals"enctype="multipart/form-data" action="compteController.php"">
+    <form  id="formUpdateAnimals" enctype="multipart/form-data"">
     <div class="row mt-3 ">
         <div class="col-12 ">
             <div class="row mt-3">
@@ -117,17 +117,20 @@ $dataAnimaux = $serviceAnimaux->serviceSelect($id);
                     <input class="form-control " type="float" value="'.$dataAnimaux["POIDS"].'" name="poids">
                 <label for="specTextArea" class="mt-2">Spécificités :</label>
                 <input type="text" class="form-control " value="'.$dataAnimaux["SPECIFICITE"].'" name="specificite" rows="3">
-                <input type="hidden" name="idAnimal" value="'.$dataAnimaux["ID_ANIMAL"].'"></input>   
+                <input type="hidden" name="idAnimal" value="'.$dataAnimaux["ID_ANIMAL"].'"></input> 
+                <input type="hidden" name="updateAnimalInfos">  
             </div>
         </div>
     </div>
     <div class="row mt-3 mb-5 ">
         <div class="col-lg-3 col-sm-12 offset-3">
-            <button type="button submit" name="updateAnimalInfos" class="btn btn-block btn-outline-info">Modifier</button>
+            <button type="button submit" name="updateAnimalInfos" id="updateAnimalInfosBtn" class="btn btn-block btn-outline-info">Modifier</button>
         </div>
         <div class="col-lg-3 col-sm-12">
             <button type="button " id="abortUpdateAnimal" data-toggle="list" class="btn btn-block btn-outline-info">Annuler</button>
         </div>                                            
+    </div>
+    <div class="row mt-5 mb-3" id="resultUpdateAnimal">
     </div>
     </form>  
 
@@ -143,3 +146,6 @@ $dataAnimaux = $serviceAnimaux->serviceSelect($id);
 
 <script src="../../javascript/scriptDisplayRaceInUpdateAnimal.js"></script>
 <script src="../../javascript/abortUpdateUserAnimal.js"></script>
+<script src="../../javascript/updateUserAnimal.js"></script>
+
+
