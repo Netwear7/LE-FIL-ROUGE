@@ -2,6 +2,7 @@
 
     include_once('../service/ServiceCommun.php');
     include_once('../Interfaces/InterfaceService.php');
+    include_once('../model/Garderie.php');
 
     class GarderieService extends ServiceCommun implements InterfaceService{
         public function serviceSelectAll(){
@@ -14,6 +15,12 @@
         public function serviceCount(){
             
         }
+
+        public function InsertPostToEntityAndAdd(array $post){
+            $garderie = new Garderie($post);
+            $this->getDataAccessObject()->daoAdd($garderie);
+        }
+
         public function serviceAdd(object $var){
             
         }
