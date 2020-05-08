@@ -15,8 +15,10 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
         
     })
 
-
 }
+
+
+
 
 
 $("#urgence").click(function(e){
@@ -37,6 +39,10 @@ $(".simple-select").change(function(e){
 });
 
 $("#ville").change(function(e){
+    loadInfo();
+});
+
+$(".js-like").click(function(e){
     loadInfo();
 });
 
@@ -65,6 +71,8 @@ function loadInfo(){
     }
 
 }
+
+
 
 
 

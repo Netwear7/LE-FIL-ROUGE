@@ -12,17 +12,12 @@ $(document).ready(function(){
         {
             userLike:user,
             animalLike:animal
-        },function(data){
-            if (data.length == 0)
-                icone.classList.replace('far', 'fas')
-            else
-                icone.classList.replace('fas', 'far')
         }
     )
 }
+        document.querySelectorAll('a.js-like').forEach(function(link){
+        link.addEventListener('click', onClickBtnLike);
+        })
     
-document.querySelectorAll('a.js-like').forEach(function(link){
-link.addEventListener('click', onClickBtnLike);
-})
 
 })
