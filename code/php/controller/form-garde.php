@@ -147,10 +147,10 @@
                                     if(isset($_SESSION["user_id"])){
                                         $daoAnimaux = new AnimauxDataAccess();
                                         $animauxService = new AnimauxService($daoAnimaux);
-                                        $data = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
+                                        $dataAnimalUser = $animauxService->serviceSelectAllUserAnimals($_SESSION["user_id"]);
                                         $countAnimals = 0;
-                                        if(count($data) > 0){
-                                            foreach($data as $key =>$value){
+                                        if(count($dataAnimalUser) > 0){
+                                            foreach($dataAnimalUser as $key =>$value){
                                                 $countAnimals++;
                                                 echo '<div class="col-lg-10 offset-1">
                                                 <input class="form-check-input ml-1" name="id_animal[]" type="checkbox" value='.$value["ID_ANIMAL"].' id="defaultCheck1">
@@ -184,8 +184,15 @@
                                                               <small><i>*Vous ne pouvez pas avoir plus d'une réservation.</br>Si vous souhaiter réserver à nouveau, veuillez annuler votre précédente réservation.</i></small>";
                                                 }
                                                 else{
+                                                    if(count($dataAnimalUser) > 0){
                                                     echo '<button type="submit" href="forme-garde.php" name="reservation"
                                                     class="btn btn-primary w-100">Confirmer la réservation</button>';
+                                                    }
+                                                    else{
+                                                        echo '<button type="submit" href="forme-garde.php" name="reservation"
+                                                    class="btn btn-primary w-100" disabled="disabled">Confirmer la réservation</button>';
+
+                                                    }
                                                 }
                                             }
                                         ?>       
