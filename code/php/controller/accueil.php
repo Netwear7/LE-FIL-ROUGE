@@ -60,26 +60,31 @@
                     <!---------------Présentation site--------------->
                     <div class="row bg-grey-light shadow-sm mt-5 p-3 mb-2">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
-                            <h3 class="font-weight-bold">Anitopia</h3>
+                            <h2 class="font-weight-bold">ANITOPIA</h2>
                         </div>
                         <div class="col-lg-6">
                             <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/le-refuge.jpg" alt="photo refuge">
                         </div>
-                        <div class="col-lg-6 mt-5">
+                        <div class="col-lg-6">
                             <div class="row">
-                                <div class="col-lg-12 mt-2">
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vulputate diam volutpat velit cursus, 
-                                        eget dictum mauris cursus. In hac habitasse platea dictumst. 
-                                        Phasellus vestibulum vestibulum est blandit malesuada.  
-                                        Nam dui enim, pretium sit amet gravida nec, pulvinar eu arcu. Aliquam erat volutpat.  Quisque eleifend iaculis augue eget imperdiet. 
-                                        Fusce ac felis ac ligula tincidunt ultrices vitae non felis. Fusce magna felis, luctus eget leo ut, 
-                                        efficitur porttitor erat.</br></br>
-                                        Phasellus volutpat, quam in tincidunt posuere, mi est interdum dolor, eget mollis nulla sapien nec dolor.
-                                    </p>
+                                <div class="col-lg-12" style ="font-size:1.2em">
+                                    <p>Créée en 2012, Anitopia est une structure associative :</p>
+
+                                    <p>Elle accueille les animaux abandonnés (<strong>chiens</strong> et <strong>chats</strong>), les soigne si nécessaire (autant psychologiquement que physiquement), les propose à l'adoption en s'assurant de leur bon placement.</br>
+
+                                    Salariés et bénévoles tentent d'apporter à leurs pensionnaires à quatre pattes autant d'amour et de câlins que faire se peut.</br>
+
+                                    Les promenades sont également très importantes : resocialisation, refamiliarisation avec les sorties en laisse et, bien entendu, détente...</br>
+
+                                    Situés à <strong>Lille</strong> et <strong>Marseille</strong>, nos refuges comptent en moyenne 150 animaux chacun, toutes races confondues, avec une hausse assez importante au moment des vacances d'été ...</br>
+
+                                    De grands boxes collectifs, des cages individuelles et une chatterie chauffée composent son environnement, une maison de retraite chauffée située sur une parcelle de 1 hectare permet à tous les doyens à quatre pattes, qui n'ont pas eu la chance de connaître un nouveau maître, de couler paisiblement leurs vieux jours.</p>
+
+                                    <p>Ce refuge ne pourrait exister sans le dévouement de ses salariés, de ses bénévoles et sans vos dons. Un grand "Merci" à tous pour votre aide !</p>
+                                    
                                 </div>
                                 <div class="col-lg-12 my-3 text-center">
-                                    <a class="btn bg-1" href="don.php" role="button">Soutenez les refuges ! ʕ•ᴥ•ʔ </a>
+                                    <a class="btn btn-warning btn-lg" href="don.php" role="button">Soutenez les refuges ! ʕ•ᴥ•ʔ </a>
                                 </div>
                             </div>
                         </div>
