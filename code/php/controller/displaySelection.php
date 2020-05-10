@@ -60,6 +60,14 @@ function affichage($data){
         }
     }
 
+    if(isset($_POST["userLike"])){
+        $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
+        $animauxFavorisService = new AnimauxFavorisService($daoAnimauxFavoris);
+        $data = $animauxFavorisService->serviceAddOrRemoveFavouriteAnimal($_POST["userLike"], $_POST["animalLike"]);
+        $count = count($data);
+        echo $count;
+    }
+
     $daoAnimaux = new AnimauxDataAccess();
     $animauxService = new AnimauxService($daoAnimaux);
     if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"]) && empty($_POST["urgence"])){

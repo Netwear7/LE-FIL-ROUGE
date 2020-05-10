@@ -8,7 +8,7 @@ $(document).ready(function(){
     const icone = this.querySelector('i');
     e.preventDefault();
     $.post(
-        'animalLike.php',
+        'displaySelecion.php',
         {
             userLike:user,
             animalLike:animal

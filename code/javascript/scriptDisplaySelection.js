@@ -19,8 +19,6 @@ function displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue,
 
 
 
-
-
 $("#urgence").click(function(e){
     if($("#urgence").prop("checked") == true){
         $("#urgence").attr("value", 1 );
@@ -110,6 +108,7 @@ function loadPagination(){
 
 
 window.onload=function() {
+
     loadInfo();
 
     $("#nom_espece").change(function(e){
