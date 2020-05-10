@@ -109,7 +109,7 @@
                     // echo makeInput("text", "Rue", "rue");
                     // echo makeInput("text", "Ville", "ville");
                     // echo makeInput("number", "Code Postal", "codePostal");
-                echo "Insérer un utilisateur ou un refuge pour inserer une adresse.";
+                echo "Insérer un refuge pour inserer une adresse.";
             break;
             case "animaux": 
                 echo makeInput("text", "Nom", "nomAnimal");
@@ -181,16 +181,7 @@
                 echo makeInput("number", "Code Postal", "CODE_POSTAL");
             break;
             case "utilisateur" :
-                echo makeInput("text", "Nom", "NOM");
-                echo makeInput("text", "Prenom", "PRENOM");
-                echo makeInput("text", "Pseudo", "PSEUDO");
-                echo makeInput("text", "Numéro", "NUM");
-                echo makeInput("email", "Email", "ADRESSE_EMAIL");
-                echo "<hr>";
-                echo makeInput("number", "Numero", "NUMERO");
-                echo makeInput("text", "Rue", "RUE");
-                echo makeInput("text", "Ville", "VILLE");
-                echo makeInput("number", "Code Postal", "CODE_POSTAL");
+                echo "L'inscription se fait via l'accueil du site. Pour insérer un nouvel administrateur veuiller contacter l'administration.";
             break;
         }
     }
@@ -219,7 +210,8 @@
                         if($_POST["table"] != "adresse" 
                         && $_POST["table"] != "couleur_animal" 
                         && $_POST["table"] != "donation"
-                        && $_POST["table"] != "garderie"){
+                        && $_POST["table"] != "garderie"
+                        && $_POST["table"] != "utilisateur"){
                             echo "<button type='button' id='addInDatabase' class='btn btn-primary'>Ajouter un(e) $result</button>";
                         }
                     ?>
