@@ -18,8 +18,15 @@
         public function daoCount(){
 
         }
-        public function daoAdd($object){
-
+        public function daoAdd($refuge){
+            $region = $refuge->getRegion();
+            $departement = $refuge->getDepartement();
+            $idAdresse = $refuge->getIdAdresse();
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('INSERT INTO refuge (REGION, DEPARTEMENT, ID_ADRESSE) VALUES (?,?,?)');
+            $stmt-> bind_param('ssi', $region, $departement, $idAdresse);
+            $stmt->execute();
+            $this->deconnexion($mysqli);
         }
         public function daoSearch($search){
 

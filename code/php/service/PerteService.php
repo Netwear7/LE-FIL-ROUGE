@@ -2,6 +2,7 @@
 
 include_once '../service/ServiceCommun.php';
 include_once '../Interfaces/InterfaceService.php';
+include_once '../model/Perte.php';
 
     class PerteService extends ServiceCommun implements InterfaceService{
 
@@ -16,6 +17,12 @@ include_once '../Interfaces/InterfaceService.php';
            return $data;
         }
         public function serviceCount(){}
+
+        public function InsertPostToEntityAndAdd(array $post){
+            $perte = new Perte($post);
+            $this->getDataAccessObject()->daoAdd($perte);
+        }
+
         public function serviceAdd($perte){
             $this->getDataAccessObject()->daoAdd($perte);
 

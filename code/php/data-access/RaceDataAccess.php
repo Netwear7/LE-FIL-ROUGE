@@ -65,7 +65,14 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         }
         public function daoSelect(int $id){}
         public function daoCount(){}
-        public function daoAdd(object $object){}
+        public function daoAdd(object $race){
+            $nomRace = $race->getNomRace();
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('INSERT INTO race (NOM_RACE) VALUES (?)');
+            $stmt-> bind_param('s', $nomRace);
+            $stmt->execute();
+            $this->deconnexion($mysqli);
+        }
         public function daoSearch($search){}
         public function daoUpdate(array $parametres){}
         public function daoDelete(string $nom){}

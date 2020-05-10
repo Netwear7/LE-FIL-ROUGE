@@ -3,7 +3,17 @@
         private $idRefuge;
         private $region;
         private $departement;
+        private $idAdresse;
 
+        
+        
+        public function __construct($infos, $id)
+        {
+            $this->region = $infos["region"];
+			$this->departement = $infos["departement"];
+			$this->idAdresse = $id;
+        }
+        
         /**
          * Getter for IdRefuge
          *
@@ -13,7 +23,7 @@
         {
             return $this->idRefuge;
         }
-
+        
         /**
          * Setter for IdRefuge
          * @var [type] idRefuge
@@ -25,8 +35,8 @@
             $this->idRefuge = $idRefuge;
             return $this;
         }
-
-
+        
+        
         /**
          * Getter for Region
          *
@@ -36,7 +46,7 @@
         {
             return $this->region;
         }
-
+        
         /**
          * Setter for Region
          * @var [type] region
@@ -48,8 +58,8 @@
             $this->region = $region;
             return $this;
         }
-
-
+        
+        
         /**
          * Getter for Departement
          *
@@ -59,7 +69,7 @@
         {
             return $this->departement;
         }
-
+        
         /**
          * Setter for Departement
          * @var [type] departement
@@ -71,6 +81,27 @@
             $this->departement = $departement;
             return $this;
         }
-
+        
+        /**
+         * Getter for IdAdresse
+         *
+         * @return [type]
+         */
+        public function getIdAdresse()
+        {
+            return $this->idAdresse;
+        }
+    
+        /**
+         * Setter for IdAdresse
+         * @var [type] idAdresse
+         *
+         * @return self
+         */
+        public function setIdAdresse($idAdresse)
+        {
+            $this->idAdresse = $idAdresse;
+            return $this;
+        }
     }
 ?>

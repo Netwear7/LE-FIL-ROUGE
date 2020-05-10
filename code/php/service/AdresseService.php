@@ -26,6 +26,11 @@
             $data = $this->getDataAccessObject()->daoSelect($this->id);
             return $data;
         }
+        public function serviceSelectByCodePostal($codePostal)
+        {
+            $data = $this->getDataAccessObject()->daoSelectByCodePostal($codePostal);
+            return $data;
+        }
 
 
         public function serviceVerifyPassword(){

@@ -7,7 +7,12 @@
         private $idAnimal;
 
         public function __construct($infos){
-            $this->setIdAnimal($infos["idAnimalPerdu"]);
+            if(isset($infos["animaux"])){
+                $this->setIdAnimal($infos["animaux"]);
+            }
+            else{
+                $this->setIdAnimal($infos["idAnimalPerdu"]);
+            }
             $this->setDatePerte($infos["datePerte"]);
             $this->setDescPerte($infos["precisionPerte"]);
 

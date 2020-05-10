@@ -3,6 +3,12 @@
         private $idRace;
         private $nomRace;
 
+
+        public function __construct($infos)
+        {
+			$this->nomRace = $infos["race"];
+        }
+
         /**
          * Getter for IdRace
          *

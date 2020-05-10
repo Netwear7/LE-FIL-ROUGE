@@ -16,11 +16,6 @@
             
         }
 
-        public function InsertPostToEntityAndAdd(array $post){
-            $garderie = new Garderie($post);
-            $this->getDataAccessObject()->daoAdd($garderie);
-        }
-
         public function serviceAdd(object $var){
             
         }

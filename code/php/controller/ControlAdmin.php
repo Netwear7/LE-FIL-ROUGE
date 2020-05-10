@@ -63,9 +63,28 @@
         $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
         $SelectedTableService->InsertPostToEntityAndAdd($_POST);
     }
+    function AddNewRowOfSelectedTableAndAdresse($table, $id){
+        $SelectedTableDAO = ConcatTableDataAccess($table);
+        $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
+        $SelectedTableService->InsertPostToEntityAndAdd($_POST, $id);
+    }
 
-    if(isset($_POST["selectTable"]) && !empty($_POST["selectTable"])){
+    if(isset($_POST["selectTable"]) && $_POST["selectTable"] != "refuge"  && $_POST["selectTable"] != "utilisateur"){
         AddNewRowOfSelectedTable($_POST["selectTable"]);
+    }
+    if(isset($_POST["selectTable"]) && $_POST["selectTable"] == "refuge"){
+        AddNewRowOfSelectedTable("adresse");
+        $adresseDao = new AdresseDataAccess();
+        $adresseService = new AdresseService($adresseDao);
+        $id = $adresseService->serviceSelectByCodePostal($_POST["CODE_POSTAL"]);
+        AddNewRowOfSelectedTableAndAdresse($_POST["selectTable"], $id[0]["ID_ADRESSE"]);
+    }
+    if(isset($_POST["selectTable"]) && $_POST["selectTable"] == "utilisateur"){
+        AddNewRowOfSelectedTable("adresse");
+        $adresseDao = new AdresseDataAccess();
+        $adresseService = new AdresseService($adresseDao);
+        $id = $adresseService->serviceSelectByCodePostal($_POST["CODE_POSTAL"]);
+        AddNewRowOfSelectedTableAndAdresse($_POST["selectTable"], $id[0]["ID_ADRESSE"]);
     }
 
 ?>

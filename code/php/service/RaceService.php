@@ -2,7 +2,8 @@
 
 include_once '../service/ServiceCommun.php';
 include_once '../Interfaces/InterfaceService.php';
-    include_once('../data-access/RaceDataAccess.php');
+include_once('../data-access/RaceDataAccess.php');
+include_once('../model/Race.php');
 
     class RaceService extends ServiceCommun implements InterfaceService{
 
@@ -13,6 +14,11 @@ include_once '../Interfaces/InterfaceService.php';
         }
         public function serviceSelect($id){}
         public function serviceCount(){}
+
+        public function InsertPostToEntityAndAdd(array $post){
+            $race = new Race($post);
+            $this->getDataAccessObject()->daoAdd($race);
+        }
         public function serviceAdd(object $var){}
         public function serviceSearch($search){}
         public function serviceUpdate(array $post){}

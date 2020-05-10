@@ -1,16 +1,8 @@
 <?php
     include_once '../Interfaces/InterfaceDao.php';
+    include_once '../data-access/LogBdd.php';
 
-    class AdresseDataAccess implements InterfaceDao{
-        public function connexion(){
-            $mysqli = new mysqli('localhost','root','','bddanimaux');
-            return $mysqli;    
-        }
-        public function deconnexion($mysqli){
-            $mysqli->close();
-        }
-        
-
+    class AdresseDataAccess extends logBdd implements InterfaceDao{
 
         public function daoSelectAll(){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
@@ -59,7 +51,18 @@
             return $result = $stmt ? "l'adresse a bien été ajoutée" : "L'ajout de l'adresse a échoué";
         }
 
-
+        public function daoSelectByCodePostal($codePostal){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from adresse where CODE_POSTAL = ?');
+            // printf("%s\n", $stmt->info);
+            $stmt->bind_param('s', $codePostal);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
 
         //fonction pour récup l'id Adresse directement après l'ajout afin de récupérer 
         //l'id pour pouvoir créer l'utilisateur totalement

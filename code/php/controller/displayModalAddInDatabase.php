@@ -143,10 +143,7 @@
                 echo makeInput("text", "Nom espèce", "nomEspece");
             break;
             case "garderie" :
-                echo makeInput("number", "Nombre de place", "nbrPlace");
-                echo makeInput("date", "Date entrée", "dateEntree");
-                echo makeInput("date", "Date sortie", "dateSortie");
-                echo makeSelect("refuge");
+                echo "Seuls les utilisateurs peuvent faire une réservation.";
             break;
             case "maladie" :
                 echo makeInput("text", "Maladie", "maladie");
@@ -156,15 +153,18 @@
             break;
             case "perte" :
                 echo makeInput("date", "Date perte animal", "datePerte");
-                echo makeInput("text", "Description", "description");
+                echo makeInput("text", "Description", "precisionPerte");
                 echo makeSelect("animaux");
                 
             break;
             case "photo_animal" :
-                echo makeInput("file", "Photo", "photo");
-                echo makeInput("number", "Boléen photo actuelle (1)", "photoBoleen");
-                echo makeInput("text", "Nom", "nom");
-                echo makeInput("text", "Taille", "taille");
+                // echo makeInput("file", "Photo", "photo");
+                echo '<div class="col-4 offset-4"><input type="file" name="photo" id="photo" accept="image/png, image/jpeg"></div>';
+                // echo makeInput("number", "Boléen photo actuelle (1)", "photoBoleen");
+                echo '<input type="checkbox" name="photo" aria-label="Photo de profil" checked> Photo de profil';
+                // echo "<br>";
+                echo makeInput("text", "Nom", "name");
+                echo makeInput("text", "Taille", "size");
                 echo makeInput("text", "Type", "type");
                 echo makeSelect("animaux");
             break;
@@ -181,11 +181,13 @@
                 echo makeInput("number", "Code Postal", "CODE_POSTAL");
             break;
             case "utilisateur" :
-                echo makeInput("text", "Nom", "nom");
-                echo makeInput("text", "Prenom", "prenom");
-                echo makeInput("text", "Pseudo", "pseudo");
+                echo makeInput("text", "Nom", "NOM");
+                echo makeInput("text", "Prenom", "PRENOM");
+                echo makeInput("text", "Pseudo", "PSEUDO");
+                echo makeInput("text", "Numéro", "NUM");
+                echo makeInput("email", "Email", "ADRESSE_EMAIL");
                 echo "<hr>";
-                echo makeInput("text", "Numero", "NUMERO");
+                echo makeInput("number", "Numero", "NUMERO");
                 echo makeInput("text", "Rue", "RUE");
                 echo makeInput("text", "Ville", "VILLE");
                 echo makeInput("number", "Code Postal", "CODE_POSTAL");
@@ -214,7 +216,10 @@
                             CreateFormbyTable($_POST["table"]);
                         }
                         $result = ($_POST["table"] == "animaux")? "animal" : $_POST["table"];
-                        if($_POST["table"] != "adresse" && $_POST["table"] != "couleur_animal" && $_POST["table"] != "donation"){
+                        if($_POST["table"] != "adresse" 
+                        && $_POST["table"] != "couleur_animal" 
+                        && $_POST["table"] != "donation"
+                        && $_POST["table"] != "garderie"){
                             echo "<button type='button' id='addInDatabase' class='btn btn-primary'>Ajouter un(e) $result</button>";
                         }
                     ?>

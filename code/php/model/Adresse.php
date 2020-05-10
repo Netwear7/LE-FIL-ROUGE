@@ -12,7 +12,6 @@
             $this->rue = $infos["RUE"];
             $this->ville = $infos["VILLE"];
             $this->codePostal = $infos["CODE_POSTAL"];
-            
         }
 
         /**
