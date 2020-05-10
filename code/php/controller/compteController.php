@@ -83,7 +83,7 @@ if(isset($_POST["updatePassword"])){
                     }
                 } else {
                     $response_array['status'] = '01'; 
-                    $response_array['message'] = 'Votre mot de passe doit contenir entre blablabla et blablabla !';
+                    $response_array['message'] = 'Votre mot de passe doit faire au moins 6 caractères !';
                     header('Content-type: application/json; charset=UTF-8');
                     $error = (json_encode($response_array));
                     echo $error;

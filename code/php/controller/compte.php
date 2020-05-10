@@ -288,7 +288,7 @@ if(!isset($_SESSION["user_id"]))
                                                                 <option>Femelle</option>
                                                             </select>
 
-                                                        <label for="inputNumeroPuce" class="mt-2" >Numéro d\'identification : </label>
+                                                        <label for="inputNumeroPuce" class="mt-2" >Numéro d'identification : </label>
                                                             <input type="text" class="form-control" id="numeroPuce" name="numeroPuce" placeholder="Numéro de Puce Electronique">
                                                         <label for="textAreaCaractere" class="mt-2">Caractère :</label>
                                                             <textarea class="form-control " id="textAreaCaractere" name="caractere" rows="3"></textarea>                          

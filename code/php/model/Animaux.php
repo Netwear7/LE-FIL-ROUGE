@@ -16,6 +16,7 @@
         private $dateArrivee;
         private $dateSortie;
         private $idRefuge;
+        private $couleurAnimal;
 
 
         public function __construct($infos)
@@ -27,9 +28,15 @@
 			$this->caractereAnimal = $infos["caractere"];
 			$this->specificiteAnimal = $infos["specificites"];
 			$this->tailleAnimal = $infos["taille"];
-			$this->robeAnimal = $infos["robe"];
+                        $this->robeAnimal = $infos["robe"];
+
             $this->raceAnimal = $infos["race"];
             $this->sexeAnimal = $infos["sexe"];
+
+            // merci de pas retirer la couleur je l'utilise pour l'ajout de l'animal
+            if (isset($infos["couleur"])){
+                $this->couleurAnimal = $infos["couleur"];
+            }
 
             //petit changement, l'utilisateur n'est pas obligatoirement set, idem pour refuge, dateArrivee, et dateSortie            
             if(isset($infos["idUtilisateur"])){

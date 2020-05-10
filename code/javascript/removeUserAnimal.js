@@ -16,6 +16,7 @@ $(document).ready(function (){
                     $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultRetraitAnimal" ).fadeIn(3000).fadeOut(9000)
                 } else {
                     $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultRetraitAnimal" ).fadeIn(3000).fadeOut(9000);
+                    setTimeout(location.reload.bind(location), 3500);
                 }                       
             },
         })

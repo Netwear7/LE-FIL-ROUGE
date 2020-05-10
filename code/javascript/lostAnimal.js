@@ -22,7 +22,7 @@ $(document).ready(function (){
                         $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);
                     } else {
                         $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);
-                        $('#modalPerte').modal('hide');
+                        setTimeout(location.reload.bind(location), 3500);
                     }                       
                 }
             }   
