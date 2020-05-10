@@ -56,5 +56,11 @@
         public function serviceDeleteReservation($idUser){
             $data = $this->getDataAccessObject()->daoDeleteReservation($idUser);
         }
+
+        public function serviceVerifyIfIsFull($idRefuge,$dateEntree,$dateSortie){
+            $data = $this->getDataAccessObject()->daoVerifyIfIsFull($idRefuge,$dateEntree,$dateSortie);
+            return $data;
+        }
+        
     }
 ?>

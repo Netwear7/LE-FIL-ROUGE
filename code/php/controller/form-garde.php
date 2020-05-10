@@ -52,14 +52,26 @@
 
                 if(isset($_POST["reservation"])){
     
-                    if(!empty($_POST["date_entree"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
+                    if(!empty($_POST["ville"]) && !empty($_POST["date_sortie"]) && !empty($_POST["ville"]) && !empty($_POST["id_animal"])){
     
                         if(count($_POST["id_animal"])<5){
-                            $serviceGarderie->serviceReservationGarderie($_POST);
-                            echo '<div class="row">
-                            <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
-                            Un mail de confirmation va vous être adressé.</div>
-                            </div>';
+                            $dataOccupation=$serviceGarderie->serviceVerifyIfIsFull($_POST["ville"],$_POST["date_entree"],$_POST["date_sortie"]);
+                            if(count($dataOccupation)+count($_POST["id_animal"]) < 50)
+                            {
+                                $serviceGarderie->serviceReservationGarderie($_POST);
+                                echo '<div class="row">
+                                <div class="alert alert-primary text-center col-lg-10 offset-lg-1" role="alert">Votre réservation a bien été prise en compte !<br>
+                                Un mail de confirmation va vous être adressé.</div>
+                                </div>';
+                                $dataOccupation=$serviceGarderie->serviceVerifyIfIsFull($_POST["ville"],$_POST["date_entree"],$_POST["date_sortie"]);
+                            }
+                            else{
+                                echo '<div class="row">
+                                <div class="alert alert-warning text-center col-lg-10 offset-lg-1" role="alert">Nous sommes désolés,<br>
+                                Notre garderie est déjà complète pour cette période...</div>
+                                </div>';
+                            }
+
                         }
     
                         elseif(count($_POST["id_animal"])>5){

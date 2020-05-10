@@ -41,7 +41,9 @@
         
         public function daoVerifyIfReservationExists($idUser){
             $mysqli = $this->connexion();
-            $rs = $mysqli->query('SELECT id_garderie FROM garderie as A INNER JOIN animaux as B WHERE B.id_utilisateur = '.$idUser.'');
+            $rs = $mysqli->query('SELECT id_garderie FROM garderie as A 
+                                  INNER JOIN animaux as B on A.id_animal=B.id_animal 
+                                  WHERE B.id_utilisateur = '.$idUser.'');
             $data = $rs->fetch_all(MYSQLI_ASSOC);
             $rs->free();
             $this->deconnexion($mysqli);
@@ -50,10 +52,24 @@
 
         public function daoDeleteReservation($idUser){
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('DELETE A.* FROM garderie as A INNER JOIN animaux as B WHERE B.id_utilisateur = ?');
+            $stmt = $mysqli->prepare('DELETE A.* FROM garderie as A 
+                                      INNER JOIN animaux as B on A.id_animal=B.id_animal 
+                                      WHERE B.id_utilisateur = ?');
             $stmt->bind_param('i', $idUser);
             $stmt->execute();                
             $this->deconnexion($mysqli);
+        }
+
+        public function daoVerifyIfIsFull($idRefuge,$dateEntree,$dateSortie){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query("SELECT * FROM garderie WHERE id_refuge=$idRefuge 
+                                                         AND ((date_entree BETWEEN '$dateEntree' AND '$dateSortie') 
+                                                               OR (date_sortie BETWEEN '$dateEntree' AND '$dateSortie') 
+                                                               OR (date_entree < '$dateEntree' AND date_sortie > '$dateSortie'))");
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
         }
     }
 ?>
