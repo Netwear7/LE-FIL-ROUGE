@@ -60,7 +60,7 @@
                     <!---------------Présentation site--------------->
                     <div class="row bg-grey-light shadow-sm mt-5 p-3 mb-2">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
-                            <h2 class="font-weight-bold">ANITOPIA</h2>
+                            <h1 class="font-weight-bold">ANITOPIA</h1>
                         </div>
                         <div class="col-lg-6">
                             <img class="img-fluid" src="http://localhost/LE-FIL-ROUGE/code/img/le-refuge.jpg" alt="photo refuge">

@@ -33,7 +33,11 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoSelectAllAdoptableAnimals(){
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.nom, A.id_animal, B.nom_race FROM animaux as A INNER JOIN race as B on A.id_race = B.id_race WHERE A.id_refuge IS NOT NULL");
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.* FROM animaux as A 
+                                      INNER JOIN race as B on A.id_race = B.id_race
+                                      INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
+                                      INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur
+                                      WHERE A.id_refuge IS NOT NULL");
             $stmt -> execute();  
             $rs = $stmt->get_result();          
             $data= $rs->fetch_all(MYSQLI_ASSOC);
@@ -213,7 +217,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         
         public function daoSearchAnimals($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.nom, A.id_animal, B.nom_race FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race 
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
@@ -235,7 +239,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoSearchAnimals2($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.nom, A.id_animal, B.nom_race FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*,D.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race 
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
