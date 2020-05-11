@@ -60,7 +60,7 @@
         switch($table){
             case "race":
                 foreach($data as $array){
-                    $select .= "<option value='".$array["ID_RACE"]."'>". $array["NOM_RACE"]."'</option>";
+                    $select .= " <option value=' " . $array["ID_RACE"] . "'>" . $array["NOM_RACE"] . "</option>";
                 }
                 return $select;
             break;
@@ -98,7 +98,7 @@
         $selectedTableService = ConcatTableService($table, $selectedTableDao);
         $data = $selectedTableService->serviceSelectAll();
         $select = makeOption($table, $data, $select);
-        $select .="</select>";
+        $select .= "</select>";
         return $select;
     }
 
