@@ -5,6 +5,7 @@
         private $photoNom;
         private $photoTaille;
         private $photoType;
+        private $photoProfil;
         private $idAnimal;
 
 
@@ -149,6 +150,28 @@
                 $this->idAnimal = $idAnimal;
 
                 return $this;
+        }
+
+                /**
+         * Getter for PhotoProfil
+         *
+         * @return [type]
+         */
+        public function getPhotoProfil()
+        {
+            return $this->photoProfil;
+        }
+
+        /**
+         * Setter for PhotoProfil
+         * @var [type] photoProfil
+         *
+         * @return self
+         */
+        public function setPhotoProfil($photoProfil)
+        {
+            $this->photoProfil = $photoProfil;
+            return $this;
         }
     }
 ?>

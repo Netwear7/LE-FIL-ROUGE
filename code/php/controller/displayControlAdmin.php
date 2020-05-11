@@ -88,7 +88,7 @@
 ?>
 
 
-<table class="table table-hover">
+<table class="table table-bordered table-hover mt-3">
     <?php
         if(isset($_POST["table"]) && !empty($_POST["table"])){
         echo "<caption> List of " .$_POST["table"]."</caption>";

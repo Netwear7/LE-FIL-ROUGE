@@ -18,12 +18,16 @@ function loadInfos(){
                 form = $("form-admin")
                 var formData = new FormData(form[0]);
                 $('input').each(function(){
+                    formData.append(this.name, this.value)
+                })
+                $('select').each(function(){
                     console.log(this.name)
                     console.log(this.value)
-                    formData.append(this.name, this.value)
-
+                    formData.append(this.name, $(this).find('option:selected').val())
                 })
-                formData.append("selectTable", table)
+                if(table == "photo_animal"){
+                    formData.append( 'photo', $( '#photo' )[0].files[0] );
+                }
                 e.stopPropagation()
 
                 $.ajax({
@@ -34,16 +38,18 @@ function loadInfos(){
                     async: true,
                     processData: false,
                     contentType: false,
-                    success: function (data) {
-                        if(data.status != 'success'){
-                            // $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000)
-                        } else {
-                            // $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultAjoutAnimal" ).fadeIn(3000).fadeOut(9000);
-                            
-                        }                       
+                    mimeType: 'multipart/form-data',
+                    success: function(data){
+                        alert(data);
                     }
                 })
-
+                // $('#add').modal('hide');
+                
+                setTimeout(function(){
+                    $('.modal-backdrop').remove();
+                    loadInfos();
+                },400);
+                $('body').removeClass('modal-open');
             })
         })
     })

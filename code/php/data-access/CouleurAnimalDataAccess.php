@@ -30,8 +30,13 @@
         public function daoCount(){
 
         }
-        public function daoAdd($object){
-
+        public function daoAdd($couleurAnimal){
+            $mysqli = $this->connexion();
+            $couleur = $couleurAnimal->getCouleur();
+            $stmt = $mysqli->prepare("INSERT INTO couleur_animal(COULEUR) VALUES(?)");
+            $stmt->bind_param("s", $couleur);
+            $stmt->execute();
+            $this->deconnexion($mysqli);
         }
         public function daoSearch($search){
 

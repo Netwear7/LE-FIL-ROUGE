@@ -69,15 +69,26 @@
         $SelectedTableService->InsertPostToEntityAndAdd($_POST, $id);
     }
 
-    if(isset($_POST["selectTable"]) && $_POST["selectTable"] != "refuge"  && $_POST["selectTable"] != "utilisateur"){
-        AddNewRowOfSelectedTable($_POST["selectTable"]);
+    if(isset($_POST["tableSelect"]) && 
+    $_POST["tableSelect"] != "refuge"  && 
+    $_POST["tableSelect"] != "utilisateur" && 
+    $_POST["tableSelect"] != "animaux" && 
+    $_POST["tableSelect"] != "photo_animal"){
+        AddNewRowOfSelectedTable($_POST["tableSelect"]);
     }
-    if(isset($_POST["selectTable"]) && $_POST["selectTable"] == "refuge"){
+    if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "refuge"){
         AddNewRowOfSelectedTable("adresse");
         $adresseDao = new AdresseDataAccess();
         $adresseService = new AdresseService($adresseDao);
         $id = $adresseService->serviceSelectByCodePostal($_POST["CODE_POSTAL"]);
-        AddNewRowOfSelectedTableAndAdresse($_POST["selectTable"], $id[0]["ID_ADRESSE"]);
+        AddNewRowOfSelectedTableAndAdresse($_POST["tableSelect"], $id[0]["ID_ADRESSE"]);
+    }
+    if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "photo_animal" && !empty($_FILES['photo'])){
+        $photoAnimalDao = new PhotoAnimalDataAccess();
+        $photoAnimalService = new PhotoAnimalService($photoAnimalDao);
+        $photoAnimal = new PhotoAnimal($_FILES["photo"], $_POST["animaux"]);
+        $photoAnimal->setPhotoProfil(1);
+        $photoAnimalService->serviceAdd($photoAnimal);
     }
 ?>
 
@@ -94,8 +105,8 @@
         <title>Donnée du site</title>
         <!-- script Javascript-->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="../../javascript/navbarScroll.js"></script>
         <script src="https://kit.fontawesome.com/ca25c21894.js" crossorigin="anonymous"></script>
 
@@ -105,12 +116,12 @@
         <nav class="navbar navbar-light bg-1 border-bot-header">
             <a class="navbar-brand" href="#">Navbar</a>
         </nav>
-        <div class="container-fluid">
+        <div class="container-fluid mt-3">
             <div class="row">
                 <div class="offset-lg-1 col-lg-10 mt-2 bg-grey-light">
                     <a href="displayModalAddInDatabase.php" id="modalAdd" class="" data-toggle="modal" data-target="#add"><i class="fas fa-plus mb-2 mt-2 ml-2"></i></a>
                     <div id="pload"></div>
-                    <select class="form-control" id="tableSelect" name="tableSelect">
+                    <select class="form-control mt-2" id="tableSelect" name="tableSelect">
                     <?php
                         $controlAdminDAO = new ControlAdminDataAccessDataAccess();
                         $controlAdminService = new ControlAdminService($controlAdminDAO);

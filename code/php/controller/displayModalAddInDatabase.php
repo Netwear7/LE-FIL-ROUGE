@@ -1,5 +1,6 @@
 <?php
     include_once("../service/ControlAdminService.php");
+    include_once("../service/CouleurAnimalService.php");
     include_once("../service/UtilisateurService.php");
     include_once("../service/AnimauxService.php");
     include_once("../service/AdresseService.php");
@@ -7,6 +8,7 @@
     include_once("../service/RaceService.php");
     
     include_once("../data-access/ControlAdminDataAccess.php");
+    include_once("../data-access/CouleurAnimalDataAccess.php");
     include_once("../data-access/UtilisateurDataAccess.php");
     include_once("../data-access/AnimauxDataAccess.php");
     include_once("../data-access/AdresseDataAccess.php");
@@ -64,6 +66,12 @@
                 }
                 return $select;
             break;
+            case "couleur_animal":
+                foreach($data as $array){
+                    $select .= '<option value='.$array["ID_COULEUR"].'>'. $array["COULEUR"] .'</option>';
+                }
+                return $select;
+            break;
             case "utilisateur":
                 foreach($data as $array){
                     $select .= '<option value='.$array["ID_UTILISATEUR"].'>(ID:'.$array["ID_UTILISATEUR"] .") ". $array["NOM"]." ". $array["NOM"].'</option>';
@@ -92,8 +100,8 @@
     }
 
     function makeSelect($table){
-        $select = "<label for='pet-select'>$table :</label>";
-        $select .= "<select class='form-control mb-4' id='$table-select' name='$table'>";
+        $select = "<label for='$table-select'>$table :</label>";
+        $select .= "<select class='form-control mb-3' id='$table-select' name='$table'>";
         $selectedTableDao = ConcatTableDataAccess($table);
         $selectedTableService = ConcatTableService($table, $selectedTableDao);
         $data = $selectedTableService->serviceSelectAll();
@@ -112,19 +120,28 @@
                 echo "Insérer un refuge pour inserer une adresse.";
             break;
             case "animaux": 
+                echo '<div class="row">';
+                    echo '<div class="col-lg-6">';
                 echo makeInput("text", "Nom", "nomAnimal");
                 echo makeInput("date", "Date de naissance", "dateNaissance");
-                echo makeInput("number", "Poids", "poids");
-                echo makeInput("text", "Numéro puce", "numeroPuce");
-                echo makeInput("text", "Caractère", "caractere");
-                echo makeInput("text", "Spécificités", "specificites");
-                echo makeInput("text", "Taille", "taille");
-                echo makeInput("text", "Robe", "robe");
-                echo makeInput("date", "Date arrivée", "dateArrivee");
-                echo makeInput("date", "Date sortie", "dateSortie");
-                echo makeInput("text", "Sexe", "sexe");     
-                echo makeSelect("race");
-                echo makeSelect("refuge");
+                    echo makeInput("number", "Poids", "poids");
+                    echo makeInput("text", "Numéro puce", "numeroPuce");
+                    echo makeInput("text", "Caractère", "caractere");
+                    echo makeInput("text", "Spécificités", "specificites");
+                    echo makeInput("text", "Taille", "taille");
+                    echo makeInput("text", "Robe", "robe");
+                    
+                        echo '</div>';
+                        echo '<div class="col-lg-6">';
+                    
+                    echo makeInput("date", "Date arrivée", "dateArrivee");
+                    echo makeInput("date", "Date sortie", "dateSortie");
+                    echo makeInput("text", "Sexe", "sexe");     
+                    echo makeSelect("race");
+                    echo makeSelect("couleur_animal");
+                    echo makeSelect("refuge");
+                    echo '</div>';
+                echo '</div>';
             break;
             case "contactez_nous":
                 echo makeInput("text", "Message", "message");
@@ -137,7 +154,7 @@
                 echo "Impossible d'insérer une donation depuis la page administrateur.";
             break;
             case "couleur_animal":
-                echo "Implémenter la couleur dans la base de donnée sur la table animaux.";
+                echo makeInput("text", "Couleur", "couleur");
             break;
             case "espece":
                 echo makeInput("text", "Nom espèce", "nomEspece");
@@ -158,14 +175,12 @@
                 
             break;
             case "photo_animal" :
-                // echo makeInput("file", "Photo", "photo");
-                echo '<div class="col-4 offset-4"><input type="file" name="photo" id="photo" accept="image/png, image/jpeg"></div>';
-                // echo makeInput("number", "Boléen photo actuelle (1)", "photoBoleen");
-                echo '<input type="checkbox" name="photo" aria-label="Photo de profil" checked> Photo de profil';
-                // echo "<br>";
-                echo makeInput("text", "Nom", "name");
-                echo makeInput("text", "Taille", "size");
-                echo makeInput("text", "Type", "type");
+                echo '<div class="col-4 offset-4"><input type="file" id="photo" accept="image/png, image/jpeg"></div>';
+                echo '<div class="text-center mb-0 mt-1 "><input type="checkbox" class="text-center" name="photoProfil" aria-label="Photo de profil" checked> Photo de profil</div>';
+                echo "<br>";
+                // echo makeInput("text", "Nom", "name");
+                // echo makeInput("text", "Taille", "size");
+                // echo makeInput("text", "Type", "type");
                 echo makeSelect("animaux");
             break;
             case "race" :
@@ -208,11 +223,10 @@
                         }
                         $result = ($_POST["table"] == "animaux")? "animal" : $_POST["table"];
                         if($_POST["table"] != "adresse" 
-                        && $_POST["table"] != "couleur_animal" 
                         && $_POST["table"] != "donation"
                         && $_POST["table"] != "garderie"
                         && $_POST["table"] != "utilisateur"){
-                            echo "<button type='button' id='addInDatabase' class='btn btn-primary'>Ajouter un(e) $result</button>";
+                            echo "<button type='button' data-dismiss='modal' id='addInDatabase' class='btn btn-primary'>Ajouter un(e) $result</button>";
                         }
                     ?>
                 </form>
