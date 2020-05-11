@@ -26,10 +26,10 @@
 
 </head>
 
-<body>
     <?php
         include_once("header.php");
     ?> 
+<body class="bg-grey-light">
     
     <div class="container-fluid">
         <div class="row my-3">
@@ -106,7 +106,7 @@
             <div class="col-lg-8 offset-lg-3">
             <ul id="pagin" class="pagination justify-content-center"></ul>
             </div>
-         </nav>
+        </nav>
     </div>
 
     <?php

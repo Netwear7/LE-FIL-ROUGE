@@ -33,11 +33,13 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoSelectAllAdoptableAnimals(){
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, E.* FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, E.*, G.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur
                                       INNER JOIN photo_animal as E on A.id_animal=E.id_animal
+                                      INNER JOIN refuge as F on A.id_refuge=F.id_refuge
+                                      INNER JOIN adresse as G on F.id_adresse=G.id_adresse
                                       WHERE A.id_refuge IS NOT NULL");
             $stmt -> execute();  
             $rs = $stmt->get_result();          
@@ -218,7 +220,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         
         public function daoSearchAnimals($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, K.* FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, K.*, H.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race 
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
@@ -241,7 +243,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoSearchAnimals2($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, I.* FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, I.*, H.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race 
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
