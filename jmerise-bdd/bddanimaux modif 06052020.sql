@@ -33,7 +33,7 @@ CREATE TABLE `adresse` (
   `NUMERO` int(11) NOT NULL,
   `RUE` varchar(50) NOT NULL,
   `VILLE` varchar(50) NOT NULL,
-  `CODE_POSTAL` int(11) NOT NULL
+  `CODE_POSTAL` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
