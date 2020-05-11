@@ -3,6 +3,7 @@
     include_once("../data-access/PhotoAnimalDataAccess.php");
     include_once("../Interfaces/InterfaceService.php");
     include_once("../service/ServiceCommun.php");
+    include_once("../model/PhotoAnimal.php");
 
     class PhotoAnimalService extends ServiceCommun implements InterfaceService{
         public function serviceSelectAll(){
@@ -22,6 +23,17 @@
         }
         public function serviceSelect($id){}
         public function serviceCount(){}
+
+        public function InsertPostToEntityAndAdd(array $post){
+
+            $validExtensions = array("jpg","jpeg","png");
+
+
+
+            $perte = new PhotoAnimal($post, $post['animaux']);
+            $this->getDataAccessObject()->daoAdd($perte);
+        }
+
         public function serviceAdd($photo){
             $this->getDataAccessObject()->daoAdd($photo);
         }

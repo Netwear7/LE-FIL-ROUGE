@@ -200,7 +200,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="POST" id="form-admin">
+                <form action="POST" id="form-admin" enctype="multipart/form-data">
                     <?php
                         // $ColumnTable = GetDataOfSelectedTable($_POST["table"]);
                         if(isset($_POST["table"]) && !empty($_POST["table"])){
