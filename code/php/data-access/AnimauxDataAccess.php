@@ -143,7 +143,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $poids = $animal->getPoidsAnimal();
             $specificites = $animal->getSpecificiteAnimal();
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, ID_GARDERIE, SEXE) VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,?,NULL,NULL,?)');
+            $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, SEXE) VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,?,NULL,?)');
             $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe,$raceAnimal,$idUtilisateur, $sexeAnimal);
             $stmt->execute();                
             $this->deconnexion($mysqli);

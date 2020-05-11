@@ -53,14 +53,15 @@
         }
         public function daoCount(){}
         public function daoAdd($photo){
+            $bool = 1;
             $blob = $photo->getBlob();
             $photoNom = $photo->getPhotoNom();
             $photoTaille = $photo->getPhotoTaille();
             $photoType = $photo->getPhotoType();
             $idAnimal = $photo->getIdAnimal();
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('INSERT INTO photo_animal(PHOTO,PHOTO_NOM,PHOTO_TAILLE,PHOTO_TYPE, ID_ANIMAL) VALUES(?,?,?,?,?)');
-            $stmt->bind_param('sssss',$blob, $photoNom, $photoTaille, $photoType,$idAnimal);
+            $stmt = $mysqli->prepare('INSERT INTO photo_animal(PHOTO,PHOTO_PROFIL,PHOTO_NOM,PHOTO_TAILLE,PHOTO_TYPE, ID_ANIMAL) VALUES(?,?,?,?,?,?)');
+            $stmt->bind_param('sissss',$blob,$bool, $photoNom, $photoTaille, $photoType,$idAnimal);
             $stmt->execute();                
             $this->deconnexion($mysqli);
         }

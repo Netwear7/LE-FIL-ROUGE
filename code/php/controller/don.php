@@ -48,17 +48,21 @@
                     </p>
                 </article>
             </div>
-            <div class="row bg-grey-light shadow-sm">
-                <div class="col-lg-4 col-sm-12">
-                    <div class="row">
-                    <select class="selectpicker" id="selectDonationMode">
-                        <option value="">Selectionnez un mode : </option>
-                        <option value="cb">Carte Bancaire</option>
+            <div class="row mt-5 ">
+                <div class="col-2">
+                    <select id="selectDonationMode" class="ml-2">
                         <option value="paypal">Paypal</option>
+                        <option value="cb">Carte bancaire</option>
                     </select>
-                    </div> 
-                </div>                            
-            </div>      
+                </div>
+                <div class="col-8">
+                <div class="row bg-grey-light" id="loadDonation">   
+
+                </div>
+                </div>  
+
+            </div>
+      
             <div class="row mt-3">
                 <p>Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions  Conditions Conditions Conditions </p>
             </div>

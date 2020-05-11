@@ -6,7 +6,7 @@ if(isset($_GET)){
 
 echo '
 
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document" id="modalRemoveFavourite">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalRetraitCenterTitle">Retirez l\'animal de vos favoris ?</h5>
@@ -18,7 +18,7 @@ echo '
                 <p>Celui-ci ne sera plus visible dans vos Animaux Favoris mais sera toujours visible sur le site !</p>
                 <p class="mt-2">Confirmer le retrait ?</p>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" id="footerRetraitFavoris">
                 <form id="formRetrait">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-outline-info" name="'.$_SESSION["user_id"].'" id="removeFavoris" value="'.$id .'">Confirmer le retrait</button>
