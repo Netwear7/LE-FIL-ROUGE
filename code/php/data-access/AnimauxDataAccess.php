@@ -2,6 +2,8 @@
 
 include_once '../data-access/LogBdd.php';
 include_once '../Interfaces/InterfaceDao.php';
+include_once '../model/MysqliQueryException.php';
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         public function daoSelectAll(){
