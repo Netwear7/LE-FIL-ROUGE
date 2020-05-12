@@ -10,7 +10,7 @@ $(document).ready(function(){
                 $( '<p class="alert alert-warning mt-2 mb-2 col-12" role="alert">Une erreur nous empêche momentanément d\'afficher la fonctionnalité de Signalement, veuillez réessayer plus tard !</p>' ).appendTo( "#errorAnimal" );
             }
         });
-    })
+    });
 });
 
 

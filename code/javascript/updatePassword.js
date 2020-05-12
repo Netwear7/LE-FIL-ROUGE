@@ -28,6 +28,7 @@ $(document).ready(function (){
                 error: function(jqXHR,textStatus,errorThrown){
                     $( '<div class="alert alert-primary col-12 mt-2 mb-2" role="alert">'+errorThrown+'</div>' ).appendTo( "#resultUpdatePassword" ).fadeIn(3000).fadeOut(3500);
                 },
+                cache:false,
             }   
         )
         });

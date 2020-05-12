@@ -34,6 +34,9 @@ $(document).ready(function (){
             }  
         )
     });
+    $(document.body).on('hidden.bs.modal', function () {
+        $('#modalRetrouve').removeData('bs.modal')
+    });
 });
 
 

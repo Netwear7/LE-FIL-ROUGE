@@ -30,4 +30,7 @@ $(document).ready(function (){
             }
         })
     });
+    $(document.body).on('hidden.bs.modal', function () {
+        $('#modalRetrait').removeData('bs.modal')
+    });
 });

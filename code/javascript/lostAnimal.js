@@ -37,5 +37,8 @@ $(document).ready(function (){
             }   
         )
     });
+    $(document.body).on('hidden.bs.modal', function () {
+        $('#modalPerdu').removeData('bs.modal')
+    });
 });
 
