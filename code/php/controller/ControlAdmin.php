@@ -111,11 +111,12 @@
         $avoirCouleurService->serviceAdd($avoirCouleur);
 
 
-
-        $infectePar = new InfectePar($animal->getIdAnimal(), $_POST["maladie"]);
-        $infecteParDao = new InfecteParDataAccess();
-        $infecteParService = new InfecteParService($infecteParDao);
-        $infecteParService->serviceAdd($infectePar);
+        if($_POST["maladie"] != null){
+            $infectePar = new InfectePar($animal->getIdAnimal(), $_POST["maladie"]);
+            $infecteParDao = new InfecteParDataAccess();
+            $infecteParService = new InfecteParService($infecteParDao);
+            $infecteParService->serviceAdd($infectePar);
+        }
 
         
         $photoAnimalDao = new PhotoAnimalDataAccess();

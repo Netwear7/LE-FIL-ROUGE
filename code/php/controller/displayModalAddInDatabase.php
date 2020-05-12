@@ -69,6 +69,7 @@
                 return $select;
             break;
             case "maladie":
+                $select .= " <option value='null'>Aucune Maladie</option>";
                 foreach($data as $array){
                     $select .= " <option value=' " . $array["ID_MALADIE"] . "'>" . $array["MALADIE"] . "</option>";
                 }
