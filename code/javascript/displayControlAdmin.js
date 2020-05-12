@@ -28,6 +28,9 @@ function loadInfos(){
                 if(table == "photo_animal"){
                     formData.append( 'photo', $( '#photo' )[0].files[0] );
                 }
+                if(table == "animaux"){
+                    formData.append( 'photo', $( '#photo' )[0].files[0] );
+                }
                 e.stopPropagation()
 
                 $.ajax({
