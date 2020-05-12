@@ -157,5 +157,5 @@ function affichage($data){
     
      
 ?>
+
 <script src="../../javascript/like.js"></script>
-<script src="../../javascript/scriptDisplaySelection.js"></script>

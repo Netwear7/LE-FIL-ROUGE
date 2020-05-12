@@ -40,9 +40,7 @@ $("#ville").change(function(e){
     loadInfo();
 });
 
-$(".js-like").click(function(e){
-    loadInfo();
-});
+
 
 
 
