@@ -3,6 +3,9 @@
 
     include_once("../service/ControlAdminService.php");
     include_once("../data-access/ControlAdminDataAccess.php");
+    include_once("../model/AvoirCouleur.php");
+    include_once("../model/InfectePar.php");
+
 
     //data-Access
     include_once("../data-access/AdresseDataAccess.php");
@@ -19,6 +22,9 @@
     include_once("../data-access/RefugeDataAccess.php");
     include_once("../data-access/UtilisateurDataAccess.php");
     include_once("../data-access/DonationDataAccess.php");
+    include_once("../data-access/AvoirCouleurDataAccess.php");
+    include_once("../data-access/InfecteParDataAccess.php");
+
  
     //Service
     include_once("../service/AdresseService.php");
@@ -35,6 +41,8 @@
     include_once("../service/RefugeService.php");
     include_once("../service/UtilisateurService.php");
     include_once("../service/DonationService.php");
+    include_once("../service/AvoirCouleurService.php");
+    include_once("../service/InfecteParService.php");
 
     session_start();
 
@@ -73,7 +81,9 @@
     $_POST["tableSelect"] != "refuge"  && 
     $_POST["tableSelect"] != "utilisateur" && 
     $_POST["tableSelect"] != "animaux" && 
-    $_POST["tableSelect"] != "photo_animal"){
+    $_POST["tableSelect"] != "photo_animal" &&
+    $_POST["tableSelect"] != "animaux" 
+    ){
         AddNewRowOfSelectedTable($_POST["tableSelect"]);
     }
     if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "refuge"){
@@ -87,6 +97,30 @@
         $photoAnimalDao = new PhotoAnimalDataAccess();
         $photoAnimalService = new PhotoAnimalService($photoAnimalDao);
         $photoAnimal = new PhotoAnimal($_FILES["photo"], $_POST["animaux"]);
+        $photoAnimal->setPhotoProfil(1);
+        $photoAnimalService->serviceAdd($photoAnimal);
+    }
+    if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "animaux" && !empty($_FILES['photo'])){
+        $animauxDao = new AnimauxDataAccess();
+        $animauxService = new AnimauxService($animauxDao);
+        $animal = new Animaux($_POST);
+        $animauxService->serviceAddRefugeAnimal($animal);
+        $avoirCouleur = new AvoirCouleur($animal);
+        $avoirCouleurDao = new AvoirCouleurDataAccess();
+        $avoirCouleurService = new AvoirCouleurService($avoirCouleurDao);
+        $avoirCouleurService->serviceAdd($avoirCouleur);
+
+
+
+        $infectePar = new InfectePar($animal->getIdAnimal(), $_POST["maladie"]);
+        $infecteParDao = new InfecteParDataAccess();
+        $infecteParService = new InfecteParService($infecteParDao);
+        $infecteParService->serviceAdd($infectePar);
+
+        
+        $photoAnimalDao = new PhotoAnimalDataAccess();
+        $photoAnimalService = new PhotoAnimalService($photoAnimalDao);
+        $photoAnimal = new PhotoAnimal($_FILES["photo"], $animal->getIdAnimal());
         $photoAnimal->setPhotoProfil(1);
         $photoAnimalService->serviceAdd($photoAnimal);
     }
