@@ -12,13 +12,21 @@ include_once '../Interfaces/InterfaceService.php';
 
         public function serviceAdd(object $couleurAnimal)
         {
+            try{
             $this->getDataAccessObject()->daoAdd($couleurAnimal);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
 
         public function serviceSearch($search){}
         public function serviceUpdate($post){}
         public function serviceDelete($infosAnimal){
+            try{
             $this->getDataAccessObject()->daoDelete($infosAnimal);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
     }
 ?>

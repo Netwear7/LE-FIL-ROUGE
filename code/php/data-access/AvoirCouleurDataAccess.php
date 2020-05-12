@@ -11,6 +11,7 @@ include_once '../Interfaces/InterfaceDao.php';
         public function daoCount(){}
         public function daoAdd(object $object)
         {   
+            try{
             $idCouleur = $object->getCouleur();
             $idAnimal = $object->getIdAnimal();
             $mysqli = $this->connexion();
@@ -18,10 +19,16 @@ include_once '../Interfaces/InterfaceDao.php';
             $stmt->bind_param('ss',$idCouleur,$idAnimal);
             $stmt->execute();
             $this->deconnexion($mysqli);
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }  
         }
         public function daoSearch($search){}
         public function daoUpdate($parametres){}
         public function daoDelete($infosAnimal){
+            try{
             $idAnimal = $infosAnimal["idAnimal"];
             $idCouleur = $infosAnimal["couleur"];
             $mysqli = $this->connexion();
@@ -29,6 +36,11 @@ include_once '../Interfaces/InterfaceDao.php';
             $stmt->bind_param('ss',$idCouleur,$idAnimal);
             $stmt->execute();
             $this->deconnexion($mysqli);
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }  
 
         }
 

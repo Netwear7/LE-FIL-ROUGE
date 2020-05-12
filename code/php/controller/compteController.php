@@ -308,123 +308,185 @@ if (isset($_POST["addAnimal"])){
         echo $error;
     } else {
         if(empty($_POST["nomAnimal"])){
-            $response_array['status'] = '02'; 
-            $response_array['message'] = 'Le nom ne peux être vide !';
+            $response_array['status'] = '01'; 
+            $response_array['message'] = 'Le nom de votre compagnon ne peut être vide !';
             header('Content-type: application/json; charset=UTF-8');
             $error = (json_encode($response_array));
             echo $error;
         } else {
             if (!preg_match("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u",$_POST["nomAnimal"])){
-                $response_array['status'] = '03'; 
-                $response_array['message'] = 'Le nom ne peux pas contenir de caractères spéciaux ni de chiffres !';
+                $response_array['status'] = '02'; 
+                $response_array['message'] = 'Le nom de votre compagnon ne peux pas contenir de caractères spéciaux ni de chiffres !';
                 header('Content-type: application/json; charset=UTF-8');
                 $error = (json_encode($response_array));
                 echo $error;
-            } else {
+            }else {
                 if(empty($_POST["dateNaissance"])){
-                    $response_array['status'] = '04'; 
-                    $response_array['message'] = 'La date de naissance ne peut être vide !';
+                    $response_array['status'] = '03'; 
+                    $response_array['message'] = 'La date de naissance de votre compagnon ne peut être vide !';
                     header('Content-type: application/json; charset=UTF-8');
                     $error = (json_encode($response_array));
                     echo $error;
-                }else {
-                    if($_POST["nom_espece"] == "Selectionnez une race") {
-                        $response_array['status'] = '05'; 
-                        $response_array['message'] = 'Vous n\'avez pas sélectionné l\'espèce de votre Animal';
+                } else {
+                    if(empty($_POST["nom_espece"])){
+                        $response_array['status'] = '04'; 
+                        $response_array['message'] = 'L\'espece de votre compagnon ne peux être vide !';
                         header('Content-type: application/json; charset=UTF-8');
                         $error = (json_encode($response_array));
                         echo $error;
-                    } else{
-                        if(empty($_POST["race"])){
-                            $response_array['status'] = '06'; 
-                            $response_array['message'] = 'Veuillez sélectionner la race de votre Animal  !';
+                    }else {
+                        if(!preg_match("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u",$_POST["nom_espece"])){
+                            $response_array['status'] = '05'; 
+                            $response_array['message'] = 'L\'espece de votre compagnon ne peux contenir de caractères spéciaux !';
                             header('Content-type: application/json; charset=UTF-8');
                             $error = (json_encode($response_array));
                             echo $error;
                         } else {
-                            if(empty($_POST["numeroPuce"])){
-                                $response_array['status'] = '07'; 
-                                $response_array['message'] = 'Le numéro d\'identification ne peux être vide !';
+                            if(empty($_POST["race"])){
+                                $response_array['status'] = '06'; 
+                                $response_array['message'] = 'La race de votre compagnon ne peux ne peux être vide !';
                                 header('Content-type: application/json; charset=UTF-8');
                                 $error = (json_encode($response_array));
                                 echo $error;
-                            }else {
-                                if (!preg_match("/^[a-zA-Z0-9_.-]*$/",$_POST["numeroPuce"])){
-                                    $response_array['status'] = '08'; 
-                                    $response_array['message'] = 'Le Numéro d\'identification ne peux contenir des caractères spéciaux! ';
+                            } else {
+                                if(!preg_match("/^\d+$/",$_POST["race"])){
+                                    $response_array['status'] = '07'; 
+                                    $response_array['message'] = 'La race de votre compagnon ne peux contenir que des chiffres !';
                                     header('Content-type: application/json; charset=UTF-8');
                                     $error = (json_encode($response_array));
                                     echo $error;
                                 } else {
-                                    if(empty($_POST["caractere"])) {
-                                        $response_array['status'] = '09'; 
-                                        $response_array['message'] = 'Le caractère de votre animal ne peux pas être vide !';
+                                    if(empty($_POST["sexe"])){
+                                        $response_array['status'] = '08'; 
+                                        $response_array['message'] = 'Veuillez sélectionner le sexe de votre compagnon!';
                                         header('Content-type: application/json; charset=UTF-8');
                                         $error = (json_encode($response_array));
                                         echo $error;
                                     } else {
-                                        if (!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["caractere"])){
-                                            $response_array['status'] = '10'; 
-                                            $response_array['message'] = 'Les informations concernant le caractère de votre animal ne peuvent contenir des caractères incorrects, seuls sont acceptés les Lettres, les accents et la ponctuation !';
+                                        if(!preg_match("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u",$_POST["sexe"])){
+                                            $response_array['status'] = '09'; 
+                                            $response_array['message'] = 'Le sexe de votre compagnon ne peux contenir de caractères interdits !';
                                             header('Content-type: application/json; charset=UTF-8');
                                             $error = (json_encode($response_array));
-                                            echo $error;
+                                            echo $error; 
                                         } else {
-                                            if(empty($_POST["taille"])){
-                                                $response_array['status'] = '11'; 
-                                                $response_array['message'] = 'La taille de votre Animal n\'est pas présente !';
+                                            if(empty($_POST["numeroPuce"])){
+                                                $response_array['status'] = '10'; 
+                                                $response_array['message'] = 'Veuillez renseigner le numéro d\'identification de votre Animal !';
                                                 header('Content-type: application/json; charset=UTF-8');
                                                 $error = (json_encode($response_array));
-                                                echo $error;
-                                            }else {
-                                                if(!preg_match("/^(?:0|[1-9]\d{0,2})$/",$_POST["taille"])){
-                                                    $response_array['status'] = '12'; 
-                                                    $response_array['message'] = 'La Taille ne peux contenir que des chiffres !';
+                                                echo $error; 
+                                            } else {
+                                                if(!preg_match("/^[a-zA-Z0-9_.-]*$/",$_POST["numeroPuce"])){
+                                                    $response_array['status'] = '11'; 
+                                                    $response_array['message'] = 'Le Numéro d\'identification ne ne peux contenir des caractères spéciaux! ';
                                                     header('Content-type: application/json; charset=UTF-8');
                                                     $error = (json_encode($response_array));
                                                     echo $error;
                                                 } else {
-                                                    if(empty($_POST["poids"])){
-                                                        $response_array['status'] = '13'; 
-                                                        $response_array['message'] = 'Le Poids de votre Animal n\'est pas présent !';
+                                                    if(empty($_POST["caractere"])){
+                                                        $response_array['status'] = '12'; 
+                                                        $response_array['message'] = 'Veuillez renseigner des informations sur le caractère de votre compagnon !';
                                                         header('Content-type: application/json; charset=UTF-8');
                                                         $error = (json_encode($response_array));
                                                         echo $error;
                                                     } else {
-                                                        if(!preg_match("/^(?:0|[1-9]\d{0,2})$/",$_POST["poids"])){
-                                                            $response_array['status'] = '14'; 
-                                                            $response_array['message'] = 'Le Poids Contient des caractères Incorrects !';
+                                                        if (!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["caractere"])){
+                                                            $response_array['status'] = '13'; 
+                                                            $response_array['message'] = 'Les informations concernant le caractère de votre animal ne peuvent contenir des caractères incorrects, seuls sont acceptés les Lettres, les accents et la ponctuation !';
                                                             header('Content-type: application/json; charset=UTF-8');
                                                             $error = (json_encode($response_array));
                                                             echo $error;
-                                                        }else {
-                                                            if(empty($_POST["specificites"])){
-                                                                $response_array['status'] = '15'; 
-                                                                $response_array['message'] = 'Les spécificités ne peuvent être vides ! ';
+                                                        } else {
+                                                            if(empty($_POST["robe"])){
+                                                                $response_array['status'] = '14'; 
+                                                                $response_array['message'] = 'Veuillez renseigner la robe de votre compagnon !';
                                                                 header('Content-type: application/json; charset=UTF-8');
                                                                 $error = (json_encode($response_array));
                                                                 echo $error;
-                                                            } else{
-                                                                if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["specificites"])){
-                                                                    $response_array['status'] = '16'; 
-                                                                    $response_array['message'] = 'Les spécificités contiennent des caractères interdits !';
+                                                            } else {
+                                                                if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["robe"])){
+                                                                    $response_array['status'] = '15'; 
+                                                                    $response_array['message'] = 'La robe de votre compagnon ne peux contenir de caractères spéciaux !';
                                                                     header('Content-type: application/json; charset=UTF-8');
                                                                     $error = (json_encode($response_array));
                                                                     echo $error;
                                                                 } else {
-    
-                                                                    $animal = new Animaux($_POST);           
-                                                                    $serviceAnimaux->serviceAddUserAnimal($animal);
-                                                                    $avoirCouleur = new AvoirCouleur($animal);
-                                                                    $avoirCouleurService->serviceAdd($avoirCouleur);                                         
-                                                                    $photoAnimal = new PhotoAnimal($_FILES["photo"], $animal->getIdAnimal());
-                                                                    $photoAnimalService->serviceAdd($photoAnimal);
-                                                                    $response_array['status'] = 'success'; 
-                                                                    $response_array['message'] = 'L\'Ajout de votre animal a bien été effectué !';
-                                                                    header('Content-type: application/json; charset=UTF-8');
-                                                                    $error = (json_encode($response_array));
-                                                                    echo $error;         
-                                                
+                                                                    if(empty($_POST["couleur"])){
+                                                                        $response_array['status'] = '16'; 
+                                                                        $response_array['message'] = 'Veuillez renseigner la couleur de votre compagnon !';
+                                                                        header('Content-type: application/json; charset=UTF-8');
+                                                                        $error = (json_encode($response_array));
+                                                                        echo $error;
+                                                                    } else {
+                                                                        if(!preg_match("/^\d+$/",$_POST["couleur"])){
+                                                                            $response_array['status'] = '17'; 
+                                                                            $response_array['message'] = 'La couleur de votre animal ne peux contenir que des chiffres !';
+                                                                            header('Content-type: application/json; charset=UTF-8');
+                                                                            $error = (json_encode($response_array));
+                                                                            echo $error;
+                                                                        } else {
+                                                                            if(empty($_POST["taille"])){
+                                                                                $response_array['status'] = '18'; 
+                                                                                $response_array['message'] = 'Veuillez renseigner la taille de votre compagnon !';
+                                                                                header('Content-type: application/json; charset=UTF-8');
+                                                                                $error = (json_encode($response_array));
+                                                                                echo $error;
+                                                                            } else {
+                                                                                if(!preg_match("/^[0-9]*,?.?[0-9]+$/",$_POST["taille"])){
+                                                                                    $response_array['status'] = '19'; 
+                                                                                    $response_array['message'] = 'La Taille ne peux contenir que des chiffres !';
+                                                                                    header('Content-type: application/json; charset=UTF-8');
+                                                                                    $error = (json_encode($response_array));
+                                                                                    echo $error;
+                                                                                } else {
+                                                                                    if(empty($_POST["poids"])){
+                                                                                        $response_array['status'] = '20'; 
+                                                                                        $response_array['message'] = 'Veuillez renseigner le poids de votre compagnon!';
+                                                                                        header('Content-type: application/json; charset=UTF-8');
+                                                                                        $error = (json_encode($response_array));
+                                                                                        echo $error;  
+                                                                                    } else {
+                                                                                        if(!preg_match("/^[0-9]*,?.?[0-9]+$/",$_POST["poids"])){
+                                                                                            $response_array['status'] = '21'; 
+                                                                                            $response_array['message'] = 'Le Poids Contient des caractères Incorrects !';
+                                                                                            header('Content-type: application/json; charset=UTF-8');
+                                                                                            $error = (json_encode($response_array));
+                                                                                            echo $error;
+                                                                                        } else {
+                                                                                            if(empty($_POST["specificites"])){
+                                                                                                $response_array['status'] = '22'; 
+                                                                                                $response_array['message'] = 'Veuillez renseigner les spécificités de votre compagnon ! (maladies, handicaps .. etc)';
+                                                                                                header('Content-type: application/json; charset=UTF-8');
+                                                                                                $error = (json_encode($response_array));
+                                                                                                echo $error;
+                                                                                            } else {
+                                                                                                if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["specificites"])){
+                                                                                                    $response_array['status'] = '23'; 
+                                                                                                    $response_array['message'] = 'Les spécificités contiennent des caractères interdits !';
+                                                                                                    header('Content-type: application/json; charset=UTF-8');
+                                                                                                    $error = (json_encode($response_array));
+                                                                                                    echo $error;
+                                                                                                } else {
+                                                                                                    $animal = new Animaux($_POST);           
+                                                                                                    $serviceAnimaux->serviceAddUserAnimal($animal);
+                                                                                                    $avoirCouleur = new AvoirCouleur($animal);
+                                                                                                    $avoirCouleurService->serviceAdd($avoirCouleur);                                         
+                                                                                                    $photoAnimal = new PhotoAnimal($_FILES["photo"], $animal->getIdAnimal());
+                                                                                                    $photoAnimalService->serviceAdd($photoAnimal);
+                                                                                                    $response_array['status'] = 'success'; 
+                                                                                                    $response_array['message'] = 'L\'Ajout de votre animal a bien été effectué !';
+                                                                                                    header('Content-type: application/json; charset=UTF-8');
+                                                                                                    $error = (json_encode($response_array));
+                                                                                                    echo $error;    
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -438,13 +500,13 @@ if (isset($_POST["addAnimal"])){
                         }
                     }
                 }
-            }
+            }                                      
         }
     }
 }
 
 
-    
+
     
 
     
@@ -580,7 +642,7 @@ if (isset($_POST["updateAnimalInfos"])){
                                                                             $error = (json_encode($response_array));
                                                                             echo $error;
                                                                         } else {
-                                                                            if(!preg_match("/^(?:0|[1-9]\d{0,2})$/",$_POST["taille"])){
+                                                                            if(!preg_match("/^[0-9]*,?.?[0-9]+$/",$_POST["taille"])){
                                                                                 $response_array['status'] = '19'; 
                                                                                 $response_array['message'] = 'La Taille ne peux contenir que des chiffres !';
                                                                                 header('Content-type: application/json; charset=UTF-8');
@@ -594,7 +656,8 @@ if (isset($_POST["updateAnimalInfos"])){
                                                                                     $error = (json_encode($response_array));
                                                                                     echo $error;  
                                                                                 } else {
-                                                                                    if(!preg_match("/^(?:0|[1-9]\d{0,2})$/",$_POST["poids"])){
+                                                                                    if(!preg_match("/^[0-9]*,?.?[0-9]+$/",$_POST["poids"])){
+                                                                                        
                                                                                         $response_array['status'] = '21'; 
                                                                                         $response_array['message'] = 'Le Poids Contient des caractères Incorrects !';
                                                                                         header('Content-type: application/json; charset=UTF-8');
@@ -689,6 +752,7 @@ if (isset($_POST["removeUserAnimal"])){
             $error = (json_encode($response_array));
             echo $error;
         } else {
+            try{
             $photoAnimalService->serviceDelete($_POST);
             $avoirCouleurService->serviceDelete($_POST);
             $serviceAnimaux->serviceDelete($_POST);
@@ -697,9 +761,22 @@ if (isset($_POST["removeUserAnimal"])){
             header('Content-type: application/json; charset=UTF-8');
             $error = (json_encode($response_array));
             echo $error;
+            }catch (MysqliQueryException $mqe) {
+                if ($mqe->getCode() == 1049) {
+                    $error = ' 507 Connexion a la base de donnée impossible !';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                    
+                } else if ($mqe->getCode() == 1146 ){
+                    $error = ' 509 Erreur lors de l\'execution de la requête ';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                    
+                } else {
+                    $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                }
+            }
         }
     }
-
 }
 
 if (isset($_POST["perte"])){
@@ -738,6 +815,7 @@ if (isset($_POST["perte"])){
                         $error = (json_encode($response_array));
                         echo $error;  
                     } else {
+                        try {
                         $perte = new Perte($_POST);
                         $servicePerte->serviceAdd($perte);
                         $response_array['status'] = 'success'; 
@@ -745,6 +823,21 @@ if (isset($_POST["perte"])){
                         header('Content-type: application/json; charset=UTF-8');
                         $error = (json_encode($response_array));
                         echo $error;  
+                        }catch (MysqliQueryException $mqe) {
+                            if ($mqe->getCode() == 1049) {
+            
+                                $error = ' 507 Connexion a la base de donnée impossible !';
+                                header($_SERVER['SERVER_PROTOCOL'].$error);
+                                
+                            } else if ($mqe->getCode() == 1146 ){
+                                $error = ' 509 Erreur lors de l\'execution de la requête ';
+                                header($_SERVER['SERVER_PROTOCOL'].$error);
+                                
+                            } else {
+                                $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                                header($_SERVER['SERVER_PROTOCOL'].$error);
+                            }
+                        }
                     }
                 }
             } 
@@ -769,12 +862,28 @@ if(isset($_POST["idAnimalRetrouve"])){
             $error = (json_encode($response_array));
             echo $error;
         } else {
-            $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
-            $response_array['status'] = 'success'; 
-            $response_array['message'] = 'Votre animal a bien été signalé comme étant retrouvé !';
-            header('Content-type: application/json; charset=UTF-8');
-            $error = (json_encode($response_array));
-            echo $error;
+            try{
+                $servicePerte->serviceDelete($_POST["idAnimalRetrouve"]);
+                $response_array['status'] = 'success'; 
+                $response_array['message'] = 'Votre animal a bien été signalé comme étant retrouvé !';
+                header('Content-type: application/json; charset=UTF-8');
+                $error = (json_encode($response_array));
+                echo $error;
+            }catch (MysqliQueryException $mqe) {
+                if ($mqe->getCode() == 1049) {
+
+                    $error = ' 507 Connexion a la base de donnée impossible !';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                    
+                } else if ($mqe->getCode() == 1146 ){
+                    $error = ' 509 Erreur lors de l\'execution de la requête ';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                    
+                } else {
+                    $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                }
+            }
         }
     }
 

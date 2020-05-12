@@ -84,7 +84,7 @@ session_start();
                                 <div class="row mt-2">
                                     <div class="col-lg-6 col-sm-12">
                                         <ul class="list-group list-group-flush">
-                                            <li >Identification : '.$dataAnimaux[$i]["NO_PUCE"].' </li>
+                                            <li ><strong>Identification :</strong> '.$dataAnimaux[$i]["NO_PUCE"].' </li>
                                             <li >Poils : '.$dataAnimaux[$i]["ROBE"].'</li>
                                             <li >Couleur : '.$dataAnimaux[$i]["COULEUR"].'</li>
                                         </ul>
@@ -112,7 +112,7 @@ session_start();
                             </div>
                             <div class="col-lg-1 col-sm-12">
                                 <div class="row">
-                                    <button type="button" class="btn removeFavoris " value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetraitFavoris"><i class="fas fa-times"></i></button>
+                                    <button type="button" class="btn removeFavoris " value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"><i class="fas fa-times"></i></button>
                                 </div>
                             </div>
                         </div>

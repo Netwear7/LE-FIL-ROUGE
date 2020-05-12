@@ -87,3 +87,7 @@ class AnimauxFavorisDataAccess extends LogBdd implements InterfaceDao{
 
 }
 ?>
+
+
+
+

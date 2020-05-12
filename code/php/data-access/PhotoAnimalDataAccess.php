@@ -82,6 +82,7 @@
             $this->deconnexion($mysqli);
         }
         public function daoDelete($infos){
+            try{
             $id = $infos["idAnimal"];
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM photo_animal where ID_ANIMAL = ?');
@@ -89,6 +90,11 @@
             $stmt->execute();
             $this->deconnexion($mysqli);
             return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }  
         }
     }
 ?>

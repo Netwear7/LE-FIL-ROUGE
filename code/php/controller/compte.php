@@ -212,7 +212,7 @@ if(!isset($_SESSION["user_id"]))
                             </div>
 
                             <!-- Modal signaler retrouvé -->
-                            <div class="modal fade" id="modalRetrouve" tabindex="-1" role="dialog" aria-labelledby="modalRetrouvéTitle" aria-hidden="true">    
+                            <div class="modal fade" id="modalRetrouve" tabindex="-1" role="dialog" aria-labelledby="modalRetrouveTitle" aria-hidden="true">    
                             </div>
 
                             <!-- Modal retrait animal -->
@@ -306,7 +306,7 @@ if(!isset($_SESSION["user_id"]))
 
                                                                 </select>
                                                             <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
-                                                                <input class="form-control " type="number" placeholder="100" name="taille" id="taille">
+                                                                <input class="form-control " type="float" placeholder="100" name="taille" id="taille">
                                                             <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
                                                                 <input class="form-control " type="float" placeholder="1.3" name="poids" id="poids">
                                                             <label for="specTextArea" class="mt-2">Spécificités :</label>

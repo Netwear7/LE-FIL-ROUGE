@@ -1,13 +1,12 @@
 <?php
-include_once '../service/AnimauxService.php';
-include_once '../data-access/AnimauxDataAccess.php';
+
 
 if(isset($_GET)){
     $id = key($_GET);
     echo '
             
 
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered" id="modalRetrouve" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" class="modalRetrouvéTitle1">Confirmez vous avoir Retrouvé votre animal?</h5>
@@ -19,11 +18,8 @@ if(isset($_GET)){
                     <small id="lostAnimal" class="form-text text-muted">Si c\'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
                 </div>
                 <div class="modal-footer">
-                    <form id="formRetrouve">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                        <input type="hidden" name="idAnimalRetrouve" value="'.$id.'"></input>
-                        <button type="button submit" class="btn btn-primary name="animalRetrouve">Confirmer</button>
-                    </form>
+                    <button type="button" class="btn btn-secondary">Annuler</button>
+                    <button type="button" id="confirmRetrouve" value="'.$id.'" class="btn btn-primary">Confirmer</button>
                 </div>
             </div>
         </div>
@@ -32,5 +28,8 @@ if(isset($_GET)){
         }
 
         ?>
-        <script src="../../javascript/animalRetrouve.js"></script>
+
+<script src="../../javascript/animalRetrouve.js"></script>
+
+
     

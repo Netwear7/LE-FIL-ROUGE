@@ -4,8 +4,6 @@ $( document ).ready(function() {
     $('#rowDonations').load('displayDonationsInMyAccount.php');
     $('#rowAnimals').load('displayUserAnimals.php');
     $('#rowFavouriteAnimals').load('displayUserFavouriteAnimal.php');
-    $('#modalRetrouve').load('displayAnimalIsBackModal.php');
-    $('#modalRetrait').load('displayRemoveAnimalModal.php');
     $('#popCouleur').load('displayColorsOptions.php');
 
 });

@@ -223,6 +223,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoDelete($infosAnimal)
         {
+            try{
             $id = $infosAnimal["idAnimal"];
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('DELETE FROM animaux where ID_ANIMAL = ?');
@@ -230,6 +231,11 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $stmt->execute();
             $this->deconnexion($mysqli);
             return $stmt == true ? "Le retrait de la fiche a bien été effectué" : "Echec lors du retrait de la fiche";
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }  
         } 
  
         

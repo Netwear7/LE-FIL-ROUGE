@@ -20,7 +20,6 @@ echo '
             </div>
             <div class="modal-footer" id="footerRetraitFavoris">
                 <form id="formRetrait">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                 <button type="button" class="btn btn-outline-info" name="'.$_SESSION["user_id"].'" id="removeFavoris" value="'.$id .'">Confirmer le retrait</button>
                 </form>
             </div>

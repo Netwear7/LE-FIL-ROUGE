@@ -128,14 +128,12 @@ session_start();
                         <div class="col-lg-1 col-sm-12">
                             <div class="row">
                                 <button type="button" class="btn updateAnimal"  value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"><i class="fas fa-edit"></i></button>
-                                <button type="button" class="btn remove" name="'.$dataAnimaux[$i]["ID_COULEUR"].'" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="removeAnimal-list" data-toggle="list" href="#modalRetrait" role="tab" aria-controls="removeAnimal"><i class="fas fa-times"></i></button>
+                                <button type="button" class="btn remove" name="'.$dataAnimaux[$i]["ID_COULEUR"].'" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" id="removeAnimal-list" aria-controls="removeAnimal"><i class="fas fa-times"></i></button>
                             </div>
                             <div class="row">
                             ';
                             $perdu = $servicePerte->serviceSelect($dataAnimaux[$i]["ID_ANIMAL"]);
-                            $pasPerdu = '<button class="btn btn-link lost" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"  data-toggle="modal" data-target="#modalPerdu">Signaler perdu</button>';
-                            $signalerRetrouver = '<button class="btn btn-link isBack" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'" data-toggle="modal" data-target="#modalRetrouve">Signaler Retrouvé</button>';
-                            echo empty($perdu) ?  $pasPerdu : $signalerRetrouver ;  
+                            echo empty($perdu) ?  '<button class="btn btn-link lost" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'">Signaler perdu</button>' : '<button class="btn btn-link back" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'">Signaler Retrouvé</button>' ;  
                             echo'
                             </div>
                         </div>
@@ -192,7 +190,7 @@ function dateFr($date){
 
 
 <script src="../../javascript/showLostModal.js"></script>
-<script src="../../javascript/showAnimalIsBackModal.js"></script>
 <script src="../../javascript/showModalRetrait.js"></script>
 <script src="../../javascript/displayAnimalUpdatePanel.js"></script>
+<script src="../../javascript/showAnimalIsBackModal.js"></script>
 

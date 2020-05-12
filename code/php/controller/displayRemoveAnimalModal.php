@@ -1,6 +1,4 @@
 <?php
-include_once '../service/AnimauxService.php';
-include_once '../data-access/AnimauxDataAccess.php';
 
 
 if(isset($_POST))
@@ -24,11 +22,10 @@ if(isset($_POST))
                     <p>En cliquant sur le bouton ci-dessous vous confirmez le retrait de la fiche animale de vos fiches. Une fois l\'action validée, la fiche ne sera plus disponible</p>
                     <p class="mt-2">Confirmer le retrait ?</p>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" id="footerRetraitAnimal">
                     <form >
                         <button type="button" id="removeAnimal" name="'.$id.'" value="'.$couleur.'"  class="btn btn-outline-info">Confirmer le retrait</button>
                     </form>
-                    <div class="Row" id="resultRetraitAnimal"></div>
                 </div>
             </div>
         </div>

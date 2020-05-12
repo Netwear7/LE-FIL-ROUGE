@@ -334,7 +334,11 @@
 
         public function serviceDelete($infosAnimalRetrait)
         {
+            try{
             $result = $this->getDataAccessObject()->daoDelete($infosAnimalRetrait);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
 
 

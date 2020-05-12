@@ -113,4 +113,6 @@ footer {
 /*__________Page_accueil_____________*/
 
 
-    
+li {
+    list-style-type: none;
+}

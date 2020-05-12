@@ -20,7 +20,10 @@ $(document).ready(function (){
 							setTimeout(function(){ location.reload(); }, 4000);
 							} else {
 								$( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#footerRetraitFavoris" );
-								setTimeout(function(){ location.reload(); }, 4000);
+                                setTimeout(function(){
+                                    $('#rowFavouriteAnimals').load('displayUserFavouriteAnimal.php');
+                                    $('#modalRetraitFavoris').modal('toggle').data( 'bs.modal', null );
+                                }, 3500);
 							}               
 					},  
                 }   

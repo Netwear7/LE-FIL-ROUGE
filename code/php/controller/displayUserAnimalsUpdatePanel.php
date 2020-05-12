@@ -112,7 +112,7 @@ $dataAnimaux = $serviceAnimaux->serviceSelect($id);
 
                 echo '    </select>
                 <label for="inputTaille" class="mt-2" >Taille <small> (en centimètres)</small> :</label>
-                    <input class="form-control " type="number" value="'.$dataAnimaux["TAILLE"].'" name="taille">
+                    <input class="form-control " type="float" value="'.$dataAnimaux["TAILLE"].'" name="taille">
                 <label for="inputPoids" class="mt-2" >Poids <small> (en Kg)</small> :</label>
                     <input class="form-control " type="float" value="'.$dataAnimaux["POIDS"].'" name="poids">
                 <label for="specTextArea" class="mt-2">Spécificités :</label>

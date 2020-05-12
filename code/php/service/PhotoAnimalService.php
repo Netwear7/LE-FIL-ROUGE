@@ -45,7 +45,11 @@
             $this->getDataAccessObject()->Update($photoAnimal);
         }
         public function serviceDelete($infos){
+            try{
                 $this->getDataAccessObject()->daoDelete($infos);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
         public function carrousselDisplayLostAnimal($data){
             $cpt=0;

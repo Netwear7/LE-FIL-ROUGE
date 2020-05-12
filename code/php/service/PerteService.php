@@ -24,13 +24,25 @@ include_once '../model/Perte.php';
         }
 
         public function serviceAdd($perte){
-            $this->getDataAccessObject()->daoAdd($perte);
-
+            try {
+                $this->getDataAccessObject()->daoAdd($perte);       
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
+
+        
         public function serviceSearch($search){}
         public function serviceUpdate($post){}
         public function serviceDelete($idAnimalRetrouve){
-            $this->getDataAccessObject()->daoDelete($idAnimalRetrouve);
+            try {
+
+                $this->getDataAccessObject()->daoDelete($idAnimalRetrouve);
+        
+                }catch (MysqliQueryException $mqe) {
+                    throw $mqe;
+                }
+
         }
         
     }
