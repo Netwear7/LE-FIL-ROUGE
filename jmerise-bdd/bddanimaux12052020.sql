@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 12 mai 2020 à 14:00
+-- Généré le :  mar. 12 mai 2020 à 14:05
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP :  7.4.1
 
@@ -63,7 +63,7 @@ CREATE TABLE `animaux` (
   `ID_ANIMAL` int(11) NOT NULL,
   `NOM` char(20) NOT NULL,
   `DATE_NAISSANCE` date NOT NULL,
-  `POIDS` int(11) NOT NULL,
+  `POIDS` float NOT NULL,
   `NO_PUCE` varchar(20) NOT NULL,
   `CARACTERE` text NOT NULL,
   `SPECIFICITE` text NOT NULL,
