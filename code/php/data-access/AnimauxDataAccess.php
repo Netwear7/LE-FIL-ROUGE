@@ -106,7 +106,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         {
         }
         
-        public function daoAddInRefuge($animal){
+        public function daoAddRefugeAnimal($animal){
             $idRefuge = $animal->getIdRefuge();
             $nomAnimal = $animal->getNomAnimal();
             $dateNaissance= $animal->getDateNaissanceAnimal();
@@ -157,6 +157,19 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $nom = $animal->getNomAnimal();
             $id = $animal->getIdUtilisateurAnimal();
             $stmt = $mysqli->prepare('SELECT ID_ANIMAL from animaux where NOM = ? AND ID_UTILISATEUR = ?');
+            $stmt->bind_param('ss',$nom,$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $id = $rs->fetch_all(MYSQLI_ASSOC);
+            $this->deconnexion($mysqli);
+            return $id;
+        }
+        public function daoGetIdAnimalOfRefuge($animal)
+        {
+            $mysqli = $this->connexion(); 
+            $nom = $animal->getNomAnimal();
+            $id = $animal->getIdRefuge();
+            $stmt = $mysqli->prepare('SELECT ID_ANIMAL from animaux where NOM = ? AND ID_REFUGE = ?');
             $stmt->bind_param('ss',$nom,$id);
             $stmt->execute();
             $rs = $stmt->get_result();

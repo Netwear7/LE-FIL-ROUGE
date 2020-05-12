@@ -28,10 +28,9 @@
 			$this->caractereAnimal = $infos["caractere"];
 			$this->specificiteAnimal = $infos["specificites"];
 			$this->tailleAnimal = $infos["taille"];
-                        $this->robeAnimal = $infos["robe"];
-
-            $this->raceAnimal = $infos["race"];
-            $this->sexeAnimal = $infos["sexe"];
+			$this->robeAnimal = $infos["robe"];
+			$this->raceAnimal = $infos["race"];
+			$this->sexeAnimal = $infos["sexe"];
 
             // merci de pas retirer la couleur je l'utilise pour l'ajout de l'animal
             if (isset($infos["couleur"])){

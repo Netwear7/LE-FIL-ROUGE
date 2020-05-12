@@ -60,14 +60,17 @@
             return $this->getDataAccessObject()->daoCountUserAnimal($id);
         }
 
-        public function InsertPostToEntityAndAdd(array $post){
-            $animaux = new Animaux($post);
-            $this->getDataAccessObject()->daoAddInRefuge($animaux);
+        public function serviceAddRefugeAnimal($animal)
+        {
+            $rs = $this->getDataAccessObject()->daoAddRefugeAnimal($animal);
+            $id = $this->getDataAccessObject()->daoGetIdAnimalOfRefuge($animal);
+            $animal->setIdAnimal($id[0]["ID_ANIMAL"]);
+            return $rs;
         }
 
         public function serviceAdd(object $animal)
         {
-
+            $this->getDataAccessObject()->daoAdd($animal);
         }
 
 
