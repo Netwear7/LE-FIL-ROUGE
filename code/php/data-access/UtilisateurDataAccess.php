@@ -33,6 +33,7 @@
         // fonction pour le select d'un seul utilisateur
         public function daoSelect($id)
         {
+            try{
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('SELECT * from utilisateur as A INNER JOIN adresse as B on A.ID_ADRESSE = B.ID_ADRESSE where A.ID_UTILISATEUR = ?');
             $stmt->bind_param('s',$id);
@@ -42,6 +43,11 @@
             $rs->free();
             $this->deconnexion($mysqli); 
             return $data;
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }   
         }
 
 
@@ -110,7 +116,7 @@
         public function daoUpdate($parametres)
         {
 
-            
+                try{
                 $mysqli = $this->connexion(); 
                 foreach ($parametres as $key => $value){
                     if ($key =="updateUserInfos" || $key =="idAdresse" || $key == "idUtilisateur"){
@@ -130,7 +136,12 @@
                     $stmt->execute();
 
                 }      
-                $this->deconnexion($mysqli);     
+                $this->deconnexion($mysqli);   
+                } catch (mysqli_sql_exception $mse) {                   
+                    throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+                }catch (Exception $e) {
+                    throw $e;
+                }   
                 
         }
 
@@ -138,12 +149,18 @@
         
         public function daoUpdatePassword($id,$mdpHash)
         {
+            try{
             $mysqli = $this->connexion();
             $stmt = $mysqli->prepare('UPDATE utilisateur SET MDP = ? where ID_UTILISATEUR = ?');
             $stmt->bind_param('ss',$mdpHash,$id);
             $stmt->execute();
             $this->deconnexion($mysqli);
             return $result = $stmt ? true : false ;
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }
         }
 
         

@@ -46,7 +46,17 @@ $(document).ready(function (){
                             },4000);
                             $("#modifierInfos").removeClass( "active" ).attr("aria-selected","false");
                         }                       
-                },  
+                },
+                error: function(jqXHR,textStatus,errorThrown){
+                    $( '<div class="alert alert-primary col-12 mt-2 mb-2" role="alert">'+errorThrown+'</div>' ).appendTo( "#resultModificationInfos" ).fadeIn(3000).fadeOut(3500);
+                    setTimeout(function(){
+                        $('#updateUserInfosPanel').removeClass( "active", "show" );
+                    },4000);
+                    setTimeout(function(){
+                        $('#profilePanel').tab('show');
+                    },4000);
+                    $("#modifierInfos").removeClass( "active" ).attr("aria-selected","false");
+                }  
             }   
         )
     });

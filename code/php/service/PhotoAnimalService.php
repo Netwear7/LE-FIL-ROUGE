@@ -41,8 +41,12 @@
         public function serviceUpdate(array $array){
 
         }
-        public function Update($photoAnimal){
-            $this->getDataAccessObject()->Update($photoAnimal);
+        public function update($photoAnimal){
+            try{
+            $this->getDataAccessObject()->update($photoAnimal);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
         public function serviceDelete($infos){
             try{

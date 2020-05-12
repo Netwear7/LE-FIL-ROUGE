@@ -71,7 +71,8 @@
         public function daoUpdate( array $array){
 
         }
-        public function Update($photo){
+        public function update($photo){
+            try{
             $blob = $photo->getBlob();
             $photoNom = $photo->getPhotoNom();
             $photoTaille = $photo->getPhotoTaille();
@@ -82,6 +83,11 @@
             $stmt->bind_param('sssss',$blob, $photoNom, $photoTaille, $photoType,$idAnimal);
             $stmt->execute();                
             $this->deconnexion($mysqli);
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }  
         }
         public function daoDelete($infos){
             try{

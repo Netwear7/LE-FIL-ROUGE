@@ -77,11 +77,14 @@
 
         public function serviceAddUserAnimal($animal)
         {
-
+            try{
             $rs = $this->getDataAccessObject()->daoAddUserAnimal($animal);
             $id = $this->getDataAccessObject()->daoGetId($animal);
             $animal->setIdAnimal($id[0]["ID_ANIMAL"]);
             return $rs;
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
             
         }
 
@@ -320,7 +323,11 @@
                 
         public function serviceUpdate($post)
         {
+            try{
             $this->getDataAccessObject()->daoUpdate($post);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
 
 
@@ -335,7 +342,7 @@
         public function serviceDelete($infosAnimalRetrait)
         {
             try{
-            $result = $this->getDataAccessObject()->daoDelete($infosAnimalRetrait);
+             $this->getDataAccessObject()->daoDelete($infosAnimalRetrait);
             }catch (MysqliQueryException $mqe) {
                 throw $mqe;
             }

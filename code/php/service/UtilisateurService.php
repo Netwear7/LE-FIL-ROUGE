@@ -16,9 +16,13 @@
 
         //Select Utilisateur
         public function serviceSelect($id)
-        {
+        {   
+            try{
             $data = $this->getDataAccessObject()->daoSelect($id);
             return $data;
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
 
         public function serviceVerifyPassword(){
@@ -49,22 +53,33 @@
         //Fonction de modification des données utilisateur, prends comme parametre le post avec tout les inputs a modifier
         public function serviceUpdate($parametres)
         {
+            try{
             $this->getDataAccessObject()->daoUpdate($parametres);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
 
         public function serviceUpdatePassword($id,$infos)
         {
-
+            try{
             return $this->getDataAccessObject()->daoUpdatePassword($id,password_hash($infos["newPassword"], PASSWORD_DEFAULT));
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
                 
             
             
         }
 
         public function serviceVerifyActualPassword($id, $mdpActuel)
-        {
+        {   
+            try{
             $data = $this->serviceSelect($id);
             return  password_verify($mdpActuel,$data["MDP"]);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
 
         // fonction de Suppression Utilisateur

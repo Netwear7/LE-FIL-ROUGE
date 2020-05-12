@@ -133,7 +133,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         
         public function daoAddUserAnimal($animal)
         {
-            
+            try{
             $idUtilisateur = $animal->getIdUtilisateurAnimal();
             $nomAnimal = $animal->getNomAnimal();
             $dateNaissance= $animal->getDateNaissanceAnimal();
@@ -151,12 +151,18 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe,$raceAnimal,$idUtilisateur, $sexeAnimal);
             $stmt->execute();                
             $this->deconnexion($mysqli);
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            } 
         }
 
 
 
         public function daoGetId($animal)
         {
+            try{
             $mysqli = $this->connexion(); 
             $nom = $animal->getNomAnimal();
             $id = $animal->getIdUtilisateurAnimal();
@@ -167,6 +173,12 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $id = $rs->fetch_all(MYSQLI_ASSOC);
             $this->deconnexion($mysqli);
             return $id;
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            } 
+
         }
         public function daoGetIdAnimalOfRefuge($animal)
         {
@@ -189,6 +201,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
 
         public function daoUpdate($parametres){
+            try{
             $mysqli = $this->connexion();
             $num = $parametres["idAnimal"];
             foreach ($parametres as $key => $value){
@@ -219,7 +232,12 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
                 } 
 
             }      
-            $this->deconnexion($mysqli);    
+            $this->deconnexion($mysqli);   
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            } 
         }
         
 

@@ -21,7 +21,11 @@ class AnimauxFavorisService extends ServiceCommun implements InterfaceService{
     public function serviceUpdate($post){}
 
     public function serviceDelete($infosRetraitFavoris){
+        try{
         $this->getDataAccessObject()->daoDelete($infosRetraitFavoris);
+        }catch (MysqliQueryException $mqe) {
+            throw $mqe;
+        }
     }
     public function serviceCountUserFavouriteAnimals($id){}
 

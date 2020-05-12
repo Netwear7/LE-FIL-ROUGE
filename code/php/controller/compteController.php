@@ -68,40 +68,72 @@ if(isset($_POST["updatePassword"])){
         $error = (json_encode($response_array));
         echo $error;
     } else {
-        $mdpActuel = $_POST["actual"];
-        if ($_POST["confirmedNew"] == $_POST["newPassword"]) {
-            $result = $serviceUtilisateur->serviceVerifyActualPassword($_SESSION["user_id"],$mdpActuel);
-            if ($result == true){
-                if (preg_match("/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/", $_POST["confirmedNew"])) {
-                    $resultUpdate = $serviceUtilisateur->serviceUpdatePassword($_SESSION["user_id"],$_POST); 
-                    if($resultUpdate == true){
-                        $response_array['status'] = 'success'; 
-                        $response_array['message'] = 'La modification du mot de passe à bien été effectuée ! ';
+        try{
+            $mdpActuel = $_POST["actual"];
+            if ($_POST["confirmedNew"] == $_POST["newPassword"]) {
+                try{
+                $result = $serviceUtilisateur->serviceVerifyActualPassword($_SESSION["user_id"],$mdpActuel);
+                }catch (MysqliQueryException $mqe) {
+                    if ($mqe->getCode() == 1049) {
+        
+                        $error = ' 507 Connexion a la base de donnée impossible !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                        
+                    } else if ($mqe->getCode() == 1146 ){
+                        $error = ' 509 Erreur lors de l\'execution de la requête ';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                        
+                    } else {
+                        $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                    }
+                } 
+                if ($result == true){
+                    if (preg_match("/^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/", $_POST["confirmedNew"])) {
+                        $resultUpdate = $serviceUtilisateur->serviceUpdatePassword($_SESSION["user_id"],$_POST); 
+                        if($resultUpdate == true){
+                            $response_array['status'] = 'success'; 
+                            $response_array['message'] = 'La modification du mot de passe à bien été effectuée ! ';
+                            header('Content-type: application/json; charset=UTF-8');
+                            $error = (json_encode($response_array));
+                            echo $error;
+                        }
+                    } else {
+                        $response_array['status'] = '01'; 
+                        $response_array['message'] = 'Votre mot de passe doit faire au moins 6 caractères !';
                         header('Content-type: application/json; charset=UTF-8');
                         $error = (json_encode($response_array));
                         echo $error;
                     }
+        
                 } else {
-                    $response_array['status'] = '01'; 
-                    $response_array['message'] = 'Votre mot de passe doit faire au moins 6 caractères !';
+                    $response_array['status'] = '02'; 
+                    $response_array['message'] = 'Mot de passe incorrect !';
                     header('Content-type: application/json; charset=UTF-8');
                     $error = (json_encode($response_array));
                     echo $error;
-                }
-    
-            } else {
-                $response_array['status'] = '02'; 
-                $response_array['message'] = 'Mot de passe incorrect !';
+                }            
+            }else {
+                $response_array['status'] = '04'; 
+                $response_array['message'] = 'Veuillez vérifier vos nouveaux mots de passes !';
                 header('Content-type: application/json; charset=UTF-8');
                 $error = (json_encode($response_array));
                 echo $error;
-            }            
-        }else {
-            $response_array['status'] = '04'; 
-            $response_array['message'] = 'Veuillez vérifier vos nouveaux mots de passes !';
-            header('Content-type: application/json; charset=UTF-8');
-            $error = (json_encode($response_array));
-            echo $error;
+            }
+        }catch (MysqliQueryException $mqe) {
+            if ($mqe->getCode() == 1049) {
+
+                $error = ' 507 Connexion a la base de donnée impossible !';
+                header($_SERVER['SERVER_PROTOCOL'].$error);
+                
+            } else if ($mqe->getCode() == 1146 ){
+                $error = ' 509 Erreur lors de l\'execution de la requête ';
+                header($_SERVER['SERVER_PROTOCOL'].$error);
+                
+            } else {
+                $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                header($_SERVER['SERVER_PROTOCOL'].$error);
+            }
         } 
     }
    
@@ -220,12 +252,28 @@ if (isset($_POST["updateUserInfos"])){
                                                                     $error = (json_encode($response_array));
                                                                     echo $error;
                                                                 } else {
+                                                                    try{
                                                                     $serviceUtilisateur->serviceUpdate($_POST);
                                                                     $response_array['status'] = 'success'; 
                                                                     $response_array['message'] = 'Modifications bien effectuées !';
                                                                     header('Content-type: application/json; charset=UTF-8');
                                                                     $error = (json_encode($response_array));
                                                                     echo $error;
+                                                                    }catch (MysqliQueryException $mqe) {
+                                                                        if ($mqe->getCode() == 1049) {
+                                                        
+                                                                            $error = ' 507 Connexion a la base de donnée impossible !';
+                                                                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                            
+                                                                        } else if ($mqe->getCode() == 1146 ){
+                                                                            $error = ' 509 Erreur lors de l\'execution de la requête ';
+                                                                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                            
+                                                                        } else {
+                                                                            $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                                                                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -274,12 +322,27 @@ if(isset($_POST["retraitFavoris"])){
                     $error = (json_encode($response_array));
                     echo $error;
                 } else {
+                    try{
                     $serviceAnimauxFavoris->serviceDelete($_POST);
                     $response_array['status'] = 'success'; 
                     $response_array['message'] = 'L\'animal a bien été retiré de vos favoris !';
                     header('Content-type: application/json; charset=UTF-8');
                     $error = (json_encode($response_array));
                     echo $error;
+                    }catch (MysqliQueryException $mqe) {
+                        if ($mqe->getCode() == 1049) {
+                            $error = ' 507 Connexion a la base de donnée impossible !';
+                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                            
+                        } else if ($mqe->getCode() == 1146 ){
+                            $error = ' 509 Erreur lors de l\'execution de la requête ';
+                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                            
+                        } else {
+                            $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                        }
+                    }
                 }
             }
         }
@@ -468,6 +531,7 @@ if (isset($_POST["addAnimal"])){
                                                                                                     $error = (json_encode($response_array));
                                                                                                     echo $error;
                                                                                                 } else {
+                                                                                                    try{
                                                                                                     $animal = new Animaux($_POST);           
                                                                                                     $serviceAnimaux->serviceAddUserAnimal($animal);
                                                                                                     $avoirCouleur = new AvoirCouleur($animal);
@@ -478,7 +542,22 @@ if (isset($_POST["addAnimal"])){
                                                                                                     $response_array['message'] = 'L\'Ajout de votre animal a bien été effectué !';
                                                                                                     header('Content-type: application/json; charset=UTF-8');
                                                                                                     $error = (json_encode($response_array));
-                                                                                                    echo $error;    
+                                                                                                    echo $error;
+                                                                                                    }catch (MysqliQueryException $mqe) {
+                                                                                                        if ($mqe->getCode() == 1049) {
+                                                                                        
+                                                                                                            $error = ' 507 Connexion a la base de donnée impossible !';
+                                                                                                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                                            
+                                                                                                        } else if ($mqe->getCode() == 1146 ){
+                                                                                                            $error = ' 509 Erreur lors de l\'execution de la requête ';
+                                                                                                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                                            
+                                                                                                        } else {
+                                                                                                            $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                                                                                                            header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                                        }
+                                                                                                    }    
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -692,17 +771,33 @@ if (isset($_POST["updateAnimalInfos"])){
                                                                                                         $error = (json_encode($response_array));
                                                                                                         echo $error;
                                                                                                     } else {
+                                                                                                        try{
                                                                                                         $serviceAnimaux->serviceUpdate($_POST);
                                                                                                         $ret        = is_uploaded_file($_FILES['photo']['tmp_name']);    
                                                                                                         if ($ret) {
                                                                                                             $photoAnimal = new PhotoAnimal($_FILES["photo"], $_POST["idAnimal"]);
-                                                                                                            $photoAnimalService->Update($photoAnimal);
+                                                                                                            $photoAnimalService->update($photoAnimal);
                                                                                                         }
                                                                                                         $response_array['status'] = 'success'; 
                                                                                                         $response_array['message'] = 'La modification de votre compagnon a bien été effectuée, vous allez être redirigé dans quelques instants !';
                                                                                                         header('Content-type: application/json; charset=UTF-8');
                                                                                                         $error = (json_encode($response_array));
                                                                                                         echo $error;
+                                                                                                        }catch (MysqliQueryException $mqe) {
+                                                                                                            if ($mqe->getCode() == 1049) {
+                                                                                            
+                                                                                                                $error = ' 507 Connexion a la base de donnée impossible !';
+                                                                                                                header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                                                
+                                                                                                            } else if ($mqe->getCode() == 1146 ){
+                                                                                                                $error = ' 509 Erreur lors de l\'execution de la requête ';
+                                                                                                                header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                                                
+                                                                                                            } else {
+                                                                                                                $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                                                                                                                header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                                            }
+                                                                                                        }
                                                                                                     }
                                                                                                 }
                                                                                             }

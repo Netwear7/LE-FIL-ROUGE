@@ -36,6 +36,16 @@ $(document).ready(function(){
                 }
 
             },
+            error: function(jqXHR,textStatus,errorThrown){
+                $( '<div class="alert alert-primary col-12 mt-2 mb-2" role="alert">'+errorThrown+'</div>' ).appendTo( "#resultUpdateAnimal" ).fadeIn(3000).fadeOut(3500);
+                    setTimeout(function(){
+                        $('#panelModifyAnimal').removeClass( "active", "show" );
+                    },5000);
+                    setTimeout(function(){
+                        $('#rowAnimals').load('displayUserAnimals.php');   
+                        $('#animalTab').tab('show');
+                    },5000);
+            },
             cache: false,
             contentType: false,
             processData: false
