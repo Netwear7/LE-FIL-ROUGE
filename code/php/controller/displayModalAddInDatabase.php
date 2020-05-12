@@ -6,6 +6,7 @@
     include_once("../service/AdresseService.php");
     include_once("../service/RefugeService.php");
     include_once("../service/RaceService.php");
+    include_once("../service/MaladieService.php");
     
     include_once("../data-access/ControlAdminDataAccess.php");
     include_once("../data-access/CouleurAnimalDataAccess.php");
@@ -14,6 +15,7 @@
     include_once("../data-access/AdresseDataAccess.php");
     include_once("../data-access/RefugeDataAccess.php");
     include_once("../data-access/RaceDataAccess.php");
+    include_once("../data-access/MaladieDataAccess.php");
 
     function GetColumnOfSelectedTable($table){
         $controlAdminDAO = new ControlAdminDataAccessDataAccess();
@@ -66,6 +68,13 @@
                 }
                 return $select;
             break;
+            case "maladie":
+                foreach($data as $array){
+                    $select .= " <option value=' " . $array["ID_MALADIE"] . "'>" . $array["MALADIE"] . "</option>";
+                }
+                return $select;
+            break;
+
             case "couleur_animal":
                 foreach($data as $array){
                     $select .= '<option value='.$array["ID_COULEUR"].'>'. $array["COULEUR"] .'</option>';
@@ -100,8 +109,15 @@
     }
 
     function makeSelect($table){
+        if($table == "couleur_animal"){
+            $table = "couleur";
+        }
         $select = "<label for='$table-select'>$table :</label>";
+
         $select .= "<select class='form-control mb-3' id='$table-select' name='$table'>";
+        if($table == "couleur"){
+            $table = "couleur_animal";
+        }
         $selectedTableDao = ConcatTableDataAccess($table);
         $selectedTableService = ConcatTableService($table, $selectedTableDao);
         $data = $selectedTableService->serviceSelectAll();
@@ -120,23 +136,25 @@
                 echo "Insérer un refuge pour inserer une adresse.";
             break;
             case "animaux": 
+                echo '<div class="col-4 offset-4"><input type="file" id="photo" accept="image/png, image/jpeg"></div>';
                 echo '<div class="row">';
                     echo '<div class="col-lg-6">';
-                echo makeInput("text", "Nom", "nomAnimal");
-                echo makeInput("date", "Date de naissance", "dateNaissance");
+                    echo makeInput("text", "Nom", "nomAnimal");
+                    echo makeInput("date", "Date de naissance", "dateNaissance");
                     echo makeInput("number", "Poids", "poids");
                     echo makeInput("text", "Numéro puce", "numeroPuce");
                     echo makeInput("text", "Caractère", "caractere");
                     echo makeInput("text", "Spécificités", "specificites");
                     echo makeInput("text", "Taille", "taille");
-                    echo makeInput("text", "Robe", "robe");
+                    echo makeSelect("maladie");
                     
-                        echo '</div>';
-                        echo '<div class="col-lg-6">';
+                    echo '</div>';
+                    echo '<div class="col-lg-6">';
                     
                     echo makeInput("date", "Date arrivée", "dateArrivee");
                     echo makeInput("date", "Date sortie", "dateSortie");
                     echo makeInput("text", "Sexe", "sexe");     
+                    echo makeInput("text", "Robe", "robe");
                     echo makeSelect("race");
                     echo makeSelect("couleur_animal");
                     echo makeSelect("refuge");
