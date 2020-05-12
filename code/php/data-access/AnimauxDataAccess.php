@@ -33,7 +33,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoSelectAllAdoptableAnimals(){
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, E.*, G.* FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, E.*, F.*, G.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur
@@ -233,7 +233,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
         
         public function daoSearchAnimals($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, K.*, H.* FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, G.*, H.*,  K.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race 
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 
@@ -256,7 +256,7 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         public function daoSearchAnimals2($request,$type,$arrayOfValues){
             $mysqli=$this->connexion();
-            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, I.*, H.* FROM animaux as A 
+            $stmt = $mysqli->prepare("SELECT A.*, B.*, D.*, I.*, G.*, H.* FROM animaux as A 
                                       INNER JOIN race as B on A.id_race = B.id_race 
                                       INNER JOIN avoir_couleur as C on A.id_animal=C.id_animal 
                                       INNER JOIN couleur_animal as D on C.id_couleur=D.id_couleur 

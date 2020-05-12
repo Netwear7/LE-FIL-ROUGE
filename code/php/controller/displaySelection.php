@@ -21,16 +21,16 @@ function affichage($data){
         if(count($dataFavourite)>0){
 
             echo '<div class="col-lg-3 mb-4 contentDisplay">
-                      <div class="card" style="min-height:300px" data-toggle="modal" data-target="#myModal'.$i.'">
+                      <div class="card" style="min-height:300px" >
 
-                      <img  style="z-index:1; width:100%" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>  
+                      <img  style="z-index:1;width:100%" data-toggle="modal" data-target="#myModal'.$i.'"  src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>  
                      
                                 <a class="js-like" style="color:#fc0341">
                                 <i id="icone" class="fas fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i> 
                                 <input type="hidden" value="'.$_SESSION["user_id"].'" class="like_user_id">
                                 <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
                                 </a>                       
-                        <div class="card-body bg-1" style="min-height:100px">
+                        <div class="card-body bg-1" style="min-height:100px" data-toggle="modal" data-target="#myModal'.$i.'">
                                 <div class="row justify-content-center">
                                     <h4 class="card-text "><strong>'.$value["NOM"].'</strong></h4>
                                 </div>
@@ -44,16 +44,16 @@ function affichage($data){
             else{
                 echo '
                     <div class="col-lg-3 mb-4 contentDisplay">
-                        <div class="card" style="min-height:300px" data-toggle="modal" data-target="#myModal'.$i.'">
+                        <div class="card" style="min-height:300px;">
 
-                                <img  style="z-index:1; width:100%" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
+                                <img  style="z-index:1; width:100%" data-toggle="modal" data-target="#myModal'.$i.'" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
                       
                                 <a class="js-like" style="color:#fc0341">
                                 <i id="icone" class="far fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i> 
                                 <input type="hidden" value="'.$_SESSION["user_id"].'" class="like_user_id">
                                 <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
                                 </a>                       
-                            <div class="card-body bg-1" style="min-height:100px">
+                            <div class="card-body bg-1" data-toggle="modal" data-target="#myModal'.$i.'" style="min-height:100px">
                                 <div class="row justify-content-center">
                                     <h4 class="card-text "><strong>'.$value["NOM"].'</strong></h4>
                                 </div>
@@ -113,7 +113,7 @@ function affichage($data){
                             <div class="row bg-info text-white" style="font-size:1.2em">
                                 <div class="col-lg-12 text-center">
                                     <i>Vous avez eu un coup de coeur pour cet animal ? Contactez nous !</i>
-                                    <p>ANITOPIA - '.$value["VILLE"].' </br> '.$value["NUMERO"].', '.$value["RUE"].' - '.$value["CODE_POSTAL"].' '.$value["VILLE"].' </br>tél : 03.20.59.00.00 / email : ville@refuge.fr</p>
+                                    <p>ANITOPIA - '.$value["VILLE"].' </br> '.$value["NUMERO"].', '.$value["RUE"].' - '.$value["CODE_POSTAL"].' '.$value["VILLE"].' </br><i>tél</i> : '.$value["TELEPHONE"].' / <i>email</i> : '.$value["EMAIL"].'</p>
                                 </div>
                             </div> 
                         </div>                         
