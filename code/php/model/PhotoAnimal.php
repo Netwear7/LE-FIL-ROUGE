@@ -10,7 +10,7 @@
 
 
         public function __construct($photo,$id){
-            $this->photoNom = $photo["name"]; ;
+            $this->photoNom = $photo["name"];
             $this->photoTaille = $photo["size"];
             $this->photoType =  $photo['type'];
             $this->blob = file_get_contents ($photo['tmp_name']);
