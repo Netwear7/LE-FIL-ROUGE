@@ -3,6 +3,8 @@
         private $idRefuge;
         private $region;
         private $departement;
+        private $email;
+        private $num;
         private $idAdresse;
 
         
@@ -10,7 +12,9 @@
         public function __construct($infos, $id)
         {
             $this->region = $infos["region"];
-			$this->departement = $infos["departement"];
+            $this->departement = $infos["departement"];
+            $this->email = $infos["email"];
+            $this->num = $infos["num"];
 			$this->idAdresse = $id;
         }
         
@@ -101,6 +105,50 @@
         public function setIdAdresse($idAdresse)
         {
             $this->idAdresse = $idAdresse;
+            return $this;
+        }
+
+        /**
+         * Getter for Num
+         *
+         * @return [type]
+         */
+        public function getNum()
+        {
+            return $this->num;
+        }
+
+        /**
+         * Setter for Num
+         * @var [type] num
+         *
+         * @return self
+         */
+        public function setNum($num)
+        {
+            $this->num = $num;
+            return $this;
+        }
+
+               /**
+         * Getter for Email
+         *
+         * @return [type]
+         */
+        public function getEmail()
+        {
+            return $this->email;
+        }
+
+        /**
+         * Setter for Email
+         * @var [type] email
+         *
+         * @return self
+         */
+        public function setEmail($email)
+        {
+            $this->email = $email;
             return $this;
         }
     }

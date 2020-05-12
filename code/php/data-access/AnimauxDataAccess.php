@@ -117,12 +117,14 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $robe = $animal->getRobeAnimal();
             // $couleur = $animal->getCouleurAnimal();
             $taille = $animal->getTailleAnimal();
+            $dateArrivee = $animal->getDateArrivee();
+            $dateSortie =  $animal->getDateSortie();
             $poids = $animal->getPoidsAnimal();
             $specificites = $animal->getSpecificiteAnimal();
     
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, SEXE) VALUES(?,?,?,?,?,?,?,?,NULL,NULL,?,NULL,?,?)');
-            $stmt->bind_param('sssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce,$caractere,$specificites,$taille,$robe,$raceAnimal,$idRefuge, $sexeAnimal);
+            $stmt = $mysqli->prepare('INSERT INTO animaux(NOM,DATE_NAISSANCE,POIDS,NO_PUCE,CARACTERE,SPECIFICITE,TAILLE,ROBE,DATE_ARRIVEE_ANIMAL,DATE_SORTIE_ANIMAL,ID_RACE,ID_UTILISATEUR, ID_REFUGE, SEXE) VALUES(?,?,?,?,?,?,?,?,?,?,?,NULL,?,?)');
+            $stmt->bind_param('sssssssssssss', $nomAnimal,$dateNaissance,$poids,$numeroPuce, $caractere,$specificites,$taille,$robe,$dateArrivee, $dateSortie, $raceAnimal,$idRefuge, $sexeAnimal);
             $stmt->execute();
             $this->deconnexion($mysqli);
         }

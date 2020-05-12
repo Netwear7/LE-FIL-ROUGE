@@ -22,9 +22,11 @@
             $region = $refuge->getRegion();
             $departement = $refuge->getDepartement();
             $idAdresse = $refuge->getIdAdresse();
+            $email = $refuge->getEmail();
+            $num = $refuge->getNum();
             $mysqli = $this->connexion();
-            $stmt = $mysqli->prepare('INSERT INTO refuge (REGION, DEPARTEMENT, ID_ADRESSE) VALUES (?,?,?)');
-            $stmt-> bind_param('ssi', $region, $departement, $idAdresse);
+            $stmt = $mysqli->prepare('INSERT INTO refuge (REGION, DEPARTEMENT, ID_ADRESSE, EMAIL, TELEPHONE) VALUES (?,?,?,?,?)');
+            $stmt-> bind_param('ssiss', $region, $departement, $idAdresse, $email, $num);
             $stmt->execute();
             $this->deconnexion($mysqli);
         }

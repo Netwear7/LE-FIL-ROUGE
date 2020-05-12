@@ -30,9 +30,18 @@
 			$this->tailleAnimal = $infos["taille"];
 			$this->robeAnimal = $infos["robe"];
 			$this->raceAnimal = $infos["race"];
-			$this->sexeAnimal = $infos["sexe"];
+                        $this->sexeAnimal = $infos["sexe"];
+            if(isset($infos["dateArrivee"])){
+                $this->dateArrivee = $infos["dateArrivee"];
+            }
+            if(isset($infos["dateSortie"])){
+                $this->dateSortie = $infos["dateSortie"];
+            }
 
             // merci de pas retirer la couleur je l'utilise pour l'ajout de l'animal
+            if (isset($infos["couleur"])){
+                $this->couleurAnimal = $infos["couleur"];
+            }
             if (isset($infos["couleur"])){
                 $this->couleurAnimal = $infos["couleur"];
             }
