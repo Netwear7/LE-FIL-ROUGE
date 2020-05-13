@@ -17,6 +17,10 @@
         include_once("../data-access/RefugeDataAccess.php");
         include_once("../data-access/UtilisateurDataAccess.php");
         include_once("../data-access/DonationDataAccess.php");
+        include_once("../data-access/AvoirCouleurDataAccess.php");
+        include_once("../data-access/AppartenirEspeceDataAccess.php");
+        include_once("../data-access/EspeceAvoirMaladieDataAccess.php");
+        include_once("../data-access/InfecteParDataAccess.php");
     
     //Service
         include_once("../service/AdresseService.php");
@@ -33,12 +37,19 @@
         include_once("../service/RefugeService.php");
         include_once("../service/UtilisateurService.php");
         include_once("../service/DonationService.php");
+        include_once("../service/AvoirCouleurService.php");
+        include_once("../service/AppartenirEspeceService.php");
+        include_once("../service/EspeceAvoirMaladieService.php");
+        include_once("../service/InfecteParService.php");
 
 
 
     session_start();
 
     function GetDataOfSelectedTable($table){
+        if($table == "EstInfectePar"){
+            $table = "InfectePar";
+        }
         $classnameDAO = $table.'DataAccess';
         $classnameService = $table.'Service';
 
@@ -66,9 +77,13 @@
         $data = GetDataOfSelectedTable($table);
         // var_dump($data);
         
-        
-        foreach($data as $row){
+        foreach($data as $key => $row){
+            $values = array_values($row);
             echo "<tr>";
+            echo "<td>
+            <a href='#' data-idRow='$values[0]' class='edit'><i class='far fa-edit mr-2'></i></a>
+            <a href='#' id='$values[0]' class='delete'><i class='far fa-times-circle text-danger'></i></a>
+            </td>";
             foreach($row as $key => $cell){
                 if($key == "PHOTO"){
                     echo '<td><img class="img-round d-inline-block w-50 mx-3" src="data:image/png;base64,'.base64_encode($cell).'"/></td>';
@@ -82,9 +97,7 @@
             }
             echo "</tr>";
         }
-        
     }
-
 ?>
 
 
@@ -99,6 +112,7 @@
             <?php
                 if(isset($_POST["table"]) && !empty($_POST["table"])){
                     $tableColumn = GetColumnOfSelectedTable($_POST["table"]);
+                    echo "<th>Actions</th>";
                     foreach($tableColumn as $colName){
                         if($colName["COLUMN_NAME"] == "MDP"){
                             continue;
