@@ -23,85 +23,74 @@ function affichage($data){
         }
         $idAnimal=$value["ID_ANIMAL"];
         $dataFavourite=$serviceAnimauxFavoris->serviceVerifyIfAnimalAlreadyFavourite($idUser, $idAnimal);
-        if(count($dataFavourite)>0){
 
-            echo '<div class="col-lg-3 mb-4 contentDisplay">
-                      <div class="card" style="min-height:300px" >
 
-                      <img  style="z-index:1;width:100%" data-toggle="modal" data-target="#myModal'.$i.'"  src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>  
-                     
-                                <a class="js-like" style="color:#fc0341">
-                                <i id="icone" class="fas fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i> 
-                                <input type="hidden" value="'.$idUser.'" class="like_user_id">
-                                <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
-                                </a>                       
-                        <div class="card-body bg-1" style="min-height:100px" data-toggle="modal" data-target="#myModal'.$i.'">
+        echo '<div class="col-lg-3 mb-4 contentDisplay">
+                    <div class="card">
+
+                        <img  style="z-index:1;width:100%;" data-toggle="modal" data-target="#myModal'.$i.'"  src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>                         
+                        <a class="js-like" style="color:#fc0341">';
+                        if(count($dataFavourite)>0){
+                            echo'<i id="icone" class="fas fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i>'; 
+                        }
+                        else{
+                            echo'<i id="icone" class="far fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i>';
+                        }
+                        echo'<input type="hidden" value="'.$idUser.'" class="like_user_id">
+                        <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
+                        </a>                       
+                        <div class="card-body bg-info text-white" data-toggle="modal" data-target="#myModal'.$i.'">
                                 <div class="row justify-content-center">
                                     <h4 class="card-text "><strong>'.$value["NOM"].'</strong></h4>
                                 </div>
                                 <div class="row justify-content-center">
-                                    <p class="card-text"><i>'.$value["NOM_RACE"].'</i></p>
+                                    <p class="card-text" style="font-size:1.2em"><i>'.$value["NOM_RACE"].'</i></p>
                                 </div>
+                                <div class="row justify-content-center">';
+                                if($value["SEXE"]=="Mâle"){
+                                echo'<i class="fas fa-mars fa-2x"></i>';
+                                }
+                                else{
+                                echo'<i class="fas fa-venus fa-2x"></i>';
+                                }                            
+                           echo'</div>
                         </div>                   
-                      </div>                   
-                  </div>';        
-            }
-            else{
-                echo '
-                    <div class="col-lg-3 mb-4 contentDisplay">
-                        <div class="card" style="min-height:300px;">
-
-                                <img  style="z-index:1; width:100%" data-toggle="modal" data-target="#myModal'.$i.'" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
-                      
-                                <a class="js-like" style="color:#fc0341">
-                                <i id="icone" class="far fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i> 
-                                <input type="hidden" value="'.$idUser.'" class="like_user_id">
-                                <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
-                                </a>                       
-                            <div class="card-body bg-1" data-toggle="modal" data-target="#myModal'.$i.'" style="min-height:100px">
-                                <div class="row justify-content-center">
-                                    <h4 class="card-text "><strong>'.$value["NOM"].'</strong></h4>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <p class="card-text"><i>'.$value["NOM_RACE"].'</i></p>
-                                </div>
-                            </div>                   
-                        </div>                   
-                    </div>';        
-        }
-
+                    </div>                   
+                </div>';        
+            
+        
         echo'<div id="myModal'.$i.'" class="modal fade" role="dialog"">
                 <div class="modal-dialog modal-xl modal-dialog-centered">                    
                     <div class="modal-content" style="min-height:max-content">
-                        <div class="col-12  border rounded border-black pt-2">
+                        <div class="col-12">
                             <div class="row bg-light" style="font-size:1.4em">
-                                <div class="col-lg-3 col-sm-12">
+                                <div class="col-lg-4 col-sm-12 bg-1">
                                     <div class="row">
-                                    <img  style="z-index:1; height:100%; width:100%" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
+                                    <img style="z-index:1; height:100%; width:100%" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
                                     </div>                            
                                 </div>
-                                <div class="col-lg-3 col-sm-12 text-center mt-2">
+                                <div class="col-lg-3 col-sm-12 text-center bg-1 d-flex align-items-center">
                                     <div class="row ">
                                         <div class="col-12">
-                                        <h4 class="text-break"><strong>'.$value["NOM"].'</strong></h4>
+                                        <h3 class="text-break"><strong>'.$value["NOM"].'</strong></h3>
                                         </div>
                                         <div class="col-12">
                                             <p class="text-break">Race : '.$value["NOM_RACE"].'</p>
                                         </div>   
                                         <div class="col-12">
-                                        <p><strong>Né le  : </strong><br/>'.$value["DATE_NAISSANCE"].'  </p>
+                                        <p>Né le  : <br/>'.$value["DATE_NAISSANCE"].'  </p>
                                         </div>                           
                                     </div>                            
                                 </div>
-                                <div class="col-lg-6 col-sm-12">
+                                <div class="col-lg-5 col-sm-12 bg-1 d-flex align-items-center">
                                 
-                                    <div class="row mt-2">
+                                    <div class="row">
                                         <div class="col-lg-6 col-sm-12">
                                             <ul class="list-group list-group-flush">
                                                 <li class="mb-1">Identification : '.$value["NO_PUCE"].' </li>
                                                 <li class="mb-1">Poils : '.$value["ROBE"].'</li>
                                                 <li class="mb-1">Couleur : '.$value["COULEUR"].'</li>
-                                                <li>Caractère : '.$value["CARACTERE"].'</li>
+                                                
                                             </ul>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
@@ -109,7 +98,7 @@ function affichage($data){
                                                 <li> Sexe : '.$value["SEXE"].'</li>
                                                 <li >Poids : '.$value["POIDS"].' kg</li>
                                                 <li >Taille : '.$value["TAILLE"].' cm</li>
-                                                <li >Spécificités : <br/>'.$value["SPECIFICITE"].'</li>
+                                                <li>Caractère : '.$value["CARACTERE"].'</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -125,11 +114,11 @@ function affichage($data){
                     </div>                
                 </div>
              </div>';
-
+    }
         
 
-    }
 }
+
 
     $daoAnimaux = new AnimauxDataAccess();
     $animauxService = new AnimauxService($daoAnimaux);
