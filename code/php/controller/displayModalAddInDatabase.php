@@ -7,8 +7,10 @@
     include_once("../service/RefugeService.php");
     include_once("../service/RaceService.php");
     include_once("../service/MaladieService.php");
+    include_once("../service/EspeceService.php");
     
     include_once("../data-access/ControlAdminDataAccess.php");
+    include_once("../data-access/EspeceDataAccess.php");
     include_once("../data-access/CouleurAnimalDataAccess.php");
     include_once("../data-access/UtilisateurDataAccess.php");
     include_once("../data-access/AnimauxDataAccess.php");
@@ -68,8 +70,22 @@
                 }
                 return $select;
             break;
+            case "espece":
+                foreach($data as $array){
+                    $select .= " <option value=' " . $array["ID_ESPECE"] . "'>" . $array["NOM_ESPECE"] . "</option>";
+                }
+                return $select;
+            break;
             case "maladie":
-                $select .= " <option value='none'>Aucune Maladie</option>";
+                if($table == "espece_avoir_maladie"){
+                    $select .= " <option value='none'>Aucune Maladie</option>";
+                }
+                foreach($data as $array){
+                    $select .= " <option value=' " . $array["ID_MALADIE"] . "'>" . $array["MALADIE"] . "</option>";
+                }
+                return $select;
+            break;
+            case "OnlyMaladie":
                 foreach($data as $array){
                     $select .= " <option value=' " . $array["ID_MALADIE"] . "'>" . $array["MALADIE"] . "</option>";
                 }
@@ -135,6 +151,20 @@
                     // echo makeInput("text", "Ville", "ville");
                     // echo makeInput("number", "Code Postal", "codePostal");
                 echo "Insérer un refuge pour inserer une adresse.";
+            break;
+            case "avoir_couleur":
+                echo "Renseigner la couleur dans le formulaire animal.";
+            break;
+            case "est_infecte_par":
+                echo "Renseigner une maladie dans le formulaire animal.";
+            break;
+            case "appartenir_espece":
+                echo makeSelect("race");
+                echo makeSelect("espece");
+            break;
+            case "espece_avoir_maladie":
+                echo makeSelect("maladie");
+                echo makeSelect("espece");
             break;
             case "animaux": 
                 echo '<div class="col-4 offset-4"><input type="file" id="photo" accept="image/png, image/jpeg"></div>';
@@ -245,7 +275,10 @@
                         if($_POST["table"] != "adresse" 
                         && $_POST["table"] != "donation"
                         && $_POST["table"] != "garderie"
-                        && $_POST["table"] != "utilisateur"){
+                        && $_POST["table"] != "utilisateur"
+                        && $_POST["table"] != "est_infecte_par"
+                        && $_POST["table"] != "avoir_couleur"
+                        ){
                             echo "<button type='button' data-dismiss='modal' id='addInDatabase' class='btn btn-primary'>Ajouter un(e) $result</button>";
                         }
                     ?>
