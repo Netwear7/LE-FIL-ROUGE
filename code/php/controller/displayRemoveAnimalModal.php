@@ -23,6 +23,7 @@ if(isset($_POST))
                     <p class="mt-2">Confirmer le retrait ?</p>
                 </div>
                 <div class="modal-footer" id="footerRetraitAnimal">
+                <div id="loaderRemoveAnimal" style="display: none"></div>
                     <form >
                         <button type="button" id="removeAnimal" name="'.$id.'" value="'.$couleur.'"  class="btn btn-outline-info">Confirmer le retrait</button>
                     </form>

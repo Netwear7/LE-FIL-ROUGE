@@ -72,7 +72,7 @@ echo
                                 <div class="row justify-content-center">
                                     <input type="hidden" id="idUtilisateur" value="'.$data["ID_UTILISATEUR"].'"/>
                                     <input type="hidden" id="idAdresse" value="'.$data["ID_ADRESSE"].'"/>
-                                    <button type="button submit" class="btn btn-outline-primary" name="updateUserInfos">Valider les modifications</button>
+                                    <button type="button submit" class="btn btn-outline-primary" id="updateUserInfosBtn" name="updateUserInfos">Valider les modifications</button>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-12">

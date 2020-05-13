@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $('#formUpdateAnimals').submit(function(e){
+        $("#updateAnimalInfosBtn").attr("disabled", true);
         e.preventDefault();
         var nom = $('#nomAnimal').val();
         var dateNaissance = $('#dateNaissance').val();
@@ -24,6 +25,7 @@ $(document).ready(function(){
             success: function (data) {
                 if(data.status != 'success'){
                     $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdateAnimal" ).fadeIn(3000).fadeOut(2500);
+                    $("#updateAnimalInfosBtn").attr("disabled", false);
                 }else{
                     $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdateAnimal" ).fadeIn(3000);
                     setTimeout(function(){

@@ -18,6 +18,7 @@ if(isset($_GET)){
                     <small id="lostAnimal" class="form-text text-muted">Si c\'est bien le cas, nous somme heureux que vous ayez pu le retrouver</small>
                 </div>
                 <div class="modal-footer">
+                    <div id="loaderAnimalIsBack" style="display: none"></div> 
                     <button type="button" id="confirmRetrouve" value="'.$id.'" class="btn btn-primary">Confirmer</button>
                 </div>
             </div>

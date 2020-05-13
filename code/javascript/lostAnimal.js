@@ -1,6 +1,8 @@
 $(document).ready(function (){
     $('#formPerte').submit(function (e) {
         e.preventDefault(); 
+        $('#loaderLostAnimal').show();
+        $("#lostButton").attr("disabled", true);
         var datePerte = $(this).find('input[name=datePerte]').val();
         var precisionPerte = $(this).find('textarea[name="precisionPerte"]').val();
         var idAnimalPerdu = $(this).find('input[name="idAnimalPerdu"]').val();
@@ -19,6 +21,8 @@ $(document).ready(function (){
                 },
                 success: function (data) {
                     if(data.status != 'success'){
+                        $('#loaderLostAnimal').hide();
+                        $("#lostButton").attr("disabled", false);
                         $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);
                     } else {
                         $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);

@@ -2,6 +2,8 @@ $(document).ready(function (){
 
     $('button#removeFavoris').click(function(e){
         e.preventDefault();
+        $('#loaderRemoveFavoris').show();
+        $("button#removeFavoris").attr("disabled", true);
         var id = $(this).val();
         var idUser = $(this).attr('name');
         $.ajax(
@@ -16,8 +18,9 @@ $(document).ready(function (){
 					},
 				success: function (data) {
 						if(data.status != 'success'){
-							$( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#footerRetraitFavoris" );
-							setTimeout(function(){ location.reload(); }, 4000);
+                            $('#loaderRemoveFavoris').hide();
+                            $("button#removeFavoris").attr("disabled", false);
+                            $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#footerRetraitFavoris" );
 							} else {
 								$( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#footerRetraitFavoris" );
                                 setTimeout(function(){

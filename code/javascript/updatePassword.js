@@ -1,6 +1,7 @@
 $(document).ready(function (){
 
     $('#updatePassword').submit(function (e) {
+        $("#updatePasswordBtn").attr("disabled", true);
         e.preventDefault();
         var actualPassword = $('#inputPassword2').val();
         var newPassword = $('#inputPassword3').val();
@@ -21,6 +22,7 @@ $(document).ready(function (){
                 success: function(data){ 
                     if(data.status != 'success'){
                         $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdatePassword" ).fadeIn(3000).fadeOut(9000);
+                        $("#updatePasswordBtn").attr("disabled", false);
                         } else {
                             $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultUpdatePassword" ).fadeIn(3000).fadeOut(9000);
                         }     

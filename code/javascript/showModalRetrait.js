@@ -5,6 +5,7 @@ $(document).ready(function(){
         var couleur= $(this).attr('name');
         $('#modalRetrait').load('displayRemoveAnimalModal.php', {id: id, couleur: couleur}, function(data){
             if (data.length > 1 ){
+                $('#loaderRemoveAnimal').load('../../html/doggo.html');
                 $('#modalRetrait').modal('toggle');
             } else {
                 $( '<p class="alert alert-warning mt-2 mb-2 col-12" role="alert">Une erreur nous empêche momentanément d\'afficher la fonctionnalité de Retrait, veuillez réessayer plus tard !</p>' ).appendTo( "#errorAnimal" )

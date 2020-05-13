@@ -19,6 +19,7 @@ echo '
                 <p class="mt-2">Confirmer le retrait ?</p>
             </div>
             <div class="modal-footer" id="footerRetraitFavoris">
+            <div id="loaderRemoveFavoris" style="display: none"></div> 
                 <form id="formRetrait">
                 <button type="button" class="btn btn-outline-info" name="'.$_SESSION["user_id"].'" id="removeFavoris" value="'.$id .'">Confirmer le retrait</button>
                 </form>

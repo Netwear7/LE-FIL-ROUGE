@@ -1,6 +1,6 @@
 $(document).ready(function (){
     $('#updateUserInfos').submit(function (e) {
-
+        $("#updateUserInfosBtn").attr("disabled", true);
         e.preventDefault();
         var nom = $('#NOM').val();
         var prenom = $('#PRENOM').val();
@@ -35,6 +35,7 @@ $(document).ready(function (){
                 success: function (data) {
                     if(data.status != 'success'){
                         $( '<div class="alert alert-warning col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultModificationInfos" ).fadeIn(3000).fadeOut(9000);
+                        $("#updateUserInfosBtn").attr("disabled", false);
                         } else {
                             $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#resultModificationInfos" ).fadeIn(3000).fadeOut(9000);
                             $('#rowUserInfos').load("displayUserInfos.php");

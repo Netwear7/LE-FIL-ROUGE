@@ -21,9 +21,10 @@ if(isset($_GET)){
             <textarea class="form-control mb-3" name="precisionPerte" rows="3"></textarea>
             <p>Une fois la perte déclarée, votre animal sera affiché dans la section "Animaux perdus" visible en cliquant <a href="animaux-perdus.php">ici</a> , <br/> Les utilisateurs pourront avoir accès aux informations de contact présentes sur votre profil dans le cas ou ils auraient des informations ou peut-être apercu votre animal.</p>
         </div>
-        <div class="modal-footer">
-                <input type="hidden" name="idAnimalPerdu" value="'.$id.'"></input>
-            <button type="button submit"  class="btn btn-primary lost">Signaler Perdu</button>
+        <div class="modal-footer" id="footerPerte">
+            <div id="loaderLostAnimal" style="display: none"></div>
+            <input type="hidden" name="idAnimalPerdu" value="'.$id.'"></input>
+            <button type="button submit" id="lostButton"  class="btn btn-primary lost">Signaler Perdu</button>
         </div>
     </div>
     </form>

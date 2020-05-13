@@ -1,0 +1,1 @@
+$('#popCouleur').load('displayColorsOptions.php');
