@@ -111,7 +111,7 @@
         $avoirCouleurService->serviceAdd($avoirCouleur);
 
 
-        if($_POST["maladie"] != null){
+        if($_POST["maladie"] != "none"){
             $infectePar = new InfectePar($animal->getIdAnimal(), $_POST["maladie"]);
             $infecteParDao = new InfecteParDataAccess();
             $infecteParService = new InfecteParService($infecteParDao);
