@@ -4,32 +4,90 @@ include_once('../data-access/AnimauxDataAccess.php');
 include_once('../service/AnimauxService.php');
 
     function affichage($data){
+        $i=0;
         foreach($data as $key => $value){
+            $i++;
             echo '<div class="col-lg-3 mb-4 contentDisplay">
                     <div class="card">
-                        <img class="card-img-top" src="../../img/Koala.jpg" alt="Card image cap">
-                        <div class="card-body">
+                    <img  style="z-index:1; width:100%" data-toggle="modal" data-target="#myModal'.$i.'" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
+                        <div class="card-body" data-toggle="modal" data-target="#myModal'.$i.'">
                             <div class="row justify-content-center">
                                 <p class="card-text ">' . $value["nom"] . '</p>
                             </div>
                             <div class="row justify-content-center">
-                                <p class="card-text">' . $value["nom_race"] . '</p>
+                                <p class="card-text">' . $value["NOM_RACE"] . '</p>
                             </div>
                         </div>                   
                     </div>
                 </div>';
         
+            echo'<div id="myModal'.$i.'" class="modal fade" role="dialog"">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">                    
+                        <div class="modal-content" style="min-height:max-content">
+                            <div class="col-12  border rounded border-black pt-2">
+                                <div class="row bg-light" style="font-size:1.4em">
+                                    <div class="col-lg-3 col-sm-12">
+                                        <div class="row">
+                                        <img  style="z-index:1; height:100%; width:100%" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
+                                        </div>                            
+                                    </div>
+                                    <div class="col-lg-3 col-sm-12 text-center d-flex align-items-center mt-2">
+                                        <div class="row ">
+                                            <div class="col-12">
+                                            <h4 class="text-break"><strong>'.$value["nom"].'</strong></h4>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="text-break">Race : '.$value["NOM_RACE"].'</p>
+                                            </div>   
+                                            <div class="col-12">
+                                            <p><strong>Né le  : </strong><br/>'.$value["DATE_NAISSANCE"].'  </p>
+                                            </div>                           
+                                        </div>                            
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12 d-flex align-items-center">
+                                    
+                                        <div class="row mt-2">
+                                                <div class="col-lg-12 col-sm-12 d-flex justify-content-center">';
+                                            if($value["SEXE"]=="Mâle"){
+                                                echo'
+                                                <i>Perdu le : </i> <strong>&nbsp; '.$value["DATE_PERTE"].' </strong><i>&nbsp;&nbsp;à&nbsp;&nbsp; <strong></i>'.$value["VILLE"].'</strong>';
+                                            }
+                                            else{
+                                                echo'
+                                                <i>Perdue le : </i> <strong>&nbsp; '.$value["DATE_PERTE"].' </strong><i>&nbsp;&nbsp;à&nbsp;&nbsp; <strong></i>'.$value["VILLE"].'</strong>';
+                                            }
+                                            echo'</div>
+                                                <div class="col-lg-12 col-sm-12 text-center"><i> Circonstances de la perte : </i></div>
+                                                <div class="col-lg-12 col-sm-12 text-center"><strong> '.$value["DESC_PERTE"].'</strong></div>
+                                        </div>
+                                    </div>
+
+
+                                  
+                                </div>
+                                <div class="row bg-info text-white p-2" style="font-size:1.2em">
+                                    <div class="col-lg-12 text-center">
+                                        <i>Vous avez vu cet animal ? Contactez '.$value["PRENOM"].' ! </br>
+                                            Par téléphone : '.$value["NUM"].' </br>
+                                            ou </br>
+                                            Par mail : '.$value["ADRESSE_EMAIL"].'</i>
+                                    </div>
+                                </div> 
+                            </div>                         
+                        </div>                
+                    </div>
+                    </div>';
         }
     }
 
     $daoAnimaux = new AnimauxDataAccess();
     $animauxService = new AnimauxService($daoAnimaux);
-    if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
+    if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["poil"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
         $data=$animauxService->serviceSelectAllLostAnimals();
         affichage($data);
     }
 
-    if(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])){
+    if(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["poil"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])){
         $data=$animauxService->serviceSearchLostAnimals($_POST);
         if(count($data)>0){
             affichage($data);

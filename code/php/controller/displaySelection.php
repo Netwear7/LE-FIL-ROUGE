@@ -15,7 +15,12 @@ function affichage($data){
     $i=0;
     foreach($data as $key => $value){
         $i++;
-        $idUser=$_SESSION["user_id"];
+        if(isset($_SESSION["user_id"])){
+            $idUser=$_SESSION["user_id"];
+        }
+        else{
+            $idUser="";
+        }
         $idAnimal=$value["ID_ANIMAL"];
         $dataFavourite=$serviceAnimauxFavoris->serviceVerifyIfAnimalAlreadyFavourite($idUser, $idAnimal);
         if(count($dataFavourite)>0){
@@ -27,7 +32,7 @@ function affichage($data){
                      
                                 <a class="js-like" style="color:#fc0341">
                                 <i id="icone" class="fas fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i> 
-                                <input type="hidden" value="'.$_SESSION["user_id"].'" class="like_user_id">
+                                <input type="hidden" value="'.$idUser.'" class="like_user_id">
                                 <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
                                 </a>                       
                         <div class="card-body bg-1" style="min-height:100px" data-toggle="modal" data-target="#myModal'.$i.'">
@@ -50,7 +55,7 @@ function affichage($data){
                       
                                 <a class="js-like" style="color:#fc0341">
                                 <i id="icone" class="far fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i> 
-                                <input type="hidden" value="'.$_SESSION["user_id"].'" class="like_user_id">
+                                <input type="hidden" value="'.$idUser.'" class="like_user_id">
                                 <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
                                 </a>                       
                             <div class="card-body bg-1" data-toggle="modal" data-target="#myModal'.$i.'" style="min-height:100px">
