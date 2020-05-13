@@ -35,7 +35,7 @@
                     //Set ici et non plus dans le construct, car bug :
                     $utilisateur->setPassword(PASSWORD_HASH($_POST["inscriptionPassword"],PASSWORD_DEFAULT));
                     $serviceUtilisateur->serviceAdd($utilisateur);
-                    session_start() ;
+                    session_start();
                     $_SESSION["user_id"] = $utilisateur->getIdUtilisateur();
                     $_SESSION["user_role"] = $utilisateur->getRole();
                     header('Location: accueil.php');
@@ -133,6 +133,14 @@
 
 <!-- BOUTON MES ANIMAUX ET COMPTES-->
         <ul class="navbar-nav">   
+            <li class="nav-link">
+                <?php
+                if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == '[admin]'){
+                    echo '<a class="nav-link bg-danger text-white m-0 py-0 px-2 round-div" href="ControlAdmin.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
+                            Gestion des données [administrateur]</a>';
+                }
+                ?>
+            </li>
             <li class="nav-link">
                 <?php
                 if(isset($_SESSION["user_id"])){
