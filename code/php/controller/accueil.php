@@ -2,6 +2,10 @@
     include_once("../service/PhotoAnimalService.php");
     include_once("../data-access/PhotoAnimalDataAccess.php");
     session_start();
+
+    if(isset($_POST)){
+
+    }
 ?>
 
 <!doctype html>
@@ -89,6 +93,17 @@
                             </div>
                         </div>
                     </div>
+                    <?php
+                        if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == '[admin]'){
+                            echo'<button type="btn" id="addNews" class="btn btn-link">Ajouter une news</button>';
+                            echo '
+                            <div class="row" id="formAddNews" style="display: none">
+                            </div>
+                            ';
+                        }
+                    ?>
+
+
                     <hr class="row bg-grey-light" style="border-color: white;">
                     <hr class="row bg-grey-light" style="border-color: white;">
                     <div class="row bg-grey-light shadow-sm mt-2 mb-5 p-3">
@@ -114,6 +129,8 @@
         ?>
         <script src="../../javascript/jquery-3.4.1.min.js"></script>
         <script src="../../javascript/displayCardAccueil.js"></script>
+        <script src="../../javascript/accueil/showFormAddNews.js"></script>
+        <script src="../../javascript/accueil/submitNews.js"></script>
     </body>
 </html>
 

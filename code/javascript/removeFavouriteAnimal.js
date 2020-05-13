@@ -24,6 +24,7 @@ $(document).ready(function (){
 							} else {
 								$( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#footerRetraitFavoris" );
                                 setTimeout(function(){
+                                    $('#loaderRemoveFavoris').hide();
                                     $('#rowFavouriteAnimals').load('displayUserFavouriteAnimal.php');
                                     $('#modalRetraitFavoris').modal('toggle').data( 'bs.modal', null );
                                 }, 3500);

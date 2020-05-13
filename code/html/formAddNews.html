@@ -1,0 +1,21 @@
+
+<div class="col-12">
+    <form id="formAddNews" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="titleNews">Titre :</label>
+            <input class="form-control" name="titleNews" id="titleNews" type="text">
+            <label for="contentNews">Contenu :</label>
+            <textarea class="form-control mb-2" name="contentNews" id="contentNews" rows="3"></textarea>
+            <label for="photoNews">Photo :</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" name="photoNews" id="photoNews" aria-describedby="inputForPhotos">
+                <label class="custom-file-label" for="photoNews">Ajoutez une image : </label>
+            </div>
+        </div>
+            <button type="submit" id="addNewsBtn" class="btn btn-primary">Envoyer</button>
+        </div>
+    </form>
+    <div id="resultAddNews">
+
+    </div>
+</div>

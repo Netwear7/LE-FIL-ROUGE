@@ -27,6 +27,7 @@ $(document).ready(function (){
                     } else {
                         $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalPerte" ).fadeIn(3000).fadeOut(3500);
                         setTimeout(function(){
+                            $('#loaderLostAnimal').hide();
                             $('#rowAnimals').load('displayUserAnimals.php');
                             $('#modalPerdu').modal('toggle').data( 'bs.modal', null );
                         }, 3500);

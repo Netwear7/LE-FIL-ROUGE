@@ -25,6 +25,7 @@ $(document).ready(function (){
                     } else {
                         $( '<div class="alert alert-success col-12 mt-2 mb-2" role="alert">'+data.message+'</div>' ).appendTo( "#bodyModalRetrouve" ).fadeIn(3000).fadeOut(3500);
                         setTimeout(function(){
+                            $('#loaderAnimalIsBack').hide();
                             $('#rowAnimals').load('displayUserAnimals.php');
                             $('#modalRetrouve').modal('toggle').data( 'bs.modal', null );
                         }, 3500);
