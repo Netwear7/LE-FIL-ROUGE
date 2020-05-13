@@ -45,6 +45,9 @@ html, body {
 .img-round{
     border-radius: 2%;
 }
+.round-div{
+    border-radius: 5px;
+}
 
 
 
