@@ -6,7 +6,10 @@ include_once '../Interfaces/InterfaceService.php';
 
     class AvoirCouleurService extends ServiceCommun implements InterfaceService{
 
-        public function serviceSelectAll(){}
+        public function serviceSelectAll(){
+            $data = $this->getDataAccessObject()->daoSelectAll();
+            return $data;
+        }
         public function serviceSelect($id){}
         public function serviceCount(){}
 
