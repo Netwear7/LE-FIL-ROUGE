@@ -55,6 +55,24 @@ function loadInfos(){
                 $('body').removeClass('modal-open');
             })
         })
+        $(".delete").click(function(e){
+            var numero = $(this).data('idRow');
+            e.preventDefault();
+            $.ajax({
+                url : 'ControlAdmin.php?id=' + numero,
+                success : function(data){
+                    if(data){
+                        $('#error-message').html(data).show();
+                    }
+                    else{
+                        loadInfos();
+                    }
+                }, 
+                error : function(xhr, message, status){
+                    alert("Errer !!");
+                }
+            })
+        })
     })
 
 }
