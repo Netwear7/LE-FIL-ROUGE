@@ -8,7 +8,14 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     class AvoirCouleurDataAccess extends LogBdd implements InterfaceDao{
 
-        public function daoSelectAll(){}
+        public function daoSelectAll(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * from avoir_couleur');
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
         public function daoSelect(int $id){}
         public function daoCount(){}
         public function daoAdd(object $object)

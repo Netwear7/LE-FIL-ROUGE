@@ -12,7 +12,14 @@
             $this->deconnexion($mysqli);
         }
 
-        public function daoSelectAll(){}
+        public function daoSelectAll(){
+            $mysqli = $this->connexion();
+            $rs = $mysqli->query('SELECT * from est_infecte_par');
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
         public function daoSelect(int $id){}
         public function daoCount(){}
         public function daoAdd($infectePar){
