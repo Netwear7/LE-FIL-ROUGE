@@ -4,7 +4,6 @@ include_once('../data-access/AnimauxDataAccess.php');
 include_once('../service/AnimauxService.php');
 
     function affichage($data){
-        var_dump($data);
         $i=0;
         foreach($data as $key => $value){
             $i++;
