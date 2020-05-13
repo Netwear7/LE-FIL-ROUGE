@@ -1,4 +1,8 @@
 <?php 
+    session_start();
+    if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] != '[admin]'){
+        header("Location: accueil.php");
+    }
 
 
     include_once("../service/ControlAdminService.php");
@@ -24,8 +28,9 @@
     include_once("../data-access/DonationDataAccess.php");
     include_once("../data-access/AvoirCouleurDataAccess.php");
     include_once("../data-access/InfecteParDataAccess.php");
+    include_once("../data-access/AppartenirEspeceDataAccess.php");
+    include_once("../data-access/EspeceAvoirMaladieDataAccess.php");
 
- 
     //Service
     include_once("../service/AdresseService.php");
     include_once("../service/AnimauxService.php");
@@ -43,8 +48,8 @@
     include_once("../service/DonationService.php");
     include_once("../service/AvoirCouleurService.php");
     include_once("../service/InfecteParService.php");
-
-    session_start();
+    include_once("../service/AppartenirEspeceService.php");
+    include_once("../service/EspeceAvoirMaladieService.php");
 
 
     function underscoreToCamelCase($string, $capitalizeFirstCharacter = false) {
@@ -148,8 +153,12 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-light bg-1 border-bot-header">
-            <a class="navbar-brand" href="#">Navbar</a>
+        <nav class="navbar navbar-expand-lg navbar-light border-bot-header bg-1">
+        <a class="navbar-brand d-flex align-items-center" href="accueil.php"><i class="fas fa-arrow-left"></i><h5 class="ml-2 align-items-center my-0">Retour à l'accueil.</h5></a>
+            <!-- <div class="collapse navbar-collapse" id="navbarText">
+                <span class="navbar-text text-dark"> -->
+                <!-- </span>
+            </div> -->
         </nav>
         <div class="container-fluid mt-3">
             <div class="row">
@@ -162,11 +171,7 @@
                         $controlAdminService = new ControlAdminService($controlAdminDAO);
                         $data = $controlAdminService->serviceSelectTable();
                         foreach($data as $array){
-                            if($array["table_name"] == "appartenir_espece" 
-                            || $array["table_name"] == "avoir_couleur" 
-                            || $array["table_name"] == "espece_avoir_maladie" 
-                            || $array["table_name"] == "est_infecte_par" 
-                            || $array["table_name"] == "etre_favoris"){
+                            if($array["table_name"] == "etre_favoris"){
                             }
                             else{
                                 echo '<option class='.$array["table_name"].'>'.$array["table_name"].'</option>';
