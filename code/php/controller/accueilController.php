@@ -103,7 +103,57 @@ if(isset($_SESSION) && $_SESSION["user_role"] == "[admin]"){
     
     
 
-
+    if(isset($_POST) && isset($_POST["removeNews"])){
+        if(empty($_POST["idNews"])){
+            $response_array['status'] = '01'; 
+            $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard.';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        } else {
+            if(empty($_POST["idPhoto"])){
+                $response_array['status'] = '02'; 
+                $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard.';
+                header('Content-type: application/json; charset=UTF-8');
+                $error = (json_encode($response_array));
+                echo $error;
+            } else {
+                try{
+                    $result = $imgSiteService->serviceDelete($_POST["idPhoto"]);
+                    if($result === 1){
+                        $rs = $newsService->serviceDelete($_POST["idNews"]);
+                        if($rs === 1){
+                            $response_array['status'] = 'success'; 
+                            $response_array['message'] = 'Le retrait de la News à bien été effectué !';
+                            header('Content-type: application/json; charset=UTF-8');
+                            $success = (json_encode($response_array));
+                            echo $success; 
+                        }
+                    }else {
+                        $response_array['status'] = '03'; 
+                        $response_array['message'] = 'Une erreur est survenue, veuillez réessayer plus tard.';
+                        header('Content-type: application/json; charset=UTF-8');
+                        $error = (json_encode($response_array));
+                        echo $error;
+                    }
+                }catch (MysqliQueryException $mqe) {
+                    if ($mqe->getCode() == 1049) {
+    
+                        $error = ' 507 Connexion a la base de donnée impossible !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                        
+                    } else if ($mqe->getCode() == 1062 ){
+                        $error = ' 509 Erreur lors de l\'execution de la requête ';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                        
+                    } else {
+                        $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                    }
+                }
+            }
+        }
+    }
 
 
 

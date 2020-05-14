@@ -9,7 +9,7 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         public function daoSelectAll(){
             try{
                 $mysqli = $this->connexion();
-                $stmt = $mysqli->prepare('SELECT * from news');
+                $stmt = $mysqli->prepare('SELECT * from news as A INNER JOIN img_site as B on a.ID_IMG_SITE = B.ID_IMG_SITE ORDER BY CREATED_AT DESC');
                 $stmt->execute();
                 $rs = $stmt->get_result();
                 $data = $rs->fetch_all(MYSQLI_ASSOC);
@@ -57,8 +57,26 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         public function daoUpdate($parametres){
 
         }
-        public function daoDelete($nom){
-
+        public function daoDelete($id){
+            try{
+                try{
+                    $mysqli = $this->connexion();
+                    $stmt = $mysqli->prepare('DELETE from news where ID_NEWS = ?');
+                    $stmt->bind_param('s',$id);
+                    $stmt->execute(); 
+                    $data = mysqli_affected_rows($mysqli);
+                    $this->deconnexion($mysqli);
+                    return $data;
+                } catch (mysqli_sql_exception $mse) {                   
+                    throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+                }catch (Exception $e) {
+                    throw $e;
+                } 
+            }catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            } 
         }
     }
 ?>

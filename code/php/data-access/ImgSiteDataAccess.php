@@ -44,8 +44,20 @@
         public function daoUpdate($parametres){
 
         }
-        public function daoDelete($nom){
-
+        public function daoDelete($id){
+            try{
+                $mysqli = $this->connexion();
+                $stmt = $mysqli->prepare('DELETE from img_site where ID_IMG_SITE = ?');
+                $stmt->bind_param('s',$id);
+                $stmt->execute(); 
+                $data = mysqli_affected_rows($mysqli);
+                $this->deconnexion($mysqli);
+                return $data;
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            } 
         }
     }
 ?>

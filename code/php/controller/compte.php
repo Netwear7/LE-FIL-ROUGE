@@ -273,8 +273,8 @@ if(!isset($_SESSION["user_id"]))
                         </div>        
 
                         <!-- Modal retrait animal -->
-                            <div class="modal fade" id="modalRetraitFavoris" tabindex="-1" role="dialog" aria-labelledby="modalRetraitTitle" aria-hidden="true">
-                            </div>
+                        <div class="modal fade" id="modalRetraitFavoris" tabindex="-1" role="dialog" aria-labelledby="modalRetraitTitle" aria-hidden="true">
+                        </div>
                         
                         
                         <!--Mes dons-->

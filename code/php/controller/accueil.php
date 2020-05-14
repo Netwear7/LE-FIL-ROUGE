@@ -105,7 +105,10 @@
                         }
                     ?>
                     </div>
-                    <div class="row bg-grey-light mt-2" id="rowNews" style="border-color: white;">
+                    <div id="errorNews">
+                        
+                    </div>
+                    <div id="rowNews">
                 
                     </div>
                     <div class="row bg-grey-light shadow-sm mt-2 mb-5 p-3">
@@ -123,16 +126,21 @@
             </div>
         </div>
 
-
+                        <!-- Modal retrait News -->
+                        <div class="modal fade" id="modalRetraitNews" tabindex="-1" role="dialog" aria-labelledby="modalRetraitNews" aria-hidden="true">
+                        </div>
         
         <!--###############  FIN CODE PRINCIPALE  ##############-->
         <?php
             include_once("footer.php");
         ?>
         <script src="../../javascript/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="../../javascript/displayCardAccueil.js"></script>
         <script src="../../javascript/accueil/showFormAddNews.js"></script>
         <script src="../../javascript/accueil/showNews.js"></script>
+        <script src="../../javascript/fontAwesome.js"></script>
 
     </body>
 </html>

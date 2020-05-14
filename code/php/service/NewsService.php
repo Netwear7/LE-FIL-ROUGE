@@ -23,7 +23,13 @@ include_once '../Interfaces/InterfaceService.php';
         }
         public function serviceSearch($search){}
         public function serviceUpdate(array $post){}
-        public function serviceDelete($nom){}
+        public function serviceDelete($id){
+            try{
+                return $this->getDataAccessObject()->daoDelete($id);
+                }catch (MysqliQueryException $mqe) {
+                    throw $mqe;
+                }
+        }
     }
 
 ?>
