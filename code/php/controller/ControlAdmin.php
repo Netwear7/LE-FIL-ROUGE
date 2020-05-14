@@ -76,6 +76,17 @@
         $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
         $SelectedTableService->InsertPostToEntityAndAdd($_POST);
     }
+    function RemoveRowOfSelectedTable($table){
+        $SelectedTableDAO = ConcatTableDataAccess($table);
+        $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
+        if($table == "animaux"){
+            $data["idAnimal"] = $_GET['id'];
+            $SelectedTableService->ServiceDelete($data);
+        }else{
+            $SelectedTableService->ServiceDelete($_GET['id']);
+        }
+    }
+    
     function AddNewRowOfSelectedTableAndAdresse($table, $id){
         $SelectedTableDAO = ConcatTableDataAccess($table);
         $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
@@ -83,13 +94,13 @@
     }
 
     if(isset($_POST["tableSelect"]) && 
-    $_POST["tableSelect"] != "refuge"  && 
-    $_POST["tableSelect"] != "utilisateur" && 
-    $_POST["tableSelect"] != "animaux" && 
-    $_POST["tableSelect"] != "photo_animal" &&
-    $_POST["tableSelect"] != "animaux" 
-    ){
-        AddNewRowOfSelectedTable($_POST["tableSelect"]);
+        $_POST["tableSelect"] != "refuge"  && 
+        $_POST["tableSelect"] != "utilisateur" && 
+        $_POST["tableSelect"] != "animaux" && 
+        $_POST["tableSelect"] != "photo_animal" &&
+        $_POST["tableSelect"] != "animaux" 
+        ){
+            AddNewRowOfSelectedTable($_POST["tableSelect"]);
     }
     if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "refuge"){
         AddNewRowOfSelectedTable("adresse");
@@ -129,6 +140,27 @@
         $photoAnimal = new PhotoAnimal($_FILES["photo"], $animal->getIdAnimal());
         $photoAnimal->setPhotoProfil(1);
         $photoAnimalService->serviceAdd($photoAnimal);
+    }
+    if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] != "refuge"){
+        RemoveRowOfSelectedTable($_GET["table"]);
+    }
+    if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] == "refuge"){
+        $refugeDao = new RefugeDataAccess();
+        $refugeService = new RefugeService($refugeDao);
+        $data = $refugeService->serviceSelect($_GET["id"]);
+        $idAdresse = $data["ID_ADRESSE"];
+        $adresseDao = new AdresseDataAccess();
+        $adresseService = new AdresseService($adresseDao);
+        $adresseService->serviceDelete($idAdresse);
+    }
+    if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] == "utilisateur"){
+        $utilisateurDao = new UtilisateurDataAccess();
+        $utilisateurService = new UtilisateurService($utilisateurDao);
+        $data = $utilisateurService->serviceSelectId($_GET["id"]);
+        $idAdresse = $data["ID_ADRESSE"];
+        $adresseDao = new AdresseDataAccess();
+        $adresseService = new AdresseService($adresseDao);
+        $adresseService->serviceDelete($idAdresse);
     }
 ?>
 
