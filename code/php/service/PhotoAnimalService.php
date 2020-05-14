@@ -24,15 +24,6 @@
         public function serviceSelect($id){}
         public function serviceCount(){}
 
-        public function InsertPostToEntityAndAdd(array $post){
-
-            $validExtensions = array("jpg","jpeg","png");
-
-
-
-            $perte = new PhotoAnimal($post, $post['animaux']);
-            $this->getDataAccessObject()->daoAdd($perte);
-        }
 
         public function serviceAdd($photo){
 
@@ -58,20 +49,6 @@
                 $this->getDataAccessObject()->daoDelete($infos);
             }catch (MysqliQueryException $mqe) {
                 throw $mqe;
-            }
-        }
-        public function carrousselDisplayLostAnimal($data){
-            $cpt=0;
-            for($j = 0 ;$j <= intdiv(count($data), 4); $j++ ){
-                $class = $j == 0 ? "active": "";
-                echo "<div class='carousel-item $class text-center'>";
-                $maxIndex = (4 * ($cpt + 1)) > count($data) ? count($data) : 4 * ($cpt + 1);
-
-                for($i=4*$cpt; $i < $maxIndex; $i++){
-                    echo '<img class="img-round d-inline-block w-20 mx-3" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
-                }
-                $cpt++;
-                echo "</div>";
             }
         }
         public function displayAnimalsMalade($data){

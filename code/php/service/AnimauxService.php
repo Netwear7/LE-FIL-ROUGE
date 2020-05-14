@@ -46,6 +46,24 @@
 
         }
 
+        public function carrousselDisplayLostAnimal($data){
+            $cpt=0;
+            for($j = 0 ;$j <= intdiv(count($data), 4); $j++ ){
+                $class = $j == 0 ? "active": "";
+                echo "<div class='carousel-item $class text-center'>";
+                $maxIndex = (4 * ($cpt + 1)) > count($data) ? count($data) : 4 * ($cpt + 1);
+
+                echo '<div class="row d-flex justify-content-center">';
+                for($i=4*$cpt; $i < $maxIndex; $i++){
+                    echo '<div class="col-lg-2">';
+                    echo '<img class="w-75 round-div mx-3" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
+                    echo '</div>';
+                }
+                echo '</div>';
+                $cpt++;
+                echo "</div>";
+            }
+        }
         
 
         public function serviceCountAll() 
@@ -73,7 +91,10 @@
             $this->getDataAccessObject()->daoAdd($animal);
         }
 
-
+        public function serviceSelectAllLostAnimalsUser(){
+            $data = parent::getDataAccessObject()->DaoSelectAllLostAnimalsUser();
+            return $data;
+        }
 
         public function serviceAddUserAnimal($animal)
         {
