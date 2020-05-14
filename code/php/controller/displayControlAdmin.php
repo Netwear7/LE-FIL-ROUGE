@@ -21,7 +21,6 @@
         include_once("../data-access/AppartenirEspeceDataAccess.php");
         include_once("../data-access/EspeceAvoirMaladieDataAccess.php");
         include_once("../data-access/InfecteParDataAccess.php");
-        include_once("../data-access/NewsDataAccess.php");
     
     //Service
         include_once("../service/AdresseService.php");
@@ -42,7 +41,6 @@
         include_once("../service/AppartenirEspeceService.php");
         include_once("../service/EspeceAvoirMaladieService.php");
         include_once("../service/InfecteParService.php");
-        include_once("../service/NewsService.php");
 
     session_start();
 

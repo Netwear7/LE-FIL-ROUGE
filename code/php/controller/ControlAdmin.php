@@ -217,8 +217,10 @@
                         $controlAdminService = new ControlAdminService($controlAdminDAO);
                         $data = $controlAdminService->serviceSelectTable();
                         foreach($data as $array){
-                            if($array["table_name"] == "etre_favoris"){
-                            }
+                            if(
+                                $array["table_name"] == "etre_favoris" ||
+                                $array["table_name"] == "news"
+                            ){}
                             else{
                                 echo '<option class='.$array["table_name"].'>'.$array["table_name"].'</option>';
                             }
