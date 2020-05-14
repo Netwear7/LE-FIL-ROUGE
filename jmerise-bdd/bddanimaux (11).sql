@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 12 mai 2020 à 18:09
+-- Généré le :  jeu. 14 mai 2020 à 00:18
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP :  7.4.1
 
@@ -43,14 +43,10 @@ CREATE TABLE `adresse` (
 INSERT INTO `adresse` (`ID_ADRESSE`, `NUMERO`, `RUE`, `VILLE`, `CODE_POSTAL`) VALUES
 (1, 15, 'rue lesage senault', 'Lille', '50000'),
 (3, 75, 'rue du Luxembourg', 'Lille', '59000'),
-(4, 48, 'avenue du vélodrome', 'Marseille', '13000'),
 (5, 1512, 'fsefsefsef', 'roubaix', '59100'),
-(14, 20, 'testrue', 'testville', '99999'),
 (90001, 100, 'rue', 'rue', '08000'),
 (90002, 8000, 'vfdfdsqfsdqf', 'fdsfdsqfdsqfdsq', '08000'),
-(90003, 0, '', '', ''),
 (90004, 0, '', '', ''),
-(90005, 78, 'tgtg', 'tgtg', '77877'),
 (90006, 50, 'fdsfdsfdsfdsfds', 'fdsfdsfdsfds', '99999'),
 (90007, 0, '', '', ''),
 (90008, 454, 'cdsqcdsq', 'vdsqvds', '07000');
@@ -877,6 +873,19 @@ INSERT INTO `maladie` (`ID_MALADIE`, `MALADIE`, `URGENCE`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `news`
+--
+
+CREATE TABLE `news` (
+  `ID_NEWS` int(11) NOT NULL,
+  `TITRE` varchar(250) DEFAULT NULL,
+  `DATE` date DEFAULT NULL,
+  `ID_IMG_SITE` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `perte`
 --
 
@@ -1376,12 +1385,7 @@ CREATE TABLE `refuge` (
 
 INSERT INTO `refuge` (`ID_REFUGE`, `REGION`, `DEPARTEMENT`, `ID_ADRESSE`, `EMAIL`, `TELEPHONE`) VALUES
 (1, 'Hauts-de-France', 'Nord', 3, 'anitopia-lille@refuge.fr', '0320593535'),
-(2, 'Provence-Alpes-Côte d\'Azur', 'Bouches-du-Rhône', 4, 'anitopia-marseille@refuge.fr', '0491844545'),
-(3, 'fdssffds', 'fdsqfdsfdsq', 90001, '', '0'),
-(4, '', '', 90003, '', '0'),
-(6, 'tgtg', 'tgtg', 90005, '', '0'),
-(7, 'fsddsfdsf', 'sfdsfdfffdsfdsds', 14, '', '0'),
-(9, 'paris', 'paris', 90008, 'paris@paris.fr', '0680804575');
+(3, 'fdssffds', 'fdsqfdsfdsq', 90001, '', '0');
 
 -- --------------------------------------------------------
 
@@ -1510,6 +1514,13 @@ ALTER TABLE `maladie`
   ADD PRIMARY KEY (`ID_MALADIE`);
 
 --
+-- Index pour la table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`ID_NEWS`),
+  ADD KEY `news_photo0_FK` (`ID_IMG_SITE`);
+
+--
 -- Index pour la table `perte`
 --
 ALTER TABLE `perte`
@@ -1624,6 +1635,7 @@ ALTER TABLE `refuge`
 --
 ALTER TABLE `utilisateur`
   MODIFY `ID_UTILISATEUR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  
 
 --
 -- Contraintes pour les tables déchargées
@@ -1705,7 +1717,7 @@ ALTER TABLE `photo_animal`
 -- Contraintes pour la table `refuge`
 --
 ALTER TABLE `refuge`
-  ADD CONSTRAINT `refuge_adresse0_FK` FOREIGN KEY (`ID_ADRESSE`) REFERENCES `adresse` (`ID_ADRESSE`);
+  ADD CONSTRAINT `refuge_adresse0_FK` FOREIGN KEY (`ID_ADRESSE`) REFERENCES `adresse` (`ID_ADRESSE`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
