@@ -3,6 +3,9 @@
     if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] != '[admin]'){
         header("Location: accueil.php");
     }
+    if(!isset($_SESSION["user_role"])){
+        header("Location: accueil.php");
+    }
 
 
     include_once("../service/ControlAdminService.php");
