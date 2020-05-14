@@ -13,7 +13,15 @@
             return $data;
         }
         public function daoSelect($id){
-
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from refuge where ID_REFUGE = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
         }
         public function daoCount(){
 
@@ -36,8 +44,13 @@
         public function daoUpdate($parametres){
 
         }
-        public function daoDelete($nom){
-
+        public function daoDelete($idRefuge){
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $stmt = $mysqli->prepare('DELETE FROM refuge where ID_REFUGE = ?');
+            $stmt->bind_param('s', $idRefuge);
+            $stmt->execute();
+            $mysqli->close();
+            return   $result = $stmt ? "La suppression a bien été effectuée " : "La suppression a échouée ";
         }
     }
 ?>
