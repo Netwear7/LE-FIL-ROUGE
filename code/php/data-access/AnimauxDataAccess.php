@@ -335,20 +335,6 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
 
         }
 
-        public function daoSelectAllLostAnimalsUser(){
-            $mysqli = $this->connexion();
-            $rs = $mysqli->query('SELECT * from animaux as a
-            INNER JOIN photo_animal as b 
-            ON a.ID_ANIMAL = b.ID_ANIMAL
-            INNER JOIN perte as c
-            ON a.ID_ANIMAL = c.ID_ANIMAL
-            where B.PHOTO_PROFIL = true');
-            $data = $rs->fetch_all(MYSQLI_ASSOC);
-            $rs->free();
-            $this->deconnexion($mysqli);
-            return $data;
-        }
-
     }
 
 ?>
