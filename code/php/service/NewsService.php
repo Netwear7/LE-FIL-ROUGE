@@ -5,7 +5,13 @@ include_once '../Interfaces/InterfaceService.php';
 
     class NewsService extends ServiceCommun implements InterfaceService{
         
-        public function serviceSelectAll(){}
+        public function serviceSelectAll(){
+            try{
+                return $this->getDataAccessObject()->daoSelectAll();
+            }catch (MysqliQueryException $mqe) {
+                    throw $mqe;
+            }
+        }
         public function serviceSelect($id){}
         public function serviceCount(){}
         public function serviceAdd($news){

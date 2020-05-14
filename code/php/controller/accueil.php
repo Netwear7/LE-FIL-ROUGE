@@ -105,7 +105,9 @@
                         }
                     ?>
                     </div>
-                    <hr class="row bg-grey-light" style="border-color: white;">
+                    <div class="row bg-grey-light mt-2" id="rowNews" style="border-color: white;">
+                
+                    </div>
                     <div class="row bg-grey-light shadow-sm mt-2 mb-5 p-3">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
                             <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
@@ -130,6 +132,7 @@
         <script src="../../javascript/jquery-3.4.1.min.js"></script>
         <script src="../../javascript/displayCardAccueil.js"></script>
         <script src="../../javascript/accueil/showFormAddNews.js"></script>
+        <script src="../../javascript/accueil/showNews.js"></script>
 
     </body>
 </html>

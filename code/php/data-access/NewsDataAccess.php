@@ -7,6 +7,20 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     class NewsDataAccess  extends LogBdd implements InterfaceDao{
         public function daoSelectAll(){
+            try{
+                $mysqli = $this->connexion();
+                $stmt = $mysqli->prepare('SELECT * from news');
+                $stmt->execute();
+                $rs = $stmt->get_result();
+                $data = $rs->fetch_all(MYSQLI_ASSOC);
+                $rs->free();
+                $this->deconnexion($mysqli);
+                return $data;
+            }catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            } 
         }
         public function daoSelect($id){
 
