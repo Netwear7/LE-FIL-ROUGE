@@ -33,5 +33,10 @@
         public function serviceDelete($nom){
             
         }
+
+        public function serviceVerifyEmergency($idAnimal){
+            $data=$this->getDataAccessObject()->daoVerifyEmergency($idAnimal);
+            return $data;
+        }
     }
 ?>

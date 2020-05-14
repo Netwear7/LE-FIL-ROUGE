@@ -36,5 +36,20 @@
         public function daoDelete($nom){
 
         }
+
+        public function daoVerifyEmergency($idAnimal){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from maladie as A
+                                      INNER JOIN est_infecte_par as B on A.id_maladie=B.id_maladie
+                                      INNER JOIN animaux as C on B.id_animal=C.id_animal
+                                      WHERE ? IN (B.id_animal) AND A.urgence=1');
+            $stmt->bind_param('i', $idAnimal);
+            $stmt->execute();
+            $rs = $stmt->get_result(); 
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
     }
 ?>

@@ -6,11 +6,15 @@ include_once('../data-access/AnimauxDataAccess.php');
 include_once('../service/AnimauxService.php');
 include_once('../data-access/AnimauxFavorisDataAccess.php');
 include_once('../service/AnimauxFavorisService.php');
+include_once('../data-access/MaladieDataAccess.php');
+include_once('../service/MaladieService.php');
 
 
 function affichage($data){
     $daoAnimauxFavoris = new AnimauxFavorisDataAccess();
     $serviceAnimauxFavoris = new AnimauxFavorisService($daoAnimauxFavoris);
+    $daoMaladie = new MaladieDataAccess();
+    $serviceMaladie = new MaladieService($daoMaladie);
 
     $i=0;
     foreach($data as $key => $value){
@@ -23,6 +27,7 @@ function affichage($data){
         }
         $idAnimal=$value["ID_ANIMAL"];
         $dataFavourite=$serviceAnimauxFavoris->serviceVerifyIfAnimalAlreadyFavourite($idUser, $idAnimal);
+        $dataMaladie=$serviceMaladie->serviceVerifyEmergency($idAnimal);
 
 
         echo '<div class="col-lg-3 mb-4 contentDisplay">
@@ -41,7 +46,12 @@ function affichage($data){
                         </a>                       
                         <div class="card-body bg-info text-white" data-toggle="modal" data-target="#myModal'.$i.'">
                                 <div class="row justify-content-center">
-                                    <h4 class="card-text "><strong>'.$value["NOM"].'</strong></h4>
+                                    
+                                    <h4 class="card-text "><strong>'.$value["NOM"].'</strong>';
+                                    if(count($dataMaladie)>0){
+                                        echo'&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-first-aid fa-sm"></i>';
+                                    }        
+                                echo'</h4>
                                 </div>
                                 <div class="row justify-content-center">
                                     <p class="card-text" style="font-size:1.2em"><i>'.$value["NOM_RACE"].'</i></p>
