@@ -57,7 +57,7 @@
                 $this->dateArrivee = $infos["dateArrivee"];
             }
             if(isset($infos["dateSortie"])){
-                $this->dateArrivee = $infos["dateSortie"];
+                $this->dateSortie = $infos["dateSortie"];
             }
         }
 
