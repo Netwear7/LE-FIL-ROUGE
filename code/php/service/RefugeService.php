@@ -10,7 +10,7 @@
             return $data;
         }
         public function serviceSelect($id){
-            
+            return $this->getDataAccessObject()->daoSelect($id);
         }
         public function serviceCount(){
             
@@ -28,8 +28,8 @@
         public function serviceUpdate(array $post){
             
         }
-        public function serviceDelete($nom){
-            
+        public function serviceDelete($id){
+            $this->getDataAccessObject()->daoDelete($id);
         }
     }
 ?>
