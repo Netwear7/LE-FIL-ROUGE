@@ -12,7 +12,7 @@
          * Moi je lui envoie le post, faudrait qu'on y regarde.
          * */
         public function InsertPostToEntityAndAdd(array $post){
-            $contactezNous = new ContactezNous($post["message"], $post["motif"], $post["name"], $post["fname"], $post["utilisateur"]);
+            $contactezNous = new ContactezNous($post["message"], $post["motif"], $post["name"], $post["fname"], $post["id"]);
             $this->getDataAccessObject()->daoAdd($contactezNous);
         }
         public function serviceSelectAll(){
@@ -34,8 +34,8 @@
         public function serviceUpdate(array $post){
 
         }
-        public function serviceDelete($nom){
-
+        public function serviceDelete($id){
+            $this->getDataAccessObject()->daoDelete($id);
         }
 
     }
