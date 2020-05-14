@@ -1,7 +1,6 @@
-
+<form id="formAddNews" enctype="multipart/form-data">
 <div class="row">
-    <form id="formAddNews" enctype="multipart/form-data">
-        <div class="form-group">
+
             <label for="titleNews">Titre :</label>
             <input class="form-control" name="titleNews" id="titleNews" type="text">
             <label for="contentNews">Contenu :</label>
@@ -10,14 +9,14 @@
             <div class="custom-file">
                 <input type="file" name="photo" accept="image/png, image/jpeg">
             </div>
-        </div>
             <button type="submit" id="addNewsBtn" class="btn btn-primary">Envoyer</button>
-    </form>
+
     <div class="col-12">
         <div class="row" id="resultAddNews">
             
         </div>
     </div>
 </div>
+</form>
 
 <script src="../../javascript/accueil/submitNews.js"></script>
