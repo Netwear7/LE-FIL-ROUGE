@@ -21,10 +21,8 @@
         <!-- Titre onglet -->
         <title>Page d'accueil</title>
         <!-- script Javascript-->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+       
         
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
         <script src="../../javascript/navbarScroll.js"></script>
         <!-- Include en javascript-->
@@ -42,10 +40,10 @@
                 <div id="carouselExampleControls" class="carousel slide col-lg-12 bg-2 py-3 border-crl" data-ride="carousel">
                     <div class="carousel-inner">
                         <?php
-                            $animauxDao =  new AnimauxDataAccess();
-                            $animauxService =  new AnimauxService($animauxDao);
-                            $data = $animauxService->serviceSelectAllLostAnimalsUser();
-                            $animauxService->carrousselDisplayLostAnimal($data);
+                            // $animauxDao =  new AnimauxDataAccess();
+                            // $animauxService =  new AnimauxService($animauxDao);
+                            // $data = $animauxService->serviceSelectAllLostAnimalsUser();
+                            // $animauxService->carrousselDisplayLostAnimal($data);
                         ?>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -116,10 +114,10 @@
                             <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
                         </div>
                         <?php
-                            $photoAnimalDataAccess =  new PhotoAnimalDataAccess();
-                            $photoAnimalService =  new PhotoAnimalService($photoAnimalDataAccess);
-                            $data = $photoAnimalService->serviceSelectAllProfilMalade();
-                            $photoAnimalService->displayAnimalsMalade($data);
+                            // $photoAnimalDataAccess =  new PhotoAnimalDataAccess();
+                            // $photoAnimalService =  new PhotoAnimalService($photoAnimalDataAccess);
+                            // $data = $photoAnimalService->serviceSelectAllProfilMalade();
+                            // $photoAnimalService->displayAnimalsMalade($data);
                         ?>
                     </div>
                 </div>
@@ -134,6 +132,7 @@
         <?php
             include_once("footer.php");
         ?>
+
         <script src="../../javascript/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
