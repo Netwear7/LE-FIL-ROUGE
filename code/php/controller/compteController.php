@@ -1,35 +1,37 @@
 <?php
 
 
-include_once '../model/Utilisateur.php';
-include_once '../service/UtilisateurService.php';
-include_once '../data-access/UtilisateurDataAccess.php';
-include_once '../model/Adresse.php';
-include_once '../service/AdresseService.php';
-include_once '../data-access/AdresseDataAccess.php';
-include_once '../model/Animaux.php';
-include_once '../service/AnimauxService.php';
-include_once '../data-access/AnimauxDataAccess.php';
-include_once '../model/PhotoAnimal.php';
-include_once '../service/PhotoAnimalService.php';
-include_once '../data-access/PhotoAnimalDataAccess.php';
-include_once '../service/RaceService.php';
-include_once '../data-access/RaceDataAccess.php';
-include_once '../model/AvoirCouleur.php';
-include_once '../service/AvoirCouleurService.php';
-include_once '../data-access/AvoirCouleurDataAccess.php';
-include_once '../model/Perte.php';
-include_once '../service/PerteService.php';
-include_once '../data-access/PerteDataAccess.php';
-include_once '../model/AnimauxFavoris.php';
-include_once '../service/AnimauxFavorisService.php';
-include_once '../data-access/AnimauxFavorisDataAccess.php';
+
 
 
 session_start();
 
-if(isset($_SESSION["user_id"]))
+if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "[admin]" )
 {
+
+    include_once '../model/Utilisateur.php';
+    include_once '../service/UtilisateurService.php';
+    include_once '../data-access/UtilisateurDataAccess.php';
+    include_once '../model/Adresse.php';
+    include_once '../service/AdresseService.php';
+    include_once '../data-access/AdresseDataAccess.php';
+    include_once '../model/Animaux.php';
+    include_once '../service/AnimauxService.php';
+    include_once '../data-access/AnimauxDataAccess.php';
+    include_once '../model/PhotoAnimal.php';
+    include_once '../service/PhotoAnimalService.php';
+    include_once '../data-access/PhotoAnimalDataAccess.php';
+    include_once '../service/RaceService.php';
+    include_once '../data-access/RaceDataAccess.php';
+    include_once '../model/AvoirCouleur.php';
+    include_once '../service/AvoirCouleurService.php';
+    include_once '../data-access/AvoirCouleurDataAccess.php';
+    include_once '../model/Perte.php';
+    include_once '../service/PerteService.php';
+    include_once '../data-access/PerteDataAccess.php';
+    include_once '../model/AnimauxFavoris.php';
+    include_once '../service/AnimauxFavorisService.php';
+    include_once '../data-access/AnimauxFavorisDataAccess.php';
 
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
@@ -217,7 +219,7 @@ if (isset($_POST["updateUserInfos"])){
                                                 $error = (json_encode($response_array));
                                                 echo $error;
                                             }else {
-                                                if(!preg_match("/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð0-9 ,.'-]+$/u",$_POST["RUE"])){
+                                                if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/u",$_POST["RUE"])){
                                                     $response_array['status'] = '12'; 
                                                     $response_array['message'] = 'Votre Adresse contiens des caractères incorrects !';
                                                     header('Content-type: application/json; charset=UTF-8');

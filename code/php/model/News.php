@@ -6,11 +6,12 @@ class News  {
     public $title;
     public $content;
     public $createdAt;
+    public $photo;
 
     public function __construct($postNews){
-        $this->title = $postNews["title"];
-        $this->content = $postNews["content"];
-        $this->createdAt = new \DateTime();
+        $this->title = $postNews["titleNews"];
+        $this->content = $postNews["contentNews"];
+        $this->createdAt = (new \DateTime())->format('Y-m-d H:i:s');
     }
 
 
@@ -70,6 +71,26 @@ class News  {
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of photo
+     */ 
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Set the value of photo
+     *
+     * @return  self
+     */ 
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
 
         return $this;
     }

@@ -1,10 +1,11 @@
 $(document).ready(function(){
-    $("#formAddNews").on("submit", function (event) {
+    $("#formAddNews").submit(function (event) {
         event.preventDefault();
-        alert("hey");
-        var formData = new FormData($(this));
+        var formData = new FormData($(this)[0]);
+        // var form = $('formAddNews')[0]; // You need to use standard javascript object here
+        // var formData = new FormData(form);
         $.ajax({
-            url: 'accueil.php',
+            url: '../controller/serviceControllers/accueilController.php',
             type: 'POST',
             data: formData,
             dataType: "json",
