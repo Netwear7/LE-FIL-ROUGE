@@ -25,8 +25,8 @@
         public function serviceUpdate(array $post){
             
         }
-        public function serviceDelete($nom){
-            
+        public function serviceDelete($id){
+            $this->getDataAccessObject()->daoDelete($id);
         }
 
         public function serviceReservationGarderie($tab){

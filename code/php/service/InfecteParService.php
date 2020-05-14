@@ -17,6 +17,8 @@
         }
         public function serviceSearch($search){}
         public function serviceUpdate($post){}
-        public function serviceDelete($nom){}
+        public function serviceDelete($id){
+            $this->getDataAccessObject()->daoDelete($id);
+        }
     }
 ?>

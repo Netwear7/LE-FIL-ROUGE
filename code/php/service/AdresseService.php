@@ -9,7 +9,9 @@
             $this->getDataAccessObject()->daoUpdate($parametres);
 
         }
-        public function serviceDelete($nom){}
+        public function serviceDelete($id){
+            $this->getDataAccessObject()->daoDelete($id);
+        }
         // fonction pour select toutes les adresses
         public function serviceSelectAll(){
             $data = $this->getDataAccessObject()->daoSelectAll();
