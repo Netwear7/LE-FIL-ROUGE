@@ -49,7 +49,20 @@
                 throw $e;
             }   
         }
+        //Obliger de faire cette fonction, le select de base n'est pas au plus simple, problème a cause des innerJoin
 
+        public function daoSelectId($id)
+        {
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from utilisateur where ID_UTILISATEUR = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli); 
+            return $data;
+        }
 
 
 
