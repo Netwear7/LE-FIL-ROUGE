@@ -79,8 +79,7 @@
         {
             try{
             $rs = $this->getDataAccessObject()->daoAddUserAnimal($animal);
-            $id = $this->getDataAccessObject()->daoGetId($animal);
-            $animal->setIdAnimal($id[0]["ID_ANIMAL"]);
+            $animal->setIdAnimal($rs);
             return $rs;
             }catch (MysqliQueryException $mqe) {
                 throw $mqe;
