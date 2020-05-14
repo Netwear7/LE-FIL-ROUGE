@@ -99,16 +99,17 @@
                             echo '
                             <div class="col-12" id="rowAddNews" style="display: none">
                             </div>
+                            <div id="errorNews">
+                        
+                            </div>
                             ';
                         }
                     ?>
                     </div>
-                    <div id="errorNews">
-                        
-                    </div>
                     <div id="rowNews">
-                
+                    
                     </div>
+
                     <div class="row bg-grey-light shadow-sm mt-2 mb-5 p-3">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
                             <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>

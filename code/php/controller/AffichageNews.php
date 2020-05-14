@@ -39,14 +39,16 @@ try{
             ';
         }
     } else {
-        echo 
-        '
-        <div class="col-12 mt-3">
-            <div class="alert alert-info" role="alert">
-                Aucunes News à afficher !
+        if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "[admin]"){
+            echo 
+            '
+            <div class="col-12 mt-3">
+                <div class="alert alert-info" role="alert">
+                   Ajoutez une news !
+                </div>
             </div>
-        </div>
-        ';
+            ';
+        }
     }
 }catch (MysqliQueryException $mqe) {
     if ($mqe->getCode() == 1049) {
