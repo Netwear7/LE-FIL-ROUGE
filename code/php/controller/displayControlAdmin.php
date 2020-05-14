@@ -81,8 +81,8 @@
             $values = array_values($row);
             echo "<tr>";
             echo "<td>
-            <a href='#' data-idRow='$values[0]' class='edit'><i class='far fa-edit mr-2'></i></a>
-            <a href='#' id='$values[0]' class='delete'><i class='far fa-times-circle text-danger'></i></a>
+            <a href='#'  class='edit'><i class='far fa-edit mr-2'></i></a>
+            <a href='#' data-row='$values[0]' class='delete'><i class='far fa-times-circle text-danger'></i></a>
             </td>";
             foreach($row as $key => $cell){
                 if($key == "PHOTO"){
