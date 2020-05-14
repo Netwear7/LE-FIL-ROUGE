@@ -56,17 +56,16 @@ function loadInfos(){
             })
         })
         $(".delete").click(function(e){
-            var numero = $(this).data('idRow');
             e.preventDefault();
+            console.log(e.currentTarget);
+            var numero = $(e.currentTarget).data('row'); //  e.currentTarget étant un éléments du DOM 
+            // n'a pas la méthode data de jquery, il faut donc l'entourer avec le selecteur jquery --> $(..)
+            console.log("numero : " + numero)
+            var table = $('#tableSelect').val()
             $.ajax({
-                url : 'ControlAdmin.php?id=' + numero,
+                url : 'ControlAdmin.php?id=' + numero + '&table=' + table + '&action=delete',
                 success : function(data){
-                    if(data){
-                        $('#error-message').html(data).show();
-                    }
-                    else{
-                        loadInfos();
-                    }
+                    loadInfos();
                 }, 
                 error : function(xhr, message, status){
                     alert("Errer !!");
