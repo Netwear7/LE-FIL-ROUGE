@@ -239,6 +239,7 @@
                 echo makeInput("text", "Région", "region");
                 echo makeInput("text", "Département", "departement");
                 echo makeInput("mail", "Email", "email");
+                echo makeInput("text", "Numéro", "num");
                 echo "<hr>";
                 echo makeInput("text", "Numero", "NUMERO");
                 echo makeInput("text", "Rue", "RUE");
