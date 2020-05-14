@@ -1,7 +1,7 @@
 <?php
 
-include_once '../../service/ServiceCommun.php';
-include_once '../../Interfaces/InterfaceService.php';
+include_once '../service/ServiceCommun.php';
+include_once '../Interfaces/InterfaceService.php';
 
     class NewsService extends ServiceCommun implements InterfaceService{
         

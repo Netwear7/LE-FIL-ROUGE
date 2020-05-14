@@ -55,6 +55,7 @@
         }
         public function daoCount(){}
         public function daoAdd($photo){
+            try{
             $bool = 1;
             $blob = $photo->getBlob();
             $photoNom = $photo->getPhotoNom();
@@ -66,6 +67,11 @@
             $stmt->bind_param('sissss',$blob,$bool, $photoNom, $photoTaille, $photoType,$idAnimal);
             $stmt->execute();                
             $this->deconnexion($mysqli);
+            } catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            }  
         }
         public function daoSearch($search){}
         public function daoUpdate( array $array){

@@ -4,6 +4,14 @@
         private $imgNom;
         private $imgTaille;
         private $imgType;
+        private $blob;
+
+        public function __construct($photo){
+            $this->imgNom = $photo["name"];
+            $this->imgTaille = $photo["size"];
+            $this->imgType =  $photo['type'];
+            $this->blob = file_get_contents ($photo['tmp_name']);
+        }
 
         /**
          * Getter for IdImgSite
@@ -96,5 +104,25 @@
             return $this;
         }
 
+
+        /**
+         * Get the value of blob
+         */ 
+        public function getBlob()
+        {
+                return $this->blob;
+        }
+
+        /**
+         * Set the value of blob
+         *
+         * @return  self
+         */ 
+        public function setBlob($blob)
+        {
+                $this->blob = $blob;
+
+                return $this;
+        }
     }
 ?>

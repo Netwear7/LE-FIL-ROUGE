@@ -18,8 +18,25 @@
         public function daoCount(){
 
         }
-        public function daoAdd($object){
+        public function daoAdd($img){
+            try{
+                $blob = $img->getBlob();
+                $imgNom = $img->getImgNom();
+                $imgTaille = $img->getImgTaille();
+                $imgType = $img->getImgType();
+                $mysqli = $this->connexion();
+                $stmt = $mysqli->prepare('INSERT INTO img_site(IMG_BLOB,IMG_NOM,IMG_TAILLE,IMG_TYPE) VALUES(?,?,?,?)');
+                $stmt->bind_param('ssss',$blob, $imgNom, $imgTaille, $imgType);
+                $stmt->execute();   
+                $id = mysqli_insert_id($mysqli);            
+                $this->deconnexion($mysqli);
 
+                return $id;
+                } catch (mysqli_sql_exception $mse) {                   
+                    throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+                }catch (Exception $e) {
+                    throw $e;
+                } 
         }
         public function daoSearch($search){
 

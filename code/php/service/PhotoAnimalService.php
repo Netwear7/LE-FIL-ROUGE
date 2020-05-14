@@ -35,7 +35,12 @@
         }
 
         public function serviceAdd($photo){
-            $this->getDataAccessObject()->daoAdd($photo);
+
+            try{
+                $this->getDataAccessObject()->daoAdd($photo);
+                }catch (MysqliQueryException $mqe) {
+                    throw $mqe;
+                }
         }
         public function serviceSearch($search){}
         public function serviceUpdate(array $array){

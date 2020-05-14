@@ -91,18 +91,20 @@
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="row bg-grey-light" style="border-color: white;">
                     <?php
                         if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == '[admin]'){
                             echo'<button type="btn" id="addNews" class="btn btn-link">Ajouter une news</button>';
                             echo '
-                            <div class="row" id="rowAddNews" style="display: none">
+                            <div class="col-12" id="rowAddNews" style="display: none">
                             </div>
                             ';
                         }
                     ?>
-
-
-                    <hr class="row bg-grey-light" style="border-color: white;">
+                    </div>
                     <hr class="row bg-grey-light" style="border-color: white;">
                     <div class="row bg-grey-light shadow-sm mt-2 mb-5 p-3">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">

@@ -5,7 +5,7 @@ $(document).ready(function(){
         // var form = $('formAddNews')[0]; // You need to use standard javascript object here
         // var formData = new FormData(form);
         $.ajax({
-            url: '../controller/serviceControllers/accueilController.php',
+            url: 'accueilController.php',
             type: 'POST',
             data: formData,
             dataType: "json",
