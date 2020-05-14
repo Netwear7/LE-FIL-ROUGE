@@ -95,7 +95,7 @@ function affichage($data){
                                 <div class="col-lg-5 col-sm-12 bg-1 d-flex align-items-center">
                                 
                                     <div class="row">
-                                        <div class="col-lg-6 col-sm-12">
+                                        <div class="col-lg-6 col-sm-12 d-flex align-items-center">
                                             <ul class="list-group list-group-flush">
                                                 <li class="mb-1">Identification : '.$value["NO_PUCE"].' </li>
                                                 <li class="mb-1">Poils : '.$value["ROBE"].'</li>
