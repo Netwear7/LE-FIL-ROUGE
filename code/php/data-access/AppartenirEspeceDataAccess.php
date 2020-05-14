@@ -26,6 +26,13 @@ include_once '../Interfaces/InterfaceDao.php';
         }
         public function daoSearch($search){}
         public function daoUpdate(array $parametres){}
-        public function daoDelete(string $nom){}
+        public function daoDelete($id)
+        {
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('DELETE FROM appartenir_espece where ID_RACE = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $this->deconnexion($mysqli); 
+        } 
     }
 ?>

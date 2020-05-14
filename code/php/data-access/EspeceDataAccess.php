@@ -45,8 +45,13 @@ class EspeceDataAccess extends LogBdd implements InterfaceDao{
         public function daoUpdate($parametres){
 
         }
-        public function daoDelete($nom){
-
+        public function daoDelete($id){
+            $mysqli = $this->connexion(); 
+            $stmt = $mysqli->prepare('DELETE FROM espece where ID_ESPECE = ?');
+            $stmt->bind_param('s',$id);
+            $stmt->execute();
+            $this->deconnexion($mysqli);
+            return   $result = $stmt ? "La suppression a bien été effectuée " : "La suppression a échouée ";
         }
     }
 ?>

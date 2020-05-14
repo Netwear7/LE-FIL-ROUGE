@@ -95,7 +95,7 @@
         $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
         $SelectedTableService->InsertPostToEntityAndAdd($_POST, $id);
     }
-
+    //POST
     if(isset($_POST["tableSelect"]) && 
         $_POST["tableSelect"] != "refuge"  && 
         $_POST["tableSelect"] != "utilisateur" && 
@@ -144,7 +144,12 @@
         $photoAnimal->setPhotoProfil(1);
         $photoAnimalService->serviceAdd($photoAnimal);
     }
-    if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] != "refuge"){
+
+    //GET
+    if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] != "refuge"  && $_GET["table"] != "perte"){
+        if($_GET["table"] == "est_infecte_par"){
+            RemoveRowOfSelectedTable("infecte_par");
+        }
         RemoveRowOfSelectedTable($_GET["table"]);
     }
     if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] == "refuge"){
@@ -164,6 +169,12 @@
         $adresseDao = new AdresseDataAccess();
         $adresseService = new AdresseService($adresseDao);
         $adresseService->serviceDelete($idAdresse);
+    }
+    if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] == "perte"){
+        $perteDao = new PerteDataAccess();
+        $perteService = new PerteService($perteDao);
+        $data = $perteService->serviceSelectIdPerte($_GET["id"]);
+        $perteService->serviceDelete($data["ID_ANIMAL"]);
     }
 ?>
 

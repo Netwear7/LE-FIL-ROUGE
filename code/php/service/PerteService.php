@@ -16,6 +16,10 @@ include_once '../model/Perte.php';
            $data = $this->getDataAccessObject()->daoSelect($id);
            return $data;
         }
+        public function serviceSelectIdPerte($id){
+           $data = $this->getDataAccessObject()->daoSelectIdPerte($id);
+           return $data;
+        }
         public function serviceCount(){}
 
         public function InsertPostToEntityAndAdd(array $post){

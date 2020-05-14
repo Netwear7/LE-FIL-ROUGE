@@ -21,6 +21,7 @@
         include_once("../data-access/AppartenirEspeceDataAccess.php");
         include_once("../data-access/EspeceAvoirMaladieDataAccess.php");
         include_once("../data-access/InfecteParDataAccess.php");
+        include_once("../data-access/NewsDataAccess.php");
     
     //Service
         include_once("../service/AdresseService.php");
@@ -41,8 +42,7 @@
         include_once("../service/AppartenirEspeceService.php");
         include_once("../service/EspeceAvoirMaladieService.php");
         include_once("../service/InfecteParService.php");
-
-
+        include_once("../service/NewsService.php");
 
     session_start();
 
@@ -79,11 +79,48 @@
         
         foreach($data as $key => $row){
             $values = array_values($row);
-            echo "<tr>";
-            echo "<td>
-            <a href='#'  class='edit'><i class='far fa-edit mr-2'></i></a>
-            <a href='#' data-row='$values[0]' class='delete'><i class='far fa-times-circle text-danger'></i></a>
-            </td>";
+            if(
+                $_POST["table"] != "espece_avoir_maladie" &&
+                $_POST["table"] != "avoir_couleur" &&
+                $_POST["table"] != "est_infecte_par" &&
+                $_POST["table"] != "garderie" &&
+                $_POST["table"] != "photo_animal" &&
+                $_POST["table"] != "couleur_animal" &&
+                $_POST["table"] != "race" &&
+                $_POST["table"] != "contactez_nous"
+            ){
+                echo "<tr>";
+                echo "<td>";
+                echo "<a href='#'  class='edit'><i class='far fa-edit mr-2'></i></a>";
+            }
+
+
+            if($_POST["table"] != "espece_avoir_maladie"
+                && $_POST["table"] != "maladie"
+                && $_POST["table"] != "donation"
+                && $_POST["table"] != "avoir_couleur" 
+                && $_POST["table"] != "garderie" 
+                && $_POST["table"] != "couleur_animal" 
+                && $_POST["table"] != "race" 
+                && $_POST["table"] != "photo_animal" 
+                && $_POST["table"] != "est_infecte_par" 
+                && $_POST["table"] != "contactez_nous"
+                && $_POST["table"] != "avoir_couleur"){
+                echo "<a href='#' data-row='$values[0]' class='delete'><i class='far fa-times-circle text-danger'></i></a>";
+            }
+            if($_POST["table"] != "espece_avoir_maladie" 
+                && $_POST["table"] != "contactez_nous" 
+                && $_POST["table"] != "avoir_couleur" 
+                && $_POST["table"] != "photo_animal" 
+                && $_POST["table"] != "garderie" 
+                && $_POST["table"] != "race" 
+                && $_POST["table"] != "est_infecte_par" 
+                && $_POST["table"] != "couleur_animal")
+            {
+                echo "</td>";
+            }
+
+
             foreach($row as $key => $cell){
                 if($key == "PHOTO"){
                     echo '<td><img class="img-round d-inline-block w-50 mx-3" src="data:image/png;base64,'.base64_encode($cell).'"/></td>';
@@ -112,7 +149,18 @@
             <?php
                 if(isset($_POST["table"]) && !empty($_POST["table"])){
                     $tableColumn = GetColumnOfSelectedTable($_POST["table"]);
-                    echo "<th>Actions</th>";
+                    if(
+                        $_POST["table"] != "espece_avoir_maladie" &&
+                        $_POST["table"] != "avoir_couleur" &&
+                        $_POST["table"] != "est_infecte_par" &&
+                        $_POST["table"] != "photo_animal" &&
+                        $_POST["table"] != "race" &&
+                        $_POST["table"] != "garderie" &&
+                        $_POST["table"] != "couleur_animal" &&
+                        $_POST["table"] != "contactez_nous"
+                    ){
+                        echo "<th>Actions</th>";
+                    }
                     foreach($tableColumn as $colName){
                         if($colName["COLUMN_NAME"] == "MDP"){
                             continue;
