@@ -24,6 +24,15 @@
                 throw $mqe;
             }
         }
+        public function serviceSelectId($id)
+        {   
+            try{
+            $data = $this->getDataAccessObject()->daoSelectId($id);
+            return $data;
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
+        }
 
         public function serviceVerifyPassword(){
 
