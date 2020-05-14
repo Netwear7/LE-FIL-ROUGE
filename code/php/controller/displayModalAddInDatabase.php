@@ -77,7 +77,7 @@
                 return $select;
             break;
             case "maladie":
-                if($table == "espece_avoir_maladie"){
+                if($table != "espece_avoir_maladie"){
                     $select .= " <option value='none'>Aucune Maladie</option>";
                 }
                 foreach($data as $array){
