@@ -20,10 +20,10 @@ include_once('../service/AnimauxService.php');
                             </div>
                             <div class="row justify-content-center">';
                             if($value["SEXE"]=="Mâle"){
-                            echo'<i class="fas fa-mars fa-2x"></i>';
+                                echo'<span style="color:#7eb8da"><i class="fas fa-mars fa-2x"></i></span>';
                             }
                             else{
-                            echo'<i class="fas fa-venus fa-2x"></i>';
+                                echo'<span style="color:#ffa5d8"><i class="fas fa-venus fa-2x"></i></span>';
                             }                            
                         echo'</div>
                         </div>                   
