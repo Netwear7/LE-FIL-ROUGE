@@ -124,7 +124,7 @@ if(isset($_POST["donation"])){
                     $result = $donService->serviceAdd($don);
                     if($result === 1){
                         $response_array['status'] = 'success'; 
-                        $response_array['message'] = 'La donation à bien été effectuée, elle sera visible sur la partie "Mon Compte" onglet "Mes Dons" !';
+                        $response_array['message'] = 'La donation à bien été effectuée, elle sera visible sur la partie "Mon Compte" onglet "Mes Donations" !';
                         header('Content-type: application/json; charset=UTF-8');
                         $error = (json_encode($response_array));
                         echo $error;

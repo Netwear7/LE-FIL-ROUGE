@@ -81,12 +81,12 @@ session_start();
                             </div>                            
                         </div>
                         <div class="col-lg-2 col-sm-12 text-center">
-                            <div class="row ">
+                            <div class="row mt-2 ">
                                 <div class="col-12">
                                 <h4 class="text-break">'.$dataAnimaux[$i]["NOM"].'</h4>
                                 </div>
                                 <div class="col-12">
-                                    <p class="text-break">Race/Apparence :</p>
+                                    <p class="text-break"><strong>Race/Apparence :</strong></p>
                                     <p>'.$dataAnimaux[$i]["NOM_RACE"].'</p>
                                 </div>   
                                 <div class="col-12">
@@ -99,28 +99,28 @@ session_start();
                             <div class="row mt-2">
                                 <div class="col-lg-6 col-sm-12">
                                     <ul class="list-group list-group-flush">
-                                        <li >Identification : '.$dataAnimaux[$i]["NO_PUCE"].' </li>
-                                        <li >Poils : '.$dataAnimaux[$i]["ROBE"].'</li>
-                                        <li >Couleur : '.$dataAnimaux[$i]["COULEUR"].'</li>
+                                        <li ><strong>Identification :</strong> '.$dataAnimaux[$i]["NO_PUCE"].' </li>
+                                        <li ><strong>Poils :</strong> '.$dataAnimaux[$i]["ROBE"].'</li>
+                                        <li ><strong>Couleur :</strong> '.$dataAnimaux[$i]["COULEUR"].'</li>
                                     </ul>
                                 </div>
                                 <div class="col-lg-6 col-sm-12">
                                     <ul class="list-group list-group-flush">
-                                        <li> Sexe : '.$dataAnimaux[$i]["SEXE"].'</li>
-                                        <li >Poids : '.$dataAnimaux[$i]["POIDS"].' kg</li>
-                                        <li >Taille : '.$dataAnimaux[$i]["TAILLE"].' cm</li>
+                                        <li><strong> Sexe :</strong> '.$dataAnimaux[$i]["SEXE"].'</li>
+                                        <li ><strong>Poids :</strong> '.$dataAnimaux[$i]["POIDS"].' kg</li>
+                                        <li ><strong>Taille :</strong> '.$dataAnimaux[$i]["TAILLE"].' cm</li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-6">
                                     <ul class="list-group list-group-flush">
-                                        <li >Caractère : <br/>'.$dataAnimaux[$i]["CARACTERE"].'</li>
+                                        <li ><strong>Caractère :</strong> <br/>'.$dataAnimaux[$i]["CARACTERE"].'</li>
                                     </ul>
                                 </div>
                                 <div class="col-6">
                                     <ul class="list-group list-group-flush">
-                                        <li >Spécificités : <br/>'.$dataAnimaux[$i]["SPECIFICITE"].'</li>
+                                        <li ><strong>Spécificités :</strong> <br/>'.$dataAnimaux[$i]["SPECIFICITE"].'</li>
                                     </ul>
                                 </div>
                             </div>
