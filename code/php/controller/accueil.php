@@ -58,7 +58,7 @@
                 <!---------------test carrousel---------------->
                 <div class="offset-lg-1 col-lg-10">
                     <!---------------Présentation site--------------->
-                    <div class="row bg-grey-light shadow-sm mt-5 p-3 mb-2">
+                    <div class="row bg-grey-light shadow-sm mt-5 p-3 mb-3">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
                             <h1 class="font-weight-bold">ANITOPIA</h1>
                         </div>
@@ -92,9 +92,9 @@
 
 
 
-                    <div class="row bg-grey-light" style="border-color: white;">
                     <?php
                         if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == '[admin]'){
+                            echo '<div class="row bg-grey-light mb-3 p-5" >';
                             echo'<button type="btn" id="addNews" class="btn btn-link">Ajouter une news</button>';
                             echo '
                             <div class="col-12" id="rowAddNews" style="display: none">
@@ -102,15 +102,15 @@
                             <div id="errorNews">
                         
                             </div>
+                            </div>
                             ';
                         }
                     ?>
-                    </div>
                     <div id="rowNews">
                     
                     </div>
 
-                    <div class="row bg-grey-light shadow-sm mt-2 mb-5 p-3">
+                    <div class="row bg-grey-light shadow-sm mb-3 p-3">
                         <div class="col-lg-10 offset-lg-1 mb-4 text-center">
                             <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
                         </div>

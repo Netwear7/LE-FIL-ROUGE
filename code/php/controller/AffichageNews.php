@@ -15,7 +15,7 @@ try{
             $rawPhoto = "data:image/png;base64," . base64_encode($value["IMG_BLOB"]);
             echo
             '
-            <div  class="row bg-grey-light shadow-sm mt-4 p-3"  style="border-color: white;">
+            <div  class="row bg-grey-light shadow-sm p-3 mb-3"  style="border-color: white;">
             ';
             if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "[admin]" ){
                 echo
@@ -31,7 +31,7 @@ try{
                         '.redimension($rawPhoto).'
                 </div>
                 <div class="col-6">
-                    <h5 class="card-title text-center mt-3">'.$value["TITRE"].'</h5>
+                    <h3 class="card-title text-center mt-3 font-weight-bold mb-5">'.$value["TITRE"].'</h3>
                     <p class="card-text">'.$value["CONTENU"].'</p>
                 </div>
             </div>
@@ -91,8 +91,8 @@ try{
 
 function redimension($rawPhoto)
 {
-    $maxWidth = 760;
-    $maxHeight = 760;
+    $maxWidth = 300;
+    $maxHeight = 300;
     # Passage des paramètres dans la table : imageinfo
     $imageinfo= getimagesize("$rawPhoto");
     $iw=$imageinfo[0];
@@ -113,7 +113,7 @@ function redimension($rawPhoto)
         $nheight = $maxHeight;
     }
     # Affichage
-    return " <img class=\"rounded img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+    return " <img class=\"rounded img-fluid my-3 ml-5\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
 }
 
 
