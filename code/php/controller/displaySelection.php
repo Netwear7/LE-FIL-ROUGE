@@ -58,10 +58,10 @@ function affichage($data){
                                 </div>
                                 <div class="row justify-content-center">';
                                 if($value["SEXE"]=="Mâle"){
-                                echo'<i class="fas fa-mars fa-2x"></i>';
+                                echo'<span style="color:#7eb8da"><i class="fas fa-mars fa-2x"></i></span>';
                                 }
                                 else{
-                                echo'<i class="fas fa-venus fa-2x"></i>';
+                                echo'<span style="color:#ffa5d8"><i class="fas fa-venus fa-2x"></i></span>';
                                 }                            
                            echo'</div>
                         </div>                   
@@ -144,7 +144,7 @@ function affichage($data){
             echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
         }
     }
-    elseif(!isset($_GET["select"])){
+    else{
         if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"]) && empty($_POST["urgence"])){
             $data=$animauxService->serviceSelectAllAdoptableAnimals();
     
