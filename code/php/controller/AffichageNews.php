@@ -27,10 +27,10 @@ try{
                 ';
             }
             echo'
-                <div class="col-6">
+                <div class="col-lg-6 col-sm-12">
                         '.redimension($rawPhoto).'
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-sm-12">
                     <h3 class="card-title text-center mt-3 font-weight-bold mb-5">'.$value["TITRE"].'</h3>
                     <p class="card-text">'.$value["CONTENU"].'</p>
                 </div>
@@ -91,8 +91,8 @@ try{
 
 function redimension($rawPhoto)
 {
-    $maxWidth = 300;
-    $maxHeight = 300;
+    $maxWidth = 760;
+    $maxHeight = 760;
     # Passage des paramètres dans la table : imageinfo
     $imageinfo= getimagesize("$rawPhoto");
     $iw=$imageinfo[0];
@@ -113,7 +113,7 @@ function redimension($rawPhoto)
         $nheight = $maxHeight;
     }
     # Affichage
-    return " <img class=\"rounded img-fluid my-3 ml-5\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+    return " <img class=\"rounded img-fluid mt-5\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
 }
 
 
