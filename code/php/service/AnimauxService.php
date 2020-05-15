@@ -19,6 +19,11 @@
             $data = $this->getDataAccessObject()->daoSelectAllLostAnimals();
             return $data;
         }
+
+        public function serviceSelectLostAnimalById($idAnimal){
+            $data = $this->getDataAccessObject()->daoSelectLostAnimalById($idAnimal);
+            return $data;
+        }
         
         public function serviceSelectAllProfilMalade(){
             return parent::getDataAccessObject()->daoSelectAllAnimalMalade();

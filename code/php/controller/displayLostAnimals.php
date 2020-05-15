@@ -3,6 +3,7 @@
 include_once('../data-access/AnimauxDataAccess.php');
 include_once('../service/AnimauxService.php');
 
+
     function affichage($data){
         $i=0;
         foreach($data as $key => $value){
@@ -90,6 +91,13 @@ include_once('../service/AnimauxService.php');
 
     $daoAnimaux = new AnimauxDataAccess();
     $animauxService = new AnimauxService($daoAnimaux);
+
+    if(isset($_GET["id"])){
+        $idAnimal=$_GET["id"];
+        $data=$animauxService->serviceSelectlostAnimalById($idAnimal);
+        affichage($data);
+    }
+
     if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["poil"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
         $data=$animauxService->serviceSelectAllLostAnimals();
         affichage($data);
