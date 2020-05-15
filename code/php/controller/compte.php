@@ -35,7 +35,6 @@ if(!isset($_SESSION["user_id"]))
         <link rel="stylesheet" href="../../css/monCompte.css">
 
 
-
     </head>
     <body>
 
@@ -53,15 +52,15 @@ if(!isset($_SESSION["user_id"]))
             
 
                 <!--NAVBAR COTE GAUCHE-->
-                <div class="col-lg-2 col-sm-12 border rounded-sm border-black">
+                <div class="col-lg-2 col-sm-12 componentContainer">
                     <div class="row">
-                        <div class="col">
+                        <div class="col mt-3">
                             <h3 >Mon Compte</h3>
                         </div>
                     </div>
 
-                    <div class="row ">
-                        <div class="nav  nav-pills  w-100  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="row  ">
+                        <div class="nav  nav-pills  w-100   " id="v-pills-tab" role="tablist" aria-orientation="vertical">
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-profile-list" data-toggle="list" href="#profilePanel" role="tab" aria-controls="profile">Mes Informations Personnelles</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myanimals-list" data-toggle="list" href="#animalTab" role="tab" aria-controls="myanimals">Mes Compagnons</a>
                             <a class="list-group-item list-group-item-action bg-grey-light" id="list-myfavourites-list" data-toggle="list" href="#list-favourites" role="tab" aria-controls="myfavourites">Mes Animaux Coup de coeur</a>
@@ -105,7 +104,7 @@ if(!isset($_SESSION["user_id"]))
                         <!--PREMIER SLIDE DANS MES INFOS PERSONNELLES-->
                         <div class="tab-pane fade show active" id="profilePanel" role="tabpanel" aria-labelledby="list-profile-list">
                             <div class="row ">
-                                <div class="col-8 offset-2 mt-5 border rounded border-black shadow-sm">
+                                <div class="col-8 offset-2 mt-5 componentContainer">
                                     <div class="row">
                                         <div class="col-12 text-center">
                                             <h3 class="mt-2">Mes Informations Personnelles</h3>
@@ -122,13 +121,13 @@ if(!isset($_SESSION["user_id"]))
 
 
                             <!--PARTIE OU IL Y A LES BOUTONS SUPP ET MOD MDP-->
-                            <div class="row mb-5">
+                            <div class="row mb-5 mt-3">
                                 <div class="col-8 offset-2 rounded border-black mt-2">
                                     <div class="row">
                                         <div class="col-lg-4 col-sm-12 ">
                                             <!--Supprimer mon compte -->
                                             <div class="row justify-content-center">
-                                                <button class="btn btn-outline-warning" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
+                                                <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
                                                     Demander à supprimer mes informations
                                                 </button>
                                             
@@ -144,13 +143,13 @@ if(!isset($_SESSION["user_id"]))
                                         </div>
 
                                         <div class="col-lg-4 col-sm-12">
-                                            <button  type="button" id="modifierInfos" class="btn btn-outline-info" id="updateInfo-list" data-toggle="list" href="#updateUserInfosPanel" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
+                                            <button  type="button" id="modifierInfos" class="btn btn-info" id="updateInfo-list" data-toggle="list" href="#updateUserInfosPanel" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
                                         </div>
                                         <!--modifier mon mdp-->
                                         <div class="col-lg-4 col-sm-12 ">
                                             <div class="row justify-content-center">
 
-                                                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseMdp" aria-expanded="false" aria-controls="collapseExample">
+                                                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseMdp" aria-expanded="false" aria-controls="collapseExample">
                                                     Modifier mon MDP
                                                 </button>
                                             
@@ -182,7 +181,7 @@ if(!isset($_SESSION["user_id"]))
                         <!--PARTIE MODIFIER DU PREMIER SLIDE infos personnelles-->
                         <div class="tab-pane fade mb-5 " id="updateUserInfosPanel" role="tabpanel" aria-labelledby="list-updateInfo-list">
                             <div class="row">
-                                <div class="col-8 offset-2 text-center border rounded border-black mt-5">
+                                <div class="col-8 offset-2 text-center componentContainer  mt-5">
                                     <h3 class="mt-1">Mes Informations Personnelles</h3>
                                 </div>
                             </div>
@@ -200,7 +199,7 @@ if(!isset($_SESSION["user_id"]))
                             </div>
                             <!--titre-->
                             <div class="row">
-                                <div class="col-8 offset-2 border rounded border-black mt-5 mb-3 text-center">
+                                <div class="col-8 offset-2 componentContainer mt-5 mb-3 text-center">
                                         <h3 class="mt-2">Mes Compagnons</h3>                                        
                                 </div>
                             </div>
@@ -257,7 +256,7 @@ if(!isset($_SESSION["user_id"]))
                             <div class="row">
 
                             <!--titre-->
-                                <div class="col-8 offset-2 text-center border rounded border-black mt-5 mb-3">
+                                <div class="col-8 offset-2 text-center componentContainer mt-5 mb-3">
                                     <h3 class="mt-2">Mes Animaux Favoris</h3>
                                 </div>
                             </div>
@@ -282,7 +281,7 @@ if(!isset($_SESSION["user_id"]))
                             <div class="row">
 
                             <!--titre-->
-                                <div class="col-8 offset-2 text-center border rounded border-black mt-5 mb-3">
+                                <div class="col-8 offset-2 text-center componentContainer mt-5 mb-3">
                                     <h3 class="mt-2">Mes Dons</h3>
                                 </div>
                             </div>

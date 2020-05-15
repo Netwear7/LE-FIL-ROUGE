@@ -37,7 +37,7 @@ session_start();
     if (empty($dataAnimaux)){
         echo 
         '
-            <div class="col-8 offset-2 text-center border rounded border-black text-center">
+            <div class="col-8 offset-2 text-center componentContainer">
                 <div class="row m-3 ">
                     <div class="col-12 text-center">
                         <h5>Vous n\'avez pas encore ajouté votre Compagnon ?</h5>
@@ -50,7 +50,7 @@ session_start();
     } else {
         echo 
         '
-            <div class="col-8 offset-2 text-center border rounded border-black">
+            <div class="col-8 offset-2 text-center componentContainer">
                 <div class="row mt-3 ">
                     <div class="col-12 text-center">
                         <p> Pour ajouter un nouveau compagnon à votre liste, cliquez sur le bouton suivant : </p>
@@ -73,7 +73,7 @@ session_start();
                 
             echo 
             '
-                <div class="col-8 mt-2  offset-2 border rounded border-black">
+                <div class="col-8 mt-3  offset-2 componentContainer">
                     <div class="row">
                         <div class="col-lg-4 col-sm-12 ">
                             <div class="row">

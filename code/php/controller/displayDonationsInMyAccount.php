@@ -14,7 +14,7 @@ session_start();
         echo 
         '
         <div class="row mt-2">
-            <div class="col-8 offset-2 text-center border rounded border-black text-center">
+            <div class="col-8 offset-2 text-center componentContainer">
                 <div class="row m-3 ">
                     <div class="col-12 text-center">
                         <h5>Vous n\'avez pas encore effectué de Donation</h5>
@@ -28,7 +28,7 @@ session_start();
         echo 
         '
         <div class="row mt-2 mb-3">
-            <div class="col-8 offset-2 text-center border rounded border-black">
+            <div class="col-8 offset-2 text-center componentContainer">
                 <div class="row mt-3 ">
                     <div class="col-12 text-center">
                         <p> Pour effectuer une nouvelle Donation, cliquez <a href="don.php" class="btn btn-link">içi</a> </p>

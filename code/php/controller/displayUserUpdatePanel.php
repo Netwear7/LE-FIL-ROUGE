@@ -19,7 +19,7 @@ echo
 
 
     <div class="row mt-2">
-        <div class="col-8 offset-2">
+        <div class="col-8 offset-2 componentContainer">
                      
                 <div class="row" >
                     <div class="col-lg-6 col-sm-12">
@@ -68,7 +68,7 @@ echo
                 <div class="row">
                     <div class="col-8 offset-2 borber rounded border-black mt-2">
                         <div class="row">
-                            <div class="col-lg-6 col-sm-12 ">
+                            <div class="col-lg-6 col-sm-12 mb-3 ">
                                 <div class="row justify-content-center">
                                     <input type="hidden" id="idUtilisateur" value="'.$data["ID_UTILISATEUR"].'"/>
                                     <input type="hidden" id="idAdresse" value="'.$data["ID_ADRESSE"].'"/>

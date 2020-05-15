@@ -16,7 +16,7 @@ session_start();
     $data = $serviceUtilisateur->serviceSelect($_SESSION["user_id"]); 
     echo
     '
-    <div class="col-8 offset-2 border rounded border-black mt-2 id="infosPanel"">
+    <div class="col-8 offset-2 componentContainer mt-2 id="infosPanel"">
         <div class="row ">
             <div class="col-lg-6 mt-3">
                 <div class="row">

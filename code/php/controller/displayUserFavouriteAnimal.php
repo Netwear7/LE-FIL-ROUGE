@@ -24,7 +24,7 @@ session_start();
             echo 
             '
                 <div class="row mt-2">
-                    <div class="col-8 offset-2 text-center border rounded border-black text-center">
+                    <div class="col-8 offset-2 text-center componentContainer">
                         <div class="row m-3 ">
                             <div class="col-12 text-center">
                                 <h5>Pas encore d\'animaux Coup de coeur ?</h5>
@@ -41,7 +41,7 @@ session_start();
             echo 
             '
                 <div class="row mt-2 ">
-                    <div class="col-8 offset-2 text-center border rounded border-black text-center">
+                    <div class="col-8 offset-2 text-center componentContainer">
                         <div class="row m-3 ">
                             <div class="col-12 text-center">
                                 <p> Pour ajouter d\'autres animaux dans vos coups de coeur, cliquez sur le <a href="adopter-un-animal.php"><i class="far fa-heart"></i></a> situé en haut à droite des fiches sur la page d\'adoption</p>
@@ -59,7 +59,7 @@ session_start();
                 echo 
                 '
                 <div class="row mt-2">
-                    <div class="col-8  offset-2 border rounded border-black">
+                    <div class="col-8  offset-2 componentContainer">
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 ">
                                 <div class="row">
