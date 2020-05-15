@@ -66,7 +66,7 @@
                                 <div class="col-lg-12" id="popSelect"></div>
                             </div>                            
                             <hr style="border-color:white;">
-                            <div class="row my-3">
+                            <div class="row mt-3">
                                 <div class=col-lg-12>
                                     <select name="ville" id="ville" class="custom-select custom-select-md">
                                         <option value="" selected>Ville</option>
@@ -81,6 +81,11 @@
                                             }
                                         ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-lg-12">
+                                    <button id="cancelResearch" class="btn btn-danger btn-sm w-100">Effacer la recherche</button>
                                 </div>
                             </div>
                         </form>

@@ -22,6 +22,35 @@ $("#ville").change(function(e){
     loadInfo();
 });
 
+$("#cancelResearch").click(function(e){
+    e.preventDefault();   
+    loadInfoCancelResearch();
+});
+
+
+function loadInfoCancelResearch(){
+    nomEspeceValue = "";
+    nomRaceValue = "";
+    couleurValue = "";
+    sexeValue = "";
+    poilValue = "";
+    villeValue = "";
+    displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue);
+
+    $.ajax({
+        url : 'animaux-perdus.php',
+        success : function(){
+            $('#nom_espece').val('');
+            $('#ville').val('');
+            $("#popSelect").hide();
+        }, 
+        error : function(xhr, message, status){ 
+            alert("Erreur !!");
+        }
+    })
+}
+
+
 function loadInfo(){
     nomEspeceValue=$('#nom_espece').val();
     if(nomEspeceValue.length==0){
@@ -83,6 +112,7 @@ window.onload=function() {
             $.ajax({
                 url : 'displayLostAnimalResearchMenu.php?nomEspece=' + espece,
                 success : function(data){
+                    $("#popSelect").show();
                     $("#popSelect").html(data);
                     $(".simple-select").change(function(e){
                         loadInfo();
