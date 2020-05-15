@@ -46,6 +46,7 @@ $("#cancelResearch").click(function(e){
 });
 
 function loadInfoCancelResearch(){
+    var espece = "";
     nomEspeceValue = "";
     nomRaceValue = "";
     couleurValue = "";
@@ -54,7 +55,21 @@ function loadInfoCancelResearch(){
     villeValue = "";
     urgenceValue = "";
     displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue, urgenceValue);
+
+    $.ajax({
+        url : 'adopter-un-animal.php',
+        success : function(){
+            $('#nom_espece').val('');
+            $('#ville').val('');
+            $('#urgence').attr('value', '' );
+            $('#popSelect').hide();
+        }, 
+        error : function(xhr, message, status){ 
+            alert("Erreur !!");
+        }
+    })
 }
+
 
 
 
@@ -130,6 +145,7 @@ window.onload=function() {
             url : 'displayRaceByType.php?nomEspece=' + espece,
             success : function(data){
                 $("#popSelect").html(data);
+                $("#popSelect").show();
                 $(".simple-select").change(function(e){
                     loadInfo();
                 });

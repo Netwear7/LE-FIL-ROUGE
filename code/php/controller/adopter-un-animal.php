@@ -40,7 +40,7 @@
             <div class="col-lg-2 offset-lg-1">
                 <div class="row">
                     <div class="col-lg-12 bg-dark">
-        <!--Menu critères de recherche, affichage avec requetes sql vers la base de données-->
+        <!--Menu critères de recherche, affichage dynamique javascript/ajax-->
                         <h5 class="text-center text-white my-3">Critères de Recherche</h5> 
                         <hr>
                         <form method="post" action="adopter-un-animal.php"> 
@@ -101,12 +101,12 @@
                 </div>
             </div>
 
-<!--Fiches animaux, générées en php grâce à la base de données-->
+<!--Fiches animaux, générées en javascript-->
             <div class="col-lg-8">
                 <div class="row" id="display"></div>
             </div>
         </div>
-        <!--navigation vers les pages de recherche, à inclure avec php, les numéros de page doivent se générer avec la création des pages-->
+        <!--navigation vers les pages de recherche, affichage dynamique en javascript/ajax-->
         <nav aria-label="Search results pages">
             <div class="col-lg-8 offset-lg-3">
             <ul id="pagin" class="pagination justify-content-center mb-0 pb-4"></ul>
