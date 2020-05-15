@@ -3,7 +3,6 @@ $(document).ready(function(){
         e.preventDefault();
         id = $(this).val();
         var idNews = $(this).val();
-        alert(idNews);
         $('#rowUpdateNews').load('../../php/controller/formUpdateNews.php',{id: idNews}, function(data){
             if (data.length > 1 ){
                 $('#rowUpdateNews').toggle();
