@@ -114,10 +114,10 @@ function affichage($data){
                                     </div>
                                 </div>
                             </div>
-                            <div class="row bg-info text-white" style="font-size:1.2em">
-                                <div class="col-lg-12 text-center">
+                            <div class="row bg-3" style="font-size:1.2em">
+                                <div class="col-lg-12 text-center p-2 bg-grey-light">
                                     <i>Vous avez eu un coup de coeur pour cet animal ? Contactez nous !</i>
-                                    <p>ANITOPIA - '.$value["VILLE"].' </br> '.$value["NUMERO"].', '.$value["RUE"].' - '.$value["CODE_POSTAL"].' '.$value["VILLE"].' </br><i>tél</i> : '.$value["TELEPHONE"].' / <i>email</i> : '.$value["EMAIL"].'</p>
+                                    <p class="mb-0">ANITOPIA - '.$value["VILLE"].' </br> '.$value["NUMERO"].', '.$value["RUE"].' - '.$value["CODE_POSTAL"].' '.$value["VILLE"].' </br><i>tél</i> : '.$value["TELEPHONE"].' / <i>email</i> : '.$value["EMAIL"].'</p>
                                 </div>
                             </div> 
                         </div>                         

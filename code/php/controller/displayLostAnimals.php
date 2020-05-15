@@ -74,8 +74,8 @@ include_once('../service/AnimauxService.php');
 
                                   
                                 </div>
-                                <div class="row bg-info text-white p-2" style="font-size:1.2em">
-                                    <div class="col-lg-12 text-center">
+                                <div class="row bg-2" style="font-size:1.2em">
+                                    <div class="col-lg-12 text-center p-2 bg-grey-light">
                                         <i>Vous avez vu cet animal ? Contactez '.$value["PRENOM"].' ! </br>
                                             Par téléphone : '.$value["NUM"].' </br>
                                             ou </br>
