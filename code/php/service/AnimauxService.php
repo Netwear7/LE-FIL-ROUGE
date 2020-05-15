@@ -15,6 +15,11 @@
             return $data;
         }
 
+        public function serviceSelectAdoptableAnimalsByType($espece){
+            $data = $this->getDataAccessObject()->daoSelectAdoptableAnimalsByType($espece);
+            return $data;
+        }
+
         public function serviceSelectAllLostAnimals(){
             $data = $this->getDataAccessObject()->daoSelectAllLostAnimals();
             return $data;

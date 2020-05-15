@@ -34,12 +34,12 @@ function affichage($data){
                     <div class="card">
 
                         <img  style="z-index:1;width:100%;" data-toggle="modal" data-target="#myModal'.$i.'"  src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>                         
-                        <a class="js-like" style="color:#fc0341">';
+                        <a class="js-like" style="z-index : 2; position:absolute; top:5px; right:10px; color:#fc0341">';
                         if(count($dataFavourite)>0){
-                            echo'<i id="icone" class="fas fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i>'; 
+                            echo'<i id="icone" class="fas fa-heart fa-2x"; opacity: 0.6"></i>'; 
                         }
                         else{
-                            echo'<i id="icone" class="far fa-heart fa-3x" style="z-index : 2; position : absolute; left: 81%; bottom: 83%; opacity: 0.6"></i>';
+                            echo'<i id="icone" class="far fa-heart fa-2x"; opacity: 0.6"></i>';
                         }
                         echo'<input type="hidden" value="'.$idUser.'" class="like_user_id">
                         <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
@@ -132,32 +132,47 @@ function affichage($data){
 
     $daoAnimaux = new AnimauxDataAccess();
     $animauxService = new AnimauxService($daoAnimaux);
-    if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"]) && empty($_POST["urgence"])){
-        $data=$animauxService->serviceSelectAllAdoptableAnimals();
 
-        affichage($data);
+    if(isset($_GET["select"])){
+        $espece=ucfirst($_GET["select"]);
+        $animauxService->serviceSelectAdoptableAnimalsByType($espece);
+        if(count($data)>0){
+
+            affichage($data);
+        }
+        else{
+            echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
+        }
+    }
+    elseif(!isset($_GET["select"])){
+        if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["sexe"]) && empty($_POST["ville"]) && empty($_POST["urgence"])){
+            $data=$animauxService->serviceSelectAllAdoptableAnimals();
+    
+            affichage($data);
+        }
+        
+        if((!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])) && empty($_POST["urgence"])){
+            $data=$animauxService->serviceSearchAnimals2($_POST);
+            if(count($data)>0){
+    
+                affichage($data);
+            }
+            else{
+                echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
+            }
+        }
+    
+        elseif(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"]) ||!empty($_POST["urgence"])){
+            $data=$animauxService->serviceSearchAnimals($_POST);
+            if(count($data)>0){
+                affichage($data);
+            }
+            else{
+                echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
+            }
+        }
     }
     
-    if((!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])) && empty($_POST["urgence"])){
-        $data=$animauxService->serviceSearchAnimals2($_POST);
-        if(count($data)>0){
-
-            affichage($data);
-        }
-        else{
-            echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
-        }
-    }
-
-    elseif(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"]) ||!empty($_POST["urgence"])){
-        $data=$animauxService->serviceSearchAnimals($_POST);
-        if(count($data)>0){
-            affichage($data);
-        }
-        else{
-            echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
-        }
-    }
 
     function dateFr($date){
         return strftime('%d-%m-%Y',strtotime($date));
