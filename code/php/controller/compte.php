@@ -127,7 +127,7 @@ if(!isset($_SESSION["user_id"]))
                                         <div class="col-lg-4 col-sm-12 ">
                                             <!--Supprimer mon compte -->
                                             <div class="row justify-content-center">
-                                                <button class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
+                                                <button class="btn btn-warning btn-block" type="button" data-toggle="collapse" data-target="#collapseSuppression" aria-expanded="false" aria-controls="collapseExample">
                                                     Demander à supprimer mes informations
                                                 </button>
                                             
@@ -143,14 +143,14 @@ if(!isset($_SESSION["user_id"]))
                                         </div>
 
                                         <div class="col-lg-4 col-sm-12">
-                                            <button  type="button" id="modifierInfos" class="btn btn-info" id="updateInfo-list" data-toggle="list" href="#updateUserInfosPanel" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
+                                            <button  type="button" id="modifierInfos" class="btn btn-info btn-block" id="updateInfo-list" data-toggle="list" href="#updateUserInfosPanel" role="tab" aria-controls="updatemyInfos">Modifier mes informations Personnelles</button>
                                         </div>
                                         <!--modifier mon mdp-->
                                         <div class="col-lg-4 col-sm-12 ">
                                             <div class="row justify-content-center">
 
-                                                <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#collapseMdp" aria-expanded="false" aria-controls="collapseExample">
-                                                    Modifier mon MDP
+                                                <button class="btn btn-info btn-block" type="button" data-toggle="collapse" data-target="#collapseMdp" aria-expanded="false" aria-controls="collapseExample">
+                                                    Modifier mon Mot de Passe
                                                 </button>
                                             
                                                 <div class="collapse mt-2" id="collapseMdp">
