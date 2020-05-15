@@ -46,7 +46,6 @@ $("#cancelResearch").click(function(e){
 });
 
 function loadInfoCancelResearch(){
-    var espece = "";
     nomEspeceValue = "";
     nomRaceValue = "";
     couleurValue = "";
@@ -61,8 +60,7 @@ function loadInfoCancelResearch(){
         success : function(){
             $('#nom_espece').val('');
             $('#ville').val('');
-            $('#urgence').attr('value', '' );
-            $('#popSelect').hide();
+            $("#urgence").prop("checked", false)
         }, 
         error : function(xhr, message, status){ 
             alert("Erreur !!");
