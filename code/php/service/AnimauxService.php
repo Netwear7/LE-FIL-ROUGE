@@ -61,7 +61,7 @@
                     echo '</div>';
 
                 }
-                echo '<div class="col-lg-12"><a href="form-contact.php">Pour tout animal retrouvé. Contactez nous, nous préviendrons le Maitre de l\'animal.<a></div>';
+                echo '<div class="col-lg-12"><a href="form-contact.php">Pour tout animal retrouvé. Contactez nous, nous préviendrons le Maitre de l\'animal.  /!\ Changer la tournure, j\'y ai pas réfléchis<a></div>';
                 echo '</div>';
                 $cpt++;
                 echo "</div>";
