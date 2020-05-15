@@ -1,4 +1,4 @@
-<?
+<?php
 
 
 class Donation{
@@ -7,11 +7,14 @@ class Donation{
     private $date;
 
     
-    public function __construct()
-    {
-        $this->montant = $_POST["montant"];
-        $this->userId = $_POST["userId"];
-        $this->date = new \DateTime();
+    public function __construct($infos,$id){
+        if(isset($infos["montantLibreDonation"]) && !empty($infos["montantLibreDonation"]) ){
+            $this->montant = $infos["montantLibreDonation"];
+        } else {
+            $this->montant = $infos["radioDonation"];
+        }
+        $this->userId = $id;
+        $this->date = (new \DateTime())->format('Y-m-d H:i:s');
     }
 
     /**
@@ -74,3 +77,5 @@ class Donation{
         return $this;
     }
 }
+
+?>

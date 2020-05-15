@@ -58,7 +58,7 @@ session_start();
                 $rawPhoto = "data:image/png;base64," . base64_encode($dataAnimaux[$i]["PHOTO"]);
                 echo 
                 '
-                <div class="row mt-2">
+                <div class="row mt-3">
                     <div class="col-8  offset-2 componentContainer">
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 ">
@@ -72,7 +72,7 @@ session_start();
                                     <h4 class="text-break">'.$dataAnimaux[$i]["NOM"].'</h4>
                                     </div>
                                     <div class="col-12">
-                                        <p class="text-break">Race/Apparence :</p>
+                                        <p class="text-break"><strong>Race/Apparence :</strong></p>
                                         <p>'.$dataAnimaux[$i]["NOM_RACE"].'</p>
                                     </div>
                                     <div class="col-12">

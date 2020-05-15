@@ -120,9 +120,10 @@ li {
     list-style-type: none;
 }
 
-<<<<<<< HEAD
 /*__________Page adopter un animal_________*/
-=======
->>>>>>> f6ddd1e... un peu de css sur mon compte
 
+.componentContainer{
 
+    -webkit-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.44); 
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.44);
+    }

@@ -67,6 +67,9 @@ session_start();
 
     }
 
+    function dateFr($date){
+        return strftime('%d-%m-%Y',strtotime($date));
+    }
 
 
 

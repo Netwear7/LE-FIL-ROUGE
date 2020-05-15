@@ -33,6 +33,11 @@ if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "[admin]" )
     include_once '../service/AnimauxFavorisService.php';
     include_once '../data-access/AnimauxFavorisDataAccess.php';
 
+    include_once '../model/Donation.php';
+    include_once '../service/DonationService.php';
+    include_once '../data-access/DonationDataAccess.php';
+
+
     $daoUtilisateur = new UtilisateurDataAccess();
     $serviceUtilisateur = new UtilisateurService($daoUtilisateur);
 
@@ -54,11 +59,100 @@ if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "[admin]" )
     $photoAnimalDao = New PhotoAnimalDataAccess();
     $photoAnimalService = New PhotoAnimalService($photoAnimalDao);
 
+    $donDao = new DonationDataAccess();
+    $donService = new DonationService($donDao);
+
 
 
 } else {
     header('Location: accueil.php');
     exit;
+}
+
+if(isset($_POST["donation"])){
+    if(!empty($_POST["montantLibreDonation"])){
+        if(!preg_match("/^\d+$/",$_POST["montantLibreDonation"])){
+            $response_array['status'] = '01'; 
+            $response_array['message'] = 'Le montant de votre donation ne peux contenir que des chiffres !';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        }else {
+            try{
+                $don = new Donation($_POST,$_SESSION["user_id"]);
+                $result = $donService->serviceAdd($don);
+                if($result === 1){
+                    $response_array['status'] = 'success'; 
+                    $response_array['message'] = 'La donation à bien été effectuée, elle sera visible sur la partie "Mon Compte" onglet "Mes Dons" !';
+                    header('Content-type: application/json; charset=UTF-8');
+                    $success = (json_encode($response_array));
+                    echo $success;
+                } else {
+                    $response_array['status'] = '04'; 
+                    $response_array['message'] = 'Une erreur à eu lieue, veuillez réessayer ultérieurement';
+                    header('Content-type: application/json; charset=UTF-8');
+                    $error = (json_encode($response_array));
+                    echo $error;
+                }
+            }catch (MysqliQueryException $mqe) {
+                if ($mqe->getCode() == 1049) {
+                                                        
+                    $error = ' 507 Connexion a la base de donnée impossible !';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                            
+                } else if ($mqe->getCode() == 1146 ){
+                    $error = ' 509 Erreur lors de l\'execution de la requête ';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                            
+                } else {
+                    $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                    header($_SERVER['SERVER_PROTOCOL'].$error);
+                }
+            }
+        }
+    } else {
+        if(!empty($_POST["radioDonation"])){
+            if(!preg_match("/^\d+$/",$_POST["radioDonation"])){
+                $response_array['status'] = '05'; 
+                $response_array['message'] = 'Le montant de votre donation ne peux contenir que des chiffres !';
+                header('Content-type: application/json; charset=UTF-8');
+                $error = (json_encode($response_array));
+                echo $error;
+            } else {
+                try{
+                    $don = new Donation($_POST,$_SESSION["user_id"]);
+                    $result = $donService->serviceAdd($don);
+                    if($result === 1){
+                        $response_array['status'] = 'success'; 
+                        $response_array['message'] = 'La donation à bien été effectuée, elle sera visible sur la partie "Mon Compte" onglet "Mes Dons" !';
+                        header('Content-type: application/json; charset=UTF-8');
+                        $error = (json_encode($response_array));
+                        echo $error;
+                    } else {
+                        $response_array['status'] = '06'; 
+                        $response_array['message'] = 'Une erreur à eu lieue, veuillez réessayer ultérieurement';
+                        header('Content-type: application/json; charset=UTF-8');
+                        $error = (json_encode($response_array));
+                        echo $error;
+                    }
+                }catch (MysqliQueryException $mqe) {
+                    if ($mqe->getCode() == 1049) {
+                                                            
+                        $error = ' 507 Connexion a la base de donnée impossible !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                
+                    } else if ($mqe->getCode() == 1146 ){
+                        $error = ' 509 Erreur lors de l\'execution de la requête ';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                                                                                
+                    } else {
+                        $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                    }
+                }
+            }
+        }
+    }
 }
 
 if(isset($_POST["updatePassword"])){

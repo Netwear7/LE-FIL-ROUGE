@@ -42,7 +42,23 @@ class DonationDataAccess extends LogBdd implements InterfaceDao{
     public function daoCount(){
 
     }
-    public function daoAdd(object $object){
+    public function daoAdd(object $donation){
+        try{
+        $montant = $donation->getMontant();
+        $date = $donation->getDate();
+        $id = $donation->getUserId();
+        $mysqli = $this->connexion();
+        $stmt = $mysqli->prepare("INSERT INTO donation(DATE_DONATION,ID_UTILISATEUR,montant) VALUES(?,?,?)");
+        $stmt->bind_param('sss',$date,$id,$montant);         
+        $stmt->execute(); 
+        $result = mysqli_affected_rows($mysqli);
+        $this->deconnexion($mysqli);
+        return $result;
+        }catch (mysqli_sql_exception $mse) {                   
+            throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+        }catch (Exception $e) {
+            throw $e;
+        } 
     }
     public function daoSearch($search){
 

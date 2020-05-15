@@ -17,8 +17,12 @@ include_once '../Interfaces/InterfaceService.php';
 
         }
         public function serviceCount(){}
-        public function serviceAdd(object $var){
-
+        public function serviceAdd($don){
+            try{
+                return $this->getDataAccessObject()->daoAdd($don);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
         }
         public function serviceSearch($search){
 

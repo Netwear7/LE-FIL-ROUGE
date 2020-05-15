@@ -50,19 +50,25 @@
             </div>
             <div class="row mt-5 ">
                 <div class="col-2">
-                    <select id="selectDonationMode" class="ml-2">
+                    <label for="selectDonationMode">Selectionnez un mode de Donation : </label>
+                    <select id="selectDonationMode" class="form-control">
                         <option value="paypal">Paypal</option>
                         <option value="cb">Carte bancaire</option>
                     </select>
                 </div>
                 <div class="col-8">
-                <div class="row bg-grey-light" id="loadDonation">   
+                    <form id="donation">
+                    <div class="row bg-grey-light p-3 componentContainer" id="loadDonation">   
 
-                </div>
+                    </div>
+                    </form>
                 </div>  
 
+
             </div>
-      
+            <div class="row mt-2" id="resultDonation">
+                
+            </div>      
             <div class="row mt-3">
                 <p>Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions Conditions  Conditions Conditions Conditions </p>
             </div>
@@ -71,5 +77,6 @@
             include_once("footer.php");
         ?>
     </body>
+    <script src="../../javascript/showDonationMode.js"></script>
     <script src="../../javascript/donation.js"></script>
 </html>
