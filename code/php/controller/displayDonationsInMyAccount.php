@@ -38,7 +38,7 @@ session_start();
         </div>
 
         <div class="row mt-2 mb-3">
-            <div class="col-8 offset-2 text-center border rounded border-black">
+            <div class="col-8 offset-2 text-center componentContainer">
                 <table class="table">
                     <thead>
                         <tr>

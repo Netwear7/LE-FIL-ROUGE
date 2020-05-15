@@ -123,6 +123,9 @@
             <a class="nav-link" href="garderie.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
                 Garderie</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="don.php">Soutenez-nous !</a>
+            </li>
             <li>
             <a class="nav-link" href="form-contact.php" role="button" data-toggle="dropdown1" aria-haspopup="true" aria-expanded="false">
                 Contactez-nous</a>
