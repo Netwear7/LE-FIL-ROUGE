@@ -15,7 +15,7 @@ try{
             $rawPhoto = "data:image/png;base64," . base64_encode($value["IMG_BLOB"]);
             echo
             '
-            <div  class="row bg-grey-light shadow-sm p-3 mb-3"  style="border-color: white;">
+            <div  class="row bg-grey-light shadow-sm mt-2 mb-2 p-3"  style="border-color: white;">
             ';
             if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == "[admin]" ){
                 echo
@@ -113,7 +113,7 @@ function redimension($rawPhoto)
         $nheight = $maxHeight;
     }
     # Affichage
-    return " <img class=\"rounded img-fluid mt-5\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+    return " <img class=\"rounded img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
 }
 
 
