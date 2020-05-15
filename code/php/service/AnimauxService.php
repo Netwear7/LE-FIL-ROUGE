@@ -55,9 +55,10 @@
                 echo '<div class="row d-flex justify-content-center mt-1">';
                 for($i=4*$cpt; $i < $maxIndex; $i++){
                     echo '<div class="col-lg-2 p-0 mr-4">';
+                    echo "<p class='text-white'>". $data[$i]['nom']. "</p>";
                     echo '<img class="w-75 round-div mx-3" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
                     echo "<p class='text-white'> Perdu le ". $data[$i]['DATE_PERTE']. "</p>";
-                    echo "<p class='text-white mt-1 p-2' style='min-height: 80px;'> Perdu le ". $data[$i]['DESC_PERTE']. "</p>";
+                    echo "<p class='text-white mt-1 p-2' style='min-height: 80px;'>". $data[$i]['DESC_PERTE']. "</p>";
                     echo '</div>';
 
                 }
