@@ -48,6 +48,7 @@ if(!isset($_SESSION) || $_SESSION["user_role"] != "[admin]"){
                                     <div class="custom-file">
                                         <input type="file" name="photo" accept="image/png, image/jpeg">
                                     </div>
+                                    <input type="hidden" name="idNews" value="'.$data["ID_NEWS"].'"/>
                                     <button type="submit" id="updateNewsBtn" class="btn btn-primary">Modifier</button>
 
                             <div class="col-12">

@@ -69,11 +69,31 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
         }
         public function daoUpdate($parametres){
-
+        try{
+            $idNews = $parametres["idNews"];
+            $title = $parametres["titleNewsUpdated"];
+            $content = $parametres["contentNewsUpdated"];
+            $mysqli = $this->connexion();
+            if(isset($parametres["idPhoto"])){
+                $idPhoto = $parametres["idPhoto"];
+                $stmt = $mysqli->prepare('UPDATE news SET TITRE = ?,CONTENU = ?,ID_IMG_SITE = ? where ID_NEWS = ?');
+                $stmt->bind_param('ssss',$title,$content,$idPhoto,$idNews);
+            } else {
+                $stmt = $mysqli->prepare('UPDATE news SET TITRE = ?,CONTENU = ? where ID_NEWS = ?');
+                $stmt->bind_param('sss',$title,$content,$idNews);
+            }
+            $stmt->execute(); 
+            $result = mysqli_affected_rows($mysqli);
+            $this->deconnexion($mysqli);
+            return $result;
+        }catch (mysqli_sql_exception $mse) {                   
+            throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+        }catch (Exception $e) {
+            throw $e;
+        } 
         }
         public function daoDelete($id){
             try{
-                try{
                     $mysqli = $this->connexion();
                     $stmt = $mysqli->prepare('DELETE from news where ID_NEWS = ?');
                     $stmt->bind_param('s',$id);
@@ -81,11 +101,6 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                     $data = mysqli_affected_rows($mysqli);
                     $this->deconnexion($mysqli);
                     return $data;
-                } catch (mysqli_sql_exception $mse) {                   
-                    throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
-                }catch (Exception $e) {
-                    throw $e;
-                } 
             }catch (mysqli_sql_exception $mse) {                   
                 throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
             }catch (Exception $e) {
