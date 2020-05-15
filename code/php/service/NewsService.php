@@ -12,7 +12,13 @@ include_once '../Interfaces/InterfaceService.php';
                     throw $mqe;
             }
         }
-        public function serviceSelect($id){}
+        public function serviceSelect($id){
+            try{
+                return $this->getDataAccessObject()->daoSelect($id);
+            }catch (MysqliQueryException $mqe) {
+                throw $mqe;
+            }
+        }
         public function serviceCount(){}
         public function serviceAdd($news){
             try{
@@ -22,7 +28,13 @@ include_once '../Interfaces/InterfaceService.php';
             }
         }
         public function serviceSearch($search){}
-        public function serviceUpdate(array $post){}
+        public function serviceUpdate($post){
+            try{
+                return $this->getDataAccessObject()->daoUpdate($post);
+                }catch (MysqliQueryException $mqe) {
+                    throw $mqe;
+                }
+        }
         public function serviceDelete($id){
             try{
                 return $this->getDataAccessObject()->daoDelete($id);

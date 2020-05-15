@@ -99,6 +99,8 @@
                             echo '
                             <div class="col-12" id="rowAddNews" style="display: none">
                             </div>
+                            <div class="col-12" id="rowUpdateNews" style="display: none">
+                            </div>
                             <div id="errorNews">
                         
                             </div>

@@ -26,7 +26,58 @@ if(isset($_SESSION) && $_SESSION["user_role"] == "[admin]"){
 
 
 
+    if(isset($_POST) && isset($_POST["titleNewsUpdated"])){
+        if(empty($_POST["titleNewsUpdated"])){
+            $response_array['status'] = '01'; 
+            $response_array['message'] = 'Veuillez renseigner un titre !';
+            header('Content-type: application/json; charset=UTF-8');
+            $error = (json_encode($response_array));
+            echo $error;
+        } else{
+            if(empty($_POST["contentNewsUpdated"])){
+                $response_array['status'] = '02'; 
+                $response_array['message'] = 'Veuillez renseigner un contenu !';
+                header('Content-type: application/json; charset=UTF-8');
+                $error = (json_encode($response_array));
+                echo $error;
+            } else {
+                try{
+                    $ret        = is_uploaded_file($_FILES['photo']['tmp_name']);
+                    if ($ret) {
+                    $imgSite = new ImgSite($_FILES["photo"]);
+                    $idPhoto = $imgSiteService->serviceAdd($imgSite);
+                    $imgSite->SetIdImgSite($idPhoto);
+                    $_POST["idPhoto"] .= $imgSite->GetIdImgSite();
+                    $result = $newsService->serviceUpdate($_POST);
+                    }
+                    $result = $newsService->serviceUpdate($_POST);
+                    if($result === true){
+                        $response_array['status'] = 'success'; 
+                        $response_array['message'] = 'L\'ajout de la news a bien été effectué!';
+                        header('Content-type: application/json; charset=UTF-8');
+                        $success = (json_encode($response_array));
+                        echo $success;
+                    }    
 
+                }catch (MysqliQueryException $mqe) {
+                    if ($mqe->getCode() == 1049) {
+    
+                        $error = ' 507 Connexion a la base de donnée impossible !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                        
+                    } else if ($mqe->getCode() == 1062 ){
+                        $error = ' 509 Erreur lors de l\'execution de la requête ';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                        
+                    } else {
+                        $error = ' 510 Une erreur est survenue merci de réessayer plus tard !';
+                        header($_SERVER['SERVER_PROTOCOL'].$error);
+                    }
+                }
+                
+            }
+        }
+    }
 
 
     

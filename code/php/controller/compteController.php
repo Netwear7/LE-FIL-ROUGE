@@ -905,7 +905,7 @@ if (isset($_POST["perte"])){
                     $error = (json_encode($response_array));
                     echo $error;
                 }else {
-                    if(!preg_match('/^(?=[a-zA-Z0-9~@#$^*()_+=[\]{}|\\,.?: -]*$)(?!.*[<>\'"\/;`%])/',$_POST["precisionPerte"])){
+                    if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["precisionPerte"])){
                         $response_array['status'] = '04'; 
                         $response_array['message'] = 'Votre texte contiens des caractères interdis !';
                         header('Content-type: application/json; charset=UTF-8');

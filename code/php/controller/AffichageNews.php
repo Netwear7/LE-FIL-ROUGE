@@ -126,3 +126,4 @@ function dateFr($date){
 ?>
 
 <script src="../../javascript/accueil/showModalRemoveNews.js"></script>
+<script src="../../javascript/accueil/showUpdateNewsForm.js"></script>

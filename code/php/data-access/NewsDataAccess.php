@@ -23,7 +23,21 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
             } 
         }
         public function daoSelect($id){
-
+            try{
+                $mysqli = $this->connexion();
+                $stmt = $mysqli->prepare('SELECT * from news where ID_NEWS = ?');
+                $stmt->bind_param('s',$id); 
+                $stmt->execute();
+                $rs = $stmt->get_result();
+                $data = $rs->fetch_array(MYSQLI_ASSOC);
+                $rs->free();
+                $this->deconnexion($mysqli);
+                return $data;
+            }catch (mysqli_sql_exception $mse) {                   
+                throw new MysqliQueryException("Erreur SQL", $mse->getCode());                
+            }catch (Exception $e) {
+                throw $e;
+            } 
         }
         public function daoCount(){
 
