@@ -40,10 +40,10 @@
                 <div id="carouselExampleControls" class="carousel slide col-lg-12 bg-2 py-3 border-crl" data-ride="carousel">
                     <div class="carousel-inner">
                         <?php
-                            // $animauxDao =  new AnimauxDataAccess();
-                            // $animauxService =  new AnimauxService($animauxDao);
-                            // $data = $animauxService->serviceSelectAllLostAnimalsUser();
-                            // $animauxService->carrousselDisplayLostAnimal($data);
+                            $animauxDao =  new AnimauxDataAccess();
+                            $animauxService =  new AnimauxService($animauxDao);
+                            $data = $animauxService->serviceSelectAllLostAnimalsUser();
+                            $animauxService->carrousselDisplayLostAnimal($data);
                         ?>
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
