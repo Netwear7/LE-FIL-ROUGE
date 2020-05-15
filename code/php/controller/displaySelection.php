@@ -44,7 +44,7 @@ function affichage($data){
                         echo'<input type="hidden" value="'.$idUser.'" class="like_user_id">
                         <input type="hidden" value="'.$value["ID_ANIMAL"].'" class="like_animal_id">
                         </a>                       
-                        <div class="card-body bg-info text-white" data-toggle="modal" data-target="#myModal'.$i.'">
+                        <div class="card-body bg-white shadow-sm" data-toggle="modal" data-target="#myModal'.$i.'">
                                 <div class="row justify-content-center">
                                     
                                     <h4 class="card-text "><strong>'.$value["NOM"].'</strong>';
