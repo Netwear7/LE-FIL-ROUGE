@@ -42,7 +42,6 @@ session_start();
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Numéro de donation</th>
                             <th scope="col">Montant (en euros)</th>
                             <th scope="col">Date</th>
                         </tr>
@@ -52,7 +51,6 @@ session_start();
                     for ($i = 0; $i < $count; $i++){
                         echo '
                         <tr>
-                            <th scope="row">'.$dataDonations[$i]["ID_DONATION"].'</th>
                             <td>'.$dataDonations[$i]["montant"].'    </td>
                             <td>'.dateFr($dataDonations[$i]["DATE_DONATION"]).'</td>
                         </tr>
