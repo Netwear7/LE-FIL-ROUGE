@@ -42,7 +42,7 @@
                         <?php
                             $animauxDao =  new AnimauxDataAccess();
                             $animauxService =  new AnimauxService($animauxDao);
-                            $data = $animauxService->serviceSelectAllLostAnimalsUser();
+                            $data = $animauxService->serviceSelectAllLostAnimals();
                             $animauxService->carrousselDisplayLostAnimal($data);
                         ?>
                     </div>
@@ -115,10 +115,10 @@
                             <h3 class="font-weight-bold">Animaux en urgence d'adoption</h3>
                         </div>
                         <?php
-                            // $photoAnimalDataAccess =  new PhotoAnimalDataAccess();
-                            // $photoAnimalService =  new PhotoAnimalService($photoAnimalDataAccess);
-                            // $data = $photoAnimalService->serviceSelectAllProfilMalade();
-                            // $photoAnimalService->displayAnimalsMalade($data);
+                            $animauxDataAccess =  new AnimauxDataAccess();
+                            $animauxService =  new AnimauxService($animauxDataAccess);
+                            $data = $animauxService->serviceSelectAllProfilMalade();
+                            $animauxService->displayAnimalsMalade($data);
                         ?>
                     </div>
                 </div>
@@ -137,7 +137,6 @@
         <script src="../../javascript/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="../../javascript/displayCardAccueil.js"></script>
         <script src="../../javascript/accueil/showFormAddNews.js"></script>
         <script src="../../javascript/accueil/showNews.js"></script>
         <script src="../../javascript/fontAwesome.js"></script>

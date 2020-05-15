@@ -5,25 +5,24 @@
     include_once '../model/Animaux.php';
 
     class AnimauxService extends ServiceCommun implements InterfaceService {
-        public function serviceSelectAll()
-        {
+        public function serviceSelectAll(){
             $data = $this->getDataAccessObject()->daoSelectAll();
             return $data;
         }
 
-        public function serviceSelectAllAdoptableAnimals()
-        {
+        public function serviceSelectAllAdoptableAnimals(){
             $data = $this->getDataAccessObject()->daoSelectAllAdoptableAnimals();
             return $data;
         }
 
-        public function serviceSelectAllLostAnimals()
-        {
+        public function serviceSelectAllLostAnimals(){
             $data = $this->getDataAccessObject()->daoSelectAllLostAnimals();
             return $data;
         }
-
-
+        
+        public function serviceSelectAllProfilMalade(){
+            return parent::getDataAccessObject()->daoSelectAllAnimalMalade();
+        }
 
         public function serviceSelectAllUserAnimals($id)
         {
@@ -53,14 +52,36 @@
                 echo "<div class='carousel-item $class text-center'>";
                 $maxIndex = (4 * ($cpt + 1)) > count($data) ? count($data) : 4 * ($cpt + 1);
 
-                echo '<div class="row d-flex justify-content-center">';
+                echo '<div class="row d-flex justify-content-center mt-1">';
                 for($i=4*$cpt; $i < $maxIndex; $i++){
-                    echo '<div class="col-lg-2">';
-                    echo '<img class="w-75 round-div mx-3" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'" data-toggle="modal" data-target="#myModal'.$i.'"/>';
+                    echo '<div class="col-lg-2 p-0 mr-4">';
+                    echo '<img class="w-75 round-div mx-3" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
                     echo "<p class='text-white'> Perdu le ". $data[$i]['DATE_PERTE']. "</p>";
-                    echo "<p class='text-white mt-1' style='min-height: 80px;'> Perdu le ". $data[$i]['DESC_PERTE']. "</p>";
+                    echo "<p class='text-white mt-1 p-2' style='min-height: 80px;'> Perdu le ". $data[$i]['DESC_PERTE']. "</p>";
                     echo '</div>';
 
+                }
+                echo '<div class="col-lg-12"><a href="form-contact.php">Pour tout animal retrouvé. Contactez nous, nous préviendrons le Maitre de l\'animal.<a></div>';
+                echo '</div>';
+                $cpt++;
+                echo "</div>";
+            }
+        }
+        public function displayAnimalsMalade($data){
+            $cpt=0;
+            for($j = 0 ;$j <= intdiv(count($data), 3); $j++ ){
+                $class = $j == 0 ? "active": "";
+                echo "<div class='row mt-1 mb-5'>";
+                $maxIndex = (3 * ($cpt + 1)) > count($data) ? count($data) : 3 * ($cpt + 1);
+
+                for($i=3*$cpt; $i < $maxIndex; $i++){
+                    echo "<div class='parent-card col-lg-4 rounded text-center' data-toggle='modal' data-target='#myModal$i'>";
+                    echo '<img id="'.$data[$i]['ID_ANIMAL'].'" class="w-75 d-inline-block img-fluid" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
+                    echo "<div class='row'>";
+                    echo "<div class='col-lg-12 card-body bg-secondary' style='heigth : 400px; display: none;'>";
+                    echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
 
                     echo '<div id="myModal'.$i.'" class="modal fade" role="dialog"">
                         <div class="modal-dialog modal-xl modal-dialog-centered">                    
@@ -75,7 +96,7 @@
                                         <div class="col-lg-3 col-sm-12 text-center bg-1 d-flex align-items-center">
                                             <div class="row ">
                                                 <div class="col-12">
-                                                <h3 class="text-break"><strong>'.$data[$i]["nom"].'</strong></h3>
+                                                <h3 class="text-break"><strong>'.$data[$i]["NOM"].'</strong></h3>
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="text-break">Race : '.$data[$i]["NOM_RACE"].'</p>
@@ -112,15 +133,11 @@
                         </div>
                     </div>';
 
-
                 }
-                echo '<div class="col-lg-12"><a href="form-contact.php">Pour tout animal retrouvé. Contactez nous, nous préviendrons le Maitre de l\'animal.<a></div>';
-                echo '</div>';
                 $cpt++;
                 echo "</div>";
             }
         }
-        
 
         public function serviceCountAll() 
         {
@@ -147,10 +164,6 @@
             $this->getDataAccessObject()->daoAdd($animal);
         }
 
-        public function serviceSelectAllLostAnimalsUser(){
-            $data = parent::getDataAccessObject()->daoSelectAllLostAnimals();
-            return $data;
-        }
 
         public function serviceAddUserAnimal($animal)
         {
