@@ -60,7 +60,8 @@ function loadInfoCancelResearch(){
         success : function(){
             $('#nom_espece').val('');
             $('#ville').val('');
-            $("#urgence").prop("checked", false)
+            $('#urgence').prop('checked', false)
+            $('#popSelect').hide();
         }, 
         error : function(xhr, message, status){ 
             alert("Erreur !!");
@@ -142,8 +143,8 @@ window.onload=function() {
         $.ajax({
             url : 'displayRaceByType.php?nomEspece=' + espece,
             success : function(data){
-                $("#popSelect").html(data);
                 $("#popSelect").show();
+                $("#popSelect").html(data);
                 $(".simple-select").change(function(e){
                     loadInfo();
                 });
