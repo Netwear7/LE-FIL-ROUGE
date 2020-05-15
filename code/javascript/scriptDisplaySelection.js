@@ -40,7 +40,21 @@ $("#ville").change(function(e){
     loadInfo();
 });
 
+$("#cancelResearch").click(function(e){
+    e.preventDefault();   
+    loadInfoCancelResearch();
+});
 
+function loadInfoCancelResearch(){
+    nomEspeceValue = "";
+    nomRaceValue = "";
+    couleurValue = "";
+    sexeValue = "";
+    poilValue = "";
+    villeValue = "";
+    urgenceValue = "";
+    displaySelection(nomEspeceValue, nomRaceValue, couleurValue, sexeValue, poilValue, villeValue, urgenceValue);
+}
 
 
 
