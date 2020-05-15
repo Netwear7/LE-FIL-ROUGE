@@ -74,7 +74,7 @@
 <!--Include with php in futur-->
 <nav id="navbar" class="sticky-top navbar navbar-expand-lg navbar-light bg-1" style="z-index : 3">
             
-    <a id="logo" class="navbar-brand ml-5 mr-5" href="#"></a>
+    <a id="logo" class="navbar-brand ml-5 mr-5" href="accueil.php"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
