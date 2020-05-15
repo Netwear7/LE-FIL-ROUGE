@@ -11,7 +11,7 @@ include_once('../service/AnimauxService.php');
             echo '<div class="col-lg-3 mb-4 contentDisplay">
                     <div class="card">
                         <img  style="z-index:1; width:100%" data-toggle="modal" data-target="#myModal'.$i.'" src="data:image/png;base64,'.base64_encode($value['PHOTO']).'"/>
-                        <div class="card-body" data-toggle="modal" data-target="#myModal'.$i.'">
+                        <div class="card-body bg-white shadow-sm" data-toggle="modal" data-target="#myModal'.$i.'">
                             <div class="row justify-content-center">
                             <h4 class="card-text "><strong>'.$value["nom"].'</strong></h4>
                             </div>

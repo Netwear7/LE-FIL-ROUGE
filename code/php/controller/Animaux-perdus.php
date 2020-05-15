@@ -25,7 +25,7 @@
     <script src="../../javascript/navbarScroll.js"></script>
 </head>
 
-<body>
+<body class="bg-grey-light">
 
     <?php
         include_once("header.php");
@@ -96,7 +96,7 @@
         <!--navigation vers les pages de recherche, à inclure avec php, les numéros de page doivent se générer avec la création des pages-->
         <nav aria-label="Search results pages">
             <div class="col-lg-8 offset-lg-3">
-                <ul id="pagin" class="pagination justify-content-center">
+                <ul id="pagin" class="pagination justify-content-center mb-0 pb-4">
                 </ul>
             </div>
          </nav>
