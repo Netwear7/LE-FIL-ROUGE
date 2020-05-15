@@ -49,7 +49,7 @@ include_once('../service/AnimauxService.php');
                                                 <p class="text-break">Race : '.$value["NOM_RACE"].'</p>
                                             </div>   
                                             <div class="col-12">
-                                            <p>Né le  : <br/>'.$value["DATE_NAISSANCE"].'  </p>
+                                            <p>Né le  : <br/>'.dateFr($value["DATE_NAISSANCE"]).'  </p>
                                             </div>                           
                                         </div>                            
                                     </div>
@@ -95,21 +95,34 @@ include_once('../service/AnimauxService.php');
     if(isset($_GET["id"])){
         $idAnimal=$_GET["id"];
         $data=$animauxService->serviceSelectlostAnimalById($idAnimal);
-        affichage($data);
-    }
-
-    if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["poil"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
-        $data=$animauxService->serviceSelectAllLostAnimals();
-        affichage($data);
-    }
-
-    if(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["poil"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])){
-        $data=$animauxService->serviceSearchLostAnimals($_POST);
         if(count($data)>0){
             affichage($data);
         }
         else{
             echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
         }
-    } 
+    }
+
+    else{
+        if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["poil"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
+            $data=$animauxService->serviceSelectAllLostAnimals();
+            affichage($data);
+        }
+    
+        if(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["poil"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])){
+            $data=$animauxService->serviceSearchLostAnimals($_POST);
+            if(count($data)>0){
+                affichage($data);
+            }
+            else{
+                echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
+            }
+        } 
+    }
+    
+
+    function dateFr($date){
+        return strftime('%d-%m-%Y',strtotime($date));
+    }
+
 ?>

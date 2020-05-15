@@ -88,7 +88,7 @@ function affichage($data){
                                             <p class="text-break">Race : '.$value["NOM_RACE"].'</p>
                                         </div>   
                                         <div class="col-12">
-                                        <p>Né le  : <br/>'.$value["DATE_NAISSANCE"].'  </p>
+                                        <p>Né le  : <br/>'.dateFr($value["DATE_NAISSANCE"]).'  </p>
                                         </div>                           
                                     </div>                            
                                 </div>
@@ -158,7 +158,10 @@ function affichage($data){
             echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal ne correspond à votre recherche !</div>';
         }
     }
-    
+
+    function dateFr($date){
+        return strftime('%d-%m-%Y',strtotime($date));
+    }
      
 ?>
 
