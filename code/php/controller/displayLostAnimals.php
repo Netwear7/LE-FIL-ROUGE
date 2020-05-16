@@ -106,7 +106,12 @@ include_once('../service/AnimauxService.php');
     else{
         if(empty($_POST["nom_espece"]) && empty($_POST["nom_race"]) && empty($_POST["couleur"]) && empty($_POST["poil"]) && empty($_POST["sexe"]) && empty($_POST["ville"])){
             $data=$animauxService->serviceSelectAllLostAnimals();
-            affichage($data);
+            if(count($data)>0){
+                affichage($data);
+            }
+            else{
+                echo '<div class="alert alert-primary text-center col-lg-6 offset-lg-3" role="alert">Aucun animal signalé perdu pour le moment !</div>';
+            }
         }
     
         if(!empty($_POST["nom_espece"]) ||!empty($_POST["nom_race"]) ||!empty($_POST["couleur"]) ||!empty($_POST["poil"]) ||!empty($_POST["sexe"]) ||!empty($_POST["ville"])){
