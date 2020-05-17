@@ -54,8 +54,11 @@ if(isset($_SESSION) && $_SESSION["user_role"] == "[admin]"){
                         $imgSite = new ImgSite($_FILES["photo"]);
                         $idPhoto = $imgSiteService->serviceAdd($imgSite);
                         $imgSite->SetIdImgSite($idPhoto);
-                        $_POST["idPhoto"] .= $imgSite->GetIdImgSite();
-                        $result = $newsService->serviceUpdate($_POST);
+                        $updatedNewsWithPhoto = array("idNews" => $_POST["idNews"],
+                                                     "titleNewsUpdated" => $_POST["titleNewsUpdated"],
+                                                    "contentNewsUpdated" => $_POST["contentNewsUpdated"],
+                                                    "idPhoto" => $imgSite->GetIdImgSite() );
+                        $result = $newsService->serviceUpdate($updatedNewsWithPhoto);
                         } else {
                             $result = $newsService->serviceUpdate($_POST);
                         }
