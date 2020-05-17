@@ -62,12 +62,20 @@ if(isset($_SESSION) && $_SESSION["user_role"] == "[admin]"){
                         } else {
                             $result = $newsService->serviceUpdate($_POST);
                         }
-                        if($result === 1){
-                            $response_array['status'] = 'success'; 
-                            $response_array['message'] = 'La Modification de la news a bien été effectuée !';
+                        if($result === 0){
+                            $response_array['status'] = '06'; 
+                            $response_array['message'] = 'Vous n\'avez pas modifié la news !';
                             header('Content-type: application/json; charset=UTF-8');
                             $success = (json_encode($response_array));
                             echo $success;
+                        } else {
+                            if($result === 1){
+                                $response_array['status'] = 'success'; 
+                                $response_array['message'] = 'La news à bien été modifiée !';
+                                header('Content-type: application/json; charset=UTF-8');
+                                $success = (json_encode($response_array));
+                                echo $success;
+                            }
                         }    
                     }catch (MysqliQueryException $mqe) {
                         if ($mqe->getCode() == 1049) {
