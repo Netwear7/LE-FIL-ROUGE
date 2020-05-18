@@ -62,7 +62,7 @@
 
         public function carrousselDisplayLostAnimal($data){
             $cpt=0;
-            for($j = 0 ;$j <= intdiv(count($data), 4); $j++ ){
+            for($j = 0 ;$j <= intdiv(count($data), 4) -1; $j++ ){
                 $class = $j == 0 ? "active": "";
                 echo "<div class='carousel-item $class text-center'>";
                 $maxIndex = (4 * ($cpt + 1)) > count($data) ? count($data) : 4 * ($cpt + 1);
