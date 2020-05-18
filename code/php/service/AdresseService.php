@@ -21,11 +21,13 @@
             $adresse = new Adresse($post);
             $this->getDataAccessObject()->daoAdd($adresse);
         }
-
+        public function updatePostToEntityAndAdd($post){
+            $this->getDataAccessObject()->daoUpdateAdmin($post);
+        }
         //Select Adresses
         public function serviceSelect($id)
         {
-            $data = $this->getDataAccessObject()->daoSelect($this->id);
+            $data = $this->getDataAccessObject()->daoSelect($id);
             return $data;
         }
         public function serviceSelectByCodePostal($codePostal)

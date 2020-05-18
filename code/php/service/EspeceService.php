@@ -20,13 +20,16 @@ include_once '../Interfaces/InterfaceService.php';
             $espece->setNomEspece($post["nomEspece"]);
             $this->getDataAccessObject()->daoAdd($espece);
         }
+        public function updatePostToEntityAndAdd($post){
+            $this->getDataAccessObject()->daoUpdate($post);
+        }
 
         public function serviceSelectAll(){
             $data = $this->getDataAccessObject()->daoSelectAll();
             return $data;
         }
         public function serviceSelect($id){
-
+            return $this->getDataAccessObject()->daoSelect($id);
         }
         public function serviceCount(){
 

@@ -48,6 +48,11 @@
             $data = $this->getDataAccessObject()->daoSelect($id);
             return $data;
         }
+        public function serviceSelectId($id)
+        {
+            $data = $this->getDataAccessObject()->daoSelectId($id);
+            return $data;
+        }
 
 
         public function serviceCount() 
@@ -429,7 +434,9 @@
                 throw $mqe;
             }
         }
-
+        public function updatePostToEntityAndAdd($post){
+            $this->getDataAccessObject()->daoUpdateAdmin($post);
+        }
 
 
         public function serviceSearch($search)

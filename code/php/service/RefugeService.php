@@ -19,6 +19,9 @@
             $refuge = new Refuge($post, $id);
             $this->getDataAccessObject()->daoAdd($refuge);
         }
+        public function updatePostToEntityAndAdd($post){
+            $this->getDataAccessObject()->daoUpdate($post);
+        }
         public function serviceAdd(object $var){
             
         }

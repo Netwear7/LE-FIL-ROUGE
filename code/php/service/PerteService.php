@@ -26,6 +26,9 @@ include_once '../model/Perte.php';
             $perte = new Perte($post);
             $this->getDataAccessObject()->daoAdd($perte);
         }
+        public function updatePostToEntityAndAdd($post){
+            $this->getDataAccessObject()->daoUpdate($post);
+        }
 
         public function serviceAdd($perte){
             try {

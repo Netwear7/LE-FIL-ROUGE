@@ -10,10 +10,13 @@
             return $data;
         }
         public function serviceSelect($id){
-            
+            return $this->getDataAccessObject()->daoSelect($id);
         }
         public function serviceCount(){
             
+        }
+        public function updatePostToEntityAndAdd($post){
+            $this->getDataAccessObject()->daoUpdate($post);
         }
 
         public function InsertPostToEntityAndAdd(array $post){
