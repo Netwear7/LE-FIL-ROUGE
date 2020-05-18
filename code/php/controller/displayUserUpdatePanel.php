@@ -18,7 +18,7 @@ echo
 
 
 
-    <div class="row mt-2">
+    <div class="row mt-4">
         <div class="col-8 offset-2 componentContainer">
                      
                 <div class="row" >

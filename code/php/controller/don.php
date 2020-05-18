@@ -28,35 +28,38 @@
             include_once("header.php");
         ?>
         <div class="container ">
-            <div class="row mt-5">
-                <div class="col text-center">
-                    <h3>Vous souhaitez nous Soutenir ?</h3>
+            <div class="bg-grey-light componentContainer">
+                <div class="row mt-5 ">
+                    <div class="col text-center ">
+                        <h3 class="mt-2">Vous souhaitez nous Soutenir ?</h3>
+                    </div>
                 </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col-lg-4 col-sm-12 d-flex align-items-center justify-content-center">
-                    <h2>Faites un don !</h2>
-                </div>
-                <article class="col-lg-8 col-sm-12">
-                    <p class="mt-3">
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-sm-12 d-flex align-items-center justify-content-center">
+                        <h2>Faites un don !</h2>
+                    </div>
+                    <article class="col-lg-8 col-sm-12">
+                        <p class="mt-3">
 
-                         Le Don blablablablaHoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.
-                        
-                        Procedente igitur mox tempore cum adventicium nihil inveniretur, relicta ora maritima in Lycaoniam adnexam Isauriae se contulerunt ibique densis intersaepientes itinera praetenturis provincialium et viatorum opibus pascebantur.
-                        
-                        est uttem non indicabant denique etiam idem ad usque discrimen vitae vexatus nihil fateri conpulsus est.
-                    </p>
-                </article>
+                            Le Don blablablablaHoc inmaturo interitu ipse quoque sui pertaesus excessit e vita aetatis nono anno atque vicensimo cum quadriennio imperasset. natus apud Tuscos in Massa Veternensi, patre Constantio Constantini fratre imperatoris, matreque Galla sorore Rufini et Cerealis, quos trabeae consulares nobilitarunt et praefecturae.
+                            
+                            Procedente igitur mox tempore cum adventicium nihil inveniretur, relicta ora maritima in Lycaoniam adnexam Isauriae se contulerunt ibique densis intersaepientes itinera praetenturis provincialium et viatorum opibus pascebantur.
+                            
+                            est uttem non indicabant denique etiam idem ad usque discrimen vitae vexatus nihil fateri conpulsus est.
+                        </p>
+                    </article>
+                </div>
             </div>
+
             <div class="row mt-5 ">
-                <div class="col-2">
+                <div class="col-lg-2 col-sm-12">
                     <label for="selectDonationMode">Selectionnez un mode de Donation : </label>
                     <select id="selectDonationMode" class="form-control">
                         <option value="paypal">Paypal</option>
                         <option value="cb">Carte bancaire</option>
                     </select>
                 </div>
-                <div class="col-8">
+                <div class="col-lg-8 col-sm-12 mt-2">
                     <form id="donation">
                     <div class="row bg-grey-light p-3 componentContainer" id="loadDonation">   
 

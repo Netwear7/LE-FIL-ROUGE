@@ -177,7 +177,7 @@ function redimension($rawPhoto)
         $nheight = $maxHeight;
     }
     # Affichage
-    return " <img class=\"rounded img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+    return " <img class=\" img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
 }
 
 

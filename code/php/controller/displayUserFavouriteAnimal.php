@@ -112,7 +112,8 @@ session_start();
                             </div>
                             <div class="col-lg-1 col-sm-12">
                                 <div class="row">
-                                    <button type="button" class="btn removeFavoris " value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"><i class="fas fa-times"></i></button>
+                                    <button type="button" class="btn removeFavoris" value="'.$dataAnimaux[$i]["ID_ANIMAL"].'"><i class="fas fa-times"></i></button>
+
                                 </div>
                             </div>
                         </div>
@@ -151,7 +152,7 @@ session_start();
                 $nheight = $maxHeight;
             }
             # Affichage
-            return " <img class=\"rounded img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+            return " <img class=\"img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
         }
 
 ?>
