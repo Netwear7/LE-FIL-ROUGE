@@ -564,9 +564,9 @@ if (isset($_POST["addAnimal"])){
                                                                 $error = (json_encode($response_array));
                                                                 echo $error;
                                                             } else {
-                                                                if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["robe"])){
+                                                                if(!preg_match("/^[a-zA-Z'-àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["robe"])){
                                                                     $response_array['status'] = '15'; 
-                                                                    $response_array['message'] = 'La robe de votre compagnon ne peux contenir de caractères spéciaux !';
+                                                                    $response_array['message'] = 'La Robe de votre compagnon ne peux contenir de caractères spéciaux !';
                                                                     header('Content-type: application/json; charset=UTF-8');
                                                                     $error = (json_encode($response_array));
                                                                     echo $error;
