@@ -60,7 +60,16 @@
         }
         public function daoSearch($search){}
 
-        public function daoUpdate(array $parametres){}
+        public function daoUpdate(array $parametres){
+            $mysqli = $this->connexion(); 
+            $datePerte = $parametres["DATE_PERTE"];
+            $descPerte = $parametres["DESC_PERTE"];
+            $id = $parametres["id"];
+            $stmt = $mysqli->prepare('UPDATE perte SET DATE_PERTE = ?, DESC_PERTE = ? where ID_PERTE=?');
+            $stmt->bind_param("sss", $datePerte, $descPerte, $id);
+            $stmt->execute();
+            $this->deconnexion($mysqli); 
+        }
         
         public function daoDelete($idAnimalRetrouve){
             try {

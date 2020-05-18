@@ -42,7 +42,16 @@
 
         }
         public function daoUpdate($parametres){
-
+            $mysqli = $this->connexion(); 
+            $region = $parametres["REGION"];
+            $departement = $parametres["DEPARTEMENT"];
+            $email = $parametres["EMAIL"];
+            $num = $parametres["TELEPHONE"];
+            $id = $parametres["id"];
+            $stmt = $mysqli->prepare('UPDATE refuge SET REGION=?, DEPARTEMENT=?, EMAIL=?, TELEPHONE=? where ID_REFUGE=?');
+            $stmt->bind_param("sssss", $region, $departement, $email, $num, $id);
+            $stmt->execute();
+            $this->deconnexion($mysqli); 
         }
         public function daoDelete($idRefuge){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
