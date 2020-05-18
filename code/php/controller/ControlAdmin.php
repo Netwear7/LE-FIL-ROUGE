@@ -74,12 +74,17 @@
         $SelectedTableService = new $TableService($dataAccess);
         return $SelectedTableService;
     }
-    function AddNewRowOfSelectedTable($table){
+    function addNewRowOfSelectedTable($table){
         $SelectedTableDAO = ConcatTableDataAccess($table);
         $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
         $SelectedTableService->InsertPostToEntityAndAdd($_POST);
     }
-    function RemoveRowOfSelectedTable($table){
+    function updateRowOfSelectedTable($table){
+        $SelectedTableDAO = ConcatTableDataAccess($table);
+        $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
+        $SelectedTableService->updatePostToEntityAndAdd($_POST);
+    }
+    function removeRowOfSelectedTable($table){
         $SelectedTableDAO = ConcatTableDataAccess($table);
         $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
         if($table == "animaux"){
@@ -90,36 +95,30 @@
         }
     }
     
-    function AddNewRowOfSelectedTableAndAdresse($table, $id){
+    function addNewRowOfSelectedTableAndAdresse($table, $id){
         $SelectedTableDAO = ConcatTableDataAccess($table);
         $SelectedTableService = ConcatTableService($table, $SelectedTableDAO);
         $SelectedTableService->InsertPostToEntityAndAdd($_POST, $id);
     }
     //POST
-    if(isset($_POST["tableSelect"]) && 
-        $_POST["tableSelect"] != "refuge"  && 
-        $_POST["tableSelect"] != "utilisateur" && 
-        $_POST["tableSelect"] != "animaux" && 
-        $_POST["tableSelect"] != "photo_animal" &&
-        $_POST["tableSelect"] != "animaux" 
-        ){
-            AddNewRowOfSelectedTable($_POST["tableSelect"]);
+    if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] != "refuge"  && $_POST["tableSelect"] != "utilisateur" && $_POST["tableSelect"] != "animaux" && $_POST["tableSelect"] != "photo_animal" && $_POST["tableSelect"] != "animaux" && $_POST["action"] == "add"){
+        addNewRowOfSelectedTable($_POST["tableSelect"]);
     }
-    if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "refuge"){
-        AddNewRowOfSelectedTable("adresse");
+    if(isset($_POST["tableSelect"]) && $_POST["action"] == "add" && $_POST["tableSelect"] == "refuge"){
+        addNewRowOfSelectedTable("adresse");
         $adresseDao = new AdresseDataAccess();
         $adresseService = new AdresseService($adresseDao);
         $id = $adresseService->serviceSelectByCodePostal($_POST["CODE_POSTAL"]);
-        AddNewRowOfSelectedTableAndAdresse($_POST["tableSelect"], $id[0]["ID_ADRESSE"]);
+        addNewRowOfSelectedTableAndAdresse($_POST["tableSelect"], $id[0]["ID_ADRESSE"]);
     }
-    if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "photo_animal" && !empty($_FILES['photo'])){
+    if(isset($_POST["tableSelect"]) && $_POST["action"] == "add" && $_POST["tableSelect"] == "photo_animal" && !empty($_FILES['photo'])){
         $photoAnimalDao = new PhotoAnimalDataAccess();
         $photoAnimalService = new PhotoAnimalService($photoAnimalDao);
         $photoAnimal = new PhotoAnimal($_FILES["photo"], $_POST["animaux"]);
         $photoAnimal->setPhotoProfil(1);
         $photoAnimalService->serviceAdd($photoAnimal);
     }
-    if(isset($_POST["tableSelect"]) && $_POST["tableSelect"] == "animaux" && !empty($_FILES['photo'])){
+    if(isset($_POST["tableSelect"]) && $_POST["action"] == "add" && $_POST["tableSelect"] == "animaux" && !empty($_FILES['photo'])){
         $animauxDao = new AnimauxDataAccess();
         $animauxService = new AnimauxService($animauxDao);
         $animal = new Animaux($_POST);
@@ -145,12 +144,12 @@
         $photoAnimalService->serviceAdd($photoAnimal);
     }
 
-    //GET
+    //GET DELETE
     if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] != "refuge"  && $_GET["table"] != "perte"){
         if($_GET["table"] == "est_infecte_par"){
-            RemoveRowOfSelectedTable("infecte_par");
+            removeRowOfSelectedTable("infecte_par");
         }
-        RemoveRowOfSelectedTable($_GET["table"]);
+        removeRowOfSelectedTable($_GET["table"]);
     }
     if(isset($_GET["action"]) && $_GET["action"] == "delete" && $_GET["table"] == "refuge"){
         $refugeDao = new RefugeDataAccess();
@@ -176,6 +175,10 @@
         $data = $perteService->serviceSelectIdPerte($_GET["id"]);
         $perteService->serviceDelete($data["ID_ANIMAL"]);
     }
+    //POST UPDATE
+    if(isset($_POST["action"]) && $_POST["action"] == "update"){
+        updateRowOfSelectedTable($_POST["tableSelect"]);
+    }
 ?>
 
 <!doctype html>
@@ -191,6 +194,7 @@
         <title>Donnée du site</title>
         <!-- script Javascript-->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="../../javascript/jquery-3.4.1.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="../../javascript/navbarScroll.js"></script>
@@ -209,8 +213,9 @@
         <div class="container-fluid mt-3">
             <div class="row">
                 <div class="offset-lg-1 col-lg-10 mt-2 bg-grey-light">
-                    <a href="displayModalAddInDatabase.php" id="modalAdd" class="" data-toggle="modal" data-target="#add"><i class="fas fa-plus mb-2 mt-2 ml-2"></i></a>
+                    <a href="displayModalAddInDatabase.php" id="displayAdd" class="" data-toggle="modal" data-target="#create"><i class="fas fa-plus mb-2 mt-2 ml-2"></i></a>
                     <div id="pload"></div>
+                    <div id="updateLoad"></div>
                     <select class="form-control mt-2" id="tableSelect" name="tableSelect">
                     <?php
                         $controlAdminDAO = new ControlAdminDataAccessDataAccess();
@@ -219,6 +224,7 @@
                         foreach($data as $array){
                             if(
                                 $array["table_name"] == "etre_favoris" ||
+                                $array["table_name"] == "img_site" ||
                                 $array["table_name"] == "news"
                             ){}
                             else{
@@ -233,7 +239,6 @@
                 </div>
             </div>
         </div>
-        <script src="../../javascript/jquery-3.4.1.min.js"></script>
         <script src="../../javascript/displayControlAdmin.js"></script>
     </body>
 </html>
