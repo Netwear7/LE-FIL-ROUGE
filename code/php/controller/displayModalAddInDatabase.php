@@ -253,7 +253,7 @@
     }
 ?>
 <!-- Modal -->
-<div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
+<div class="modal fade" id="create" tabindex="-1" role="dialog" aria-labelledby="create" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -266,7 +266,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="POST" id="form-admin" enctype="multipart/form-data">
+                <form action="POST" id="form-add" enctype="multipart/form-data">
+                <input type="text" class="form-control" style="display: none;" id="action" name="action" value="add">
+
                     <?php
                         // $ColumnTable = GetDataOfSelectedTable($_POST["table"]);
                         if(isset($_POST["table"]) && !empty($_POST["table"])){
