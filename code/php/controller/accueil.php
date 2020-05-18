@@ -94,7 +94,7 @@
 
                     <?php
                         if(isset($_SESSION["user_role"]) && $_SESSION["user_role"] == '[admin]'){
-                            echo '<div class="row bg-grey-light mb-3 p-5" >';
+                            echo '<div class="row bg-grey-light shadow-sm mb-3 p-5" >';
                             echo'<button type="btn" id="addNews" class="btn btn-link">Ajouter une news</button>';
                             echo '
                             <div class="col-12" id="rowAddNews" style="display: none">
