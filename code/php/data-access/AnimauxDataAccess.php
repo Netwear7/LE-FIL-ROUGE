@@ -141,6 +141,17 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             $this->deconnexion($mysqli);
             return $data;
         }
+        public function daoSelectId($id){
+            $mysqli = $this->connexion();
+            $stmt = $mysqli->prepare('SELECT * from animaux where ID_ANIMAL = ?');
+            $stmt->bind_param('i',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_array(MYSQLI_ASSOC);
+            $rs->free();
+            $this->deconnexion($mysqli);
+            return $data;
+        }
 
 
         public function daoCount(){}
@@ -297,6 +308,21 @@ class AnimauxDataAccess extends LogBdd implements InterfaceDao{
             } 
         }
         
+        public function daoUpdateAdmin($parametres){
+            $mysqli = $this->connexion(); 
+            $nom = $parametres["nomAnimal"];
+            $dateNaissance = $parametres["dateNaissance"];
+            $poids = $parametres["POIDS"];
+            $noPuce = $parametres["NO_PUCE"];
+            $caractere = $parametres["CARACTERE"];
+            $specificite = $parametres["SPECIFICITE"];
+            $taille = $parametres["TAILLE"];
+            $id = $parametres["id"];
+            $stmt = $mysqli->prepare('UPDATE animaux SET NOM= ?, DATE_NAISSANCE=?,POIDS=?,NO_PUCE=?, CARACTERE=?, SPECIFICITE=?, TAILLE=? where ID_ANIMAL=?');
+            $stmt->bind_param("ssdsssis",$nom, $dateNaissance, $poids, $noPuce, $caractere, $specificite, $taille, $id);
+            $stmt->execute();
+            $this->deconnexion($mysqli); 
+        }
 
         public function daoDelete($infosAnimal)
         {

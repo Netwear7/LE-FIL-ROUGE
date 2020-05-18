@@ -19,8 +19,8 @@
 
         public function daoSelect($id){
             $mysqli = new mysqli('localhost','root','','bddanimaux');
-            $stmt = $mysqli->prepare('SELECT * from adresse  where ID_ADRESSE = ?');
-            $stmt->bind_param('i',$idAdresse);
+            $stmt = $mysqli->prepare('SELECT * from adresse where ID_ADRESSE = ?');
+            $stmt->bind_param('i',$id);
             $stmt->execute();
             $rs = $stmt->get_result();
             $data = $rs->fetch_all(MYSQLI_ASSOC);
@@ -106,6 +106,19 @@
             }      
             $this->deconnexion($mysqli); 
             return $result = "Modification effectuées !";  
+        }
+        public function daoUpdateAdmin($parametres)
+        {
+            $mysqli = $this->connexion(); 
+            $numero = $parametres["NUMERO"];
+            $rue = $parametres["RUE"];
+            $id = $parametres["id"];
+            $ville = $parametres["VILLE"];
+            $codePostal = $parametres["CODE_POSTAL"];
+            $stmt = $mysqli->prepare('UPDATE adresse SET NUMERO= ?,RUE= ?,VILLE=?,CODE_POSTAL=? where ID_ADRESSE=?');
+            $stmt->bind_param("issis",$numero, $rue, $ville, $codePostal, $id);
+            $stmt->execute();
+            $this->deconnexion($mysqli); 
         }
 
 

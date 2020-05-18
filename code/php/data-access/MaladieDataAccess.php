@@ -13,7 +13,15 @@
             return $data;
         }
         public function daoSelect($id){
-
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $stmt = $mysqli->prepare('SELECT * from maladie where ID_MALADIE = ?');
+            $stmt->bind_param('i',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $mysqli->close();
+            return $data;
         }
         public function daoCount(){
 
@@ -31,7 +39,14 @@
 
         }
         public function daoUpdate($parametres){
-
+            $mysqli = $this->connexion(); 
+            $maladie = $parametres["MALADIE"];
+            $urgence = $parametres["URGENCE"];
+            $id = $parametres["id"];
+            $stmt = $mysqli->prepare('UPDATE maladie SET MALADIE = ?, URGENCE=? where ID_MALADIE=?');
+            $stmt->bind_param("sis", $maladie, $urgence, $id);
+            $stmt->execute();
+            $this->deconnexion($mysqli); 
         }
         public function daoDelete($nom){
 

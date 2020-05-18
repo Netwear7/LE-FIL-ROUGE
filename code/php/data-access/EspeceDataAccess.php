@@ -26,7 +26,15 @@ class EspeceDataAccess extends LogBdd implements InterfaceDao{
             return $data;
         }
         public function daoSelect($id){
-
+            $mysqli = new mysqli('localhost','root','','bddanimaux');
+            $stmt = $mysqli->prepare('SELECT * from espece where ID_ESPECE = ?');
+            $stmt->bind_param('i',$id);
+            $stmt->execute();
+            $rs = $stmt->get_result();
+            $data = $rs->fetch_all(MYSQLI_ASSOC);
+            $rs->free();
+            $mysqli->close();
+            return $data;
         }
         public function daoCount(){
 
@@ -43,7 +51,13 @@ class EspeceDataAccess extends LogBdd implements InterfaceDao{
 
         }
         public function daoUpdate($parametres){
-
+            $mysqli = $this->connexion(); 
+            $nomEspece = $parametres["NOM_ESPECE"];
+            $id = $parametres["id"];
+            $stmt = $mysqli->prepare('UPDATE espece SET NOM_ESPECE = ? where ID_ESPECE=?');
+            $stmt->bind_param("ss", $nomEspece, $id);
+            $stmt->execute();
+            $this->deconnexion($mysqli); 
         }
         public function daoDelete($id){
             $mysqli = $this->connexion(); 
