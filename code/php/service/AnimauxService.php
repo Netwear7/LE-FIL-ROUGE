@@ -70,14 +70,13 @@
                 echo '<div class="row d-flex justify-content-center mt-1">';
                 for($i=4*$cpt; $i < $maxIndex; $i++){
                     echo '<div class="col-lg-2 p-0 mr-4">';
-                    echo "<p class='text-white'>". $data[$i]['nom']. "</p>";
-                    echo '<img class="w-75 round-div mx-3" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
+                    echo "<p class=' bg-1 mt-1'>". $data[$i]['nom']. "</p>";
+                    echo '<img class="w-75 round-div mx-3 mt-0" src="data:image/png;base64,'.base64_encode($data[$i]['PHOTO']).'"/>';
                     echo "<p class='text-white'> Perdu le ". $data[$i]['DATE_PERTE']. "</p>";
-                    echo "<p class='text-white mt-1 p-2' style='min-height: 80px;'>". $data[$i]['DESC_PERTE']. "</p>";
+                    echo "<p class='text-white mt-1' style='min-height: 60px;'>". $data[$i]['DESC_PERTE']. "</p>";
                     echo '</div>';
 
                 }
-                echo '<div class="col-lg-12"><a href="form-contact.php">Pour tout animal retrouvé. Contactez nous, nous préviendrons le Maitre de l\'animal.  /!\ Changer la tournure, j\'y ai pas réfléchis<a></div>';
                 echo '</div>';
                 $cpt++;
                 echo "</div>";
