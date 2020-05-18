@@ -146,7 +146,7 @@
                                     </div>
                                     <div class="row bg-3" style="font-size:1.2em">
                                         <div class="col-lg-12 text-center p-2 bg-grey-light">
-                                            <i>Vous avez eu un coup de coeur pour cet animal ? Contactez nous !</i>
+                                            <i>Devenez famille d\'accueil, aidez-nous à trouver une maison pour '.$data[$i]["NOM"].'. Contactez nous !</i>
                                             <p class="mb-0">ANITOPIA - '.$data[$i]["VILLE"].' </br> '.$data[$i]["NUMERO"].', '.$data[$i]["RUE"].' - '.$data[$i]["CODE_POSTAL"].' '.$data[$i]["VILLE"].' </br><i>tél</i> : '.$data[$i]["TELEPHONE"].' / <i>email</i> : '.$data[$i]["EMAIL"].'</p>
                                         </div>
                                     </div> 
