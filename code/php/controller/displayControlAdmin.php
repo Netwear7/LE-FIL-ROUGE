@@ -77,43 +77,18 @@
         
         foreach($data as $key => $row){
             $values = array_values($row);
-            if(
-                $_POST["table"] != "espece_avoir_maladie" &&
-                $_POST["table"] != "avoir_couleur" &&
-                $_POST["table"] != "est_infecte_par" &&
-                $_POST["table"] != "garderie" &&
-                $_POST["table"] != "photo_animal" &&
-                $_POST["table"] != "couleur_animal" &&
-                $_POST["table"] != "race" &&
-                $_POST["table"] != "contactez_nous"
-            ){
+            if($_POST["table"] == "adresse" || $_POST["table"] == "animaux" || $_POST["table"] == "espece" || $_POST["table"] == "perte" || $_POST["table"] == "refuge" || $_POST["table"] == "maladie" || $_POST["table"] == "utilisateur"){
                 echo "<tr>";
                 echo "<td>";
-                echo "<a href='#'  class='edit'><i class='far fa-edit mr-2'></i></a>";
             }
-
-
-            if($_POST["table"] != "espece_avoir_maladie"
-                && $_POST["table"] != "maladie"
-                && $_POST["table"] != "donation"
-                && $_POST["table"] != "avoir_couleur" 
-                && $_POST["table"] != "garderie" 
-                && $_POST["table"] != "couleur_animal" 
-                && $_POST["table"] != "race" 
-                && $_POST["table"] != "photo_animal" 
-                && $_POST["table"] != "est_infecte_par" 
-                && $_POST["table"] != "contactez_nous"
-                && $_POST["table"] != "avoir_couleur"){
+            if($_POST["table"] == "adresse" || $_POST["table"] == "animaux" || $_POST["table"] == "espece" || $_POST["table"] == "perte" || $_POST["table"] == "refuge" || $_POST["table"] == "maladie"
+            ){
+                echo "<a href='#' data-row='$values[0]' class='update'><i class='far fa-edit mr-2'></i></a>";
+            }
+            if($_POST["table"] == "adresse" || $_POST["table"] == "animaux" || $_POST["table"] == "espece" || $_POST["table"] == "perte" || $_POST["table"] == "refuge" || $_POST["table"] == "utilisateur"){
                 echo "<a href='#' data-row='$values[0]' class='delete'><i class='far fa-times-circle text-danger'></i></a>";
             }
-            if($_POST["table"] != "espece_avoir_maladie" 
-                && $_POST["table"] != "contactez_nous" 
-                && $_POST["table"] != "avoir_couleur" 
-                && $_POST["table"] != "photo_animal" 
-                && $_POST["table"] != "garderie" 
-                && $_POST["table"] != "race" 
-                && $_POST["table"] != "est_infecte_par" 
-                && $_POST["table"] != "couleur_animal")
+            if($_POST["table"] == "adresse" || $_POST["table"] == "animaux" || $_POST["table"] == "espece" || $_POST["table"] == "perte" || $_POST["table"] == "refuge" || $_POST["table"] == "utilisateur")
             {
                 echo "</td>";
             }
@@ -121,7 +96,7 @@
 
             foreach($row as $key => $cell){
                 if($key == "PHOTO"){
-                    echo '<td><img class="img-round d-inline-block w-50 mx-3" src="data:image/png;base64,'.base64_encode($cell).'"/></td>';
+                    echo '<td><img class="img-round d-inline-block w-75 mx-3" src="data:image/png;base64,'.base64_encode($cell).'"/></td>';
                 }
                 elseif($key == "MDP"){
                     continue;
@@ -153,6 +128,8 @@
                         $_POST["table"] != "est_infecte_par" &&
                         $_POST["table"] != "photo_animal" &&
                         $_POST["table"] != "race" &&
+                        $_POST["table"] != "appartenir_espece" &&
+                        $_POST["table"] != "img_site" &&
                         $_POST["table"] != "garderie" &&
                         $_POST["table"] != "couleur_animal" &&
                         $_POST["table"] != "contactez_nous"
