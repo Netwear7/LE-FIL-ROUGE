@@ -550,7 +550,7 @@ if (isset($_POST["addAnimal"])){
                                                         $error = (json_encode($response_array));
                                                         echo $error;
                                                     } else {
-                                                        if (!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["caractere"])){
+                                                        if (!preg_match("/[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð0-9!@#$%^&*()_+\-=\[\]{};\':\"\\|,.<>\/?]/",$_POST["caractere"])){
                                                             $response_array['status'] = '13'; 
                                                             $response_array['message'] = 'Les informations concernant le caractère de votre animal ne peuvent contenir des caractères incorrects, seuls sont acceptés les Lettres, les accents et la ponctuation !';
                                                             header('Content-type: application/json; charset=UTF-8');
@@ -620,7 +620,7 @@ if (isset($_POST["addAnimal"])){
                                                                                                 $error = (json_encode($response_array));
                                                                                                 echo $error;
                                                                                             } else {
-                                                                                                if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["specificites"])){
+                                                                                                if(!preg_match("/[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð0-9!@#$%^&*()_+\-=\[\]{};\':\"\\|,.<>\/?]/",$_POST["specificites"])){
                                                                                                     $response_array['status'] = '23'; 
                                                                                                     $response_array['message'] = 'Les spécificités contiennent des caractères interdits !';
                                                                                                     header('Content-type: application/json; charset=UTF-8');
@@ -775,7 +775,7 @@ if (isset($_POST["updateAnimalInfos"])){
                                                     $error = (json_encode($response_array));
                                                     echo $error;
                                                 } else {
-                                                    if (!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["caractere"])){
+                                                    if (!preg_match("/[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð0-9!@#$%^&*()_+\-=\[\]{};\':\"\\|,.<>\/?]/",$_POST["caractere"])){
                                                         $response_array['status'] = '13'; 
                                                         $response_array['message'] = 'Les informations concernant le caractère de votre animal ne peuvent contenir des caractères incorrects, seuls sont acceptés les Lettres, les accents et la ponctuation !';
                                                         header('Content-type: application/json; charset=UTF-8');
@@ -789,7 +789,7 @@ if (isset($_POST["updateAnimalInfos"])){
                                                             $error = (json_encode($response_array));
                                                             echo $error;
                                                         } else {
-                                                            if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["robe"])){
+                                                            if(!preg_match("/[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð0-9!@#$%^&*()_+\-=\[\]{};\':\"\\|,.<>\/?]/",$_POST["robe"])){
                                                                 $response_array['status'] = '15'; 
                                                                 $response_array['message'] = 'La robe de votre compagnon ne peux contenir de caractères spéciaux !';
                                                                 header('Content-type: application/json; charset=UTF-8');
@@ -846,7 +846,7 @@ if (isset($_POST["updateAnimalInfos"])){
                                                                                             $error = (json_encode($response_array));
                                                                                             echo $error;
                                                                                         } else {
-                                                                                            if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["specificite"])){
+                                                                                            if(!preg_match("/[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð0-9!@#$%^&*()_+\-=\[\]{};\':\"\\|,.<>\/?]/",$_POST["specificite"])){
                                                                                                 $response_array['status'] = '23'; 
                                                                                                 $response_array['message'] = 'Les spécificités contiennent des caractères interdits !';
                                                                                                 header('Content-type: application/json; charset=UTF-8');
@@ -999,7 +999,7 @@ if (isset($_POST["perte"])){
                     $error = (json_encode($response_array));
                     echo $error;
                 }else {
-                    if(!preg_match("/^[a-zA-Z'àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð., ]*$/",$_POST["precisionPerte"])){
+                    if(!preg_match("/[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð0-9!@#$%^&*()_+\-=\[\]{};\':\"\\|,.<>\/?]/",$_POST["precisionPerte"])){
                         $response_array['status'] = '04'; 
                         $response_array['message'] = 'Votre texte contiens des caractères interdis !';
                         header('Content-type: application/json; charset=UTF-8');
