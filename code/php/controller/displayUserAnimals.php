@@ -73,7 +73,7 @@ session_start();
                 
             echo 
             '
-                <div class="col-8 mt-3  offset-2 componentContainer">
+                <div class="col-8 mt-4  offset-2 componentContainer">
                     <div class="row">
                         <div class="col-lg-4 col-sm-12 ">
                             <div class="row">
@@ -177,7 +177,7 @@ function redimension($rawPhoto)
         $nheight = $maxHeight;
     }
     # Affichage
-    return " <img class=\" img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+    return " <img class=\" img-fluid rounded\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
 }
 
 

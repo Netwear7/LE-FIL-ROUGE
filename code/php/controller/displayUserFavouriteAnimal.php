@@ -58,7 +58,7 @@ session_start();
                 $rawPhoto = "data:image/png;base64," . base64_encode($dataAnimaux[$i]["PHOTO"]);
                 echo 
                 '
-                <div class="row mt-3">
+                <div class="row mt-4">
                     <div class="col-8  offset-2 componentContainer">
                         <div class="row">
                             <div class="col-lg-4 col-sm-12 ">
@@ -152,7 +152,7 @@ session_start();
                 $nheight = $maxHeight;
             }
             # Affichage
-            return " <img class=\"img-fluid\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
+            return " <img class=\"img-fluid rounded\" src=$rawPhoto width=\"$nwidth\" height=\"$nheight\" >";
         }
 
 ?>
